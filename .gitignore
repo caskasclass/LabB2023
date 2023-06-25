@@ -1,0 +1,14 @@
+# Cartella target generata da Maven
+/target/
+
+# File pom.xml
+pom.xml
+
+# Configurazione specifica dell'IDE (Esempio: IntelliJ IDEA)
+.idea/
+.vscode/
+
+# File di log
+*.log
+logs/
+
