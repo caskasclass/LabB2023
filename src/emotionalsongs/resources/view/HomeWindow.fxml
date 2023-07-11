@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background-pane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeWindowController">
+   <center>
+      <ScrollPane fx:id="rootScrollPane" styleClass="scroll_pane">
+      </ScrollPane>
+   </center>
+   <left>
+      <VBox fx:id="rootMenu" alignment="TOP_CENTER" minWidth="-Infinity" styleClass="manuVbox" />
+   </left>
+</BorderPane>
