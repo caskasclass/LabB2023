@@ -1,15 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background-pane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeWindowController">
-   <center>
-      <ScrollPane fx:id="rootScrollPane" styleClass="scroll_pane">
-      </ScrollPane>
-   </center>
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background_pane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeWindowController">
    <left>
-      <VBox fx:id="rootMenu" alignment="TOP_CENTER" minWidth="-Infinity" styleClass="manuVbox" />
+      <VBox fx:id="rootMenu" alignment="TOP_CENTER" minWidth="-Infinity" prefWidth="225.0" styleClass="menuContainer">
+         <children>
+            <VBox>
+               <children>
+                  <Button fx:id="homeButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="home_button">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <StackPane maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" styleClass="menu_icon">
+                                 <children>
+                                    <SVGPath content="M22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274" fill="TRANSPARENT" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" />
+                                    <SVGPath content="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16 " fill="TRANSPARENT" scaleZ="2.0" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" translateY="4.0" />
+                                 </children>
+                              </StackPane>
+                              <Label maxHeight="1.7976931348623157E308" text="Home">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin></Label>
+                           </children>
+                        </HBox>
+                     </graphic></Button>
+                  <Button fx:id="searchButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="home_button">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <StackPane maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" styleClass="menu_icon">
+                                 <children>
+                                    <SVGPath content="M20 20L15.8033 15.8033C15.8033 15.8033 14 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5C18 11.0137 17.9484 11.5153 17.85 12" fill="TRANSPARENT" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" />
+                                 </children>
+                              </StackPane>
+                              <Label maxHeight="1.7976931348623157E308" text="Search">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+               </children>
+               <styleClass>
+                  <String fx:value="base" />
+                  <String fx:value="menu_box" />
+               </styleClass></VBox>
+            <VBox VBox.vgrow="ALWAYS">
+               <styleClass>
+                  <String fx:value="base" />
+                  <String fx:value="menu_box" />
+               </styleClass>
+               <children>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="home_button">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <StackPane maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" styleClass="menu_icon">
+                                 <children>
+                                    <SVGPath content="M22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274" fill="TRANSPARENT" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" />
+                                    <SVGPath content="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16 " fill="TRANSPARENT" scaleZ="2.0" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" translateY="4.0" />
+                                 </children>
+                              </StackPane>
+                              <Label maxHeight="1.7976931348623157E308" text="Home">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="home_button">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <StackPane maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" styleClass="menu_icon">
+                                 <children>
+                                    <SVGPath content="M22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274" fill="TRANSPARENT" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" />
+                                    <SVGPath content="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16 " fill="TRANSPARENT" scaleZ="2.0" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" translateY="4.0" />
+                                 </children>
+                              </StackPane>
+                              <Label maxHeight="1.7976931348623157E308" text="Home">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="home_button">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <StackPane maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" styleClass="menu_icon">
+                                 <children>
+                                    <SVGPath content="M22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274" fill="TRANSPARENT" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" />
+                                    <SVGPath content="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16 " fill="TRANSPARENT" scaleZ="2.0" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" translateY="4.0" />
+                                 </children>
+                              </StackPane>
+                              <Label maxHeight="1.7976931348623157E308" text="Home">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+               </children></VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets right="7.0" />
+         </BorderPane.margin></VBox>
    </left>
+   <center>
+      <StackPane fx:id="centerStackPane" alignment="TOP_CENTER" styleClass="stack_pane" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <ScrollPane fx:id="centerScrollPane" focusTraversable="false" styleClass="scroll_pane" />
+            <GridPane maxHeight="64.0" minHeight="64.0" styleClass="grid_pane">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </children>
+         <BorderPane.margin>
+            <Insets left="7.0" />
+         </BorderPane.margin>
+      </StackPane>
+   </center>
 </BorderPane>

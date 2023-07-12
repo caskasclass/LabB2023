@@ -1,16 +1,105 @@
-.background-pane{
-    -fx-background-color: #191414;
+/*************************** Border Pane ********************************/
+.background_pane{
+    -fx-background-color: #000000;/* questo è ok */
+    background-color: #000000;/* questo è ok */
+    -fx-padding: 30px 15px 10px 15px;/* questo è ok */
+    padding: 30px 15px 10px 15px ;/* questo è ok */
+}
+/**********************************************************************/
+
+
+/************************** Border Pane right  ****************************/
+.menuContainer{
+    -fx-background-color: rgba(0,0,0,0);/* questo è ok */
+    background-color: rgba(0,0,0,0);/* questo è ok */
+    -fx-spacing: 8px; /* questo è ok */
+}
+.menu_box{
+    -fx-padding: 12px 16px; /* questo è ok */
+    padding: 12px 16px; /* questo è ok */
+    -fx-alignment: center-top;
+}
+.menu_box > .button{
+    -fx-background-color: rgba(0,0,0,0);/* questo è ok */
+    background-color: rgba(0,0,0,0);/* questo è ok */
+    -fx-alignment: center-left; /* questo è ok */
+    -fx-padding: 4px 12px; /* questo è ok */
+    padding: 4px 12px; /* questo è ok */
+    -fx-max-height:40;
+    max-height:40;
+    -fx-min-height:40;
+    min-height:40;
+}
+.menu_box > .button .label {
+    -fx-text-fill: #B3B3B3; 
+    -fx-font-size:16px;
+    font-size:16px;
+    -fx-font-weight:700;
+    font-weight:700; 
+}
+.menu_box > .button .svg_path{
+    -fx-stroke: #B3B3B3;
+    -fx-margin:0;
+    margin:0;
+    stroke: #B3B3B3;
+    -fx-fill:rgba(0,0,0,0);
+    fill:rgba(0,0,0,0);
+}
+.menu_box > .button:hover .svg_path,
+.menu_box > .button:hover .label {
+
+    -fx-stroke: #ffffff;
+    stroke: #ffffff;
+    -fx-text-fill: #ffffff;
+    fill: #ffffff;
+}
+/**********************************************************************/
+
+
+
+/************************** Border Pane Center ****************************/
+.stack_pane{
+/*per ora nada */
 }
 
-.manuVbox{
-    -fx-background-color: #791717;
+.grid_pane{
+    -fx-background-color:rgba(0,0,0,0);/*per il test rgba(0,0,0,0)*/
+    background-color:rgba(0,0,0,0);/*per il test rgba(0,0,0,0)*/
+    -fx-background-radius: 8px 8px 0 0;
+
 }
 
-.scroll_pane .viewport{
-    -fx-background-color: #132f8b;
+.scroll_pane{
+    -fx-padding:12px;
+    padding:12px;
+    -fx-background-color: #121212;
+    background-color: #121212;
+    -fx-background-radius: 8px;
 }
+.scroll_pane .viewport { /* renod lo sfondo trasparente  della scroll pane */
+    -fx-background-color: rgba(0,0,0,0); /* Colore di sfondo della vista */
+    background-color: rgba(0,0,0,0);
+    -fx-background-radius: 8px;
+}
+
+.scroll_pane:focused{ /*così si toglie outline di merda*/
+    -fx-background-insets: 0;
+}
+/**********************************************************************/
+
+
+/*************************** Util ********************************/
+.base{
+    -fx-background-color: #121212;
+    background-color: #121212;
+    -fx-background-radius: 8px;
+} 
+/**********************************************************************/
+
 .label{
     -fx-text-fill: #ffffff;
     -fx-font-size: 20px;
+    font-size: 20px;
     -fx-font-weight: bold;
+    font-weight: bold;
 }

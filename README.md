@@ -22,4 +22,4 @@ specifiche.
 1. Clona il repository:
 
    ```shell
-   git clone https://github.com/tuonome/emotionalsongs.git
+   https://github.com/caskasclass/LabB2023.git

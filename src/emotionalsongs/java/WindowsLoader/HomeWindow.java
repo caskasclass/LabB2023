@@ -5,7 +5,9 @@ import java.io.IOException;
 import Session.WindowAppearance;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import util.FXMLLoaders;
 
 public class HomeWindow extends Stage {
