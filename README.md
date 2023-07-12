@@ -22,9 +22,9 @@ specifiche.
 
 1. Clona il repository:
 
-   ```shell
+```shell
 git clone https://github.com/caskasclass/LabB2023.git
-
+ ```
 
 ## Creazione file pom.xml
 
