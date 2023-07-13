@@ -1,11 +1,237 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox  fx:id="rootVboxContainer" VBox.vgrow="ALWAYS" alignment="CENTER"  xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Label" />
+      <HBox maxHeight="332.0" minHeight="332.0" style="-fx-background-color: rgba(81, 38, 113, 0.15);;" />
+      <VBox alignment="TOP_CENTER" spacing="10.0">
+         <children>
+            <FlowPane alignment="TOP_CENTER" columnHalignment="RIGHT" hgap="10.0" rowValignment="BASELINE">
+               <children>
+                  <Label text="Label1">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Label2">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Label3">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Label4">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Label5">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </FlowPane>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="FINE">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+         </children>
+         <StackPane.margin>
+            <Insets top="65.0" />
+         </StackPane.margin>
+         <padding>
+            <Insets bottom="30.0" />
+         </padding>
+      </VBox>
    </children>
-</VBox>
+</StackPane>

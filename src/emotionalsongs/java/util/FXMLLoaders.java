@@ -9,10 +9,15 @@ import javafx.scene.Parent;
 
 public class FXMLLoaders {
 
-    public Parent loadFXML(String viewFile) throws IOException {
+    public Parent loadFXML(String viewFile) {
         Parent parent = null;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/"+viewFile));
-        parent = loader.load();
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            System.out.println("\nLoader Problems, Can't return the Parent node.\n");
+            e.printStackTrace();
+        }
         return parent;
     }
 

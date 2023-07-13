@@ -6,10 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
@@ -132,16 +129,8 @@
    <center>
       <StackPane fx:id="centerStackPane" alignment="TOP_CENTER" styleClass="stack_pane" BorderPane.alignment="TOP_CENTER">
          <children>
-            <ScrollPane fx:id="centerScrollPane" focusTraversable="false" styleClass="scroll_pane" />
-            <GridPane maxHeight="64.0" minHeight="64.0" styleClass="grid_pane">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
+            <ScrollPane fx:id="centerScrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" styleClass="scroll_pane" vbarPolicy="NEVER" />
+            <HBox fx:id="header_hbox" alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" spacing="8.0" styleClass="hbox_header" />
          </children>
          <BorderPane.margin>
             <Insets left="7.0" />
