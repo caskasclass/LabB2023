@@ -214,8 +214,9 @@ Creazione file pom.xml
 
 
 COMPITI DA DIVIDERE: (tutte le finestre create devono conservare la memoria)
+Sulla vista che volete fare mettete il nome di fianco
 
-	⁃	Creazione delle 4 viste (canzone, tabella con tutte le canzoni, playlist, creazione playlist, home)
+	⁃	Creazione delle 4 viste una a testa (canzone, tabella con tutte le canzoni, playlist, creazione playlist, home)
  
 	⁃	Separatore per le mie playlist e l’esplora
  
