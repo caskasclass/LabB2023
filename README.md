@@ -114,11 +114,19 @@ Creazione file pom.xml
 
 
 COMPITI DA DIVIDERE: (tutte le finestre create devono conservare la memoria)
+
 	⁃	Creazione delle 4 viste (canzone, tabella con tutte le canzoni, playlist, creazione playlist, home)
+ 
 	⁃	Separatore per le mie playlist e l’esplora
+ 
 	⁃	Creare una classe “util” che mixi i colori dell’immagine della playlist in modo che il box abbia quel colori
+ 
 	⁃	Aggiungere finestra per fare il login/logout
+ 
 	⁃	Aggiunta finestra per aggiungere le immagini alla playlist con blocco della finestra sottostante (opzionale blurr)
+ 
 	⁃	Aggiunta controlli per i campi della registrazione
+ 
 	⁃	Creazione del server RMI per la creazione del server (se ne occupa barbio)
+ 
 	⁃	Creazione cartella view della home
