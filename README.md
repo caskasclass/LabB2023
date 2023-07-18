@@ -126,21 +126,35 @@ git clone https://github.com/caskasclass/LabB2023.git
 ```
 5. Salva il file pom.xml, dovrebbe funzionare tutto correttamente
 
-COMPITI DA DIVIDERE: (tutte le finestre create devono conservare la memoria)
+
+COMPITI DA DIVIDERE:
+
 Sulla vista che volete fare mettete il nome di fianco
 
-	⁃	Creazione delle 4 viste una a testa (canzone, tabella con tutte le canzoni, playlist, creazione playlist, home)
+	Compito : Creazione delle 4 viste una a testa (canzone, tabella con tutte le canzoni, playlist, creazione playlist, home)
+
+
+  Vista canzone (*boh*)
  
-	⁃	Separatore per le mie playlist e l’esplora
+	Vista Tabella con tutte le canzoni (*boh*)
+  
+  Vista playlist (*boh*)
+  Separatore per le mie playlist e l’esplora
  
-	⁃	Creare una classe “util” che mixi i colori dell’immagine della playlist in modo che il box abbia quel colori
+
+  Vista creazione playlist (*boh*)
+
+  Vista home (*casca*)
+
+
+	⁃	Creare una classe “ColorMixer” (nella cartella util) che mixi i colori dell’immagine della playlist in modo che il background in altro  abbia quel colore (*boh*)
  
-	⁃	Aggiungere finestra per fare il login/logout
+	⁃	Aggiungere finestra per fare il login/logout(*boh*)
+  (Aggiunta controlli per i campi della registrazione)
  
-	⁃	Aggiunta finestra per aggiungere le immagini alla playlist con blocco della finestra sottostante (opzionale blurr)
+	⁃	Aggiunta finestra per aggiungere le immagini alla playlist con blocco della finestra sottostante (opzionale blurr) (*boh*)
  
-	⁃	Aggiunta controlli per i campi della registrazione
  
-	⁃	Creazione del server RMI per la creazione del server (se ne occupa barbio)
+	⁃	Creazione del server RMI per la creazione del server (*barbio*)
  
-	⁃	Creazione cartella view della home
+	⁃	Creazione cartella "viste" della home (*casca*)
