@@ -135,8 +135,9 @@ public class homeWindowController {
         return clip;
     }
 
-    public void openSignWindow(MouseEvent e){
+    public void openWindow(MouseEvent e){
         SignWindow window = new SignWindow();
+        window.show();
     }
 
 }
