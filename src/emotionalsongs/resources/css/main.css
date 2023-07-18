@@ -8,7 +8,7 @@
 /**********************************************************************/
 
 
-/************************** Border Pane right  ****************************/
+/************************** Border Pane left  ****************************/
 .menuContainer{
     -fx-background-color: rgba(0,0,0,0);/* questo è ok */
     background-color: rgba(0,0,0,0);/* questo è ok */
@@ -19,7 +19,7 @@
     padding: 12px 16px; /* questo è ok */
     -fx-alignment: center-top;
 }
-.menu_box > .button{
+.menu_box .button{
     -fx-background-color: rgba(0,0,0,0);/* questo è ok */
     background-color: rgba(0,0,0,0);/* questo è ok */
     -fx-alignment: center-left; /* questo è ok */
@@ -30,7 +30,7 @@
     -fx-min-height:40;
     min-height:40;
 }
-.menu_box > .button .label {
+.menu_box .button .label {
     -fx-text-fill: #B3B3B3; 
     -fx-font-size:16px;
     font-size:16px;
@@ -169,4 +169,16 @@
     font-size: 20px;
     -fx-font-weight: bold;
     font-weight: bold;
+}
+
+
+/************************************************************************************/
+
+/**********************************************************************/
+
+
+/*************************** SignUp Window ********************************/
+
+.window_base{
+    border-radius: 8px;
 }

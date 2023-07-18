@@ -1,6 +1,7 @@
 package controllers;
 
 import Session.WindowAppearance;
+import WindowsLoader.SignWindow;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -16,13 +17,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.input.MouseEvent;
 import util.ColorMixer;
 import util.FXMLLoaders;
 
 public class homeWindowController {
 
-    private double MinWidth = WindowAppearance.getWindowWidth() * 0.23;
-    private double MaxWidth = WindowAppearance.getWindowWidth() * 0.30;
+    private double MinWidth = WindowAppearance.getWindowWidth() * 0.08;
+    private double MaxWidth = WindowAppearance.getWindowWidth() * 0.15;
 
     private FXMLLoaders loader = new FXMLLoaders();
 
@@ -46,6 +48,12 @@ public class homeWindowController {
 
     @FXML
     private Button searchButton;
+
+    @FXML
+    private Button loginButton;
+
+    @FXML
+    private Button signButton;
 
     @FXML
     private void initialize() {
@@ -93,11 +101,13 @@ public class homeWindowController {
         img.setClip(cropUserImg(img));
         userButton.setGraphic(img);
         header_hbox.getChildren().add(userButton);
-        header_hbox.getChildren().add(pane);
+        userButton.setVisible(false);
 
-        // ********* mancano altri bottoni ********************
-        // ...
-        // ***************************************************
+
+        //********* mancano altri bottoni ********************
+        // ... 
+        //***************************************************
+
 
         // carico la home
 
@@ -123,6 +133,10 @@ public class homeWindowController {
         clip.setCenterX(img.getFitWidth() / 2);
         clip.setCenterY(img.getFitHeight() / 2);
         return clip;
+    }
+
+    public void openSignWindow(MouseEvent e){
+        SignWindow window = new SignWindow();
     }
 
 }
