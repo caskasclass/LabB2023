@@ -64,7 +64,7 @@
 
 .hbox_header{
     -fx-background-color:rgba(130, 29, 218, 0.5);/*per il test rgba(0,0,0,0)*/
-    background-color:rgba(130, 29, 218,.5);/*per il test rgba(0,0,0,0)*/
+    background-color:rgba(130, 29, 218,0.5);/*per il test rgba(0,0,0,0)*/
     -fx-background-radius: 8px 8px 0 0;
     -fx-padding:16px;
     padding:16px;
@@ -117,7 +117,7 @@
     -fx-background-insets: 0;
 }
 
-/************* Tutto quello che riguarda la scroll-bar verticale ******************
+/************* Tutto quello che riguarda la scroll-bar verticale ******************/
 
 .scroll_pane .scroll-bar:vertical {
     -fx-background-color: rgba(0,0,0,0);
@@ -146,7 +146,7 @@
 }
 
 
-************************************************************************************/
+/************************************************************************************/
 
 /**********************************************************************/
 

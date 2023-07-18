@@ -49,6 +49,7 @@ public class homeWindowController {
         rootMenu.setMinWidth(MinWidth);// 0.23 è quella giusta
         rootMenu.setMaxWidth(MaxWidth);// 0.30 è ok, anche troppo
 
+
         // listener per la width
         rootPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
             animateMenuWidth(newWidth.doubleValue());
@@ -89,9 +90,7 @@ public class homeWindowController {
 
     private void animateMenuWidth(double newWidth) {
         double menuWidth = Math.min(newWidth * 0.23, MaxWidth); // Calcolo della nuova larghezza
-
         rootMenu.setPrefWidth(menuWidth);
-
     }
 
     private Button createButton(String text) {

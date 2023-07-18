@@ -29,4 +29,5 @@ public class FXMLLoaders {
     public FXMLLoader getLoader(String viewFile){
         return (new FXMLLoader(getClass().getResource("../view/"+viewFile)));
     }
+    
 }
