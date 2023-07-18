@@ -157,6 +157,10 @@
     background-color: #121212;
     -fx-background-radius: 8px;
 } 
+.background_main_color{
+    -fx-background-color: #000000;
+    background-color: #000000;
+}
 /**********************************************************************/
 
 .label{
