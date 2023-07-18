@@ -138,7 +138,7 @@ Sulla vista che volete fare mettete il nome di fianco
  
 	Vista Tabella con tutte le canzoni (*boh*)
   
-  Vista playlist (*boh*)
+  Vista playlist (*beaby*)
   Separatore per le mie playlist e l’esplora
  
 
@@ -147,12 +147,12 @@ Sulla vista che volete fare mettete il nome di fianco
   Vista home (*casca*)
 
 
-	⁃	Creare una classe “ColorMixer” (nella cartella util) che mixi i colori dell’immagine della playlist in modo che il background in altro  abbia quel colore (*boh*)
+	⁃	Creare una classe “ColorMixer” (nella cartella util) che mixi i colori dell’immagine della playlist in modo che il background in altro  abbia quel colore (*casca*)
  
-	⁃	Aggiungere finestra per fare il login/logout(*boh*)
+	⁃	Aggiungere finestra per fare il login/logout(*beaby*)
   (Aggiunta controlli per i campi della registrazione)
  
-	⁃	Aggiunta finestra per aggiungere le immagini alla playlist con blocco della finestra sottostante (opzionale blurr) (*boh*)
+	⁃	Aggiunta finestra per aggiungere le immagini alla playlist con blocco della finestra sottostante (opzionale blurr) (*beaby*)
  
  
 	⁃	Creazione del server RMI per la creazione del server (*barbio*)
