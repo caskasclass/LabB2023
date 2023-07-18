@@ -1,7 +1,5 @@
 package WindowsLoader;
 
-import java.io.IOException;
-
 import Session.WindowAppearance;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -16,7 +14,6 @@ public class HomeWindow extends Stage {
     FXMLLoaders loader = new FXMLLoaders();
     
     public HomeWindow(){
-            try {
             BorderPane mainContaier = (BorderPane) loader.loadFXML("HomeWindow.fxml");
             //mainContaier.getStylesheets().add(styleManager.loadStyle("main.css"));
             Scene scene = new Scene(mainContaier, WindowAppearance.getWindowWidth(), WindowAppearance.getWindowHeight());
@@ -31,11 +28,8 @@ public class HomeWindow extends Stage {
                 //questa soluzione fixa il frame bianco all'avvio dell'applicazione.
                 show();
             });
-            
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
+
         
     }
 }
