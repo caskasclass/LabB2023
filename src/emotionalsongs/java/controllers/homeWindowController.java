@@ -7,13 +7,18 @@ import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
+import util.ColorMixer;
 import util.FXMLLoaders;
 
 public class homeWindowController {
@@ -57,7 +62,6 @@ public class homeWindowController {
         rootMenu.setMinWidth(MinWidth);// 0.23 è quella giusta
         rootMenu.setMaxWidth(MaxWidth);// 0.30 è ok, anche troppo
 
-
         // listener per la width
         rootPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
             animateMenuWidth(newWidth.doubleValue());
@@ -70,11 +74,28 @@ public class homeWindowController {
         BorderPane.setMargin(rootMenu, new Insets(0, 7, 0, 0));
         BorderPane.setMargin(centerStackPane, new Insets(0, 0, 0, 7));
 
-        //************** Questo è il button per user (qunado è loggato) deve poter fare anche logout :(
+        // ************** Questo è il button per user (qunado è loggato) deve poter fare
+        // anche logout :(
         Button userButton = createButton("username");
         userButton.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-        String url = getClass().getResource("/imgs/test_icon.png").toExternalForm();
-        ImageView img = new ImageView(url);
+        String url = getClass().getResource("/imgs/playlist_img/img4.png").toExternalForm();
+        Image image = new Image(url);
+
+        System.out.println("url image : "+url);
+        System.out.println("image "+image);
+
+        Pane pane = new Pane();
+        pane.setPrefSize(40, 40);
+
+        System.out.println("\n\nCalcolo colore inizio\n\n");
+        long start = System.currentTimeMillis();
+        Color c = ColorMixer.getMixedColor(image);
+        long end = System.currentTimeMillis();
+        System.out.println("\n\nCalcolo colore fine, tempo impiegato : "+(end-start)+" ms.\n\n");
+        pane.setBackground(Background.fill(c));
+
+        ImageView img = new ImageView(image);
+
         img.setFitHeight(24);
         img.setFitWidth(24);
         img.setClip(cropUserImg(img));
@@ -88,12 +109,11 @@ public class homeWindowController {
         //***************************************************
 
 
-        // carico la home 
+        // carico la home
 
         StackPane homeView = (StackPane) loader.loadFXML("homeView.fxml");
         centerScrollPane.setContent(homeView);
 
-        
     }
 
     private void animateMenuWidth(double newWidth) {
@@ -115,8 +135,9 @@ public class homeWindowController {
         return clip;
     }
 
-    public void openSignWindow(MouseEvent e){
+    public void openWindow(MouseEvent e){
         SignWindow window = new SignWindow();
+        window.show();
     }
 
 }
