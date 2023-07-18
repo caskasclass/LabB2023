@@ -127,34 +127,30 @@ git clone https://github.com/caskasclass/LabB2023.git
 5. Salva il file pom.xml, dovrebbe funzionare tutto correttamente
 
 
-COMPITI DA DIVIDERE:
+## COMPITI DA DIVIDERE:
 
 Sulla vista che volete fare mettete il nome di fianco
 
-	Compito : Creazione delle 4 viste una a testa (canzone, tabella con tutte le canzoni, playlist, creazione playlist, home)
+# Compito : Creazione delle 5 viste una a testa (canzone, tabella con tutte le canzoni, playlist, creazione playlist, home)
 
-
-  Vista canzone (*boh*)
- 
-	Vista Tabella con tutte le canzoni (*boh*)
-  
-  Vista playlist (*beaby*)
+  1. Vista canzone (*boh*)
+	2. Vista Tabella con tutte le canzoni (*boh*)
+  3. Vista playlist (*beaby*)
   Separatore per le mie playlist e l’esplora
- 
+  4. Vista creazione playlist (*boh*)
+  5. Vista home (*casca*)
 
-  Vista creazione playlist (*boh*)
+* Inoltre 
 
-  Vista home (*casca*)
+- Creare una classe “ColorMixer” (nella cartella util) che mixi i colori dell’immagine della playlist in modo che il background in altro  abbia quel colore (*casca*)
 
-
-	⁃	Creare una classe “ColorMixer” (nella cartella util) che mixi i colori dell’immagine della playlist in modo che il background in altro  abbia quel colore (*casca*)
- 
-	⁃	Aggiungere finestra per fare il login/logout(*beaby*)
+- Aggiungere finestra per fare il login/logout(*beaby*)
   (Aggiunta controlli per i campi della registrazione)
  
-	⁃	Aggiunta finestra per aggiungere le immagini alla playlist con blocco della finestra sottostante (opzionale blurr) (*beaby*)
+-	Aggiunta finestra per aggiungere le immagini alla playlist con blocco della finestra sottostante (opzionale blurr)(*beaby*)
+
+- Creazione del server RMI per la creazione del server (*barbio*)
  
- 
-	⁃	Creazione del server RMI per la creazione del server (*barbio*)
- 
-	⁃	Creazione cartella "viste" della home (*casca*)
+-	Creazione cartella "viste" della home (*casca*)
+
+- Gestione multithreading da parte del client (*casca*)
