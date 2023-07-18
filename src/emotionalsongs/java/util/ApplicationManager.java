@@ -43,7 +43,7 @@ public class ApplicationManager {
             protected Void call() throws Exception{
                 //elaborazione pesante 
                 System.out.println("Inizio Elaborazione ... ");
-                Thread.sleep(5000);// tempo di simualzione 
+                Thread.sleep(1000);// tempo di simualzione 
                 System.out.println("Fine Elaborazione. ");
                 return null;
             }
