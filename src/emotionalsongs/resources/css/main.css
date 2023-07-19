@@ -37,7 +37,7 @@
     -fx-font-weight:700;
     font-weight:700; 
 }
-.menu_box > .button .svg_path{
+.menu_box  .button .svg_path{
     -fx-stroke: #B3B3B3;
     -fx-margin:0;
     margin:0;
@@ -45,8 +45,8 @@
     -fx-fill:rgba(0,0,0,0);
     fill:rgba(0,0,0,0);
 }
-.menu_box > .button:hover .svg_path,
-.menu_box > .button:hover .label {
+.menu_box  .button:hover .svg_path,
+.menu_box  .button:hover .label {
 
     -fx-stroke: #ffffff;
     stroke: #ffffff;
@@ -63,8 +63,8 @@
 }
 
 .hbox_header{
-    -fx-background-color:rgba(130, 29, 218, 0.5);/*per il test rgba(0,0,0,0)*/
-    background-color:rgba(130, 29, 218,0.5);/*per il test rgba(0,0,0,0)*/
+    -fx-background-color:rgba(130, 29, 218, 1);/*per il test rgba(0,0,0,0)*/
+    background-color:rgba(130, 29, 218,1);/*per il test rgba(0,0,0,0)*/
     -fx-background-radius: 8px 8px 0 0;
     -fx-padding:16px;
     padding:16px;
@@ -105,11 +105,11 @@
     background-color: rgba(0, 0, 0, 0);
     -fx-background-radius: 8px;
 }
-.scroll_pane .viewport { /* renod lo sfondo trasparente  della scroll pane */
+.scroll_pane .viewport { /* rendo lo sfondo trasparente  della scroll pane */
     -fx-padding:12px;
     padding:12px;
-    -fx-background-color: #121212; /* Colore di sfondo della vista */
-    background-color: #121212;
+    -fx-background-color: rgba(0, 0, 0, 0); /* Colore di sfondo della vista */
+    background-color: rgba(0,0,0,0);
     -fx-background-radius: 8px;
 }
 
@@ -148,7 +148,14 @@
 
 /************************************************************************************/
 
-/**********************************************************************/
+/****************************Home View*********************************/
+
+
+/*calma*/
+
+/************************************************************************************/
+
+
 
 
 /*************************** Util ********************************/
@@ -162,6 +169,19 @@
     -fx-background-color: #000000;
     background-color: #000000;
 }
+
+.background_secondary_color{
+    -fx-background-color: #121212;
+    background-color: #121212;
+}
+
+.top_round{
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+
+
+
 /**********************************************************************/
 
 .label{
