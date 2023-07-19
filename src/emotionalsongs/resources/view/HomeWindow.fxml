@@ -151,7 +151,10 @@
    <center>
       <StackPane fx:id="centerStackPane" alignment="TOP_CENTER" styleClass="stack_pane" BorderPane.alignment="TOP_CENTER">
          <children>
-            <ScrollPane fx:id="centerScrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" styleClass="scroll_pane" vbarPolicy="NEVER" />
+            <ScrollPane fx:id="centerScrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" styleClass="scroll_pane" vbarPolicy="NEVER">
+               <StackPane.margin>
+                  <Insets top="15.0" />
+               </StackPane.margin></ScrollPane>
             <HBox fx:id="header_hbox" alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" spacing="8.0" styleClass="hbox_header">
                <children>
                   <Button fx:id="loginButton" mnemonicParsing="false" text="Login" />

@@ -63,8 +63,8 @@
 }
 
 .hbox_header{
-    -fx-background-color:rgba(130, 29, 218, 0);/*per il test rgba(0,0,0,0)*/
-    background-color:rgba(130, 29, 218,0);/*per il test rgba(0,0,0,0)*/
+    -fx-background-color:rgba(130, 29, 218, 1);/*per il test rgba(0,0,0,0)*/
+    background-color:rgba(130, 29, 218,1);/*per il test rgba(0,0,0,0)*/
     -fx-background-radius: 8px 8px 0 0;
     -fx-padding:16px;
     padding:16px;
@@ -108,8 +108,8 @@
 .scroll_pane .viewport { /* rendo lo sfondo trasparente  della scroll pane */
     -fx-padding:12px;
     padding:12px;
-    -fx-background-color: #121212; /* Colore di sfondo della vista */
-    background-color: #121212;
+    -fx-background-color: rgba(0, 0, 0, 0); /* Colore di sfondo della vista */
+    background-color: rgba(0,0,0,0);
     -fx-background-radius: 8px;
 }
 
@@ -151,16 +151,10 @@
 /****************************Home View*********************************/
 
 
+/*calma*/
 
-.homeViewbase{
-    -fx-background-color : rgb(83,83,83);
-    background-color : rgb(83,83,83);
+/************************************************************************************/
 
-}
-.homeViewbase .homeView_gradient{
-    -fx-background-color: linear-gradient(to bottom, rgba(0,0,0,.6) ,rgba(0,0,0,.8), rgb(18, 18, 18)  );
-    background-color : linear-gradient(to bottom, rgba(0,0,0,.6) , rgb(18, 18, 18) );
-}
 
 
 
@@ -183,6 +177,8 @@
 .top_round{
     -fx-background-radius: 8px 8px 0 0;
 }
+
+
 
 
 /**********************************************************************/
