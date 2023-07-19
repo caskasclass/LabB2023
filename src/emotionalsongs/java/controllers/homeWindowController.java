@@ -23,8 +23,8 @@ import util.FXMLLoaders;
 
 public class homeWindowController {
 
-    private double MinWidth = WindowAppearance.getWindowWidth() * 0.08;
-    private double MaxWidth = WindowAppearance.getWindowWidth() * 0.15;
+    private double MinWidth = WindowAppearance.getWindowWidth() * 0.22; // non toccare
+    private double MaxWidth = WindowAppearance.getWindowWidth() * 0.25; // non toccare 
 
     private FXMLLoaders loader = new FXMLLoaders();
 
@@ -78,7 +78,7 @@ public class homeWindowController {
         // anche logout :(
         Button userButton = createButton("username");
         userButton.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-        String url = getClass().getResource("/imgs/playlist_img/img4.png").toExternalForm();
+        String url = getClass().getResource("/imgs/playlist_img/img6.png").toExternalForm();
         Image image = new Image(url);
 
         System.out.println("url image : "+url);
@@ -101,7 +101,8 @@ public class homeWindowController {
         img.setClip(cropUserImg(img));
         userButton.setGraphic(img);
         header_hbox.getChildren().add(userButton);
-        userButton.setVisible(false);
+        header_hbox.getChildren().add(pane);
+        userButton.setVisible(true);
 
 
         //********* mancano altri bottoni ********************

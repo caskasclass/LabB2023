@@ -8,9 +8,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+<StackPane alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox maxHeight="332.0" minHeight="332.0" style="-fx-background-color: rgba(81, 38, 113, 0.15);;" />
+      <HBox alignment="TOP_CENTER" maxHeight="380.0" minHeight="380.0" styleClass="homeViewbase">
+         <children>
+            <HBox fx:id="homeView_gradient" styleClass="homeView_gradient" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
       <VBox alignment="TOP_CENTER" spacing="10.0">
          <children>
             <FlowPane alignment="TOP_CENTER" columnHalignment="RIGHT" hgap="10.0" rowValignment="BASELINE">
@@ -100,11 +105,6 @@
                   <Font size="68.0" />
                </font>
             </Label>
-            <Label text="FINE">
-               <font>
-                  <Font size="68.0" />
-               </font>
-            </Label>
             <Label text="Label">
                <font>
                   <Font size="68.0" />
@@ -221,14 +221,16 @@
                </font>
             </Label>
             <Label text="Label">
+               <font>
+                  <Font size="68.0" />
+               </font>
+            </Label>
+            <Label text="Fine">
                <font>
                   <Font size="68.0" />
                </font>
             </Label>
          </children>
-         <StackPane.margin>
-            <Insets top="65.0" />
-         </StackPane.margin>
          <padding>
             <Insets bottom="30.0" />
          </padding>
