@@ -2,6 +2,7 @@ package controllers;
 
 import Session.WindowAppearance;
 import WindowsLoader.SignWindow;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -10,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -18,13 +20,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import util.ColorsManager;
 import util.FXMLLoaders;
 
 public class homeWindowController {
 
     private double MinWidth = WindowAppearance.getWindowWidth() * 0.22; // non toccare
-    private double MaxWidth = WindowAppearance.getWindowWidth() * 0.25; // non toccare 
+    private double MaxWidth = WindowAppearance.getWindowWidth() * 0.25; // non toccare
 
     private FXMLLoaders loader = new FXMLLoaders();
 
@@ -66,23 +69,13 @@ public class homeWindowController {
         rootPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
             animateMenuWidth(newWidth.doubleValue());
         });
-
-        centerScrollPane.setFocusTraversable(false);
-
-        // metto insets tra le region di borderPane
-        // pagherei per tradure sta cosa in css
-        BorderPane.setMargin(rootMenu, new Insets(0, 7, 0, 0));
-        BorderPane.setMargin(centerStackPane, new Insets(0, 0, 0, 7));
-
-        // ************** Questo è il button per user (qunado è loggato) deve poter fare
-        // anche logout :(
         Button userButton = createButton("username");
         userButton.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         String url = getClass().getResource("/imgs/playlist_img/img6.png").toExternalForm();
         Image image = new Image(url);
 
-        System.out.println("url image : "+url);
-        System.out.println("image "+image);
+        System.out.println("url image : " + url);
+        System.out.println("image " + image);
 
         Pane pane = new Pane();
         pane.setPrefSize(40, 40);
@@ -91,7 +84,7 @@ public class homeWindowController {
         long start = System.currentTimeMillis();
         Color c = ColorsManager.getMixedColor(image);
         long end = System.currentTimeMillis();
-        System.out.println("\n\nCalcolo colore fine, tempo impiegato : "+(end-start)+" ms.\n\n");
+        System.out.println("\n\nCalcolo colore fine, tempo impiegato : " + (end - start) + " ms.\n\n");
         pane.setBackground(Background.fill(c));
 
         ImageView img = new ImageView(image);
@@ -100,21 +93,47 @@ public class homeWindowController {
         img.setFitWidth(24);
         img.setClip(cropUserImg(img));
         userButton.setGraphic(img);
-        header_hbox.getChildren().add(userButton);
-        header_hbox.getChildren().add(pane);
-        userButton.setVisible(true);
-
-
-        //********* mancano altri bottoni ********************
-        // ... 
-        //***************************************************
-
-
-        // carico la home
 
         StackPane homeView = (StackPane) loader.loadFXML("homeView.fxml");
         centerScrollPane.setContent(homeView);
 
+        // Color c = new Color(end, end, start, end);
+        header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
+        centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
+        header_hbox.getChildren().add(userButton);
+        header_hbox.getChildren().add(pane);
+        userButton.setVisible(true);
+
+        // metto insets tra le region di borderPane
+        // pagherei per tradure sta cosa in css
+        BorderPane.setMargin(rootMenu, new Insets(0, 7, 0, 0));
+        BorderPane.setMargin(centerStackPane, new Insets(0, 0, 0, 7));
+
+    }
+
+    // Metodo per gestire l'evento ScrollEvent
+    private void handleScrollEvent(ScrollEvent event) {
+        Background originalBackground = header_hbox.getBackground();
+        double currentOpacity = ((Color) (originalBackground.getFills().get(0).getFill())).getOpacity();
+
+        originalBackground.getFills().get(0);
+
+        double newOpacity = currentOpacity - event.getDeltaY() / 1000.0;
+        newOpacity = Math.min(1.0, Math.max(0.0, newOpacity)); // controllo che l'opacità sia compresa tra 0 e 1
+
+        // creo il nuovo bgFill per il header_hbox
+        BackgroundFill backgroundFill = new BackgroundFill(
+                Color.rgb(80, 56, 160, newOpacity), // Colore con l'opacità desiderata
+                originalBackground.getFills().get(0).getRadii(),
+                originalBackground.getFills().get(0).getInsets());
+
+        // Crea un nuovo bg
+        Background newBackground = new Background(backgroundFill);
+
+        // JAT per modifiche all UI
+        Platform.runLater(() -> header_hbox.setBackground(newBackground));
+        // test
+        System.out.println("\nEvento di scroll: " + event.getDeltaY());
     }
 
     private void animateMenuWidth(double newWidth) {
@@ -136,7 +155,7 @@ public class homeWindowController {
         return clip;
     }
 
-    public void openWindow(MouseEvent e){
+    public void openWindow(MouseEvent e) {
         SignWindow window = new SignWindow();
         window.show();
     }
