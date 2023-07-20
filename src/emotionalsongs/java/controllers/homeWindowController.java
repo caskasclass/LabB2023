@@ -29,6 +29,8 @@ public class homeWindowController {
     private double MinWidth = WindowAppearance.getWindowWidth() * 0.22; // non toccare
     private double MaxWidth = WindowAppearance.getWindowWidth() * 0.25; // non toccare
 
+    private double opacity = 0.0;
+
     private FXMLLoaders loader = new FXMLLoaders();
 
     @FXML
@@ -60,80 +62,91 @@ public class homeWindowController {
 
     @FXML
     private void initialize() {
-        // Crea e configura il emnu
+
+        // 1) margini al borderPane
+        BorderPane.setMargin(rootMenu, new Insets(0, 7, 0, 0));
+        BorderPane.setMargin(centerStackPane, new Insets(0, 0, 0, 7));
+
+        // 2) configuro la largezza min e max del menu.
         System.out.println("homeWindowController");
         rootMenu.setMinWidth(MinWidth);// 0.23 è quella giusta
         rootMenu.setMaxWidth(MaxWidth);// 0.30 è ok, anche troppo
 
+        // 2.5) inizializzo stile header
+        header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
+
+        // 3) inizializzo il center con la home
+        StackPane homeView = (StackPane) loader.loadFXML("homeView.fxml");
+        centerScrollPane.setContent(homeView);
+
         // listener per la width
-        rootPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
-            animateMenuWidth(newWidth.doubleValue());
-        });
+
+        // 4) istanzio il button user per la prova colore + il button in se
         Button userButton = createButton("username");
         userButton.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-        String url = getClass().getResource("/imgs/playlist_img/img6.png").toExternalForm();
+        String url = getClass().getResource("/imgs/playlist_img/img4.png").toExternalForm();
         Image image = new Image(url);
-
-        System.out.println("url image : " + url);
-        System.out.println("image " + image);
-
-        Pane pane = new Pane();
-        pane.setPrefSize(40, 40);
-
-        System.out.println("\n\nCalcolo colore inizio\n\n");
-        long start = System.currentTimeMillis();
-        Color c = ColorsManager.getMixedColor(image);
-        long end = System.currentTimeMillis();
-        System.out.println("\n\nCalcolo colore fine, tempo impiegato : " + (end - start) + " ms.\n\n");
-        pane.setBackground(Background.fill(c));
-
         ImageView img = new ImageView(image);
-
         img.setFitHeight(24);
         img.setFitWidth(24);
         img.setClip(cropUserImg(img));
         userButton.setGraphic(img);
-
-        StackPane homeView = (StackPane) loader.loadFXML("homeView.fxml");
-        centerScrollPane.setContent(homeView);
-
-        // Color c = new Color(end, end, start, end);
-        header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
-        centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
-        header_hbox.getChildren().add(userButton);
-        header_hbox.getChildren().add(pane);
         userButton.setVisible(true);
 
-        // metto insets tra le region di borderPane
-        // pagherei per tradure sta cosa in css
-        BorderPane.setMargin(rootMenu, new Insets(0, 7, 0, 0));
-        BorderPane.setMargin(centerStackPane, new Insets(0, 0, 0, 7));
+        // 5) calcolo il mix dei colori per il test (più avanti verrà rimosso)
+        Pane pane = new Pane();
+        pane.setPrefSize(40, 40);
+
+        // calcolo effettivo e assegnazione del colore
+        System.out.println("\n\nCalcolo colore inizio\n\n");
+        long start = System.currentTimeMillis();
+        // dobbiamo capire cosa usare per il calcolo colore il dominant o il mix 
+        Color c = ColorsManager.getDominantColor(image);
+        long end = System.currentTimeMillis();
+        System.out.println("\n\nCalcolo colore fine, tempo impiegato : " + (end - start) + " ms.\n\n");
+        pane.setBackground(Background.fill(c));
+
+        // 6) Aggiungo i button al header
+        header_hbox.getChildren().add(userButton);
+        header_hbox.getChildren().add(pane);
+        // 7) vari listener
+        // per la width del left side del borde-rpane
+        rootPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
+            animateMenuWidth(newWidth.doubleValue());
+        });
+        // per il colore sul SCROLL
+        centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
 
     }
 
-    // Metodo per gestire l'evento ScrollEvent
     private void handleScrollEvent(ScrollEvent event) {
-        Background originalBackground = header_hbox.getBackground();
-        double currentOpacity = ((Color) (originalBackground.getFills().get(0).getFill())).getOpacity();
+        // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 10)
+        double vPosition = centerScrollPane.getVvalue();
 
-        originalBackground.getFills().get(0);
+        // calcola l'opacità in base alla posizione di scorrimento
+        if (vPosition >= 0 && vPosition <= 6) {
+            // System.out.println("Vposition : " + vPosition);
+            // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 6
+            opacity = vPosition / 6;
+            System.out.println(opacity);
+        } else if (vPosition >= 6 && vPosition <= 10) {
+            // altrimenti nada
+            return;
+        }
 
-        double newOpacity = currentOpacity - event.getDeltaY() / 1000.0;
-        newOpacity = Math.min(1.0, Math.max(0.0, newOpacity)); // controllo che l'opacità sia compresa tra 0 e 1
-
-        // creo il nuovo bgFill per il header_hbox
+        // di base creo un nuovo bgFill (devo cambiare in base all view) lo faccio pià
+        // avanti
         BackgroundFill backgroundFill = new BackgroundFill(
-                Color.rgb(80, 56, 160, newOpacity), // Colore con l'opacità desiderata
-                originalBackground.getFills().get(0).getRadii(),
-                originalBackground.getFills().get(0).getInsets());
+                Color.rgb(40, 25, 83, opacity), // Colore con l'opacità desiderata
+                null, // radii (non ho la minima idea di che cosa sia )
+                null // insets
+        );
 
-        // Crea un nuovo bg
+        // ora bg con gbFill
         Background newBackground = new Background(backgroundFill);
 
-        // JAT per modifiche all UI
+        // assegno il nuovo bg
         Platform.runLater(() -> header_hbox.setBackground(newBackground));
-        // test
-        System.out.println("\nEvento di scroll: " + event.getDeltaY());
     }
 
     private void animateMenuWidth(double newWidth) {

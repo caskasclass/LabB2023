@@ -115,46 +115,6 @@
     -fx-background-insets: 0;
 }
 
-/************* Tutto quello che riguarda la scroll-bar verticale ******************/
-
-.scroll_pane .scroll-bar:vertical {
-    -fx-background-color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0);
-    -fx-padding: 0;
-    padding: 0;
-}
-
-.scroll_pane .scroll-bar:vertical .increment-button > .increment-arrow,
-.scroll_pane .scroll-bar:vertical .decrement-button  > .decrement-arrow  {
-    -fx-background-color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0);
-}
-.scroll_pane .scroll-bar:vertical .thumb {
-    -fx-background-radius: 5px;
-    -fx-background-color: rgba(179, 179, 179, 0.5);
-    background-color: rgba(179, 179, 179, 0.5);
-}
-.scroll_pane .scroll-bar:vertical .thumb:hover {
-    -fx-background-color: rgba(179, 179, 179, 1);
-    background-color: rgba(179, 179, 179, 1);
-}
-.scroll_pane .scroll-bar:vertical .thumb:active {
-    -fx-background-color: rgba(255, 255, 255, 1);
-    background-color: rgba(255, 255, 255, 1);
-}
-
-
-/************************************************************************************/
-
-/****************************Home View*********************************/
-
-
-/*calma*/
-
-/************************************************************************************/
-
-
-
 
 /*************************** Util ********************************/
 .base{
