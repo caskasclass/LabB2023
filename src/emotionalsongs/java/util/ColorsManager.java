@@ -1,5 +1,7 @@
 package util;
 
+import java.util.*;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
@@ -49,38 +51,32 @@ public class ColorsManager {
         Color color = new Color(red, green, blue, 1);
         return color;
     }
+
     public static Color getDominantColor(Image image) {
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
     
         PixelReader reader = image.getPixelReader();
-        int[] colorCounts = new int[256 * 256 * 256]; // Array per conteggio occorrenze colore
+        Map<Color, Integer> colorCounts = new HashMap<>();
     
-        // Conta il numero di occorrenze per ciascun colore
-        int maxCount = 0;
-        Color dominantColor = null;
-    
+        // conta tutti i colori 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Color color = reader.getColor(i, j);
-    
-                // Calcola un indice univoco per ciascun colore
-                int colorIndex = (int) (color.getRed() * 255) * 65536
-                               + (int) (color.getGreen() * 255) * 256
-                               + (int) (color.getBlue() * 255);
-    
-                colorCounts[colorIndex]++;
-    
-                // Trova il colore dominante durante il conteggio
-                if (colorCounts[colorIndex] > maxCount) {
-                    dominantColor = color;
-                    maxCount = colorCounts[colorIndex];
-                }
+                colorCounts.put(color, colorCounts.getOrDefault(color, 0) + 1);
             }
         }
     
+        // trasformi il map in una lista di coppie chiave valore 
+        List<Map.Entry<Color, Integer>> entryList = new ArrayList<>(colorCounts.entrySet());
+    
+        //sort sula valore 
+        entryList.sort(Map.Entry.<Color, Integer>comparingByValue().reversed());
+    
+        // prendo la chiave della prima pos e lo ritorno 
+        Color dominantColor = entryList.get(0).getKey();
+    
         return dominantColor;
     }
-    
 
 }

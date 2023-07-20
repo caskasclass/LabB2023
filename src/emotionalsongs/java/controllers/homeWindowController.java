@@ -96,11 +96,10 @@ public class homeWindowController {
         // 5) calcolo il mix dei colori per il test (più avanti verrà rimosso)
         Pane pane = new Pane();
         pane.setPrefSize(40, 40);
-
         // calcolo effettivo e assegnazione del colore
         System.out.println("\n\nCalcolo colore inizio\n\n");
         long start = System.currentTimeMillis();
-        // dobbiamo capire cosa usare per il calcolo colore il dominant o il mix 
+        // dobbiamo capire cosa usare per il calcolo colore il dominant o il mix
         Color c = ColorsManager.getDominantColor(image);
         long end = System.currentTimeMillis();
         System.out.println("\n\nCalcolo colore fine, tempo impiegato : " + (end - start) + " ms.\n\n");
