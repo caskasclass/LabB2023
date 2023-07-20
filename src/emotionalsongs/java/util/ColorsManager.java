@@ -3,14 +3,24 @@ package util;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 
-public class ColorMixer {
+public class ColorsManager {
 
-    // a partire da una oggetto image restituisci il mix dei colori di quella
-    // immagine e resituisci un colore
+    public static LinearGradient setGradient(Color c1, Color c2) {
+        Stop[] stops = new Stop[] {
+                new Stop(0, c1),
+                new Stop(1, c2)
+        };
+        LinearGradient linearGradient = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, stops);
+
+        return linearGradient;
+    }
+
     public static Color getMixedColor(Image image) {
-        // calcola il mix dei colori dell'immagine
-        // prendo la larghezza e l'altezza dell'immagine
+        // calcola il mix de
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
 
@@ -39,4 +49,5 @@ public class ColorMixer {
         Color color = new Color(red, green, blue, 1);
         return color;
     }
+
 }

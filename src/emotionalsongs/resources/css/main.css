@@ -63,8 +63,8 @@
 }
 
 .hbox_header{
-    -fx-background-color:rgba(130, 29, 218, 1);/*per il test rgba(0,0,0,0)*/
-    background-color:rgba(130, 29, 218,1);/*per il test rgba(0,0,0,0)*/
+    -fx-background-color:rgba(62, 32, 146, 0);/*per il test rgba(0,0,0,0)*/
+    background-color:rgba(62, 32, 146, 0);/*per il test rgba(0,0,0,0)*/
     -fx-background-radius: 8px 8px 0 0;
     -fx-padding:16px;
     padding:16px;
@@ -101,14 +101,14 @@
 .scroll_pane{
     -fx-padding:0;
     padding:0;
-    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0);
     -fx-background-radius: 8px;
 }
 .scroll_pane .viewport { /* rendo lo sfondo trasparente  della scroll pane */
     -fx-padding:12px;
     padding:12px;
-    -fx-background-color: rgba(0, 0, 0, 0); /* Colore di sfondo della vista */
+    -fx-background-color: rgb(0, 255, 0); /* Colore di sfondo della vista */
     background-color: rgba(0,0,0,0);
     -fx-background-radius: 8px;
 }

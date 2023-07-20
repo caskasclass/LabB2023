@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
-import util.ColorMixer;
+import util.ColorsManager;
 import util.FXMLLoaders;
 
 public class homeWindowController {
@@ -89,7 +89,7 @@ public class homeWindowController {
 
         System.out.println("\n\nCalcolo colore inizio\n\n");
         long start = System.currentTimeMillis();
-        Color c = ColorMixer.getMixedColor(image);
+        Color c = ColorsManager.getMixedColor(image);
         long end = System.currentTimeMillis();
         System.out.println("\n\nCalcolo colore fine, tempo impiegato : "+(end-start)+" ms.\n\n");
         pane.setBackground(Background.fill(c));
