@@ -3,6 +3,7 @@ package WindowsLoader;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import util.FXMLLoaders;
 import util.StyleManager;
@@ -18,7 +19,7 @@ public class SignWindow extends Stage{
             initStyle(StageStyle.UNDECORATED);
             initStyle(StageStyle.TRANSPARENT);
             setResizable(false);
-            setScene(new Scene(mainContaier));
+            setScene(new Scene(mainContaier,Color.TRANSPARENT));
 
             setOnShown(event ->{
                 //contenuto completamente caricato

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="800.0" prefWidth="587.0" styleClass="background_main_color" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="800.0" prefWidth="587.0" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" layoutX="50.0" layoutY="60.0" prefHeight="681.0" prefWidth="488.0" spacing="60.0" styleClass="sign_box">
          <children>
