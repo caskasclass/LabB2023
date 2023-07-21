@@ -201,14 +201,14 @@
 /*************************** SignUp Window ********************************/
 
 .sign_box{
-    -fx-background-color: #000000;
-    background-color: #000000;
+    -fx-background-color: #121212;
+    background-color: #121212;
     -fx-background-radius: 8px;
     border-radius: 8px;
 }
 
 
-.sign_box > .label{
+.sign_box > .h_box >.label{
     -fx-text-fill: #ffffff;
     -fx-font-size: 32px;
     font-size: 32px;
@@ -234,8 +234,7 @@
     font-weight: 400;
     -fx-padding-inline: 14px;
     padding-inline: 14px;
-    -fx-color: #ffffff;
-    color: #ffffff;
+    -fx-text-fill: #ffffff;
     -fx-cursor:hand;
     -fx-transition: all 0.5s ease;
 }
