@@ -142,28 +142,28 @@
                         </HBox>
                      </graphic>
                   </Button>
-               </children></VBox>
+               </children>
+            </VBox>
          </children>
          <BorderPane.margin>
             <Insets right="7.0" />
-         </BorderPane.margin></VBox>
+         </BorderPane.margin>
+      </VBox>
    </left>
    <center>
-      <StackPane fx:id="centerStackPane" alignment="TOP_CENTER" styleClass="stack_pane" BorderPane.alignment="TOP_CENTER">
+      <StackPane fx:id="centerStackPane" alignment="TOP_CENTER">
          <children>
-            <ScrollPane fx:id="centerScrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" styleClass="scroll_pane" vbarPolicy="NEVER">
+            <ScrollPane fx:id="centerScrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" styleClass="scroll_pane" vbarPolicy="NEVER" vmax="10.0">
                <StackPane.margin>
-                  <Insets top="15.0" />
+                  <Insets />
                </StackPane.margin></ScrollPane>
-            <HBox fx:id="header_hbox" alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" spacing="8.0" styleClass="hbox_header">
+            <HBox fx:id="header_hbox" alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" spacing="8.0" style="-fx-background-color: red;" styleClass="hbox_header">
                <children>
                   <Button fx:id="loginButton" mnemonicParsing="false" text="Login" />
                   <Button fx:id="signButton" mnemonicParsing="false" onMouseClicked="#openWindow" text="SignIn" />
-               </children></HBox>
+               </children>
+            </HBox>
          </children>
-         <BorderPane.margin>
-            <Insets left="7.0" />
-         </BorderPane.margin>
       </StackPane>
    </center>
 </BorderPane>
