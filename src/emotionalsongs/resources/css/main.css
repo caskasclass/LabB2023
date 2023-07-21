@@ -154,7 +154,7 @@
 /**********************************************************************/
 
 
-/*************************** SignUp Window ********************************/
+/*************************** SignIn Window ********************************/
 
 .sign_box{
     -fx-background-color: #121212;
@@ -198,7 +198,9 @@
 .text_field:hover{
     -fx-border-color: #ffffff;
 }
-
+.text_field:focused{
+    -fx-border-color: #ffffff;
+}
 .button_box{
     -fx-width: 100%;
     -fx-background-radius: 500px;
@@ -211,32 +213,65 @@
     background-color: #878787;
     -fx-cursor:hand;
     -fx-transition: all 0.5s ease;
-    
-
 }
 
 .button_box:hover{
     -fx-background-color: #35d0ae;
     background-color: #35d0ae;
+    -fx-cursor:hand;
+    -fx-scale-x:1.04;
+    -fx-scale-y:1.04;
 }
 
-.nr_box .hyperlink{
+.button_box:focused{
+    -fx-background-color: #35d0ae;
+    background-color: #35d0ae;
+    -fx-scale-x:1.04;
+    -fx-scale-y:1.04;
+}
+.home_label{
+    -fx-font-size: 14px;
+    font-size: 14px;
+}
+.home_label:hover{
+    -fx-cursor:hand;
+    -fx-scale-x:1.04;
+    -fx-scale-y:1.04;
+}
+.home_label:focused{
+    -fx-scale-x:1.04;
+    -fx-scale-y:1.04;
+}
+.not_label{
+    -fx-font-size: 16px;
+    -fx-font-weight: 400;
+    -fx-text-fill: #6a6a6a;
+}
+.sign_label{
     -fx-font-size: 16px;
     -fx-font-weight: 400;
     font-size: 16px;
     font-weight: 400;
     -fx-text-fill: #ffffff;
-    -fx-text-align: center;
     -fx-underline: true;
+    -fx-border:0px;
+    border: 0px;
 }
 
-.nr_box .hyperlink:hover{
+.sign_label:hover{
+    -fx-cursor:hand;
     -fx-text-fill: #35d0ae
 }
 
-.nr_box > .label{
-    -fx-font-size: 16px;
-    -fx-font-weight: 400;
-    -fx-text-fill: #6a6a6a;
-    -fx-text-align: center;
+/************************************************************************************/
+
+/**********************************************************************/
+
+
+/*************************** SignUp Window ********************************/
+
+
+.signup_header .label{
+    -fx-font-size: 20px;
+
 }

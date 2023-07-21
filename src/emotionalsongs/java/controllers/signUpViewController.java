@@ -1,42 +1,59 @@
 package controllers;
 import javafx.fxml.FXML;
-import util.FXMLLoaders;
-import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import util.FXMLLoaders;
+import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class signWindowController {
+public class signUpViewController {
+    
+    @FXML
+    private TextField cap;
 
     @FXML
-    private TextField idButton;
+    private TextField cf;
 
     @FXML
-    private Button loginButton;
+    private TextField citta;
 
     @FXML
-    private PasswordField passwordButt;
+    private Label loginButton;
 
     @FXML
-    private Label signUpButton;
+    private TextField mail;
 
-    public void openSignUp(MouseEvent e){
+    @FXML
+    private TextField nome;
 
+    @FXML
+    private PasswordField password;
+
+    @FXML
+    private TextField residenza;
+
+    @FXML
+    private Button signUpButton;
+
+    @FXML
+    private TextField username;
+
+    public void openLogIn(MouseEvent e){
         System.out.println("\n\nCalcolo tempo\n\n");
         long start = System.currentTimeMillis();
-        Stage stage = (Stage) loginButton.getScene().getWindow();
+        Stage stage = (Stage) signUpButton.getScene().getWindow();
         FXMLLoaders loader = new FXMLLoaders();
-        Pane pane = (Pane) loader.loadFXML("signUpView.fxml");
+        Pane pane = (Pane) loader.loadFXML("signWindow.fxml");
         Scene scene = new Scene(pane, Color.TRANSPARENT);
         stage.setScene(scene);
         long end = System.currentTimeMillis();
         System.out.println("\n\nTempo impiegato : " + (end - start) + " ms.\n\n");
-       
+        
+        
     }
 }
