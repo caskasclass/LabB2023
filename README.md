@@ -133,8 +133,8 @@ Sulla vista che volete fare mettete il nome di fianco
 
 # Compito : Creazione delle 5 viste una a testa (canzone, tabella con tutte le canzoni, playlist, creazione playlist, home)
 
-  1. Vista canzone (*boh*)
-	2. Vista Tabella con tutte le canzoni (*boh*)
+  1. Vista canzone (filepo)
+  2. Vista Tabella con tutte le canzoni (barbio)
   3. Vista playlist (*beaby*)
   Separatore per le mie playlist e l’esplora
   4. Vista creazione playlist (*boh*)
