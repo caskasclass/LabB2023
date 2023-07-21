@@ -59,8 +59,6 @@ public class homeWindowController {
     @FXML
     private Button loginButton;
 
-    @FXML
-    private Button signButton;
 
     @FXML
     private void initialize() {
