@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -30,6 +31,7 @@ public class homeWindowController {
     private double MaxWidth = WindowAppearance.getWindowWidth() * 0.25; // non toccare
 
     private double opacity = 0.0;
+    private CornerRadii cornerRad = new CornerRadii(8, 8, 0, 0, false); 
 
     private FXMLLoaders loader = new FXMLLoaders();
 
@@ -75,6 +77,7 @@ public class homeWindowController {
         // 2.5) inizializzo stile header
         header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
 
+
         // 3) inizializzo il center con la home
         StackPane homeView = (StackPane) loader.loadFXML("homeView.fxml");
         centerScrollPane.setContent(homeView);
@@ -86,10 +89,8 @@ public class homeWindowController {
         userButton.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         String url = getClass().getResource("/imgs/playlist_img/img4.png").toExternalForm();
         Image image = new Image(url);
-        ImageView img = new ImageView(image);
-        img.setFitHeight(24);
-        img.setFitWidth(24);
-        img.setClip(cropUserImg(img));
+        ImageView img = new ImageView(image); 
+        img.setClip(cropUserImg(img,24,24));
         userButton.setGraphic(img);
         userButton.setVisible(true);
 
@@ -123,21 +124,23 @@ public class homeWindowController {
         double vPosition = centerScrollPane.getVvalue();
 
         // calcola l'opacità in base alla posizione di scorrimento
-        if (vPosition >= 0 && vPosition <= 6) {
+        if (vPosition >= 0 && vPosition <= 3) {
             // System.out.println("Vposition : " + vPosition);
             // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 6
-            opacity = vPosition / 6;
+            opacity = vPosition / 3;
             System.out.println(opacity);
+            if(opacity >= 0.98)
+            opacity = 1;
         } else if (vPosition >= 6 && vPosition <= 10) {
             // altrimenti nada
             return;
         }
-
+        
         // di base creo un nuovo bgFill (devo cambiare in base all view) lo faccio pià
         // avanti
         BackgroundFill backgroundFill = new BackgroundFill(
                 Color.rgb(40, 25, 83, opacity), // Colore con l'opacità desiderata
-                null, // radii (non ho la minima idea di che cosa sia )
+                cornerRad, // radii (non ho la minima idea di che cosa sia )
                 null // insets
         );
 
@@ -159,7 +162,9 @@ public class homeWindowController {
         return btn;
     }
 
-    private Circle cropUserImg(ImageView img) {
+    private Circle cropUserImg(ImageView img, double width, double height) {
+        img.setFitHeight(height);
+        img.setFitWidth(width);
         Circle clip = new Circle();
         clip.setRadius(Math.min(img.getFitWidth(), img.getFitHeight()) / 2);
         clip.setCenterX(img.getFitWidth() / 2);
