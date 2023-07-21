@@ -2,7 +2,7 @@ package WindowsLoader;
 
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
 import util.FXMLLoaders;
 import util.StyleManager;
@@ -13,7 +13,7 @@ public class SignWindow extends Stage{
     StyleManager styleManager  = new StyleManager();
 
     public SignWindow() {
-            BorderPane mainContaier = (BorderPane) loader.loadFXML("signWindow.fxml");
+            Pane mainContaier = (Pane) loader.loadFXML("signWindow.fxml");
             //mainContaier.getStylesheets().add(styleManager.loadStyle("main.css"));
             initStyle(StageStyle.UNDECORATED);
             initStyle(StageStyle.TRANSPARENT);

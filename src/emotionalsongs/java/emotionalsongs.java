@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import Session.WindowAppearance;
 import javafx.stage.Stage;
 import javafx.application.Application;

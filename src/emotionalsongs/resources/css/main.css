@@ -119,6 +119,7 @@
     -fx-background-color: #121212;
     background-color: #121212;
     -fx-background-radius: 8px;
+    border-radius: 8px;
 } 
 .background_main_color{
     -fx-background-color: #000000;
@@ -155,6 +156,87 @@
 
 /*************************** SignUp Window ********************************/
 
-.window_base{
+.sign_box{
+    -fx-background-color: #121212;
+    background-color: #121212;
+    -fx-background-radius: 8px;
     border-radius: 8px;
+}
+
+
+.sign_box > .h_box >.label{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 32px;
+    font-size: 32px;
+}
+.fill_box .label{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    font-size: 14px;
+}
+
+.text_field{
+    -fx-background-color: #121212;
+    background-color: #121212;
+    -fx-border-color: #878787;
+    border-color: 878787;
+    -fx-border-width: 1px;
+    border-width: 1px;
+    -fx-border-radius: 4px;
+    border-radius: 4px;
+    -fx-font-size: 16px;
+    font-size: 16px;
+    -fx-font-weight: 400;
+    font-weight: 400;
+    -fx-padding-inline: 14px;
+    padding-inline: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-cursor:hand;
+    -fx-transition: all 0.5s ease;
+}
+
+.text_field:hover{
+    -fx-border-color: #ffffff;
+}
+
+.button_box{
+    -fx-width: 100%;
+    -fx-background-radius: 500px;
+    background-radius: 500px;
+    -fx-font-size: 16px;
+    font-size: 16px;
+    -fx-font-weight: 700;
+    font-weight: 700;
+    -fx-background-color: #878787;
+    background-color: #878787;
+    -fx-cursor:hand;
+    -fx-transition: all 0.5s ease;
+    
+
+}
+
+.button_box:hover{
+    -fx-background-color: #35d0ae;
+    background-color: #35d0ae;
+}
+
+.nr_box .hyperlink{
+    -fx-font-size: 16px;
+    -fx-font-weight: 400;
+    font-size: 16px;
+    font-weight: 400;
+    -fx-text-fill: #ffffff;
+    -fx-text-align: center;
+    -fx-underline: true;
+}
+
+.nr_box .hyperlink:hover{
+    -fx-text-fill: #35d0ae
+}
+
+.nr_box > .label{
+    -fx-font-size: 16px;
+    -fx-font-weight: 400;
+    -fx-text-fill: #6a6a6a;
+    -fx-text-align: center;
 }
