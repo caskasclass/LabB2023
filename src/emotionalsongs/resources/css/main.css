@@ -192,17 +192,19 @@
     padding-inline: 14px;
     -fx-text-fill: #ffffff;
     -fx-cursor:hand;
-    -fx-transition: all 0.5s ease;
+    cursor:hand;
+
 }
 
 .text_field:hover{
     -fx-border-color: #ffffff;
+    border-color: #ffffff;
 }
 
 .button_box{
     -fx-width: 100%;
+    width: 100%;
     -fx-background-radius: 500px;
-    background-radius: 500px;
     -fx-font-size: 16px;
     font-size: 16px;
     -fx-font-weight: 700;
@@ -210,7 +212,9 @@
     -fx-background-color: #878787;
     background-color: #878787;
     -fx-cursor:hand;
+    cursor:hand;
     -fx-transition: all 0.5s ease;
+    transition: all 0.5s ease;
     
 
 }
@@ -227,6 +231,7 @@
     font-weight: 400;
     -fx-text-fill: #ffffff;
     -fx-text-align: center;
+    text-align: center;
     -fx-underline: true;
 }
 
@@ -236,7 +241,10 @@
 
 .nr_box > .label{
     -fx-font-size: 16px;
+    font-size: 16px;
     -fx-font-weight: 400;
+    font-weight: 400;
     -fx-text-fill: #6a6a6a;
     -fx-text-align: center;
+    text-align: center;
 }
