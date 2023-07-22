@@ -22,8 +22,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.paint.Color;
 import util.ColorsManager;
 import util.FXMLLoaders;
+import javafx.stage.Stage;
+import javafx.scene.effect.BoxBlur;
 
 public class homeWindowController {
 
@@ -171,8 +174,20 @@ public class homeWindowController {
     }
 
     public void openWindow(MouseEvent e) {
+        Stage parent = (Stage) homeButton.getScene().getWindow();
         SignWindow window = new SignWindow();
+        window.initOwner(parent);
+        BoxBlur blur = new BoxBlur(10, 10, 3);
+        parent.getScene().getRoot().setEffect(blur);
+        Platform.runLater(() -> {
+            parent.getScene().getRoot().setDisable(true);
+        });
+        window.setOnHidden(event -> {
+            parent.getScene().getRoot().setEffect(null);
+            parent.getScene().getRoot().setDisable(false);
+        });
         window.show();
+        
     }
 
 }

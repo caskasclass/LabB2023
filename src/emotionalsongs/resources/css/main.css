@@ -157,8 +157,8 @@
 /*************************** SignIn Window ********************************/
 
 .sign_box{
-    -fx-background-color: #121212;
-    background-color: #121212;
+    -fx-background-color: #1e1e1e;
+    background-color: #1e1e1e;
     -fx-background-radius: 8px;
     border-radius: 8px;
 }
@@ -176,8 +176,8 @@
 }
 
 .text_field{
-    -fx-background-color: #121212;
-    background-color: #121212;
+    -fx-background-color: #1e1e1e;
+    background-color: #1e1e1e;
     -fx-border-color: #878787;
     border-color: #878787;
     -fx-border-width: 1px;
@@ -274,4 +274,17 @@
 .signup_header .label{
     -fx-font-size: 20px;
 
+}
+
+.close_button{
+    -fx-background-color: transparent;
+    background-color: transparent;
+}
+.close_button:hover{
+    -fx-scale-x:1.04;
+    -fx-scale-y:1.04;
+}
+.close_button:focused{
+    -fx-scale-x:1.04;
+    -fx-scale-y:1.04;
 }

@@ -21,6 +21,9 @@ public class signWindowController {
     private Button loginButton;
 
     @FXML
+    private Button closeButton;
+
+    @FXML
     private PasswordField passwordButt;
 
     @FXML
@@ -38,5 +41,10 @@ public class signWindowController {
         long end = System.currentTimeMillis();
         System.out.println("\n\nTempo impiegato : " + (end - start) + " ms.\n\n");
        
+    }
+
+    public void closeWindow(MouseEvent e){
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
     }
 }

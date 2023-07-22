@@ -56,4 +56,9 @@ public class signUpViewController {
         
         
     }
+
+    public void closeWindow(MouseEvent e){
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
+    }
 }
