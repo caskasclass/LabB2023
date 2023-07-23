@@ -280,11 +280,9 @@
     -fx-background-color: transparent;
     background-color: transparent;
 }
-.close_button:hover{
+.close_button:hover > .close_svg{
     -fx-scale-x:1.04;
     -fx-scale-y:1.04;
-}
-.close_button:focused{
-    -fx-scale-x:1.04;
-    -fx-scale-y:1.04;
+    -fx-fill: #ffffff;
+    fill: #ffffff;
 }
