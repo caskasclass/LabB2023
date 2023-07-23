@@ -22,7 +22,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.paint.Color;
 import util.ColorsManager;
 import util.FXMLLoaders;
 import javafx.stage.Stage;
@@ -88,7 +87,7 @@ public class homeWindowController {
         // 4) istanzio il button user per la prova colore + il button in se
         Button userButton = createButton("username");
         userButton.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-        String url = getClass().getResource("/imgs/playlist_img/img4.png").toExternalForm();
+        String url = getClass().getResource("/imgs/playlist_img/img2.png").toExternalForm();
         Image image = new Image(url);
         ImageView img = new ImageView(image); 
         img.setClip(cropUserImg(img,24,24));
@@ -125,11 +124,11 @@ public class homeWindowController {
         double vPosition = centerScrollPane.getVvalue();
 
         // calcola l'opacità in base alla posizione di scorrimento
-        if (vPosition >= 0 && vPosition <= 3) {
+        if (vPosition >= 0 && vPosition <= 2) {
             // System.out.println("Vposition : " + vPosition);
             // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 6
-            opacity = vPosition / 3;
-            System.out.println(opacity);
+            opacity = vPosition / 2;
+
             if(opacity >= 0.98)
             opacity = 1;
         } else if (vPosition >= 6 && vPosition <= 10) {

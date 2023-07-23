@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox minWidth="270.0" styleClass="albumBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.albumBoxController">
+   <children>
+      <Pane>
+         <children>
+            <ImageView fx:id="imageview" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <VBox alignment="CENTER_LEFT">
+         <children>
+            <Label fx:id="albumName" text="Nome album" />
+            <Label fx:id="artistNames" text="Artisti" />
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</HBox>
