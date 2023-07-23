@@ -1,288 +1,314 @@
 /*************************** Border Pane ********************************/
-.background_pane{
-    -fx-background-color: #000000;/* questo è ok */
-    background-color: #000000;/* questo è ok */
-    -fx-padding: 30px 15px 10px 15px;/* questo è ok */
-    padding: 30px 15px 10px 15px ;/* questo è ok */
+.background_pane {
+  -fx-background-color: #000000; /* questo è ok */
+  background-color: #000000; /* questo è ok */
+  -fx-padding: 30px 15px 10px 15px; /* questo è ok */
+  padding: 30px 15px 10px 15px; /* questo è ok */
 }
 /**********************************************************************/
-
 
 /************************** Border Pane left  ****************************/
-.menuContainer{
-    -fx-background-color: rgba(0,0,0,0);/* questo è ok */
-    background-color: rgba(0,0,0,0);/* questo è ok */
-    -fx-spacing: 8px; /* questo è ok */
+.menuContainer {
+  -fx-background-color: rgba(0, 0, 0, 0); /* questo è ok */
+  background-color: rgba(0, 0, 0, 0); /* questo è ok */
+  -fx-spacing: 8px; /* questo è ok */
 }
-.menu_box{
-    -fx-padding: 12px 16px; /* questo è ok */
-    padding: 12px 16px; /* questo è ok */
-    -fx-alignment: center-top;
+.menu_box {
+  -fx-padding: 12px 16px; /* questo è ok */
+  padding: 12px 16px; /* questo è ok */
+  -fx-alignment: center-top;
 }
-.menu_box .button{
-    -fx-background-color: rgba(0,0,0,0);/* questo è ok */
-    background-color: rgba(0,0,0,0);/* questo è ok */
-    -fx-alignment: center-left; /* questo è ok */
-    -fx-padding: 4px 12px; /* questo è ok */
-    padding: 4px 12px; /* questo è ok */
-    -fx-max-height:40;
-    max-height:40;
-    -fx-min-height:40;
-    min-height:40;
+.menu_box .button {
+  -fx-background-color: rgba(0, 0, 0, 0); /* questo è ok */
+  background-color: rgba(0, 0, 0, 0); /* questo è ok */
+  -fx-alignment: center-left; /* questo è ok */
+  -fx-padding: 4px 12px; /* questo è ok */
+  padding: 4px 12px; /* questo è ok */
+  -fx-max-height: 40;
+  max-height: 40;
+  -fx-min-height: 40;
+  min-height: 40;
 }
 .menu_box .button .label {
-    -fx-text-fill: #B3B3B3; 
-    -fx-font-size:16px;
-    font-size:16px;
-    -fx-font-weight:700;
-    font-weight:700; 
+  -fx-text-fill: #b3b3b3;
+  -fx-font-size: 16px;
+  font-size: 16px;
+  -fx-font-weight: 700;
+  font-weight: 700;
 }
-.menu_box  .button .svg_path{
-    -fx-stroke: #B3B3B3;
-    -fx-margin:0;
-    margin:0;
-    stroke: #B3B3B3;
-    -fx-fill:rgba(0,0,0,0);
-    fill:rgba(0,0,0,0);
+.menu_box .button .svg_path {
+  -fx-stroke: #b3b3b3;
+  -fx-margin: 0;
+  margin: 0;
+  stroke: #b3b3b3;
+  -fx-fill: rgba(0, 0, 0, 0);
+  fill: rgba(0, 0, 0, 0);
 }
-.menu_box  .button:hover .svg_path,
-.menu_box  .button:hover .label {
-
-    -fx-stroke: #ffffff;
-    stroke: #ffffff;
-    -fx-text-fill: #ffffff;
-    fill: #ffffff;
+.menu_box .button:hover .svg_path,
+.menu_box .button:hover .label {
+  -fx-stroke: #ffffff;
+  stroke: #ffffff;
+  -fx-text-fill: #ffffff;
+  fill: #ffffff;
 }
 /**********************************************************************/
-
-
 
 /************************** Border Pane Center ****************************/
 
-
-.hbox_header{
-    -fx-background-radius: 8px 8px 0 0;
-    -fx-padding:16px;
-    padding:16px;
-    -fx-max-height : 64px;
-    -fx-min-height : 64px;
-    min-height : 64px;
-    max-height : 64px;
+.hbox_header {
+  -fx-background-radius: 8px 8px 0 0;
+  -fx-padding: 16px;
+  padding: 16px;
+  -fx-max-height: 64px;
+  -fx-min-height: 64px;
+  min-height: 64px;
+  max-height: 64px;
 }
-.hbox_header > .header_buttons{/* button di default */
-    -fx-border-width:0;
-    border-width:0;
-    -fx-padding: 3px 15px 3px 3px;
-    padding: 3px 15px 3px 3px;
-    -fx-background-color: rgba(0,0,0,.54);
-    background-color: rgba(0,0,0,.54);
-    -fx-background-radius: 500px;
-    -fx-cursor:pointer;
-    -fx-text-fill: #ffffff;
-    cursor:pointer;
+.hbox_header > .header_buttons {
+  /* button di default */
+  -fx-border-width: 0;
+  border-width: 0;
+  -fx-padding: 3px 15px 3px 3px;
+  padding: 3px 15px 3px 3px;
+  -fx-background-color: rgba(0, 0, 0, 0.54);
+  background-color: rgba(0, 0, 0, 0.54);
+  -fx-background-radius: 500px;
+  -fx-cursor: pointer;
+  -fx-text-fill: #ffffff;
+  cursor: pointer;
 }
-.hbox_header > .header_buttons:hover{/* se passi sopra */
-    -fx-background-color: rgba(0,0,0,.56);
-    background-color: rgba(0,0,0,.56);
-    -fx-scale-x:1.04;
-    -fx-scale-y:1.04;
+.hbox_header > .header_buttons:hover {
+  /* se passi sopra */
+  -fx-background-color: rgba(0, 0, 0, 0.56);
+  background-color: rgba(0, 0, 0, 0.56);
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
 }
-.hbox_header > .header_buttons:focused{ /* se schiacci */
-    -fx-background-color: rgba(0,0,0,.72);
-    background-color: rgba(0,0,0,.72);
-    -fx-scale-x:1.04;
-    -fx-scale-y:1.04;
-}
-
-.scroll_pane{
-    -fx-padding:0;
-    padding:0;
-    -fx-background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0);
-    -fx-background-radius: 8px;
-}
-.scroll_pane .viewport { /* rendo lo sfondo trasparente  della scroll pane */
-    -fx-padding:12px;
-    padding:12px;
-    -fx-background-color: rgb(0, 0, 0); /* Colore di sfondo della vista */
-    background-color: rgba(0,0,0,0);
-    -fx-background-radius: 8px;
+.hbox_header > .header_buttons:focused {
+  /* se schiacci */
+  -fx-background-color: rgba(0, 0, 0, 0.72);
+  background-color: rgba(0, 0, 0, 0.72);
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
 }
 
-.scroll_pane:focused{ /*così si toglie outline di merda*/
-    -fx-background-insets: 0;
+.scroll_pane {
+  -fx-padding: 0;
+  padding: 0;
+  -fx-background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  -fx-background-radius: 8px;
+}
+.scroll_pane .viewport {
+  /* rendo lo sfondo trasparente  della scroll pane */
+  -fx-padding: 12px;
+  padding: 12px;
+  -fx-background-color: rgb(0, 0, 0); /* Colore di sfondo della vista */
+  background-color: rgba(0, 0, 0, 0);
+  -fx-background-radius: 8px;
 }
 
+.scroll_pane:focused {
+  /*così si toglie outline di merda*/
+  -fx-background-insets: 0;
+}
 
 /*************************** Util ********************************/
-.base{
-    -fx-background-color: #121212;
-    background-color: #121212;
-    -fx-background-radius: 8px;
-    border-radius: 8px;
-} 
-.background_main_color{
-    -fx-background-color: #000000;
-    background-color: #000000;
+.base {
+  -fx-background-color: #121212;
+  background-color: #121212;
+  -fx-background-radius: 8px;
+  border-radius: 8px;
+}
+.background_main_color {
+  -fx-background-color: #000000;
+  background-color: #000000;
 }
 
-.background_secondary_color{
-    -fx-background-color: #121212;
-    background-color: #121212;
+.background_secondary_color {
+  -fx-background-color: #121212;
+  background-color: #121212;
 }
 
-.top_round{
-    -fx-background-radius: 8px 8px 0 0;
+.top_round {
+  -fx-background-radius: 8px 8px 0 0;
 }
-
-
-
 
 /**********************************************************************/
 
-.label{
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 20px;
-    font-size: 20px;
-    -fx-font-weight: bold;
-    font-weight: bold;
+.label {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 20px;
+  font-size: 20px;
+  -fx-font-weight: bold;
+  font-weight: bold;
 }
-
 
 /************************************************************************************/
 
 /**********************************************************************/
-
 
 /*************************** SignIn Window ********************************/
 
-.sign_box{
-    -fx-background-color: #1e1e1e;
-    background-color: #1e1e1e;
-    -fx-background-radius: 8px;
-    border-radius: 8px;
+.sign_box {
+  -fx-background-color: #1e1e1e;
+  background-color: #1e1e1e;
+  -fx-background-radius: 8px;
+  border-radius: 8px;
 }
 
-
-.sign_box > .h_box >.label{
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 32px;
-    font-size: 32px;
+.sign_box > .h_box > .label {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 32px;
+  font-size: 32px;
 }
-.fill_box .label{
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 14px;
-    font-size: 14px;
-}
-
-.text_field{
-    -fx-background-color: #1e1e1e;
-    background-color: #1e1e1e;
-    -fx-border-color: #878787;
-    border-color: #878787;
-    -fx-border-width: 1px;
-    border-width: 1px;
-    -fx-border-radius: 4px;
-    border-radius: 4px;
-    -fx-font-size: 16px;
-    font-size: 16px;
-    -fx-font-weight: 400;
-    font-weight: 400;
-    -fx-padding-inline: 14px;
-    padding-inline: 14px;
-    -fx-text-fill: #ffffff;
-    -fx-cursor:hand;
-    -fx-transition: all 0.5s ease;
+.fill_box .label {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;
+  font-size: 14px;
 }
 
-.text_field:hover{
-    -fx-border-color: #ffffff;
-}
-.text_field:focused{
-    -fx-border-color: #ffffff;
-}
-.button_box{
-    -fx-width: 100%;
-    -fx-background-radius: 500px;
-    background-radius: 500px;
-    -fx-font-size: 16px;
-    font-size: 16px;
-    -fx-font-weight: 700;
-    font-weight: 700;
-    -fx-background-color: #878787;
-    background-color: #878787;
-    -fx-cursor:hand;
-    -fx-transition: all 0.5s ease;
-}
-
-.button_box:hover{
-    -fx-background-color: #35d0ae;
-    background-color: #35d0ae;
-    -fx-cursor:hand;
-    -fx-scale-x:1.04;
-    -fx-scale-y:1.04;
+.text_field {
+  -fx-background-color: #1e1e1e;
+  background-color: #1e1e1e;
+  -fx-border-color: #878787;
+  border-color: #878787;
+  -fx-border-width: 1px;
+  border-width: 1px;
+  -fx-border-radius: 4px;
+  border-radius: 4px;
+  -fx-font-size: 16px;
+  font-size: 16px;
+  -fx-font-weight: 400;
+  font-weight: 400;
+  -fx-padding-inline: 14px;
+  padding-inline: 14px;
+  -fx-text-fill: #ffffff;
+  -fx-cursor: hand;
+  -fx-transition: all 0.5s ease;
 }
 
-.button_box:focused{
-    -fx-background-color: #35d0ae;
-    background-color: #35d0ae;
-    -fx-scale-x:1.04;
-    -fx-scale-y:1.04;
+.text_field:hover {
+  -fx-border-color: #ffffff;
 }
-.home_label{
-    -fx-font-size: 14px;
-    font-size: 14px;
+.text_field:focused {
+  -fx-border-color: #ffffff;
 }
-.home_label:hover{
-    -fx-cursor:hand;
-    -fx-scale-x:1.04;
-    -fx-scale-y:1.04;
-}
-.home_label:focused{
-    -fx-scale-x:1.04;
-    -fx-scale-y:1.04;
-}
-.not_label{
-    -fx-font-size: 16px;
-    -fx-font-weight: 400;
-    -fx-text-fill: #6a6a6a;
-}
-.sign_label{
-    -fx-font-size: 16px;
-    -fx-font-weight: 400;
-    font-size: 16px;
-    font-weight: 400;
-    -fx-text-fill: #ffffff;
-    -fx-underline: true;
-    -fx-border:0px;
-    border: 0px;
+.button_box {
+  -fx-width: 100%;
+  -fx-background-radius: 500px;
+  background-radius: 500px;
+  -fx-font-size: 16px;
+  font-size: 16px;
+  -fx-font-weight: 700;
+  font-weight: 700;
+  -fx-background-color: #878787;
+  background-color: #878787;
+  -fx-cursor: hand;
+  -fx-transition: all 0.5s ease;
 }
 
-.sign_label:hover{
-    -fx-cursor:hand;
-    -fx-text-fill: #35d0ae
+.button_box:hover {
+  -fx-background-color: #35d0ae;
+  background-color: #35d0ae;
+  -fx-cursor: hand;
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}
+
+.button_box:focused {
+  -fx-background-color: #35d0ae;
+  background-color: #35d0ae;
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}
+.home_label {
+  -fx-font-size: 14px;
+  font-size: 14px;
+}
+.home_label:hover {
+  -fx-cursor: hand;
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}
+.home_label:focused {
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}
+.not_label {
+  -fx-font-size: 16px;
+  -fx-font-weight: 400;
+  -fx-text-fill: #6a6a6a;
+}
+.sign_label {
+  -fx-font-size: 16px;
+  -fx-font-weight: 400;
+  font-size: 16px;
+  font-weight: 400;
+  -fx-text-fill: #ffffff;
+  -fx-underline: true;
+  -fx-border: 0px;
+  border: 0px;
+}
+
+.sign_label:hover {
+  -fx-cursor: hand;
+  -fx-text-fill: #35d0ae;
 }
 
 /************************************************************************************/
 
 /**********************************************************************/
 
-
 /*************************** SignUp Window ********************************/
 
+.signup_header .label {
+  -fx-font-size: 20px;
+}
 
-.signup_header .label{
-    -fx-font-size: 20px;
+.close_button {
+  -fx-background-color: transparent;
+  background-color: transparent;
+}
+.close_button:hover > .close_svg {
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+  -fx-fill: #ffffff;
+  fill: #ffffff;
+}
+
+/*******************home view  hbox che contiene le playlist ***********************/
+.playlistBox_container {
+  -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+.playlistBox_container .playlistBox {
+  -fx-background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* ok per l'album */
+  -fx-background-radius: 8px;
+}
+.playlistBox_container .playlistBox:hover {
+  -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+/**********************************************************************/
+
+/*******************home view  flowpane che contiene album **********/
+.albumBox_container {
+  -fx-background-color: rgba(0, 0, 0, 0);
 
 }
 
-.close_button{
-    -fx-background-color: transparent;
-    background-color: transparent;
+.albumBox_container .albumBox {
+  -fx-background-color: #181818;
+  -fx-background-radius: 8px;
 }
-.close_button:hover > .close_svg{
-    -fx-scale-x:1.04;
-    -fx-scale-y:1.04;
-    -fx-fill: #ffffff;
-    fill: #ffffff;
+.albumBox_container .albumBox:hover{
+  -fx-background-color: #282828;
+
 }
+/**********************************************************************/
