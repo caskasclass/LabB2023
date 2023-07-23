@@ -148,6 +148,13 @@
     font-weight: bold;
 }
 
+.label2{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
 
 /************************************************************************************/
 

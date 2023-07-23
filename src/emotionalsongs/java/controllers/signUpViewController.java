@@ -1,4 +1,10 @@
 package controllers;
+import java.lang.String;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,6 +30,9 @@ public class signUpViewController {
 
     @FXML
     private Label loginButton;
+
+    @FXML
+    private Label msgErr;
 
     @FXML
     private TextField mail;
@@ -52,13 +61,66 @@ public class signUpViewController {
         Scene scene = new Scene(pane, Color.TRANSPARENT);
         stage.setScene(scene);
         long end = System.currentTimeMillis();
-        System.out.println("\n\nTempo impiegato : " + (end - start) + " ms.\n\n");
-        
-        
+        System.out.println("\n\nTempo impiegato : " + (end - start) + " ms.\n\n");    
     }
 
     public void closeWindow(MouseEvent e){
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
     }
+
+    public void registrazione(MouseEvent e) throws IOException {
+
+        String[] s = {cf.getText(), cap.getText(), citta.getText(), nome.getText() , mail.getText(),
+            password.getText(), residenza.getText(), username.getText()};
+        List<String> s2 = Arrays.asList(s);
+        if(s2.contains("")){
+            msgErr.setText("non hai compilato tutti i campi");
+        }
+        else if(!stringMatches(cap.getText(),"^\\d{5}$")){
+            msgErr.setText("non hai inserito un CAP corretto");
+        }
+        else if(!stringMatches(cf.getText(),"^[A-Z]{6}\\d{2}[A-Z]\\d{2}[A-Z]\\d{3}[A-Z]$")){
+            msgErr.setText("il formato del codice fiscale non è corretto");
+        }
+        else if(!stringMatches(password.getText(),"^(?=.*\\d)[A-Za-z\\d]{6,}$")){
+            msgErr.setText("la password deve avere aleno 6 caratteri di cui un numero");
+        }
+        else if(!stringMatches(mail.getText(),"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")){
+            msgErr.setText("il formato della mail non è corretto");
+        }
+        else{
+            msgErr.setText("tutto corretto");
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.close();
+        }
+
+        /*
+            else {
+            User newuser = new User(btn_username.getText(), btn_passwd.getText(), btn_mail.getText(), btn_nome.getText().toLowerCase(), btn_cf.getText().toUpperCase(), btn_ind.getText().toLowerCase());
+            ArrayList<User> users = UserManager.readUsers();
+            if(users.contains(newuser)){
+                msgErr.setText("utente già registrato");
+            }
+            else {
+                users.add(newuser);
+                Stage stage = (Stage) btn_registra.getScene().getWindow(); // chiusura della finestra
+                stage.close();
+            
+            }
+            UserManager.getUsers(users); 
+            
+        }  */    
+        
+        
+        }
+
+        private boolean stringMatches(String data, String regex){
+            // Compila il pattern regex
+            Pattern pattern = Pattern.compile(regex);
+            // Verifica se il codice fiscale corrisponde al pattern regex
+            return pattern.matcher(data).matches();
+        }
+
+       
 }
