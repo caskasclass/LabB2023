@@ -21,7 +21,7 @@
 .menu_box .button {
   -fx-background-color: rgba(0, 0, 0, 0); /* questo è ok */
   background-color: rgba(0, 0, 0, 0); /* questo è ok */
-  -fx-alignment: center-left; /* questo è ok */
+  -fx-alignment: center-top; /* questo è ok */
   -fx-padding: 4px 12px; /* questo è ok */
   padding: 4px 12px; /* questo è ok */
   -fx-max-height: 40;
