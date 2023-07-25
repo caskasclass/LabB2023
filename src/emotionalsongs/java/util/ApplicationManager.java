@@ -22,9 +22,13 @@ public class ApplicationManager {
         //Sever per specificare cosa fare alla terminazione del task 
         UIInitializationTask.setOnSucceeded(event ->{
             loadingWindow.close();
+            long start = System.currentTimeMillis();
             HomeWindow homeWindow = new HomeWindow();
-            
+            long end = System.currentTimeMillis();
+            System.out.println("Time di creazione finestra : " +(end-start)+"ms");
             homeWindow.show();
+          
+            
 
             //Connessione al server funziona manca solo da implementare l'interfaccia nel Proxy
             Proxy localProxy = new Proxy();

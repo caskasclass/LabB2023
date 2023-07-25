@@ -2,17 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="15.0" styleClass="playlistBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.playlistBoxController">
+<fx:root fx:id="vboxroot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="16.0" styleClass="playlistBox" type="VBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.playlistBoxController">
    <children>
-      <Pane>
-         <children>
-            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
+      <VBox fx:id="imagePane" prefHeight="150.0" prefWidth="150.0" VBox.vgrow="ALWAYS" />
       <VBox>
          <children>
             <Label fx:id="playlistName" text="nomeplaylist" />
@@ -21,6 +15,6 @@
       </VBox>
    </children>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
    </padding>
-</VBox>
+</fx:root>

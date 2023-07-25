@@ -1,9 +1,12 @@
 package controllers;
 
+import java.io.IOException;
+
 import Session.WindowAppearance;
 import WindowsLoader.SignWindow;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
@@ -33,9 +36,9 @@ public class homeWindowController {
     private double MaxWidth = WindowAppearance.getWindowWidth() * 0.25; // non toccare
 
     private double opacity = 0.0;
-    private CornerRadii cornerRad = new CornerRadii(8, 8, 0, 0, false); 
+    private CornerRadii cornerRad = new CornerRadii(8, 8, 0, 0, false);
 
-    private FXMLLoaders loader = new FXMLLoaders();
+    private FXMLLoaders fxmlUtil = new FXMLLoaders();
 
     @FXML
     private BorderPane rootPane;
@@ -61,7 +64,6 @@ public class homeWindowController {
     @FXML
     private Button loginButton;
 
-
     @FXML
     private void initialize() {
 
@@ -77,10 +79,24 @@ public class homeWindowController {
         // 2.5) inizializzo stile header
         header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
 
-
         // 3) inizializzo il center con la home
-        StackPane homeView = (StackPane) loader.loadFXML("homeView.fxml");
-        centerScrollPane.setContent(homeView);
+        FXMLLoader loader = fxmlUtil.getLoader("homeView.fxml");
+        System.out.print("loader : " + loader.toString());
+        StackPane homeView = null;
+        try {
+            homeView = (StackPane) loader.load();
+            homeViewController childController = loader.getController();
+            centerScrollPane.setContent(homeView);
+            Platform.runLater(() -> {
+                centerScrollPane.boundsInLocalProperty().addListener((obs, oldBounds, newBounds) -> {
+                    onParentResized(childController, oldBounds.getWidth(),newBounds.getWidth());
+                });
+            });
+
+        } catch (IOException e) {
+            System.err.println("\nFXML loader problems\n");
+            e.printStackTrace();
+        }
 
         // listener per la width
 
@@ -89,8 +105,8 @@ public class homeWindowController {
         userButton.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         String url = getClass().getResource("/imgs/playlist_img/img2.png").toExternalForm();
         Image image = new Image(url);
-        ImageView img = new ImageView(image); 
-        img.setClip(cropUserImg(img,24,24));
+        ImageView img = new ImageView(image);
+        img.setClip(cropUserImg(img, 24, 24));
         userButton.setGraphic(img);
         userButton.setVisible(true);
 
@@ -119,6 +135,12 @@ public class homeWindowController {
 
     }
 
+    private void onParentResized(homeViewController controller,double OldWidth, double NewWidth) {
+        // System.out.println("Event captured => width :"+width+" | height :"+height);
+        if((NewWidth-OldWidth)>0 || (NewWidth-OldWidth)<0)
+        controller.resizeHandler(NewWidth);
+    }
+
     private void handleScrollEvent(ScrollEvent event) {
         // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 10)
         double vPosition = centerScrollPane.getVvalue();
@@ -129,13 +151,13 @@ public class homeWindowController {
             // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 6
             opacity = vPosition / 2;
 
-            if(opacity >= 0.98)
-            opacity = 1;
+            if (opacity >= 0.98)
+                opacity = 1;
         } else if (vPosition >= 6 && vPosition <= 10) {
             // altrimenti nada
             return;
         }
-        
+
         // di base creo un nuovo bgFill (devo cambiare in base all view) lo faccio pià
         // avanti
         BackgroundFill backgroundFill = new BackgroundFill(
@@ -186,7 +208,7 @@ public class homeWindowController {
             parent.getScene().getRoot().setDisable(false);
         });
         window.show();
-        
+
     }
 
 }

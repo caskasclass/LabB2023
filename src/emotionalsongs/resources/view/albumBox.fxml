@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox minWidth="270.0" styleClass="albumBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.albumBoxController">
+<HBox maxWidth="1.7976931348623157E308" minWidth="270.0" styleClass="albumBox" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.albumBoxController">
    <children>
       <Pane>
          <children>

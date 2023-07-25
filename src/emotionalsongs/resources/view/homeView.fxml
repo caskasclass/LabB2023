@@ -9,14 +9,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 
-<StackPane alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeViewController">
+<StackPane alignment="TOP_LEFT" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeViewController">
    <children>
-      <HBox fx:id="primaryShader" maxHeight="220.0" minHeight="220.0">
+      <HBox fx:id="primaryShader" maxHeight="300.0" minHeight="300.0">
          <StackPane.margin>
             <Insets />
          </StackPane.margin></HBox>
-      <VBox alignment="TOP_CENTER" spacing="10.0">
+      <VBox fx:id="contentContainer" alignment="TOP_CENTER" spacing="10.0">
          <padding>
             <Insets bottom="30.0" left="15.0" right="15.0" top="15.0" />
          </padding>
@@ -31,7 +32,7 @@
                         <Insets bottom="16.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox fx:id="playlistBoxContainer" alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="500.0" spacing="12.0" styleClass="playlistBox_container" />
+                  <HBox fx:id="playlistBoxContainer" alignment="CENTER_LEFT" prefHeight="150.0" spacing="12.0" styleClass="playlistBox_container" VBox.vgrow="ALWAYS" />
                   <HBox nodeOrientation="RIGHT_TO_LEFT">
                      <children>
                         <Button mnemonicParsing="false" text="see all" />
@@ -39,7 +40,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox prefHeight="0.0" prefWidth="0.0">
+            <VBox>
                <children>
                   <Label text="Album del momento">
                      <VBox.margin>
@@ -53,7 +54,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox prefHeight="0.0" prefWidth="0.0">
+            <VBox>
                <children>
                   <Label text="Titoli del momento ">
                      <VBox.margin>
@@ -62,13 +63,22 @@
                   </Label>
                   <HBox>
                      <children>
-                        <TableView fx:id="tableViewTopClicked" maxHeight="300.0" maxWidth="1.7976931348623157E308" minHeight="300.0" nodeOrientation="LEFT_TO_RIGHT">
+                        <TableView maxHeight="300.0" minHeight="300.0" HBox.hgrow="ALWAYS">
                           <columns>
-                            <TableColumn maxWidth="50.0" minWidth="35.0" prefWidth="35.0" resizable="false" text="#" />
-                            <TableColumn maxWidth="250.0" text="Title" />
-                              <TableColumn maxWidth="250.0" prefWidth="75.0" text="Album " />
-                              <TableColumn maxWidth="250.0" prefWidth="130.0" text="Data Added " />
-                              <TableColumn maxWidth="250.0" prefWidth="100.0" text="Duration " />
+                            <TableColumn prefWidth="75.0" resizable="false" text="#" />
+                              <TableColumn prefWidth="75.0" resizable="false" text="Title" />
+                              <TableColumn prefWidth="75.0" resizable="false" text="Album" />
+                              <TableColumn prefWidth="107.0" resizable="false" text="Date Added" />
+                              <TableColumn prefWidth="43.0" resizable="false">
+                                 <graphic>
+                                    <StackPane>
+                                       <children>
+                                          <SVGPath content="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z&#10;M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z&#10;&#10;&#10;" />
+                                       </children>
+                                    </StackPane>
+                                 </graphic>
+                              </TableColumn>
+                              <TableColumn prefWidth="50.0" resizable="false" />
                           </columns>
                         </TableView>
                      </children>
@@ -87,7 +97,7 @@
                         <Insets bottom="16.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox fx:id="othersPlaylistBoxContainer" alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="500.0" spacing="12.0" styleClass="playlistBox_container" />
+                  <HBox fx:id="othersPlaylistBoxContainer" alignment="CENTER_LEFT" prefHeight="150.0" spacing="12.0" styleClass="playlistBox_container" />
                   <HBox nodeOrientation="RIGHT_TO_LEFT">
                      <children>
                         <Button mnemonicParsing="false" text="see all" />
@@ -95,6 +105,43 @@
                   </HBox>
                </children>
             </VBox>
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
          </children>
       </VBox>
    </children>
