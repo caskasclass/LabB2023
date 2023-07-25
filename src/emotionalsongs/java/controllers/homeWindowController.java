@@ -88,8 +88,8 @@ public class homeWindowController {
             homeViewController childController = loader.getController();
             centerScrollPane.setContent(homeView);
             Platform.runLater(() -> {
-                rootPane.getCenter().boundsInLocalProperty().addListener((obs, oldBounds, newBounds) -> {
-                    onParentResized(childController, newBounds.getWidth());
+                centerScrollPane.boundsInLocalProperty().addListener((obs, oldBounds, newBounds) -> {
+                    onParentResized(childController, oldBounds.getWidth(),newBounds.getWidth());
                 });
             });
 
@@ -135,9 +135,10 @@ public class homeWindowController {
 
     }
 
-    private void onParentResized(homeViewController controller, double width) {
+    private void onParentResized(homeViewController controller,double OldWidth, double NewWidth) {
         // System.out.println("Event captured => width :"+width+" | height :"+height);
-        controller.resizeHandler(width);
+        if((NewWidth-OldWidth)>0 || (NewWidth-OldWidth)<0)
+        controller.resizeHandler(NewWidth);
     }
 
     private void handleScrollEvent(ScrollEvent event) {

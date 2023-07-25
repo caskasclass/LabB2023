@@ -32,7 +32,7 @@
                         <Insets bottom="16.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox fx:id="playlistBoxContainer" alignment="CENTER_LEFT" prefHeight="150.0" spacing="12.0" styleClass="playlistBox_container" />
+                  <HBox fx:id="playlistBoxContainer" alignment="CENTER_LEFT" prefHeight="150.0" spacing="12.0" styleClass="playlistBox_container" VBox.vgrow="ALWAYS" />
                   <HBox nodeOrientation="RIGHT_TO_LEFT">
                      <children>
                         <Button mnemonicParsing="false" text="see all" />
@@ -105,6 +105,43 @@
                   </HBox>
                </children>
             </VBox>
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
+            <Label text="Label" />
          </children>
       </VBox>
    </children>

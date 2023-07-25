@@ -9,10 +9,11 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import util.ColorsManager;
-import util.FXMLLoaders;
+import views.PlaylistBox;
 
 public class homeViewController {
 
@@ -34,8 +35,6 @@ public class homeViewController {
     @FXML
     private HBox othersPlaylistBoxContainer;
 
-    private FXMLLoaders fxmlutil = new FXMLLoaders();
-
     @FXML
     private void initialize() {
 
@@ -47,7 +46,8 @@ public class homeViewController {
         Background background = new Background(backgroundFill);
         primaryShader.setBackground(background);
         Platform.runLater(() -> {
-            setView();
+            double width = (contentContainer.getBoundsInLocal().getWidth())-(contentContainer.getPadding().getLeft()*2);
+            setView(playlistBoxContainer,othersPlaylistBoxContainer,width);
         });
 
         // coportamento desiderato (contoller figlio )
@@ -55,89 +55,61 @@ public class homeViewController {
     }
 
     public void resizeHandler(double width) {
-        //setHbox(playlistBoxContainer, width);
-        setFlowPane(albumBoxContainer, width);
-        //setHbox(othersPlaylistBoxContainer, width);
+        PlaylistBoxWidthManager(playlistBoxContainer, width);
+        PlaylistBoxWidthManager(othersPlaylistBoxContainer, width);
     }
 
-    private void setView() {
-        resizeHandler(contentContainer.getWidth());
-    }
+    private void setView(HBox hbox1,HBox hbox2, double width) {
+        // calcoli
+        double minItemWidth = PlaylistBox.MinWidth;
+        double maxItemWidth = PlaylistBox.MaxWidth;
+        double preferdItemWidth;
 
-    private void setHbox(HBox hbox, double width) {
-        // Numero di elementi grafici iniziali
-        int initialNumElements = 4;
-
-        // Rapporto larghezza/altezza degli elementi grafici (assumendo un valore)
-        //double elementWidthToHeightRatio = 2.0;
-
-        // Gap tra gli elementi all'interno dell'HBox (puoi modificarlo a tuo
-        // piacimento)
-        double gap = hbox.getSpacing();
-
-        // Larghezza massima e minima di ciascun elemento (puoi modificarli a tuo
-        // piacimento)
-        double maxElementWidth = 0.8 * width; // Imposta la larghezza massima al 80% della larghezza del container
-        double minElementWidth = 100;
-
-        // Larghezza disponibile all'interno dell'HBox considerando il gap tra gli
-        // elementi
-        double availableWidth = width - hbox.getPadding().getLeft() - hbox.getPadding().getRight()
-                - (initialNumElements - 1) * gap;
-
-        // Calcola la larghezza ottimale per ciascun elemento considerando il gap tra
-        // gli elementi
-        double optimalElementWidth = Math.min(maxElementWidth, availableWidth / initialNumElements);
-
-        // Calcola l'altezza ottimale per ciascun elemento in base al rapporto
-        // width/height
-        //double optimalElementHeight = optimalElementWidth / elementWidthToHeightRatio;
-
-        // Verifica se la larghezza è inferiore alla larghezza minima per un elemento
-        if (optimalElementWidth < minElementWidth) {
-            // Riduci il numero di elementi visibili se la larghezza è troppo piccola
-            int numVisibleElements = (int) (availableWidth / (minElementWidth + gap));
-            final int finalnumVisibleElements = numVisibleElements;
-            optimalElementWidth = (availableWidth - (numVisibleElements - 1) * gap) / numVisibleElements;
-            // Rimuovi gli elementi in eccesso dal contenitore se necessario
-            if (hbox.getChildren().size() > numVisibleElements) {
-
-                Platform.runLater(() -> {
-                    hbox.getChildren().remove(finalnumVisibleElements, hbox.getChildren().size());
-                });
-
-            }
-        } else {
-            // Verifica se è possibile aggiungere un elemento in più
-            int numVisibleElements = (int) (availableWidth / (optimalElementWidth + gap));
-            // Aggiungi elementi fino a raggiungere il numero massimo di elementi visibili
-            Platform.runLater(() -> {
-                while (hbox.getChildren().size() < numVisibleElements) {
-                    // Crea e personalizza l'elemento grafico (VBox) qui
-                    VBox playlsitBox = (VBox) fxmlutil.loadFXML("playlistBox.fxml");
-
-                    hbox.getChildren().add(playlsitBox);
-
-                }
-            });
+        preferdItemWidth = ((maxItemWidth + minItemWidth) / 2);
+        int num_itemsFit = (int) (width / preferdItemWidth);
+        double requested_Width = (num_itemsFit * preferdItemWidth) + ((num_itemsFit - 1) * hbox1.getSpacing());
+        if (requested_Width > width) {
+            num_itemsFit--;
         }
-        // Imposta la larghezza degli elementi nel VBox in percentuale rispetto alla
-        // larghezza del VBox
-        for (Node node : hbox.getChildren()) {
-            if (node instanceof VBox) {
-                double elementWidthPercentage = optimalElementWidth / width * 100;
-                ((VBox) node).setStyle("-fx-pref-width: " + elementWidthPercentage + "%;");
+        for (int i = 0; i < num_itemsFit; i++) {
+            VBox playlistbox1 = new PlaylistBox();
+            VBox playlistbox2 = new PlaylistBox();
+            HBox.setHgrow(playlistbox1, Priority.ALWAYS);
+            HBox.setHgrow(playlistbox2, Priority.ALWAYS);
+            hbox1.getChildren().add(playlistbox1);
+            hbox2.getChildren().add(playlistbox2);
+        }
+
+    }
+
+    private void PlaylistBoxWidthManager(HBox hbox, double width) {
+        double hboxFullWidth= hbox.getWidth();
+        double spacingWidth = (hbox.getChildren().size()-1)*hbox.getSpacing();
+        double TotalNodeWidth= 0;
+        boolean minReached = false;
+        for(Node node: hbox.getChildren()){
+            if(node instanceof VBox){
+                VBox child = (VBox) node;
+                double childWidth =child.getWidth();
+                TotalNodeWidth += childWidth;
+                if( child.getMinWidth()+10 >= childWidth)
+                {
+                    minReached = true;
+                }
             }
+        }
+        System.out.println("Width disponibile : " +(hboxFullWidth-(spacingWidth+TotalNodeWidth)));
+        if((hboxFullWidth-(spacingWidth+TotalNodeWidth))>55){
+            VBox playlistbox = new PlaylistBox();
+            HBox.setHgrow(playlistbox, Priority.ALWAYS);
+            hbox.getChildren().add(playlistbox);
+        }else if(minReached){
+            hbox.getChildren().remove(hbox.getChildren().size()-1);
         }
     }
 
     private void setFlowPane(FlowPane flowpane, double width) {
-        // calcoli
 
-        // javaFX application thread
-        Platform.runLater(() -> {
-
-        });
     }
 
 }

@@ -16,12 +16,12 @@
 .menu_box {
   -fx-padding: 12px 16px; /* questo è ok */
   padding: 12px 16px; /* questo è ok */
-  -fx-alignment: center-top;
+  /*-fx-alignment: center-top;*/
 }
 .menu_box .button {
   -fx-background-color: rgba(0, 0, 0, 0); /* questo è ok */
   background-color: rgba(0, 0, 0, 0); /* questo è ok */
-  -fx-alignment: center-top; /* questo è ok */
+  /*-fx-alignment: center-top; /* questo è ok */
   -fx-padding: 4px 12px; /* questo è ok */
   padding: 4px 12px; /* questo è ok */
   -fx-max-height: 40;
@@ -186,19 +186,22 @@
   padding-inline: 14px;
   -fx-text-fill: #ffffff;
   -fx-cursor: hand;
-  -fx-transition: all 0.5s ease;
+  cursor: hand;
+ 
 }
 
 .text_field:hover {
   -fx-border-color: #ffffff;
+  border-color: #ffffff;
 }
 .text_field:focused {
   -fx-border-color: #ffffff;
+  border-color: #ffffff;
 }
 .button_box {
   -fx-width: 100%;
+  width: 100%;
   -fx-background-radius: 500px;
-  background-radius: 500px;
   -fx-font-size: 16px;
   font-size: 16px;
   -fx-font-weight: 700;
@@ -206,13 +209,14 @@
   -fx-background-color: #878787;
   background-color: #878787;
   -fx-cursor: hand;
-  -fx-transition: all 0.5s ease;
+  cursor: hand;
 }
 
 .button_box:hover {
   -fx-background-color: #35d0ae;
   background-color: #35d0ae;
   -fx-cursor: hand;
+  cursor: hand;
   -fx-scale-x: 1.04;
   -fx-scale-y: 1.04;
 }
@@ -229,6 +233,7 @@
 }
 .home_label:hover {
   -fx-cursor: hand;
+  cursor: hand;
   -fx-scale-x: 1.04;
   -fx-scale-y: 1.04;
 }
@@ -238,7 +243,9 @@
 }
 .not_label {
   -fx-font-size: 16px;
+  font-size: 16px;
   -fx-font-weight: 400;
+  font-weight: 400;
   -fx-text-fill: #6a6a6a;
 }
 .sign_label {
@@ -254,6 +261,7 @@
 
 .sign_label:hover {
   -fx-cursor: hand;
+  cursor: hand;
   -fx-text-fill: #35d0ae;
 }
 
@@ -265,6 +273,7 @@
 
 .signup_header .label {
   -fx-font-size: 20px;
+  font-size: 20px;
 }
 
 .close_button {
@@ -281,10 +290,17 @@
 /*******************home view  hbox che contiene le playlist ***********************/
 .playlistBox_container {
   -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .playlistBox_container .playlistBox {
   -fx-background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  );
+  background-color: rgba(
     255,
     255,
     255,
@@ -294,6 +310,7 @@
 }
 .playlistBox_container .playlistBox:hover {
   -fx-background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /**********************************************************************/
@@ -301,15 +318,18 @@
 /*******************home view  flowpane che contiene album **********/
 .albumBox_container {
   -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
 
 }
 
 .albumBox_container .albumBox {
   -fx-background-color: #181818;
+  background-color: #181818;
   -fx-background-radius: 8px;
 }
 .albumBox_container .albumBox:hover{
   -fx-background-color: #282828;
+  background-color: #282828;
 
 }
 /**********************************************************************/
