@@ -1,12 +1,9 @@
 package controllers;
 
-import java.io.IOException;
-
 import Session.WindowAppearance;
 import WindowsLoader.SignWindow;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
@@ -26,7 +23,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import util.ColorsManager;
-import util.FXMLLoaders;
+import views.HomeView;
 import javafx.stage.Stage;
 import javafx.scene.effect.BoxBlur;
 
@@ -38,7 +35,6 @@ public class homeWindowController {
     private double opacity = 0.0;
     private CornerRadii cornerRad = new CornerRadii(8, 8, 0, 0, false);
 
-    private FXMLLoaders fxmlUtil = new FXMLLoaders();
 
     @FXML
     private BorderPane rootPane;
@@ -80,24 +76,8 @@ public class homeWindowController {
         header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
 
         // 3) inizializzo il center con la home
-        FXMLLoader loader = fxmlUtil.getLoader("homeView.fxml");
-        System.out.print("loader : " + loader.toString());
-        StackPane homeView = null;
-        try {
-            homeView = (StackPane) loader.load();
-            homeViewController childController = loader.getController();
-            centerScrollPane.setContent(homeView);
-            Platform.runLater(() -> {
-                centerScrollPane.boundsInLocalProperty().addListener((obs, oldBounds, newBounds) -> {
-                    onParentResized(childController, oldBounds.getWidth(),newBounds.getWidth());
-                });
-            });
-
-        } catch (IOException e) {
-            System.err.println("\nFXML loader problems\n");
-            e.printStackTrace();
-        }
-
+        HomeView homeView = new HomeView();
+        centerScrollPane.setContent(homeView);
         // listener per la width
 
         // 4) istanzio il button user per la prova colore + il button in se
@@ -135,11 +115,7 @@ public class homeWindowController {
 
     }
 
-    private void onParentResized(homeViewController controller,double OldWidth, double NewWidth) {
-        // System.out.println("Event captured => width :"+width+" | height :"+height);
-        if((NewWidth-OldWidth)>0 || (NewWidth-OldWidth)<0)
-        controller.resizeHandler(NewWidth);
-    }
+   
 
     private void handleScrollEvent(ScrollEvent event) {
         // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 10)

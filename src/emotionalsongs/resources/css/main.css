@@ -307,11 +307,27 @@
     0.1
   ); /* ok per l'album */
   -fx-background-radius: 8px;
+
+}
+.playlistBox_container .playlistBox .label {
+  -fx-font-size: 13px;
+  font-size: 13px;
 }
 .playlistBox_container .playlistBox:hover {
   -fx-background-color: rgba(255, 255, 255, 0.2);
   background-color: rgba(255, 255, 255, 0.2);
 }
+
+.playlistBox_container .playlistBox .backgroundPlaylistImage  {
+  -fx-background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  -fx-background-size: contain;
+  background-size: contain;
+  -fx-background-position: center;
+  background-position: center;
+}
+
+
 
 /**********************************************************************/
 

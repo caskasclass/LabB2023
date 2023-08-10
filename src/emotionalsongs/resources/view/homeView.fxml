@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<StackPane alignment="TOP_LEFT" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeViewController">
+<fx:root alignment="TOP_LEFT" styleClass="base" stylesheets="@../css/main.css" type="StackPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeViewController">
    <children>
       <HBox fx:id="primaryShader" maxHeight="300.0" minHeight="300.0">
          <StackPane.margin>
@@ -25,14 +25,14 @@
             <Insets top="64.0" />
          </StackPane.margin>
          <children>
-            <VBox>
+            <VBox spacing="5.0">
                <children>
                   <Label text="Le tue Playlist ">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox fx:id="playlistBoxContainer" alignment="CENTER_LEFT" prefHeight="150.0" spacing="12.0" styleClass="playlistBox_container" VBox.vgrow="ALWAYS" />
+                  <HBox fx:id="playlistBoxContainer" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" spacing="12.0" styleClass="playlistBox_container" VBox.vgrow="ALWAYS" />
                   <HBox nodeOrientation="RIGHT_TO_LEFT">
                      <children>
                         <Button mnemonicParsing="false" text="see all" />
@@ -145,4 +145,4 @@
          </children>
       </VBox>
    </children>
-</StackPane>
+</fx:root>

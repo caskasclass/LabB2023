@@ -10,7 +10,7 @@ import util.FXMLLoaders;
 public class PlaylistBox extends VBox {
     FXMLLoaders fxmlutil = new FXMLLoaders();
     // model da istanziare
-    public final static int MinWidth = 158;
+    public final static int MinWidth = 145;
     public final static int MaxWidth = 230;
 
     public PlaylistBox() {
@@ -23,7 +23,9 @@ public class PlaylistBox extends VBox {
         }
         setMaxWidth(MaxWidth);
         setMinWidth(MinWidth);
+        
         VBox.setVgrow(this, Priority.ALWAYS);
+       
 
     }
 
