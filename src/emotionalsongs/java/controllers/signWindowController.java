@@ -1,4 +1,10 @@
 package controllers;
+import java.lang.String;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import util.FXMLLoaders;
 import javafx.scene.layout.Pane;
@@ -14,7 +20,7 @@ import javafx.stage.Stage;
 public class signWindowController {
 
     @FXML
-    private TextField idButton;
+    private TextField id;
 
     @FXML
     private Button loginButton;
@@ -23,10 +29,13 @@ public class signWindowController {
     private Button closeButton;
 
     @FXML
-    private PasswordField passwordButt;
+    private PasswordField password;
 
     @FXML
     private Label signUpButton;
+
+    @FXML
+    private Label msgErr;
 
     public void openSignUp(MouseEvent e){
 
@@ -40,7 +49,49 @@ public class signWindowController {
         long end = System.currentTimeMillis();
         System.out.println("\n\nTempo impiegato : " + (end - start) + " ms.\n\n");
        
-    }
+    } 
+
+    public void accesso(MouseEvent e) throws IOException {
+
+        String[] s = {id.getText(), password.getText()};
+        List<String> s2 = Arrays.asList(s);
+        if(s2.contains("")){
+            msgErr.setText("non hai compilato tutti i campi");
+        }
+        else if(!stringMatches(password.getText(),"^(?=.*\\d)[A-Za-z\\d]{6,}$")){
+            msgErr.setText("la password deve avere aleno 6 caratteri di cui un numero");
+        }
+        else{
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.close();
+        }
+
+        /*
+            else {
+            User newuser = new User(btn_username.getText(), btn_passwd.getText(), btn_mail.getText(), btn_nome.getText().toLowerCase(), btn_cf.getText().toUpperCase(), btn_ind.getText().toLowerCase());
+            ArrayList<User> users = UserManager.readUsers();
+            if(users.contains(newuser)){
+                msgErr.setText("utente già registrato");
+            }
+            else {
+                users.add(newuser);
+                Stage stage = (Stage) btn_registra.getScene().getWindow(); // chiusura della finestra
+                stage.close();
+            
+            }
+            UserManager.getUsers(users); 
+            
+        }  */    
+        
+        
+        }
+
+        private boolean stringMatches(String data, String regex){
+            // Compila il pattern regex
+            Pattern pattern = Pattern.compile(regex);
+            // Verifica se il codice fiscale corrisponde al pattern regex
+            return pattern.matcher(data).matches();
+        }
 
     public void closeWindow(MouseEvent e){
         Stage stage = (Stage) loginButton.getScene().getWindow();

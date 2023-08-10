@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="719.0" prefWidth="496.0" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.signWindowController">
+<Pane prefHeight="719.0" prefWidth="496.0" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.signWindowController">
    <children>
       <VBox fx:id="vbox" alignment="TOP_CENTER" prefHeight="719.0" prefWidth="496.0" spacing="60.0" styleClass="sign_box">
          <children>
@@ -63,7 +63,7 @@
                         <Insets bottom="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="idButton" styleClass="text_field">
+                  <TextField fx:id="id" styleClass="text_field">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
@@ -79,7 +79,7 @@
                         <Insets bottom="5.0" />
                      </padding>
                   </Label>
-                  <PasswordField fx:id="passwordButt" styleClass="text_field">
+                  <PasswordField fx:id="password" styleClass="text_field">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -91,7 +91,8 @@
             </VBox>
             <VBox alignment="CENTER" spacing="15.0">
                <children>
-                  <Button fx:id="loginButton" alignment="CENTER" mnemonicParsing="false" prefHeight="37.0" prefWidth="275.0" styleClass="button_box" text="Log in" />
+                  <Label fx:id="msgErr" styleClass="not_label" />
+                  <Button fx:id="loginButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#accesso" prefHeight="37.0" prefWidth="275.0" styleClass="button_box" text="Log in" />
                   <HBox alignment="CENTER" spacing="5.0" styleClass="nr_box">
                      <children>
                         <Label styleClass="not_label" text="Not registered yet?" />
