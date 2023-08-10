@@ -44,18 +44,23 @@ public class homeViewController {
         Background background = new Background(backgroundFill);
         primaryShader.setBackground(background);
 
-        for (int i = 0; i < 3; i++) {
+
+
+        for (int i = 0; i < 4; i++) {
             PlaylistBox playlist = new PlaylistBox();
             HBox.setHgrow(playlist, Priority.ALWAYS);
             playlistBoxContainer.getChildren().add(playlist);
            
         }
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 4; i++) {
             PlaylistBox playlist = new PlaylistBox();
-            //HBox.setHgrow(playlist, Priority.ALWAYS);
+            HBox.setHgrow(playlist, Priority.ALWAYS);
             othersPlaylistBoxContainer.getChildren().add(playlist);
-
         }
+
+    }
+
+    public static void setPlaylist(double w){
 
     }
 }

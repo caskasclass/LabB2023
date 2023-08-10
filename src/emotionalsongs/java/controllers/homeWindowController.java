@@ -1,6 +1,7 @@
 package controllers;
 
 import Session.WindowAppearance;
+import Threads.ResizeHandler;
 import WindowsLoader.SignWindow;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -105,11 +106,15 @@ public class homeWindowController {
         // 6) Aggiungo i button al header
         header_hbox.getChildren().add(userButton);
         header_hbox.getChildren().add(pane);
+
+
+
         // 7) vari listener
+        ResizeHandler resizeHandler = new ResizeHandler(rootPane,rootMenu);
+        resizeHandler.start();
+
         // per la width del left side del borde-rpane
-        rootPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
-            animateMenuWidth(newWidth.doubleValue());
-        });
+
         // per il colore sul SCROLL
         centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
 
@@ -147,11 +152,6 @@ public class homeWindowController {
 
         // assegno il nuovo bg
         Platform.runLater(() -> header_hbox.setBackground(newBackground));
-    }
-
-    private void animateMenuWidth(double newWidth) {
-        double menuWidth = Math.min(newWidth * 0.23, MaxWidth); // Calcolo della nuova larghezza
-        rootMenu.setPrefWidth(menuWidth);
     }
 
     private Button createButton(String text) {
