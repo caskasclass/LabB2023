@@ -318,9 +318,11 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+
+/* mi sa che questa è da togliere. idk */
 .playlistBox_container .playlistBox .image_container   {
   -fx-background-radius :8px;
-
+/*****************************************************/
 }
 
 .playlistBox_container .playlistBox .backgroundPlaylistImage  {
@@ -348,9 +350,16 @@
   background-color: #181818;
   -fx-background-radius: 8px;
 }
+.albumBox_container .albumBox .imgregion {
+  -fx-background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  -fx-background-size: contain;
+  background-size: contain;
+  -fx-background-position: center;
+  background-position: center;
+}
 .albumBox_container .albumBox:hover{
   -fx-background-color: #282828;
   background-color: #282828;
-
 }
 /**********************************************************************/

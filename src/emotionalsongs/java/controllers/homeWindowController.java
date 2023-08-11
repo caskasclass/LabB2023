@@ -123,18 +123,19 @@ public class homeWindowController {
    
 
     private void handleScrollEvent(ScrollEvent event) {
-        // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 10)
+        // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 100)
         double vPosition = centerScrollPane.getVvalue();
 
         // calcola l'opacità in base alla posizione di scorrimento
-        if (vPosition >= 0 && vPosition <= 2) {
+        // vi position è un numero compreso tra 0 e 100 
+        if (vPosition >= 0 && vPosition <= 45) {
             // System.out.println("Vposition : " + vPosition);
-            // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 6
-            opacity = vPosition / 2;
+            // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 45
+            opacity = vPosition / 45;
 
             if (opacity >= 0.98)
                 opacity = 1;
-        } else if (vPosition >= 6 && vPosition <= 10) {
+        } else if (vPosition >= 45 && vPosition <= 100) {
             // altrimenti nada
             return;
         }

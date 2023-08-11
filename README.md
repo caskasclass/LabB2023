@@ -154,3 +154,9 @@ Sulla vista che volete fare mettete il nome di fianco
 -	Creazione cartella "viste" della home (*casca*)
 
 - Gestione multithreading da parte del client (*casca*)
+
+
+# Bug che non fixerò per questioni di tempo e voglia 
+
+- Al reszie della finestra scroll pane mi butta in cima. v-positon = 0; 
+- Passare da full-screen a widnow mode ogni tanto bagga la playlst box. 

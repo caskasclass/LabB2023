@@ -7,6 +7,8 @@ import javafx.scene.layout.VBox;
 
 public class playlistBoxController {
 
+    public int imgnumber = 0;
+
     @FXML
     private VBox vboxroot;
 
@@ -22,6 +24,7 @@ public class playlistBoxController {
     @FXML
     private Region playlistBox_image;
 
+
     @FXML
     void initialize() {
 
@@ -30,7 +33,7 @@ public class playlistBoxController {
         double padding = vboxroot.getPadding().getLeft() * 2;
         container_for_ragion.minHeightProperty().bind(vboxroot.widthProperty().subtract((padding)));
 
-        playlistBox_image.setStyle("-fx-background-image:url('/imgs/playlist_img/img2.png');");
+        playlistBox_image.setStyle("-fx-background-image:url('/imgs/playlist_img/img"+imgnumber+".png');");
 
     }
 }
