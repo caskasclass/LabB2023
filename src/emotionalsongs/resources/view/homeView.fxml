@@ -59,24 +59,23 @@
                         <Insets bottom="16.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox>
+                  <HBox fx:id="tableViewContainer">
                      <children>
-                        <TableView maxHeight="300.0" minHeight="300.0" HBox.hgrow="ALWAYS">
+                        <TableView maxHeight="300.0" minHeight="300.0" styleClass="tableView" HBox.hgrow="ALWAYS">
                           <columns>
-                            <TableColumn prefWidth="75.0" resizable="false" text="#" />
-                              <TableColumn prefWidth="75.0" resizable="false" text="Title" />
-                              <TableColumn prefWidth="75.0" resizable="false" text="Album" />
-                              <TableColumn prefWidth="107.0" resizable="false" text="Date Added" />
-                              <TableColumn prefWidth="43.0" resizable="false">
+                            <TableColumn editable="false" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="#" />
+                              <TableColumn maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" resizable="false" text="Title" />
+                              <TableColumn maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" resizable="false" text="Album" />
+                              <TableColumn maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" resizable="false" text="Date Added" />
+                              <TableColumn maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false">
                                  <graphic>
                                     <StackPane>
                                        <children>
-                                          <SVGPath content="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z&#10;M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z&#10;&#10;&#10;" />
+                                          <SVGPath content="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z&#10;M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z&#10;&#10;&#10;" fill="WHITE" />
                                        </children>
                                     </StackPane>
                                  </graphic>
                               </TableColumn>
-                              <TableColumn prefWidth="50.0" resizable="false" />
                           </columns>
                         </TableView>
                      </children>

@@ -8,10 +8,11 @@ import javafx.scene.layout.VBox;
 public class ResizeHandler extends Thread {
 
     private double MaxWidth = WindowAppearance.getWindowWidth() * 0.25; // non toccare
-
+    double vPos = 0;
     double registeredWidth;
     BorderPane rootPane;
     VBox rootMenu;
+
 
     public ResizeHandler(BorderPane rootPane, VBox rootMenu) {
         this.setDaemon(true);

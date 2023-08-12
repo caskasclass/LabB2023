@@ -363,3 +363,28 @@
   background-color: #282828;
 }
 /**********************************************************************/
+
+/*******************home view  flowpane che contiene album **********/
+.tableView{
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+.tableView .column-header .filler{
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+.tableView .column-header{
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+.tableView .column-header-background  {
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.tableView .column-header-background .filler {
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/**********************************************************************/
