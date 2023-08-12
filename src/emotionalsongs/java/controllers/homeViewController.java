@@ -1,6 +1,8 @@
 package controllers;
 
+import Session.WindowAppearance;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TableView;
@@ -23,6 +25,11 @@ public class homeViewController {
     public final static double ROOT_PADDING_LEFT_AND_RIGHT = 30;
     private int myDisplayedPlaylist = 0;
     private int othersDisplayedPlaylist = 0;
+    private int MAX_ALBUM_DISPLAYED = 6;
+    private int num_columns = 0;
+    private int num_rows = 0;
+
+    private GridPane albumBoxContainer = null;
 
     @FXML
     private HBox primaryShader;
@@ -44,7 +51,6 @@ public class homeViewController {
 
     @FXML
     private void initialize() {
-
         CornerRadii cornerRadii = new CornerRadii(8, 8, 0, 0, false);
         BackgroundFill backgroundFill = new BackgroundFill(
                 ColorsManager.setGradient(Color.rgb(62, 32, 146, 0.6), Color.rgb(18, 18, 18)),
@@ -73,6 +79,8 @@ public class homeViewController {
         double TotalOthersNodeWidth = 0;
         boolean MyminReached = false;
         boolean OthersminReached = false;
+
+        // PER LA SEC MIE PLAYLIST
         for (Node node : playlistBoxContainer.getChildren()) {
             if (node instanceof VBox) {
                 VBox child = (VBox) node;
@@ -83,7 +91,6 @@ public class homeViewController {
                 }
             }
         }
-    
         if ((availableSpace - (MyspacingWidth + TotalMyNodeWidth)) > 25) {
             if (myDisplayedPlaylist < numAvailablePlylist) {
                 myDisplayedPlaylist++;
@@ -98,6 +105,7 @@ public class homeViewController {
             }
 
         }
+        // PER LA SEC OTHERS PLAYLIST
         for (Node node : othersPlaylistBoxContainer.getChildren()) {
             if (node instanceof VBox) {
                 VBox child = (VBox) node;
@@ -120,6 +128,62 @@ public class homeViewController {
                 othersPlaylistBoxContainer.getChildren().remove(othersPlaylistBoxContainer.getChildren().size() - 1);
                 othersDisplayedPlaylist--;
             }
+
+        }
+        // PER SEC ALBUM
+        ObservableList<Node> boxes = albumBoxContainer.getChildren();
+        double boxCurrentWidth = 0;
+        if (boxes.get(0) instanceof HBox) {
+            boxCurrentWidth = ((HBox) boxes.get(0)).getWidth();
+        }
+        if (boxCurrentWidth != 0) {
+            System.out.println("Current Width :" + boxCurrentWidth);
+            System.out.println("MIN Width :" + (AlbumView.MIN_WIDTH+5));
+
+            // quando sono in 3 il min di una è 276px 
+            // window width 1285px con menu e altro. 
+            // il 0.25 : 321; 
+            // il 0.35 : 449;
+
+
+            switch (num_columns) {
+                case 1:
+                    if (boxCurrentWidth > WindowAppearance.getWindowWidth() * 0.50){
+                        num_columns++;
+                        num_rows = MAX_ALBUM_DISPLAYED / num_columns;
+                        albumBoxContainer.getChildren().clear();
+                        albumBoxContainer.getColumnConstraints().clear();
+                        fillGrid(num_columns, num_rows);
+                    }
+                    break;
+                case 2:
+                    if (boxCurrentWidth > WindowAppearance.getWindowWidth() * 0.37){
+                        num_columns++;
+                        num_rows = MAX_ALBUM_DISPLAYED / num_columns;
+                        albumBoxContainer.getChildren().clear();
+                        albumBoxContainer.getColumnConstraints().clear();
+                        fillGrid(num_columns, num_rows);
+                    } else if (boxCurrentWidth <= AlbumView.MIN_WIDTH+5) {
+                        num_columns--;
+                        num_rows = MAX_ALBUM_DISPLAYED / num_columns;
+                        albumBoxContainer.getChildren().clear();
+                        albumBoxContainer.getColumnConstraints().clear();
+                        fillGrid(num_columns, num_rows);
+                    }
+                    break;
+                case 3:
+                    if (boxCurrentWidth < AlbumView.MIN_WIDTH + 5) {
+                        num_columns--;
+                        num_rows = MAX_ALBUM_DISPLAYED / num_columns;
+                        albumBoxContainer.getChildren().clear();
+                        albumBoxContainer.getColumnConstraints().clear();
+                        fillGrid(num_columns, num_rows);
+                    }
+                    break;
+                default:
+                    break;
+            }
+          
 
         }
 
@@ -151,30 +215,37 @@ public class homeViewController {
 
     }
 
-    public void setAlbums (double width) {
-        // insert into grid pane the albumboxes let them fill all the horizontal space of the cell
-
-        GridPane albumBoxContainer = new GridPane();
+    public void setAlbums(double width) {
+        albumBoxContainer = new GridPane();
         albumBoxContainer.getStyleClass().add("albumBox_container");
         albumBoxContainer.setHgap(12); // Spaziatura orizzontale tra le colonne
         albumBoxContainer.setVgap(24); // Spaziatura verticale tra le righe
-        ColumnConstraints col1 = new ColumnConstraints();
-        col1.setPercentWidth(50); // 50% dello spazio disponibile
-        ColumnConstraints col2 = new ColumnConstraints();
-        col2.setPercentWidth(50); // 50% dello spazio disponibile
-        albumBoxContainer.getColumnConstraints().addAll(col1, col2);
-
-         for (int i = 0; i < 4; i++) {
-            int row = i / 2; // Calcola la riga in base all'indice
-            int col = i % 2; // Calcola la colonna in base all'indice
-
-            AlbumView alvumBox = new AlbumView(5);
-            albumBoxContainer.add(alvumBox, col, row); // Aggiungi l'elemento alla griglia
+        final int MAX_PER_ROW = 3;
+        double availableSpace = width - (ROOT_PADDING_LEFT_AND_RIGHT);
+        double idealWidth = AlbumView.MIN_WIDTH + 50;
+        num_columns = (int) (availableSpace / idealWidth);
+        if (num_columns > MAX_PER_ROW) {
+            num_columns = MAX_PER_ROW;
         }
-        gridContainer.getChildren().add(1,albumBoxContainer);
+        num_rows = MAX_ALBUM_DISPLAYED / num_columns;
+        fillGrid(num_columns, num_rows);
+        gridContainer.getChildren().add(1, albumBoxContainer);
 
+    }
 
-        
+    private void fillGrid(int columns, int rows) {
+        int width_percenatge = (int) (100 / columns);
+        for (int i = 0; i < columns; i++) {
+            ColumnConstraints constraints = new ColumnConstraints();
+            constraints.setPercentWidth(width_percenatge);
+            albumBoxContainer.getColumnConstraints().add(constraints);
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                AlbumView album = new AlbumView(5);
+                albumBoxContainer.add(album, j, i);
+            }
+        }
     }
 
     private void initializeElements(double width) {

@@ -11,7 +11,7 @@ public class AlbumView extends HBox {
     FXMLLoaders fxmlutil = new FXMLLoaders();
 
     public static final int MAX_HEIGHT = 80;
-    public static final int MAX_WIDTH = 270;
+    public static final int MIN_WIDTH = 270;
 
     public AlbumView(int n) {
         FXMLLoader loader = fxmlutil.getLoader("albumBox.fxml");
