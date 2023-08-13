@@ -2,10 +2,10 @@ package controllers;
 
 import Session.WindowAppearance;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.ColumnConstraints;
@@ -15,7 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import tmp.Canzone;
 import util.ColorsManager;
+import util.TableViewManager;
 import views.AlbumView;
 import views.PlaylistBox;
 
@@ -42,9 +44,6 @@ public class homeViewController {
 
     @FXML
     private HBox playlistBoxContainer;
-
-    @FXML
-    private TableView<?> tableViewTopClicked;
 
     @FXML
     private HBox tableViewContainer;
@@ -141,17 +140,16 @@ public class homeViewController {
         }
         if (boxCurrentWidth != 0) {
             System.out.println("Current Width :" + boxCurrentWidth);
-            System.out.println("MIN Width :" + (AlbumView.MIN_WIDTH+5));
+            System.out.println("MIN Width :" + (AlbumView.MIN_WIDTH + 5));
 
-            // quando sono in 3 il min di una è 276px 
-            // window width 1285px con menu e altro. 
-            // il 0.25 : 321; 
+            // quando sono in 3 il min di una è 276px
+            // window width 1285px con menu e altro.
+            // il 0.25 : 321;
             // il 0.35 : 449;
-
 
             switch (num_columns) {
                 case 1:
-                    if (boxCurrentWidth > WindowAppearance.getWindowWidth() * 0.50){
+                    if (boxCurrentWidth > WindowAppearance.getWindowWidth() * 0.50) {
                         num_columns++;
                         num_rows = MAX_ALBUM_DISPLAYED / num_columns;
                         albumBoxContainer.getChildren().clear();
@@ -160,13 +158,13 @@ public class homeViewController {
                     }
                     break;
                 case 2:
-                    if (boxCurrentWidth > WindowAppearance.getWindowWidth() * 0.37){
+                    if (boxCurrentWidth > WindowAppearance.getWindowWidth() * 0.37) {
                         num_columns++;
                         num_rows = MAX_ALBUM_DISPLAYED / num_columns;
                         albumBoxContainer.getChildren().clear();
                         albumBoxContainer.getColumnConstraints().clear();
                         fillGrid(num_columns, num_rows);
-                    } else if (boxCurrentWidth <= AlbumView.MIN_WIDTH+5) {
+                    } else if (boxCurrentWidth <= AlbumView.MIN_WIDTH + 5) {
                         num_columns--;
                         num_rows = MAX_ALBUM_DISPLAYED / num_columns;
                         albumBoxContainer.getChildren().clear();
@@ -186,7 +184,6 @@ public class homeViewController {
                 default:
                     break;
             }
-          
 
         }
 
@@ -236,6 +233,49 @@ public class homeViewController {
 
     }
 
+    private void setTopTracks() {
+        TableViewManager topTracks = new TableViewManager();
+        topTracks.setMinHeight(300);
+        ObservableList<Canzone> data = FXCollections.observableArrayList(
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson")
+
+        );
+        topTracks.setItems(data);
+        tableViewContainer.getChildren().add(topTracks);
+
+    }
+
     private void fillGrid(int columns, int rows) {
         int width_percenatge = (int) (100 / columns);
         for (int i = 0; i < columns; i++) {
@@ -253,6 +293,7 @@ public class homeViewController {
 
     private void initializeElements(double width) {
         setPlaylist(width);
+        setTopTracks();
         setAlbums(width);
     }
 
@@ -262,8 +303,10 @@ public class homeViewController {
  * 
  * 
  * SVG PATH per il clock
- * M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z
- * M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8 3.25z
+ * M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0
+ * 8z
+ * M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8
+ * 3.25z
  * 
  * 
  */
