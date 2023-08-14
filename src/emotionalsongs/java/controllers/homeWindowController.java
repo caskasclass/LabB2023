@@ -1,6 +1,7 @@
 package controllers;
 
 import Session.WindowAppearance;
+import Threads.ResizeHandler;
 import WindowsLoader.SignWindow;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -78,6 +79,7 @@ public class homeWindowController {
         // 3) inizializzo il center con la home
         HomeView homeView = new HomeView();
         centerScrollPane.setContent(homeView);
+        //centerScrollPane.setFitToHeight(false);
         // listener per la width
 
         // 4) istanzio il button user per la prova colore + il button in se
@@ -105,11 +107,15 @@ public class homeWindowController {
         // 6) Aggiungo i button al header
         header_hbox.getChildren().add(userButton);
         header_hbox.getChildren().add(pane);
+
+
+
         // 7) vari listener
+        ResizeHandler resizeHandler = new ResizeHandler(rootPane,rootMenu);
+        resizeHandler.start();
+
         // per la width del left side del borde-rpane
-        rootPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
-            animateMenuWidth(newWidth.doubleValue());
-        });
+
         // per il colore sul SCROLL
         centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
 
@@ -118,18 +124,19 @@ public class homeWindowController {
    
 
     private void handleScrollEvent(ScrollEvent event) {
-        // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 10)
+        // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 100)
         double vPosition = centerScrollPane.getVvalue();
 
         // calcola l'opacità in base alla posizione di scorrimento
-        if (vPosition >= 0 && vPosition <= 2) {
+        // vi position è un numero compreso tra 0 e 100 
+        if (vPosition >= 0 && vPosition <= 45) {
             // System.out.println("Vposition : " + vPosition);
-            // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 6
-            opacity = vPosition / 2;
+            // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 45
+            opacity = vPosition / 45;
 
             if (opacity >= 0.98)
                 opacity = 1;
-        } else if (vPosition >= 6 && vPosition <= 10) {
+        } else if (vPosition >= 45 && vPosition <= 100) {
             // altrimenti nada
             return;
         }
@@ -147,11 +154,6 @@ public class homeWindowController {
 
         // assegno il nuovo bg
         Platform.runLater(() -> header_hbox.setBackground(newBackground));
-    }
-
-    private void animateMenuWidth(double newWidth) {
-        double menuWidth = Math.min(newWidth * 0.23, MaxWidth); // Calcolo della nuova larghezza
-        rootMenu.setPrefWidth(menuWidth);
     }
 
     private Button createButton(String text) {

@@ -318,6 +318,13 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+
+/* mi sa che questa è da togliere. idk */
+.playlistBox_container .playlistBox .image_container   {
+  -fx-background-radius :8px;
+/*****************************************************/
+}
+
 .playlistBox_container .playlistBox .backgroundPlaylistImage  {
   -fx-background-repeat: no-repeat;
   background-repeat: no-repeat;
@@ -343,9 +350,83 @@
   background-color: #181818;
   -fx-background-radius: 8px;
 }
+.albumBox_container .albumBox .imgregion {
+  -fx-background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  -fx-background-size: contain;
+  background-size: contain;
+  -fx-background-position: center;
+  background-position: center;
+}
 .albumBox_container .albumBox:hover{
+  -fx-background-color: #282828;
+  background-color: #282828;
+}
+/**********************************************************************/
+
+/*******************home view  flowpane che contiene album **********/
+.tableView{
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+.tableView .scroll-bar * {
+  -fx-min-width: 0;
+  min-width: 0;
+  -fx-pref-width: 0;
+  -fx-max-width: 0;
+  max-width: 0;
+
+  -fx-min-height: 0;
+  min-height: 0;
+  -fx-pref-height: 0;
+  -fx-max-height: 0;
+  max-height: 0;
+}
+.tableView .column-header .filler{
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+.tableView .column-header{
+  -fx-border-width:0 0 1 0;
+  border-width:0 0 1 0;
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+.tableView .column-header-background  {
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.tableView .column-header-background .filler {
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.tableView .table-cell{
+  -fx-border-width:0px;
+  border-width: 0px;
+  -fx-alignment:CENTER;
+  border-width: 0px;
+
+}
+
+.tableView .table-row-cell{
+  -fx-background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0)
+}
+.tableView .table-row-cell:hover{
   -fx-background-color: #282828;
   background-color: #282828;
 
 }
+.tableView .table-row-cell:focused{
+  -fx-background-color : rgba(255, 255, 255, 0.3);
+  background-color : rgba(255, 255, 255, 0.3);
+
+}
+.tableView .table-row-cell .text {
+  -fx-fill: white;
+  fill: white;
+}
 /**********************************************************************/
+
