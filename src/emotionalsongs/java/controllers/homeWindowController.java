@@ -1,12 +1,10 @@
 package controllers;
 
-import java.io.IOException;
-
 import Session.WindowAppearance;
+import Threads.ResizeHandler;
 import WindowsLoader.SignWindow;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
@@ -26,7 +24,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import util.ColorsManager;
-import util.FXMLLoaders;
+import views.HomeView;
 import javafx.stage.Stage;
 import javafx.scene.effect.BoxBlur;
 
@@ -38,7 +36,6 @@ public class homeWindowController {
     private double opacity = 0.0;
     private CornerRadii cornerRad = new CornerRadii(8, 8, 0, 0, false);
 
-    private FXMLLoaders fxmlUtil = new FXMLLoaders();
 
     @FXML
     private BorderPane rootPane;
@@ -80,24 +77,9 @@ public class homeWindowController {
         header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
 
         // 3) inizializzo il center con la home
-        FXMLLoader loader = fxmlUtil.getLoader("homeView.fxml");
-        System.out.print("loader : " + loader.toString());
-        StackPane homeView = null;
-        try {
-            homeView = (StackPane) loader.load();
-            homeViewController childController = loader.getController();
-            centerScrollPane.setContent(homeView);
-            Platform.runLater(() -> {
-                centerScrollPane.boundsInLocalProperty().addListener((obs, oldBounds, newBounds) -> {
-                    onParentResized(childController, oldBounds.getWidth(),newBounds.getWidth());
-                });
-            });
-
-        } catch (IOException e) {
-            System.err.println("\nFXML loader problems\n");
-            e.printStackTrace();
-        }
-
+        HomeView homeView = new HomeView();
+        centerScrollPane.setContent(homeView);
+        //centerScrollPane.setFitToHeight(false);
         // listener per la width
 
         // 4) istanzio il button user per la prova colore + il button in se
@@ -125,35 +107,36 @@ public class homeWindowController {
         // 6) Aggiungo i button al header
         header_hbox.getChildren().add(userButton);
         header_hbox.getChildren().add(pane);
+
+
+
         // 7) vari listener
+        ResizeHandler resizeHandler = new ResizeHandler(rootPane,rootMenu);
+        resizeHandler.start();
+
         // per la width del left side del borde-rpane
-        rootPane.widthProperty().addListener((obs, oldWidth, newWidth) -> {
-            animateMenuWidth(newWidth.doubleValue());
-        });
+
         // per il colore sul SCROLL
         centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
 
     }
 
-    private void onParentResized(homeViewController controller,double OldWidth, double NewWidth) {
-        // System.out.println("Event captured => width :"+width+" | height :"+height);
-        if((NewWidth-OldWidth)>0 || (NewWidth-OldWidth)<0)
-        controller.resizeHandler(NewWidth);
-    }
+   
 
     private void handleScrollEvent(ScrollEvent event) {
-        // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 10)
+        // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 100)
         double vPosition = centerScrollPane.getVvalue();
 
         // calcola l'opacità in base alla posizione di scorrimento
-        if (vPosition >= 0 && vPosition <= 2) {
+        // vi position è un numero compreso tra 0 e 100 
+        if (vPosition >= 0 && vPosition <= 45) {
             // System.out.println("Vposition : " + vPosition);
-            // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 6
-            opacity = vPosition / 2;
+            // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 45
+            opacity = vPosition / 45;
 
             if (opacity >= 0.98)
                 opacity = 1;
-        } else if (vPosition >= 6 && vPosition <= 10) {
+        } else if (vPosition >= 45 && vPosition <= 100) {
             // altrimenti nada
             return;
         }
@@ -171,11 +154,6 @@ public class homeWindowController {
 
         // assegno il nuovo bg
         Platform.runLater(() -> header_hbox.setBackground(newBackground));
-    }
-
-    private void animateMenuWidth(double newWidth) {
-        double menuWidth = Math.min(newWidth * 0.23, MaxWidth); // Calcolo della nuova larghezza
-        rootMenu.setPrefWidth(menuWidth);
     }
 
     private Button createButton(String text) {

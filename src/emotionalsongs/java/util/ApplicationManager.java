@@ -2,53 +2,49 @@ package util;
 
 import WindowsLoader.HomeWindow;
 import WindowsLoader.LoadingWindow;
-import connection.Proxy;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 
-
-public class ApplicationManager {    
+public class ApplicationManager {
     private LoadingWindow loadingWindow;
+    private HomeWindow homeWindow;
 
-
-
-    //start point dell'applicazione 
-    public void initialize(){
-        //metto a grafica la finestra di caricamento. 
+    // start point dell'applicazione
+    public void initialize() {
+        // metto a grafica la finestra di caricamento.
         loadingWindow = new LoadingWindow();
         loadingWindow.show();
-        //istanzio un task che mi carica elementi pesanti nel mentre
+        // istanzio un task che mi carica elementi pesanti nel mentre
         Task<Void> UIInitializationTask = createUIInitializationTask();
 
-        //Sever per specificare cosa fare alla terminazione del task 
-        UIInitializationTask.setOnSucceeded(event ->{
+        // Sever per specificare cosa fare alla terminazione del task
+        UIInitializationTask.setOnSucceeded(event -> {
             loadingWindow.close();
-            long start = System.currentTimeMillis();
-            HomeWindow homeWindow = new HomeWindow();
-            long end = System.currentTimeMillis();
-            System.out.println("Time di creazione finestra : " +(end-start)+"ms");
             homeWindow.show();
-          
-            
 
-            //Connessione al server funziona manca solo da implementare l'interfaccia nel Proxy
-            Proxy localProxy = new Proxy();
-            localProxy.getStatus();
-            localProxy.close();
-            
+            // qui c'èra il proxy
         });
-        //Avvio il task 
+        // Avvio il task
         Thread processingThread = new Thread(UIInitializationTask);
         processingThread.start();
     }
-    //il return della logica task
-    private Task<Void> createUIInitializationTask(){
-        return new Task<>(){
+
+    // il return della logica task
+    private Task<Void> createUIInitializationTask() {
+        return new Task<>() {
             @Override
-            protected Void call() throws Exception{
-                //elaborazione pesante 
-                System.out.println("Inizio Elaborazione ... ");
-                Thread.sleep(1000);// tempo di simualzione 
-                System.out.println("Fine Elaborazione. ");
+            protected Void call() throws Exception {
+                // elaborazione pesante ? potrebbe essere
+
+                Platform.runLater(() -> {
+                    long start = System.currentTimeMillis();
+                    System.out.println("start home creation ");
+                    homeWindow = new HomeWindow();
+                    System.out.println("finished home creation ");
+                    long end = System.currentTimeMillis();
+                    System.out.println("Time di creazione finestra : " + (end - start) + "ms");
+                });
+
                 return null;
             }
         };

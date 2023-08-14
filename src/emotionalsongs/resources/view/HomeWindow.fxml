@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background_pane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeWindowController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background_pane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeWindowController">
    <left>
       <VBox fx:id="rootMenu" alignment="TOP_CENTER" minWidth="-Infinity" prefWidth="285.0" styleClass="menuContainer">
          <children>
@@ -153,7 +153,7 @@
    <center>
       <StackPane fx:id="centerStackPane" alignment="TOP_CENTER">
          <children>
-            <ScrollPane fx:id="centerScrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" styleClass="scroll_pane" vbarPolicy="NEVER" vmax="10.0">
+            <ScrollPane fx:id="centerScrollPane" fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" styleClass="scroll_pane" vbarPolicy="NEVER" vmax="100.0">
                <StackPane.margin>
                   <Insets />
                </StackPane.margin></ScrollPane>

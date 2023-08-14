@@ -23,13 +23,5 @@ public class HomeWindow extends Stage {
             setMinWidth(MIN_WINDOW_WIDTH);
             setX( WindowAppearance.getWindowX());
             setY(WindowAppearance.getWindowY());
-            setOnShown(event ->{
-                //contenuto completamente caricato
-                //questa soluzione fixa il frame bianco all'avvio dell'applicazione.
-                show();
-            });
-        
-
-        
     }
 }
