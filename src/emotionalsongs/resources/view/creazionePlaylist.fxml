@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root styleClass="background_secondary_color" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="BOTTOM_LEFT">
+         <children>
+            <HBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@../imgs/matita.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox alignment="BOTTOM_LEFT" nodeOrientation="LEFT_TO_RIGHT">
+               <children>
+                  <Label text="Public Playlist">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="PlayListName" text="La Mia Playlist#0">
+                     <font>
+                        <Font name="Impact" size="28.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="owner" text="Owner">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="createPlaylist" mnemonicParsing="false" styleClass="button_box" text="Crea">
+                     <font>
+                        <Font name="Arial Bold" size="35.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="75.0" top="50.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" fillHeight="false">
+         <children>
+            <TableView fx:id="addedSongs" maxHeight="275.0">
+               <columns>
+                  <TableColumn fx:id="index" maxWidth="-Infinity" minWidth="45.0" prefWidth="45.0" resizable="false" styleClass="songindex" text="#" />
+                  <TableColumn fx:id="tit" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="275.0" resizable="false" styleClass="titolo" text="TITOLO" />
+                  <TableColumn fx:id="album1" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="225.0" resizable="false" styleClass="album" text="ALBUM" />
+                  <TableColumn fx:id="autore1" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" resizable="false" styleClass="autore" text="AUTORE" />
+                  <TableColumn fx:id="anno1" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" resizable="false" styleClass="anno" text="ANNO" />
+                  <TableColumn fx:id="durata1" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="125.0" resizable="false" styleClass="durata" text="DURATA" />
+                  <TableColumn fx:id="optionbutton" maxWidth="120.0" minWidth="120.0" prefWidth="60.0" resizable="false" styleClass="optionbutton" />
+               </columns>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TableView>
+         </children>
+      </HBox>
+      <VBox>
+         <children>
+            <VBox fillWidth="false">
+               <children>
+                  <Label text="Cerchiamo qualcosa per la tua playlist">
+                     <font>
+                        <Font name="Proxima Nova" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <StackPane>
+                     <children>
+                        <TextField fx:id="cerca" prefWidth="475.0" promptText="Titolo, Autore, Anno">
+                           <font>
+                              <Font name="Proxima Nova" size="18.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="10.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+                           <StackPane.margin>
+                              <Insets right="10.0" />
+                           </StackPane.margin>
+                           <image>
+                              <Image url="@../../../../../../EmotionalSong1.0/src/emotionalsongs/resources/images/search-icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <TableView fx:id="addPlaylistrepository">
+                     <columns>
+                        <TableColumn fx:id="songindex" maxWidth="-Infinity" minWidth="45.0" prefWidth="45.0" resizable="false" styleClass="songindex" text="#" />
+                        <TableColumn fx:id="titolo" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="275.0" resizable="false" styleClass="titolo" text="TITOLO" />
+                        <TableColumn fx:id="album" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="225.0" resizable="false" styleClass="album" text="ALBUM" />
+                        <TableColumn fx:id="autore" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" resizable="false" styleClass="autore" text="AUTORE" />
+                        <TableColumn fx:id="anno" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" resizable="false" styleClass="anno" text="ANNO" />
+                        <TableColumn fx:id="durata" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="125.0" resizable="false" styleClass="durata" text="DURATA" />
+                        <TableColumn fx:id="addbutton" maxWidth="120.0" minWidth="120.0" prefWidth="60.0" resizable="false" styleClass="addbutton" />
+                     </columns>
+                     <HBox.margin>
+                        <Insets bottom="150.0" />
+                     </HBox.margin>
+                  </TableView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</fx:root>
