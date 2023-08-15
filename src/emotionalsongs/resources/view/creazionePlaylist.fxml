@@ -4,8 +4,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root styleClass="background_secondary_color" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="container" styleClass="background_secondary_color" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="BOTTOM_LEFT">
+      <HBox alignment="BOTTOM_LEFT" styleClass="label">
          <children>
             <HBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                <children>
@@ -32,18 +30,21 @@
             </HBox>
             <VBox alignment="BOTTOM_LEFT" nodeOrientation="LEFT_TO_RIGHT">
                <children>
-                  <Label text="Public Playlist">
+                  <Label text="Playlist pubblica">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets />
                      </VBox.margin>
                      <font>
-                        <Font name="Arial Bold" size="20.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="PlayListName" text="La Mia Playlist#0">
+                  <TextField fx:id="playlistName" prefHeight="58.0" prefWidth="311.0" promptText="La Mia Playlist#0" styleClass="textfield_cp">
                      <font>
-                        <Font name="Impact" size="28.0" />
+                        <Font name="Arial Black" size="28.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="-20.0" />
+                     </VBox.margin>
                   </TextField>
                   <Label fx:id="owner" text="Owner">
                      <font>
@@ -55,9 +56,9 @@
                   <Insets left="25.0" />
                </padding>
             </VBox>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="createPlaylist" mnemonicParsing="false" styleClass="button_box" text="Crea">
+                  <Button fx:id="createButton" mnemonicParsing="false" styleClass="button_cp" text="Crea">
                      <font>
                         <Font name="Arial Bold" size="35.0" />
                      </font>
@@ -75,27 +76,10 @@
             <Insets bottom="30.0" />
          </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER" fillHeight="false">
+      <HBox fx:id="table1" alignment="CENTER" />
+      <VBox spacing="30.0">
          <children>
-            <TableView fx:id="addedSongs" maxHeight="275.0">
-               <columns>
-                  <TableColumn fx:id="index" maxWidth="-Infinity" minWidth="45.0" prefWidth="45.0" resizable="false" styleClass="songindex" text="#" />
-                  <TableColumn fx:id="tit" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="275.0" resizable="false" styleClass="titolo" text="TITOLO" />
-                  <TableColumn fx:id="album1" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="225.0" resizable="false" styleClass="album" text="ALBUM" />
-                  <TableColumn fx:id="autore1" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" resizable="false" styleClass="autore" text="AUTORE" />
-                  <TableColumn fx:id="anno1" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" resizable="false" styleClass="anno" text="ANNO" />
-                  <TableColumn fx:id="durata1" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="125.0" resizable="false" styleClass="durata" text="DURATA" />
-                  <TableColumn fx:id="optionbutton" maxWidth="120.0" minWidth="120.0" prefWidth="60.0" resizable="false" styleClass="optionbutton" />
-               </columns>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </TableView>
-         </children>
-      </HBox>
-      <VBox>
-         <children>
-            <VBox fillWidth="false">
+            <VBox fillWidth="false" spacing="10.0">
                <children>
                   <Label text="Cerchiamo qualcosa per la tua playlist">
                      <font>
@@ -107,7 +91,7 @@
                   </Label>
                   <StackPane>
                      <children>
-                        <TextField fx:id="cerca" prefWidth="475.0" promptText="Titolo, Autore, Anno">
+                        <TextField fx:id="cerca" prefWidth="475.0" promptText="Titolo, Autore, Anno" styleClass="text_field">
                            <font>
                               <Font name="Proxima Nova" size="18.0" />
                            </font>
@@ -117,10 +101,10 @@
                         </TextField>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
                            <StackPane.margin>
-                              <Insets right="10.0" />
+                              <Insets bottom="10.0" right="10.0" />
                            </StackPane.margin>
                            <image>
-                              <Image url="@../../../../../../EmotionalSong1.0/src/emotionalsongs/resources/images/search-icon.png" />
+                              <Image url="@../imgs/search-icon.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -133,24 +117,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </VBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <TableView fx:id="addPlaylistrepository">
-                     <columns>
-                        <TableColumn fx:id="songindex" maxWidth="-Infinity" minWidth="45.0" prefWidth="45.0" resizable="false" styleClass="songindex" text="#" />
-                        <TableColumn fx:id="titolo" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="275.0" resizable="false" styleClass="titolo" text="TITOLO" />
-                        <TableColumn fx:id="album" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="225.0" resizable="false" styleClass="album" text="ALBUM" />
-                        <TableColumn fx:id="autore" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" resizable="false" styleClass="autore" text="AUTORE" />
-                        <TableColumn fx:id="anno" maxWidth="1.7976931348623157E308" minWidth="125.0" prefWidth="125.0" resizable="false" styleClass="anno" text="ANNO" />
-                        <TableColumn fx:id="durata" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="125.0" resizable="false" styleClass="durata" text="DURATA" />
-                        <TableColumn fx:id="addbutton" maxWidth="120.0" minWidth="120.0" prefWidth="60.0" resizable="false" styleClass="addbutton" />
-                     </columns>
-                     <HBox.margin>
-                        <Insets bottom="150.0" />
-                     </HBox.margin>
-                  </TableView>
-               </children>
-            </HBox>
+            <HBox fx:id="table2" alignment="CENTER" />
          </children>
       </VBox>
    </children>
