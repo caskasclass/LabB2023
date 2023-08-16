@@ -25,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import util.ColorsManager;
 import views.HomeView;
+import views.CreatePlaylistView;
 import javafx.stage.Stage;
 import javafx.scene.effect.BoxBlur;
 
@@ -190,4 +191,15 @@ public class homeWindowController {
 
     }
 
+    public void openViewCreate(MouseEvent e){
+        rootPane.getChildren().remove(rootPane.getCenter());
+        CreatePlaylistView view = new CreatePlaylistView();
+        rootPane.setCenter(view);
+    }
+
+    public void backHome(MouseEvent e){
+        rootPane.getChildren().remove(rootPane.getCenter());
+        HomeView view = new HomeView();
+        rootPane.setCenter(view);
+    }
 }

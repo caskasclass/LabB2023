@@ -430,3 +430,39 @@
 }
 /**********************************************************************/
 
+
+.textfield_cp {
+  -fx-background-color: #121212;
+  background-color: #121212;
+  -fx-prompt-text-fill: white;
+}
+
+.button_cp {
+  -fx-width: 100%;
+  width: 100%;
+  -fx-background-radius: 500px;
+  -fx-font-size: 24px;
+  font-size: 24px;
+  -fx-font-weight: 700;
+  font-weight: 700;
+  -fx-background-color: #878787;
+  background-color: #878787;
+  -fx-cursor: hand;
+  cursor: hand;
+}
+
+.button_cp:hover {
+  -fx-background-color: #35d0ae;
+  background-color: #35d0ae;
+  -fx-cursor: hand;
+  cursor: hand;
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}
+
+.button_cp:focused {
+  -fx-background-color: #35d0ae;
+  background-color: #35d0ae;
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root fx:id="container" styleClass="background_secondary_color" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="BOTTOM_LEFT" styleClass="label">
+         <children>
+            <HBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@../imgs/matita.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox alignment="BOTTOM_LEFT" nodeOrientation="LEFT_TO_RIGHT">
+               <children>
+                  <Label text="Playlist pubblica">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="playlistName" prefHeight="58.0" prefWidth="311.0" promptText="La Mia Playlist#0" styleClass="textfield_cp">
+                     <font>
+                        <Font name="Arial Black" size="28.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="-20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label fx:id="owner" text="Owner">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="createButton" mnemonicParsing="false" styleClass="button_cp" text="Crea">
+                     <font>
+                        <Font name="Arial Bold" size="35.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="75.0" top="50.0" />
+         </padding>
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox fx:id="table1" alignment="CENTER" />
+      <VBox spacing="30.0">
+         <children>
+            <VBox fillWidth="false" spacing="10.0">
+               <children>
+                  <Label text="Cerchiamo qualcosa per la tua playlist">
+                     <font>
+                        <Font name="Proxima Nova" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <StackPane>
+                     <children>
+                        <TextField fx:id="cerca" prefWidth="475.0" promptText="Titolo, Autore, Anno" styleClass="text_field">
+                           <font>
+                              <Font name="Proxima Nova" size="18.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets bottom="10.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+                           <StackPane.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </StackPane.margin>
+                           <image>
+                              <Image url="@../imgs/search-icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </VBox>
+            <HBox fx:id="table2" alignment="CENTER" />
+         </children>
+      </VBox>
+   </children>
+</fx:root>

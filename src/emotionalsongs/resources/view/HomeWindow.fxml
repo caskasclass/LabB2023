@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background_pane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeWindowController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background_pane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeWindowController">
    <left>
       <VBox fx:id="rootMenu" alignment="TOP_CENTER" minWidth="-Infinity" prefWidth="285.0" styleClass="menuContainer">
          <children>
@@ -85,7 +85,7 @@
                   <String fx:value="menu_box" />
                </styleClass>
                <children>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="home_button">
+                  <Button fx:id="creaButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#openViewCreate" styleClass="home_button">
                      <graphic>
                         <HBox alignment="CENTER_LEFT">
                            <children>
@@ -95,7 +95,7 @@
                                     <SVGPath content="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16 " fill="TRANSPARENT" scaleZ="2.0" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" translateY="4.0" />
                                  </children>
                               </StackPane>
-                              <Label maxHeight="1.7976931348623157E308" text="Home">
+                              <Label maxHeight="1.7976931348623157E308" text="Crea Playlist">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
