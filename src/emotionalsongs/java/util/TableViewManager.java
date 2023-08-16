@@ -8,7 +8,7 @@ import tmp.Canzone;
 
 public class TableViewManager extends TableView<Canzone> {
 
-    public TableViewManager() {
+    public TableViewManager(/*boolean button*/) {
         super();
         this.getStyleClass().add("tableView");
         TableColumn<Canzone, Integer> indexColumn = new TableColumn<>("#");

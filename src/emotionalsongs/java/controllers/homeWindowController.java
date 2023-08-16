@@ -192,14 +192,13 @@ public class homeWindowController {
     }
 
     public void openViewCreate(MouseEvent e){
-        rootPane.getChildren().remove(rootPane.getCenter());
+       
         CreatePlaylistView view = new CreatePlaylistView();
-        rootPane.setCenter(view);
+        centerScrollPane.setContent(view);
     }
 
     public void backHome(MouseEvent e){
-        rootPane.getChildren().remove(rootPane.getCenter());
         HomeView view = new HomeView();
-        rootPane.setCenter(view);
+        centerScrollPane.setContent(view);
     }
 }
