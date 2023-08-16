@@ -27,7 +27,6 @@ public class albumBoxController {
 
     @FXML
     void initialize() {
-
         albumName.setText("Album Name");
         artistNames.setText("Maybe some artsits ");
         imgregion.setStyle("-fx-background-image:url('/imgs/playlist_img/img"+imgnumber+".png');");

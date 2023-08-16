@@ -79,6 +79,7 @@ public class homeWindowController {
         // 3) inizializzo il center con la home
         HomeView homeView = new HomeView();
         centerScrollPane.setContent(homeView);
+
         //centerScrollPane.setFitToHeight(false);
         // listener per la width
 

@@ -25,8 +25,5 @@ public class AlbumView extends HBox {
             e.printStackTrace();
         }
 
-
-       
-
     }
 }
