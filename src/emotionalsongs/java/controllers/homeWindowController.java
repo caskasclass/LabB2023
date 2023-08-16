@@ -80,6 +80,7 @@ public class homeWindowController {
         // 3) inizializzo il center con la home
         HomeView homeView = new HomeView();
         centerScrollPane.setContent(homeView);
+
         //centerScrollPane.setFitToHeight(false);
         // listener per la width
 
@@ -191,14 +192,13 @@ public class homeWindowController {
     }
 
     public void openViewCreate(MouseEvent e){
-        rootPane.getChildren().remove(rootPane.getCenter());
+       
         CreatePlaylistView view = new CreatePlaylistView();
-        rootPane.setCenter(view);
+        centerScrollPane.setContent(view);
     }
 
     public void backHome(MouseEvent e){
-        rootPane.getChildren().remove(rootPane.getCenter());
         HomeView view = new HomeView();
-        rootPane.setCenter(view);
+        centerScrollPane.setContent(view);
     }
 }

@@ -137,7 +137,7 @@ Sulla vista che volete fare mettete il nome di fianco
   2. Vista Tabella con tutte le canzoni (barbio)
   3. Vista playlist (*beaby*)
   Separatore per le mie playlist e l’esplora
-  4. Vista creazione playlist (*boh*)
+  4. Vista creazione playlist (*beaby*)
   5. Vista home (*casca*)
 
 * Inoltre 
