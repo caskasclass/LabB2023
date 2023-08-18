@@ -434,6 +434,7 @@
 .textfield_cp {
   -fx-background-color: #121212;
   background-color: #121212;
+  -fx-text-fill: white;
   -fx-prompt-text-fill: white;
 }
 
@@ -463,6 +464,11 @@
 .button_cp:focused {
   -fx-background-color: #35d0ae;
   background-color: #35d0ae;
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}
+
+.image_cp:hover{
   -fx-scale-x: 1.04;
   -fx-scale-y: 1.04;
 }
