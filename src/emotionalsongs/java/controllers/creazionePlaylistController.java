@@ -11,10 +11,6 @@ import javafx.scene.image.ImageView;
 import util.TableViewManager;
 import WindowsLoader.ImagesWindow;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
-import util.ColorsManager;
-import views.HomeView;
-import views.CreatePlaylistView;
 import javafx.stage.Stage;
 import javafx.scene.effect.BoxBlur;
 

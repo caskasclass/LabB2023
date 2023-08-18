@@ -37,7 +37,6 @@ public class homeWindowController {
     private double opacity = 0.0;
     private CornerRadii cornerRad = new CornerRadii(8, 8, 0, 0, false);
 
-
     @FXML
     private BorderPane rootPane;
 
@@ -78,10 +77,12 @@ public class homeWindowController {
         header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
 
         // 3) inizializzo il center con la home
-        HomeView homeView = new HomeView();
+        // System.out.println(ResizeHandler.getCenterWidth()); ok
+
+        HomeView homeView = new HomeView(ResizeHandler.getCenterWidth());
         centerScrollPane.setContent(homeView);
 
-        //centerScrollPane.setFitToHeight(false);
+        // centerScrollPane.setFitToHeight(false);
         // listener per la width
 
         // 4) istanzio il button user per la prova colore + il button in se
@@ -110,11 +111,11 @@ public class homeWindowController {
         header_hbox.getChildren().add(userButton);
         header_hbox.getChildren().add(pane);
 
-
-
         // 7) vari listener
-        ResizeHandler resizeHandler = new ResizeHandler(rootPane,rootMenu);
-        resizeHandler.start();
+        Platform.runLater(() -> {
+            ResizeHandler resizeHandler = new ResizeHandler(rootPane, rootMenu);
+            resizeHandler.start();
+        });
 
         // per la width del left side del borde-rpane
 
@@ -123,14 +124,12 @@ public class homeWindowController {
 
     }
 
-   
-
     private void handleScrollEvent(ScrollEvent event) {
         // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 100)
         double vPosition = centerScrollPane.getVvalue();
 
         // calcola l'opacità in base alla posizione di scorrimento
-        // vi position è un numero compreso tra 0 e 100 
+        // vi position è un numero compreso tra 0 e 100
         if (vPosition >= 0 && vPosition <= 45) {
             // System.out.println("Vposition : " + vPosition);
             // passaggio da 0 a 1 quando vPosition è compreso tra 0 e 45
@@ -191,14 +190,14 @@ public class homeWindowController {
 
     }
 
-    public void openViewCreate(MouseEvent e){
-       
+    public void openViewCreate(MouseEvent e) {
+
         CreatePlaylistView view = new CreatePlaylistView();
         centerScrollPane.setContent(view);
     }
 
-    public void backHome(MouseEvent e){
-        HomeView view = new HomeView();
+    public void backHome(MouseEvent e) {
+        HomeView view = new HomeView(ResizeHandler.getCenterWidth());
         centerScrollPane.setContent(view);
     }
 }

@@ -1,6 +1,7 @@
 package controllers;
 
 import Session.WindowAppearance;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,8 @@ import views.AlbumView;
 import views.PlaylistBox;
 
 public class homeViewController {
+
+    private double initialWidth;
 
     public final static double PLAYLIST_CONTAINER_SPACING = 12;
     public final static double ROOT_PADDING_LEFT_AND_RIGHT = 30;
@@ -51,23 +54,32 @@ public class homeViewController {
     @FXML
     private HBox othersPlaylistBoxContainer;
 
+    public homeViewController(double initialWidth) {
+        this.initialWidth = initialWidth;
+    }
+
     @FXML
     private void initialize() {
+
         CornerRadii cornerRadii = new CornerRadii(8, 8, 0, 0, false);
         BackgroundFill backgroundFill = new BackgroundFill(
-                ColorsManager.setGradient(Color.rgb(62, 32, 146, 0.6), Color.rgb(18, 18, 18)),
+                ColorsManager.setGradient(Color.rgb(62, 32, 146, 0.6), Color.rgb(18, 18,
+                        18)),
                 cornerRadii,
                 null);
         Background background = new Background(backgroundFill);
         primaryShader.setBackground(background);
 
+        System.out.println("Width del center : " + (initialWidth - 16));
+        initializeElements(initialWidth - 16);
+
         Platform.runLater(() -> {
-            double width = contentContainer.getWidth() - 10;
-            initializeElements(width);
 
             contentContainer.widthProperty().addListener((observable, oldValue, newValue) -> {
-                handleElements(newValue.doubleValue());
+                if (newValue.doubleValue() > 0)
+                    handleElements(newValue.doubleValue());
             });
+
         });
     }
 
@@ -164,7 +176,7 @@ public class homeViewController {
                         albumBoxContainer.getChildren().clear();
                         albumBoxContainer.getColumnConstraints().clear();
                         fillGrid(num_columns, num_rows);
-                    } else if (boxCurrentWidth <= AlbumView.MIN_WIDTH + 5) {
+                    } else if (boxCurrentWidth <= AlbumView.MIN_WIDTH + 25) {
                         num_columns--;
                         num_rows = MAX_ALBUM_DISPLAYED / num_columns;
                         albumBoxContainer.getChildren().clear();
@@ -173,7 +185,7 @@ public class homeViewController {
                     }
                     break;
                 case 3:
-                    if (boxCurrentWidth < AlbumView.MIN_WIDTH + 5) {
+                    if (boxCurrentWidth < AlbumView.MIN_WIDTH + 25) {
                         num_columns--;
                         num_rows = MAX_ALBUM_DISPLAYED / num_columns;
                         albumBoxContainer.getChildren().clear();
@@ -196,10 +208,11 @@ public class homeViewController {
         double availableSpace = width - (ROOT_PADDING_LEFT_AND_RIGHT);
         // calcolo il numero di playlist box che posso aggiungere
         // dimesione media plalist
-        double mediumWidth = (PlaylistBox.MaxWidth + PlaylistBox.MinWidth) / 2;
-        System.out.println("Medium width :" + mediumWidth);
+        double mediumWidth = (((PlaylistBox.MaxWidth + PlaylistBox.MinWidth) / 2) + 15);
+
         int numberOfPlaylistBox = (int) (availableSpace / mediumWidth);
-        System.out.println("Number of playlist box :" + numberOfPlaylistBox);
+        System.out.println("numero di box :" + numberOfPlaylistBox);
+
         myDisplayedPlaylist = numberOfPlaylistBox;
         for (int i = 0; i < numberOfPlaylistBox; i++) {
             PlaylistBox playlist = new PlaylistBox(2);
@@ -227,6 +240,7 @@ public class homeViewController {
         if (num_columns > MAX_PER_ROW) {
             num_columns = MAX_PER_ROW;
         }
+
         num_rows = MAX_ALBUM_DISPLAYED / num_columns;
         fillGrid(num_columns, num_rows);
         gridContainer.getChildren().add(1, albumBoxContainer);
@@ -241,36 +255,7 @@ public class homeViewController {
                 new Canzone("Jane", "Smith"),
                 new Canzone("Alice", "Johnson"),
                 new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson")
-
-        );
+                new Canzone("Jane", "Smith"));
         topTracks.setItems(data);
         tableViewContainer.getChildren().add(topTracks);
 
@@ -298,15 +283,3 @@ public class homeViewController {
     }
 
 }
-
-/*
- * 
- * 
- * SVG PATH per il clock
- * M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0
- * 8z
- * M8 3.25a.75.75 0 0 1 .75.75v3.25H11a.75.75 0 0 1 0 1.5H7.25V4A.75.75 0 0 1 8
- * 3.25z
- * 
- * 
- */
