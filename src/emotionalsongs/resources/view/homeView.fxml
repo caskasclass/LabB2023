@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root alignment="TOP_LEFT" prefWidth="600.0" styleClass="base" stylesheets="@../css/main.css" type="StackPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeViewController">
+<fx:root alignment="TOP_LEFT" styleClass="base" stylesheets="@../css/main.css" type="StackPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="primaryShader" maxHeight="300.0" minHeight="300.0">
          <StackPane.margin>
             <Insets />
          </StackPane.margin></HBox>
-      <VBox fx:id="contentContainer" alignment="TOP_CENTER" spacing="10.0">
+      <VBox fx:id="contentContainer" alignment="TOP_CENTER" prefWidth="600.0" spacing="10.0">
          <padding>
             <Insets bottom="65.0" left="15.0" right="15.0" top="15.0" />
          </padding>

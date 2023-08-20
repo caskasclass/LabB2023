@@ -1,11 +1,18 @@
 package controllers;
 
+import Session.WindowStyle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import util.ColorsManager;
 
 public class playlistBoxController {
+
+    private boolean focusEnabler;
 
     public int imgnumber = 0;
 
@@ -24,7 +31,6 @@ public class playlistBoxController {
     @FXML
     private Region playlistBox_image;
 
-
     @FXML
     void initialize() {
 
@@ -32,8 +38,18 @@ public class playlistBoxController {
         playlistOwner.setText("unknown owner");
         double padding = vboxroot.getPadding().getLeft() * 2;
         container_for_ragion.minHeightProperty().bind(vboxroot.widthProperty().subtract((padding)));
+        playlistBox_image.setStyle("-fx-background-image:url('/imgs/playlist_img/img" + imgnumber + ".png');");
 
-        playlistBox_image.setStyle("-fx-background-image:url('/imgs/playlist_img/img"+imgnumber+".png');");
+    }
 
+    public void setFocusaEnabler(Boolean tf) {
+        focusEnabler = tf;
+    }
+
+    public void captureColor(MouseEvent e) {
+        if (focusEnabler) {
+            Color captured = ColorsManager.getDominantColor(playlistBox_image);
+            WindowStyle.setColor(captured);
+        }
     }
 }

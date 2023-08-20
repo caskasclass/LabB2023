@@ -14,10 +14,11 @@ public class PlaylistBox extends VBox {
     public final static int MinWidth = 145;
     public final static int MaxWidth = 230;
 
-    public PlaylistBox(int n) {
+    public PlaylistBox(int n,boolean focus) {
         FXMLLoader loader = fxmlutil.getLoader("playlistBox.fxml");
         playlistBoxController controller = new playlistBoxController();
         controller.imgnumber = n;
+        controller.setFocusaEnabler(focus);
         loader.setController(controller);
         try {
             loader.setRoot(this);

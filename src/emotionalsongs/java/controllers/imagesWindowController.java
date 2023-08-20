@@ -1,7 +1,5 @@
 package controllers;
 
-import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
