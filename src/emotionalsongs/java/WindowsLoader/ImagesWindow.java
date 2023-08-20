@@ -19,7 +19,8 @@ public class ImagesWindow extends Stage{
             initStyle(StageStyle.TRANSPARENT);
             setResizable(false);
             setScene(new Scene(mainContaier,Color.TRANSPARENT));
-
+            // ma quindi il codice lo scivo io ma lo pushi te ?
+            //ci sei????
             setOnShown(event ->{
                 //contenuto completamente caricato
                 //questa soluzione fixa il frame bianco all'avvio dell'applicazione.

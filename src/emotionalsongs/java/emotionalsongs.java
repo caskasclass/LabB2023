@@ -1,3 +1,5 @@
+
+
 import java.io.IOException;
 import Session.WindowAppearance;
 import javafx.stage.Stage;
@@ -10,6 +12,7 @@ import util.ApplicationManager;
  */
 public class emotionalsongs extends Application
 {
+    
     public static void main( String[] args )
     {  
         launch(args);
