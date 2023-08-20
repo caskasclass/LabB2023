@@ -1,23 +1,22 @@
 package controllers;
 
-import Session.WindowAppearance;
+import javafx.util.Duration;
 
+import Session.WindowAppearance;
+import Session.WindowStyle;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import tmp.Canzone;
-import util.ColorsManager;
+import util.BackgroundTransition;
 import util.TableViewManager;
 import views.AlbumView;
 import views.PlaylistBox;
@@ -60,27 +59,26 @@ public class homeViewController {
 
     @FXML
     private void initialize() {
-
-        CornerRadii cornerRadii = new CornerRadii(8, 8, 0, 0, false);
-        BackgroundFill backgroundFill = new BackgroundFill(
-                ColorsManager.setGradient(Color.rgb(62, 32, 146, 0.6), Color.rgb(18, 18,
-                        18)),
-                cornerRadii,
-                null);
-        Background background = new Background(backgroundFill);
-        primaryShader.setBackground(background);
-
+        WindowStyle.ResetColor();
+        primaryShader.setBackground(WindowStyle.setInitialBackground());
         System.out.println("Width del center : " + (initialWidth - 16));
         initializeElements(initialWidth - 16);
 
         Platform.runLater(() -> {
-
             contentContainer.widthProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue.doubleValue() > 0)
                     handleElements(newValue.doubleValue());
             });
-
         });
+        WindowStyle.getColor().addListener((observable, oldValue, newValue) -> {
+            smoothShaderTransition(oldValue,newValue);
+        });
+    }
+
+    private void smoothShaderTransition(Color oldColor,Color newColor) {
+        BackgroundTransition transition = new BackgroundTransition(primaryShader, Duration.seconds(0.85), oldColor, newColor);
+        transition.play();
+
     }
 
     private void handleElements(double width) {
@@ -108,7 +106,7 @@ public class homeViewController {
         if ((availableSpace - (MyspacingWidth + TotalMyNodeWidth)) > 25) {
             if (myDisplayedPlaylist < numAvailablePlylist) {
                 myDisplayedPlaylist++;
-                VBox playlistbox = new PlaylistBox(2);
+                VBox playlistbox = new PlaylistBox(2,true);
                 HBox.setHgrow(playlistbox, Priority.ALWAYS);
                 playlistBoxContainer.getChildren().add(playlistbox);
             }
@@ -133,7 +131,7 @@ public class homeViewController {
         if ((availableSpace - (OthersSpacingWidth + TotalOthersNodeWidth)) > 25) {
             if (othersDisplayedPlaylist < numOthersAvailablePlaylist) {
                 othersDisplayedPlaylist++;
-                VBox playlistbox = new PlaylistBox(6);
+                VBox playlistbox = new PlaylistBox(6,false);
                 HBox.setHgrow(playlistbox, Priority.ALWAYS);
                 othersPlaylistBoxContainer.getChildren().add(playlistbox);
             }
@@ -215,13 +213,13 @@ public class homeViewController {
 
         myDisplayedPlaylist = numberOfPlaylistBox;
         for (int i = 0; i < numberOfPlaylistBox; i++) {
-            PlaylistBox playlist = new PlaylistBox(2);
+            PlaylistBox playlist = new PlaylistBox(i+1,true);
             HBox.setHgrow(playlist, Priority.ALWAYS);
             playlistBoxContainer.getChildren().add(playlist);
         }
         othersDisplayedPlaylist = numberOfPlaylistBox;
         for (int i = 0; i < numberOfPlaylistBox; i++) {
-            PlaylistBox playlist = new PlaylistBox(6);
+            PlaylistBox playlist = new PlaylistBox(i+1,false);
             HBox.setHgrow(playlist, Priority.ALWAYS);
             othersPlaylistBoxContainer.getChildren().add(playlist);
         }

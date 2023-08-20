@@ -16,17 +16,16 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import util.ColorsManager;
 import views.HomeView;
 import views.CreatePlaylistView;
 import javafx.stage.Stage;
+import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 
 public class homeWindowController {
@@ -75,6 +74,9 @@ public class homeWindowController {
 
         // 2.5) inizializzo stile header
         header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
+        Platform.runLater(() -> {
+            BackgroundTransition.setHeaderGraphics((Color) (header_hbox.getBackground().getFills().get(0).getFill()));
+        });
 
         // 3) inizializzo il center con la home
         // System.out.println(ResizeHandler.getCenterWidth()); ok
@@ -95,21 +97,8 @@ public class homeWindowController {
         userButton.setGraphic(img);
         userButton.setVisible(true);
 
-        // 5) calcolo il mix dei colori per il test (più avanti verrà rimosso)
-        Pane pane = new Pane();
-        pane.setPrefSize(40, 40);
-        // calcolo effettivo e assegnazione del colore
-        System.out.println("\n\nCalcolo colore inizio\n\n");
-        long start = System.currentTimeMillis();
-        // dobbiamo capire cosa usare per il calcolo colore il dominant o il mix
-        Color c = ColorsManager.getDominantColor(image);
-        long end = System.currentTimeMillis();
-        System.out.println("\n\nCalcolo colore fine, tempo impiegato : " + (end - start) + " ms.\n\n");
-        pane.setBackground(Background.fill(c));
-
         // 6) Aggiungo i button al header
         header_hbox.getChildren().add(userButton);
-        header_hbox.getChildren().add(pane);
 
         // 7) vari listener
         Platform.runLater(() -> {
@@ -137,15 +126,14 @@ public class homeWindowController {
 
             if (opacity >= 0.98)
                 opacity = 1;
-        } else if (vPosition >= 45 && vPosition <= 100) {
-            // altrimenti nada
-            return;
-        }
-
+        } 
         // di base creo un nuovo bgFill (devo cambiare in base all view) lo faccio pià
         // avanti
+        int red = (int) (BackgroundTransition.hbox_header.getRed() * 255);
+        int green = (int) (BackgroundTransition.hbox_header.getGreen() * 255);
+        int blue = (int) (BackgroundTransition.hbox_header.getBlue() * 255);
         BackgroundFill backgroundFill = new BackgroundFill(
-                Color.rgb(40, 25, 83, opacity), // Colore con l'opacità desiderata
+                Color.rgb(red, green, blue, opacity), // Colore con l'opacità desiderata
                 cornerRad, // radii (non ho la minima idea di che cosa sia )
                 null // insets
         );
