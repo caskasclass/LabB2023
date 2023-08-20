@@ -4,8 +4,6 @@ import javafx.stage.Stage;
 import javafx.application.Application;
 import util.ApplicationManager;
 
-
-
 /**
  * Hello world!
  *
