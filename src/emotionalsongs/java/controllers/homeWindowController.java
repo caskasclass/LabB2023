@@ -23,8 +23,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import views.HomeView;
+import views.CanzoneView;
 import views.CreatePlaylistView;
 import javafx.stage.Stage;
+import tmp.Canzone;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 
@@ -188,4 +190,14 @@ public class homeWindowController {
         HomeView view = new HomeView(ResizeHandler.getCenterWidth());
         centerScrollPane.setContent(view);
     }
+
+    public void openTrack(MouseEvent e) {
+       Canzone vera = new Canzone("ciao","bello");
+       CanzoneView showCanzoneView = new CanzoneView(vera);
+
+       centerScrollPane.setContent(showCanzoneView);
+       
+
+    }
+
 }

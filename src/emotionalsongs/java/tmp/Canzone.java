@@ -11,6 +11,11 @@ public class Canzone {
             
         }
 
+    
+    public Canzone() {
+            
+        }
+
     public String getTrackName() {
         return trackName;
     }
