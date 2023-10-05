@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="container" prefHeight="500.0" prefWidth="700.0" styleClass="base" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="container" prefHeight="500.0" prefWidth="700.0" styleClass="base" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <FlowPane>
          <children>
