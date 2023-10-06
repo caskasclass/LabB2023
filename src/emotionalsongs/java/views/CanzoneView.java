@@ -11,19 +11,14 @@ import util.FXMLLoaders;
 public class CanzoneView extends VBox{
 
     FXMLLoaders fxmlutil = new FXMLLoaders();
-    Canzone canzone= null;
 
-    public CanzoneView(Canzone c){
-        canzone=c;
-    }
-   
 
-    public CanzoneView(){
+    public CanzoneView(Canzone c ){
 
         FXMLLoader loader = fxmlutil.getLoader("CanzoneView.fxml");
         canzoneViewController controller= new canzoneViewController();
 
-        controller.setCanzone(canzone);
+        controller.setCanzone(c);
 
         loader.setController(controller);
         try {
@@ -32,11 +27,6 @@ public class CanzoneView extends VBox{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
-
 
     }
     

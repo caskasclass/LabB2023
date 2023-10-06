@@ -4,28 +4,39 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+
+import java.io.IOException;
+
+import controllers.imagesWindowController;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import util.FXMLLoaders;
 import util.StyleManager;
 
-public class ImagesWindow extends Stage{
-    FXMLLoaders loader = new FXMLLoaders();
-    StyleManager styleManager  = new StyleManager();
+public class ImagesWindow extends Stage {
+    FXMLLoaders fxmlutil = new FXMLLoaders();
+    StyleManager styleManager = new StyleManager();
 
-    public ImagesWindow() {
-            Pane mainContaier = (Pane) loader.loadFXML("imagesWindow.fxml");
-            //mainContaier.getStylesheets().add(styleManager.loadStyle("main.css"));
+    public ImagesWindow(ImageView img) {
+        FXMLLoader loader = fxmlutil.getLoader("imagesWindow.fxml");
+        imagesWindowController controller = new imagesWindowController(img);
+        loader.setController(controller);
+        try {
+
+            Pane root = (Pane) loader.load();
             initStyle(StageStyle.UNDECORATED);
             initStyle(StageStyle.TRANSPARENT);
             setResizable(false);
-            setScene(new Scene(mainContaier,Color.TRANSPARENT));
-            // ma quindi il codice lo scivo io ma lo pushi te ?
-            //ci sei????
-            setOnShown(event ->{
-                //contenuto completamente caricato
-                //questa soluzione fixa il frame bianco all'avvio dell'applicazione.
-                show();
-            });
+            setScene(new Scene(root, Color.TRANSPARENT));
             
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setOnShown(event -> {
+
+            show();
+        });
+
     }
 }

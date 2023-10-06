@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import util.TableViewManager;
+
+import java.net.URL;
 import java.util.ArrayList;
 
 import WindowsLoader.ImagesWindow;
@@ -43,6 +45,8 @@ public class creazionePlaylistController {
     @FXML
     private VBox tableContainer;
 
+    static URL img;
+
     @FXML
     void initialize() {
 
@@ -68,7 +72,7 @@ public class creazionePlaylistController {
         playlistTracks.setVisible(false);
         //tableContainer.getChildren().add(0,playlistTracks);
         TableViewManager findTracks = new TableViewManager();
-        findTracks.setMinHeight(300);
+        //findTracks.setMinHeight(300);
         findTracks.setVisible(false);
         cerca.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -91,7 +95,7 @@ public class creazionePlaylistController {
 
     public void openImages(MouseEvent e){
         Stage parent = (Stage) createButton.getScene().getWindow();
-        ImagesWindow window = new ImagesWindow();
+        ImagesWindow window = new ImagesWindow(playlistImage);
         window.initOwner(parent);
         BoxBlur blur = new BoxBlur(10, 10, 3);
         parent.getScene().getRoot().setEffect(blur);
@@ -102,6 +106,7 @@ public class creazionePlaylistController {
             parent.getScene().getRoot().setEffect(null);
             parent.getScene().getRoot().setDisable(false);
         });
+    
         window.show();
     }
 

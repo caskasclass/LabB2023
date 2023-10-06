@@ -42,11 +42,14 @@
                               <Font name="Arial Black" size="28.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="-20.0" />
+                              <Insets />
                            </VBox.margin>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <padding>
+                              <Insets left="-2.0" />
+                           </padding>
                         </TextField>
                         <Label fx:id="owner" text="Owner">
                            <font>
@@ -54,6 +57,9 @@
                            </font>
                         </Label>
                      </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </VBox>
                   <HBox alignment="BOTTOM_CENTER" prefHeight="100.0">
                      <children>

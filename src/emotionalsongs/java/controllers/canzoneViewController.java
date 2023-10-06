@@ -3,6 +3,7 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Shape;
 import tmp.Canzone;
 
 public class canzoneViewController {
@@ -17,14 +18,15 @@ public class canzoneViewController {
     private VBox rootCanzoneview;
     @FXML
     private Label nomeCanzone;
-  @FXML
+    @FXML
     private Label nomeAlbum;
+    
 
 
 
 
     @FXML
-    void initialized(){
+    private void initialize(){
         System.out.println("\n\n\n ciao \n\n\n");
         nomeCanzone.setText(c.getTrackName());
         nomeAlbum.setText(c.getTrackAlbum());
