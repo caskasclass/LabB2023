@@ -6,5 +6,6 @@ public class StyleManager {
 
     public String loadStyle(String cssFile) throws IOException {
         return (getClass().getResource("../css/" + cssFile).toExternalForm());
+
     }
 }

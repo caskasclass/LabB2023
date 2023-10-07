@@ -8,7 +8,6 @@ public class Canzone {
     public Canzone(String name,String album) {
             this.trackName = name;
             this.trackAlbum = album;
-            
         }
 
     
