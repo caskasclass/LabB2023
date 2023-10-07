@@ -1,6 +1,8 @@
 package controllers;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import javafx.scene.layout.VBox;
@@ -9,10 +11,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import util.TableViewManager;
+
+import java.net.URL;
+import java.util.ArrayList;
+
 import WindowsLoader.ImagesWindow;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import tmp.Canzone;
 import javafx.scene.effect.BoxBlur;
+
 
 public class creazionePlaylistController {
 
@@ -37,8 +45,21 @@ public class creazionePlaylistController {
     @FXML
     private VBox tableContainer;
 
+    static URL img;
+
     @FXML
     void initialize() {
+
+        
+        //crea una array list di test delle canzoni e inizializzalo con 5 caznoni
+        ArrayList<Canzone> canzoni = new ArrayList<Canzone>();
+        canzoni.add(new Canzone("Canzone1","Album1"));
+        canzoni.add(new Canzone("Canzone2","Album2"));
+        canzoni.add(new Canzone("Canzone3","Album3"));
+        canzoni.add(new Canzone("Canzone4","Album4"));
+        canzoni.add(new Canzone("Canzone5","Album5"));
+
+
         Platform.runLater(() -> {
             double width = container.getWidth() - 10;
             initializeElements(width);
@@ -51,7 +72,7 @@ public class creazionePlaylistController {
         playlistTracks.setVisible(false);
         //tableContainer.getChildren().add(0,playlistTracks);
         TableViewManager findTracks = new TableViewManager();
-        findTracks.setMinHeight(300);
+        //findTracks.setMinHeight(300);
         findTracks.setVisible(false);
         cerca.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -61,12 +82,20 @@ public class creazionePlaylistController {
             }
         });
         tableContainer.getChildren().add(findTracks);
+        ObservableList<Canzone> data = FXCollections.observableArrayList(
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"));
+        findTracks.setItems(data);
+
 
     }
 
     public void openImages(MouseEvent e){
         Stage parent = (Stage) createButton.getScene().getWindow();
-        ImagesWindow window = new ImagesWindow();
+        ImagesWindow window = new ImagesWindow(playlistImage);
         window.initOwner(parent);
         BoxBlur blur = new BoxBlur(10, 10, 3);
         parent.getScene().getRoot().setEffect(blur);
@@ -77,8 +106,12 @@ public class creazionePlaylistController {
             parent.getScene().getRoot().setEffect(null);
             parent.getScene().getRoot().setDisable(false);
         });
+    
         window.show();
     }
+
+
+
 
     
 }
