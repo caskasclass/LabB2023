@@ -4,6 +4,8 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import tmp.Canzone;
 
 public class TableViewManager extends TableView<Canzone> {
@@ -22,6 +24,7 @@ public class TableViewManager extends TableView<Canzone> {
         trackName.setMinWidth(75);
         trackName.setPrefWidth(80); // in % ?, gia.. va fatto. Per ora rimane cosi tho 
         trackName.setMaxWidth(85);
+        trackName.setMinWidth(220);
         TableColumn<Canzone, String> album = new TableColumn<>("Album");
         album.setCellValueFactory(new PropertyValueFactory<>("trackAlbum"));
         album.setMinWidth(75);

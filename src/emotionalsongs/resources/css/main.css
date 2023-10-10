@@ -368,6 +368,7 @@
 .tableView{
   -fx-background-color: rgba(0, 0, 0, 0);
   background-color: rgba(0, 0, 0, 0);
+
 }
 .tableView .scroll-bar * {
   -fx-min-width: 0;
@@ -386,15 +387,31 @@
   -fx-background-color: rgba(0, 0, 0, 0);
   background-color: rgba(0, 0, 0, 0);
 }
+
+
+.tableView .column-header .label{
+  -fx-alignment: CENTER-LEFT;
+  -fx-padding:25 0 10 0;
+    padding: 25 0 10 0;
+    -fx-text-fill:rgb(175,174,174);
+    -fx-font-size:13;
+    font-size:13;
+}
+
 .tableView .column-header{
   -fx-border-width:0 0 1 0;
   border-width:0 0 1 0;
-  -fx-background-color: rgba(0, 0, 0, 0);
-  background-color: rgba(0, 0, 0, 0);
+  -fx-border-color:rgb(47,44,57);
+  border-color:rgb(47,44,57);
 }
 .tableView .column-header-background  {
   -fx-background-color: rgba(0, 0, 0, 0);
   background-color: rgba(0, 0, 0, 0);
+  -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 0 0 5px 0;
+    padding: 0 0 5px 0;
+
 }
 
 .tableView .column-header-background .filler {
@@ -405,8 +422,13 @@
 .tableView .table-cell{
   -fx-border-width:0px;
   border-width: 0px;
-  -fx-alignment:CENTER;
+  -fx-alignment: CENTER-LEFT;
   border-width: 0px;
+
+}
+.tableView .table-cell .label{
+  -fx-padding:15 0 15 0;
+  padding:15 0 15 0;
 
 }
 
@@ -415,13 +437,15 @@
   background-color: rgba(0, 0, 0, 0)
 }
 .tableView .table-row-cell:hover{
-  -fx-background-color: #282828;
-  background-color: #282828;
+  -fx-background-color: rgb(42,42,42);
+    background-color: rgb(42,42,42);
+    -fx-background-radius:4;
 
 }
 .tableView .table-row-cell:focused{
   -fx-background-color : rgba(255, 255, 255, 0.3);
   background-color : rgba(255, 255, 255, 0.3);
+  -fx-background-radius:4;
 
 }
 .tableView .table-row-cell .text {

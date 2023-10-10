@@ -93,6 +93,8 @@ public class creazionePlaylistController {
 
     }
 
+    
+
     public void openImages(MouseEvent e){
         Stage parent = (Stage) createButton.getScene().getWindow();
         ImagesWindow window = new ImagesWindow(playlistImage);
