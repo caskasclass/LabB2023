@@ -23,7 +23,7 @@ public class ImagesWindow extends Stage {
         imagesWindowController controller = new imagesWindowController(img);
         loader.setController(controller);
         try {
-
+            
             Pane root = (Pane) loader.load();
             initStyle(StageStyle.UNDECORATED);
             initStyle(StageStyle.TRANSPARENT);

@@ -18,7 +18,7 @@ public class TableViewManager extends TableView<Canzone> {
         indexColumn.setCellValueFactory(
                 cellData -> new ReadOnlyObjectWrapper<>(this.getItems().indexOf(cellData.getValue()) + 1));
         TableColumn<Canzone, String> trackName = new TableColumn<>("Name");
-        trackName.setCellValueFactory(new PropertyValueFactory<>("trackName"));
+                trackName.setCellValueFactory(new PropertyValueFactory<>("trackName"));
         trackName.setMinWidth(75);
         trackName.setPrefWidth(80); // in % ?, gia.. va fatto. Per ora rimane cosi tho 
         trackName.setMaxWidth(85);
@@ -29,7 +29,7 @@ public class TableViewManager extends TableView<Canzone> {
         album.setMaxWidth(85);
         this.getColumns().add(trackName);
         this.getColumns().add(album);
-        
-    }
+
+        }
 
 }
