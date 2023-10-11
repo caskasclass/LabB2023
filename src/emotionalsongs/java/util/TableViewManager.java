@@ -3,6 +3,9 @@ package util;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Button;
+
+import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -65,19 +68,76 @@ public class TableViewManager extends TableView<Canzone> {
 
 
         //quale bottone aggiungere alla tableview in base a dove ci troviamo
-        /*if(def){
-
+        /*if(true){
+            TableColumn<Canzone, Void> addButtonCol = new TableColumn<>("");
+                
+                addButtonCol.setCellValueFactory(
+                    param -> new ButtonCell());
+                    this.getColumns().add(addButtonCol);
         }
         else{
-            if(add){
-
+            if(true){
+                
             }
             else{
-
+                 
             }
 
-        }*/
+        } */
+        
         //index titolo album autore anno e durata
     }
+    /*
+    public void deleteFromPlaylist(TableColumn<Canzone, Void> deletebutton) {
+        this.optionbutton = deletebutton;
+        Callback<TableColumn<Canzone, Void>, TableCell<Canzone, Void>> cellFactory = new Callback<TableColumn<Canzone, Void>, TableCell<Canzone, Void>>() {
+            @Override
+            public TableCell<Canzone, Void> call(final TableColumn<Canzone, Void> param) {
+                final TableCell<Canzone, Void> cell = new TableCell<Canzone, Void>() {
 
-}
+                    MenuItem mi1 = new MenuItem("Rimuovi dalla playlist");
+
+                    private final MenuButton btn = new MenuButton("•••", null, mi1);
+
+                    {
+                        mi1.setOnAction((ActionEvent event) -> {
+                            Canzone canzone = getTableView().getItems().get(getIndex());
+                            ObservableList<Canzone> list =  repository.getItems();
+                            list.remove(canzone);
+                            repository.setItems(list);
+                            repository.refresh();
+                            ArrayList<Playlist> tmp = PlaylistManager.readPlaylist();
+                            tmp.remove(tmp.indexOf(GlobalsVariables.plist));
+                            GlobalsVariables.plist.getCanzoni().remove(canzone);
+                            tmp.add(GlobalsVariables.plist);
+                            PlaylistManager.getPlaylist(tmp);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        optionbutton.setCellFactory(cellFactory);
+
+    }
+     */
+    
+
+        
+        }
+    
+
+    
+
+
