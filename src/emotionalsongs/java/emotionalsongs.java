@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
-
 import Session.WindowAppearance;
 import javafx.stage.Stage;
 import tmp.ServerInterface;
@@ -24,18 +23,20 @@ public class emotionalsongs extends Application {
     public void start(Stage primaryStage) throws IOException {
         WindowAppearance.calculateWindowDimensions();
         ApplicationManager startPoint = new ApplicationManager();
-        /*Registry registry = java.rmi.registry.LocateRegistry.getRegistry("192.168.2.79", 8080);
-        ServerInterface stub = null;
+        /*
         try {
+            Registry registry = java.rmi.registry.LocateRegistry.getRegistry("192.168.2.79", 8080);
+            ServerInterface stub = null;
             stub = (ServerInterface) registry.lookup("SERVER");
             Scanner sc = new Scanner(System.in);
             System.out.println("Premi un tasto : ");
             stub.ciao();
-        } catch (NotBoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Errore di connessione ... ignorare per ora ...");
+        }
+        */
         startPoint.initialize();
 
     }

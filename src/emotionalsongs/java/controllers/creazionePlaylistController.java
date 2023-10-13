@@ -67,11 +67,11 @@ public class creazionePlaylistController {
     }
 
     private void initializeElements(double width) {
-        TableViewManager playlistTracks = new TableViewManager();
+        TableViewManager playlistTracks = new TableViewManager(true,false);
         playlistTracks.setMinHeight(300);
         playlistTracks.setVisible(false);
         //tableContainer.getChildren().add(0,playlistTracks);
-        TableViewManager findTracks = new TableViewManager();
+        TableViewManager findTracks = new TableViewManager(true,false);
         //findTracks.setMinHeight(300);
         findTracks.setVisible(false);
         cerca.textProperty().addListener((observable, oldValue, newValue) -> {

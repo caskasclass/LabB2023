@@ -246,7 +246,7 @@ public class homeViewController {
     }
 
     private void setTopTracks() {
-        TableViewManager topTracks = new TableViewManager();
+        TableViewManager topTracks = new TableViewManager(true,false);
         topTracks.setMinHeight(300);
         ObservableList<Canzone> data = FXCollections.observableArrayList(
                 new Canzone("John", "Doe"),
