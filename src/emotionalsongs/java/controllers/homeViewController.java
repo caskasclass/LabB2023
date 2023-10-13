@@ -48,7 +48,7 @@ public class homeViewController {
     private HBox playlistBoxContainer;
 
     @FXML
-    private HBox tableViewContainer;
+    private VBox tableViewContainer;
 
     @FXML
     private HBox othersPlaylistBoxContainer;
@@ -256,6 +256,8 @@ public class homeViewController {
                 new Canzone("Jane", "Smith"));
         topTracks.setItems(data);
         tableViewContainer.getChildren().add(topTracks);
+        VBox.setVgrow(topTracks, Priority.ALWAYS);
+       //
 
     }
 
