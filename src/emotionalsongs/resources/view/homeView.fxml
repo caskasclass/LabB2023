@@ -56,7 +56,7 @@
                         <Insets bottom="16.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox fx:id="tableViewContainer" />
+                  <VBox fx:id="tableViewContainer" VBox.vgrow="ALWAYS" />
                   <HBox nodeOrientation="RIGHT_TO_LEFT">
                      <children>
                         <Button mnemonicParsing="false" text="see all" />
