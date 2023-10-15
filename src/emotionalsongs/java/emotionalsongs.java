@@ -1,11 +1,14 @@
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
+
+import Jar.ServerInterface;
 import Session.WindowAppearance;
 import javafx.stage.Stage;
-import tmp.ServerInterface;
+//import tmp.ServerInterface;
 import javafx.application.Application;
 import util.ApplicationManager;
 
@@ -23,20 +26,19 @@ public class emotionalsongs extends Application {
     public void start(Stage primaryStage) throws IOException {
         WindowAppearance.calculateWindowDimensions();
         ApplicationManager startPoint = new ApplicationManager();
-        /*
         try {
-            Registry registry = java.rmi.registry.LocateRegistry.getRegistry("192.168.2.79", 8080);
+            Registry registry = LocateRegistry.getRegistry("localhost", 8080);
             ServerInterface stub = null;
             stub = (ServerInterface) registry.lookup("SERVER");
             Scanner sc = new Scanner(System.in);
             System.out.println("Premi un tasto : ");
-            stub.ciao();
+            stub.SayHi("Casca");
 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Errore di connessione ... ignorare per ora ...");
         }
-        */
+        
         startPoint.initialize();
 
     }
