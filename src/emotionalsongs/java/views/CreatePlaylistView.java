@@ -5,7 +5,7 @@ import java.io.IOException;
 import controllers.creazionePlaylistController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+
 import util.FXMLLoaders;
 
 public class CreatePlaylistView extends StackPane {

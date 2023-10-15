@@ -1,11 +1,7 @@
 
 import java.io.IOException;
-import java.rmi.NotBoundException;
-import java.rmi.registry.Registry;
-import java.util.Scanner;
 import Session.WindowAppearance;
 import javafx.stage.Stage;
-import tmp.ServerInterface;
 import javafx.application.Application;
 import util.ApplicationManager;
 
