@@ -131,6 +131,7 @@ public class TableViewManager extends TableView<Canzone> {
         } else {
             // remove button
             TableColumn<Canzone, Button> buttonCol = new TableColumn<>("Button");
+            buttonCol.setMinWidth(150);
             this.getColumns().add(buttonCol);
              // Add a button to the button column for each row
             buttonCol.setCellFactory(param -> {

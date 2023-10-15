@@ -456,8 +456,7 @@
 }
 
 .tableView_button {
-  -fx-width: 100%;
-  width: 100%;
+
   -fx-background-radius: 16px;
   -fx-font-size: 16px;
   font-size: 16px;
