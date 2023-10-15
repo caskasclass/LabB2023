@@ -15,6 +15,8 @@ import util.TableViewManager;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.w3c.dom.Node;
+
 import WindowsLoader.ImagesWindow;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -46,6 +48,8 @@ public class creazionePlaylistController {
     private VBox tableContainer;
 
     static URL img;
+    public static TableViewManager playlistTracks = new TableViewManager(false,false); 
+    public static TableViewManager findTracks = new TableViewManager(false,true);
 
     @FXML
     void initialize() {
@@ -67,12 +71,13 @@ public class creazionePlaylistController {
     }
 
     private void initializeElements(double width) {
-        TableViewManager playlistTracks = new TableViewManager(true,false);
+        
         playlistTracks.setMinHeight(300);
         playlistTracks.setVisible(false);
-        //tableContainer.getChildren().add(0,playlistTracks);
-        TableViewManager findTracks = new TableViewManager(true,false);
-        //findTracks.setMinHeight(300);
+        tableContainer.getChildren().add(0,playlistTracks);
+
+        
+        findTracks.setMinHeight(300);
         findTracks.setVisible(false);
         cerca.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -93,7 +98,6 @@ public class creazionePlaylistController {
 
     }
 
-    
 
     public void openImages(MouseEvent e){
         Stage parent = (Stage) createButton.getScene().getWindow();
