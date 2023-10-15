@@ -57,8 +57,8 @@
 
 .hbox_header {
   -fx-background-radius: 8px 8px 0 0;
-  -fx-padding: 16px;
-  padding: 16px;
+  -fx-padding: 20px;
+  padding: 20px;
   -fx-max-height: 64px;
   -fx-min-height: 64px;
   min-height: 64px;
@@ -66,16 +66,20 @@
 }
 .hbox_header > .header_buttons {
   /* button di default */
-  -fx-border-width: 0;
-  border-width: 0;
+  -fx-border-width: 0 ;
   -fx-padding: 3px 15px 3px 3px;
   padding: 3px 15px 3px 3px;
-  -fx-background-color: rgba(0, 0, 0, 0.54);
-  background-color: rgba(0, 0, 0, 0.54);
-  -fx-background-radius: 500px;
-  -fx-cursor: pointer;
+  -fx-background-color: transparent;
+  background-color: transparent;
+  -fx-background-radius: 16px;
+  -fx-cursor: hand;
+  -fx-font-size: 16px;
+  font-size: 16px;
+  -fx-font-weight: 700;
+  font-weight: 700;
   -fx-text-fill: #ffffff;
-  cursor: pointer;
+  cursor: hand;
+  -fx-border-color: rgb(0, 0, 0);
 }
 .hbox_header > .header_buttons:hover {
   /* se passi sopra */
@@ -450,6 +454,34 @@
   -fx-fill: white;
   fill: white;
 }
+
+.tableView_button {
+  -fx-width: 100%;
+  width: 100%;
+  -fx-background-radius: 16px;
+  -fx-font-size: 16px;
+  font-size: 16px;
+  -fx-font-weight: 500;
+  font-weight: 500;
+  -fx-background-color: transparent;
+  background-color: transparent;
+  -fx-cursor: hand;
+  cursor: hand;
+  -fx-border-color: rgb(142, 140, 140);
+  -fx-border-width: 1px;
+  -fx-border-radius: 16px;
+}
+
+.tableView_button :hover{
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+
+}
+
+.tableView_button:focused{
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}
 /**********************************************************************/
 
 
@@ -494,3 +526,4 @@
   -fx-scale-x: 1.04;
   -fx-scale-y: 1.04;
 }
+

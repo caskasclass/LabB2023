@@ -1,5 +1,6 @@
 package util;
 
+import controllers.creazionePlaylistController;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -16,6 +17,8 @@ import javafx.scene.paint.Paint;
 import tmp.Canzone;
 
 public class TableViewManager extends TableView<Canzone> {
+
+    creazionePlaylistController contr = new creazionePlaylistController();
 
     public TableViewManager(boolean def, boolean add) {
         super();
@@ -68,6 +71,7 @@ public class TableViewManager extends TableView<Canzone> {
             buttonCol.setCellFactory(param -> {
             Button button = new Button("•••");
             
+            button.getStyleClass().add("tableView_button");
             button.setTextFill(Color.GREEN);
             TableCell<Canzone, Button> cell = new TableCell<Canzone, Button>() {
                 @Override
@@ -92,9 +96,71 @@ public class TableViewManager extends TableView<Canzone> {
 
         } else if (add) {
             // add button
+            TableColumn<Canzone, Button> buttonCol = new TableColumn<>("Button");
+            buttonCol.setMinWidth(75);
+            buttonCol.setMaxWidth(75);
+            this.getColumns().add(buttonCol);
+             // Add a button to the button column for each row
+            buttonCol.setCellFactory(param -> {
+            Button button = new Button("ADD");
+            
+            button.getStyleClass().add("tableView_button");
+            button.setTextFill(Color.GREEN);
+            TableCell<Canzone, Button> cell = new TableCell<Canzone, Button>() {
+                @Override
+                protected void updateItem(Button item, boolean empty) {
+                    super.updateItem(button, empty);
 
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(button);
+                    }
+                }
+            };
+
+            button.setOnAction(event -> {
+
+                contr.playlistTracks.setVisible(true);
+                
+                Canzone canzone = cell.getTableView().getItems().get(cell.getIndex());
+                contr.playlistTracks.getItems().add(canzone);
+                
+            });
+
+            return cell;
+        });
         } else {
             // remove button
+            TableColumn<Canzone, Button> buttonCol = new TableColumn<>("Button");
+            this.getColumns().add(buttonCol);
+             // Add a button to the button column for each row
+            buttonCol.setCellFactory(param -> {
+            Button button = new Button("DELETE");
+            
+            button.getStyleClass().add("tableView_button");
+            button.setTextFill(Color.GREEN);
+            TableCell<Canzone, Button> cell = new TableCell<Canzone, Button>() {
+                @Override
+                protected void updateItem(Button item, boolean empty) {
+                    super.updateItem(button, empty);
+
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(button);
+                    }
+                }
+            };
+
+            button.setOnAction(event -> {         
+                Canzone canzone = cell.getTableView().getItems().get(cell.getIndex());
+                contr.playlistTracks.getItems().remove(canzone);
+                
+            });
+
+            return cell;
+        });
         }
 
        
@@ -113,6 +179,7 @@ public class TableViewManager extends TableView<Canzone> {
     }
     private void customMethod(Canzone canzone) {
             System.out.println("Clicked on " + canzone.getTrackName());
+            System.out.println(canzone.toString());
     }
     
 }
