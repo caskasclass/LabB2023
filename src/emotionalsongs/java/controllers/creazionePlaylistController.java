@@ -15,8 +15,6 @@ import util.TableViewManager;
 import java.net.URL;
 import java.util.ArrayList;
 
-import org.w3c.dom.Node;
-
 import WindowsLoader.ImagesWindow;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;

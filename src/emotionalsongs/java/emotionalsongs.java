@@ -1,14 +1,7 @@
 
 import java.io.IOException;
-import java.rmi.NotBoundException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.Scanner;
-
-import Jar.ServerInterface;
 import Session.WindowAppearance;
 import javafx.stage.Stage;
-//import tmp.ServerInterface;
 import javafx.application.Application;
 import util.ApplicationManager;
 
@@ -26,7 +19,6 @@ public class emotionalsongs extends Application {
     public void start(Stage primaryStage) throws IOException {
         WindowAppearance.calculateWindowDimensions();
         ApplicationManager startPoint = new ApplicationManager();
-
         /*try {
             Registry registry = LocateRegistry.getRegistry("localhost", 8080);
             ServerInterface stub = null;
