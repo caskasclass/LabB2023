@@ -26,7 +26,8 @@ public class emotionalsongs extends Application {
     public void start(Stage primaryStage) throws IOException {
         WindowAppearance.calculateWindowDimensions();
         ApplicationManager startPoint = new ApplicationManager();
-        try {
+
+        /*try {
             Registry registry = LocateRegistry.getRegistry("localhost", 8080);
             ServerInterface stub = null;
             stub = (ServerInterface) registry.lookup("SERVER");
@@ -37,7 +38,7 @@ public class emotionalsongs extends Application {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Errore di connessione ... ignorare per ora ...");
-        }
+        }*/
         
         startPoint.initialize();
 
