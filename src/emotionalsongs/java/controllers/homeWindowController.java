@@ -4,6 +4,7 @@ import Session.WindowAppearance;
 import Threads.ResizeHandler;
 import WindowsLoader.SignWindow;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -23,8 +24,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import views.HomeView;
+import views.PlaylistView;
 import views.CanzoneView;
 import views.CreatePlaylistView;
+import views.ExplorePlaylistView;
 import javafx.stage.Stage;
 import tmp.Canzone;
 import util.BackgroundTransition;
@@ -113,6 +116,7 @@ public class homeWindowController {
         // per il colore sul SCROLL
         centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
 
+
     }
 
     private void handleScrollEvent(ScrollEvent event) {
@@ -193,13 +197,14 @@ public class homeWindowController {
         centerScrollPane.setContent(view);
     }
 
-    public void openTrack(MouseEvent e) {
-       Canzone vera = new Canzone("ciao","bello");
-       CanzoneView showCanzoneView = new CanzoneView(vera);
+    public void openPlaylist(MouseEvent e){
+        PlaylistView view = new PlaylistView();
+        centerScrollPane.setContent(view);
+}
 
-       centerScrollPane.setContent(showCanzoneView);
-       
-
+    public void explorePlaylist(MouseEvent e){
+        ExplorePlaylistView view = new ExplorePlaylistView();
+        centerScrollPane.setContent(view);
     }
 
 }

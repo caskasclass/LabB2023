@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import tmp.Canzone;
@@ -127,11 +128,15 @@ public class TableViewManager extends TableView<Canzone> {
 
             button.setOnAction(event -> {
 
-                contr.playlistTracks.setVisible(true);
-                
+                creazionePlaylistController.playlistTracks.setVisible(true);
+                TableView<Canzone> tmp = cell.getTableView(); 
+                VBox p = (VBox) tmp.getParent();
                 Canzone canzone = cell.getTableView().getItems().get(cell.getIndex());
-                contr.playlistTracks.getItems().add(canzone);
-                contr.findTracks.getItems().remove(canzone);
+                tmp.getItems().remove(canzone);
+                ((TableView<Canzone>) p.getChildren().get(0)).getItems().add(canzone);
+ 
+                //creazionePlaylistController.playlistTracks.getItems().add(canzone);
+                //creazionePlaylistController.findTracks.getItems().remove(canzone);
                 
             });
 
@@ -161,10 +166,14 @@ public class TableViewManager extends TableView<Canzone> {
                 }
             };
 
-            button.setOnAction(event -> {         
+            button.setOnAction(event -> {      
+                TableView<Canzone> tmp = cell.getTableView(); 
+                VBox p = (VBox) tmp.getParent();
                 Canzone canzone = cell.getTableView().getItems().get(cell.getIndex());
-                contr.playlistTracks.getItems().remove(canzone);
-                contr.findTracks.getItems().add(canzone);
+                tmp.getItems().remove(canzone);
+                ((TableView<Canzone>) p.getChildren().get(2)).getItems().add(canzone);
+                //creazionePlaylistController.playlistTracks.getItems().remove(canzone);
+                //creazionePlaylistController.findTracks.getItems().add(canzone);
                 
             });
 

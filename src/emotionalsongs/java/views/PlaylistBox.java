@@ -31,7 +31,17 @@ public class PlaylistBox extends VBox {
         
         VBox.setVgrow(this, Priority.ALWAYS);
        
-
+        /*setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() == 2) { // doppio clic
+                    PlaylistView view = new PlaylistView();
+                    homeWindowController.centerScrollPane.setContent(view);
+                }
+            }
+        });*/
     }
+
+    
 
 }

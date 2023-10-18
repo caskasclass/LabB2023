@@ -114,6 +114,9 @@ public class creazionePlaylistController {
         window.show();
     }
 
+    public void registraPlaylist(MouseEvent e){
+        System.out.println("creata");
+    }
 
 
 

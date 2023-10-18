@@ -38,6 +38,9 @@
                                              <HBox.margin>
                                                 <Insets left="20.0" />
                                              </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </Label>
                                        </children>
                                     </HBox>
@@ -59,6 +62,9 @@
                                              <HBox.margin>
                                                 <Insets left="20.0" />
                                              </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </Label>
                                        </children>
                                     </HBox>
@@ -114,7 +120,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="home_button">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#openPlaylist" styleClass="home_button">
                      <graphic>
                         <HBox alignment="CENTER_LEFT">
                            <children>
@@ -124,16 +130,19 @@
                                     <SVGPath content="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16 " fill="TRANSPARENT" scaleZ="2.0" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" translateY="4.0" />
                                  </children>
                               </StackPane>
-                              <Label maxHeight="1.7976931348623157E308" text="Home">
+                              <Label maxHeight="1.7976931348623157E308" text="Playlist ">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
                            </children>
                         </HBox>
                      </graphic>
                   </Button>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#openTrack" styleClass="home_button">
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#explorePlaylist" styleClass="home_button">
                      <graphic>
                         <HBox alignment="CENTER_LEFT">
                            <children>
@@ -143,10 +152,13 @@
                                     <SVGPath content="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16 " fill="TRANSPARENT" scaleZ="2.0" stroke="#b2b2b2" strokeLineCap="ROUND" strokeWidth="2.0" styleClass="svg_path" translateY="4.0" />
                                  </children>
                               </StackPane>
-                              <Label maxHeight="1.7976931348623157E308" text="ciao">
+                              <Label fx:id="exploreButton" maxHeight="1.7976931348623157E308" text="Esplora">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
                            </children>
                         </HBox>
@@ -169,7 +181,10 @@
                </StackPane.margin></ScrollPane>
             <HBox fx:id="header_hbox" alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" spacing="15.0" style="-fx-background-color: red;" styleClass="hbox_header">
                <children>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onMouseClicked="#openWindow" styleClass="header_buttons" text="login" />
+                  <Button fx:id="loginButton" mnemonicParsing="false" onMouseClicked="#openWindow" styleClass="header_buttons" text="login">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
                <StackPane.margin>
                   <Insets />

@@ -19,12 +19,12 @@
          <children>
             <FlowPane>
                <children>
-                  <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" onMouseClicked="#openImages" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <image>
-                        <Image url="@../imgs/matita.png" />
+                        <Image url="@../imgs/playlist_img/img1.png" />
                      </image>
                   </ImageView>
                   <HBox>
@@ -63,9 +63,17 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </VBox>
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0">
+                        <HBox fx:id="buttonCont" alignment="BOTTOM_CENTER" prefHeight="100.0" spacing="70.0">
                            <children>
-                              <Button fx:id="createButton" mnemonicParsing="false" onMouseClicked="#registraPlaylist" styleClass="button_cp" text="Crea">
+                              <Button fx:id="editButton" mnemonicParsing="false" styleClass="button_cp" text="Edit">
+                                 <font>
+                                    <Font name="Arial Bold" size="35.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="deleteButton" layoutX="15.0" layoutY="61.0" mnemonicParsing="false" styleClass="button_cp" text="Delete">
                                  <font>
                                     <Font name="Arial Bold" size="35.0" />
                                  </font>
@@ -87,7 +95,7 @@
             </FlowPane>
             <VBox fx:id="tableContainer" spacing="30.0">
                <children>
-                  <VBox fillWidth="false" spacing="15.0">
+                  <VBox fx:id="editcontainter" fillWidth="false" spacing="15.0">
                      <children>
                         <Label text="Cerchiamo qualcosa per la tua playlist">
                            <font>
