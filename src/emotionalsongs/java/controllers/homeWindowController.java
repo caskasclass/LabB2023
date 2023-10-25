@@ -4,7 +4,6 @@ import Session.WindowAppearance;
 import Threads.ResizeHandler;
 import WindowsLoader.SignWindow;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -25,11 +24,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import views.HomeView;
 import views.PlaylistView;
-import views.CanzoneView;
 import views.CreatePlaylistView;
 import views.ExplorePlaylistView;
 import javafx.stage.Stage;
-import tmp.Canzone;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 
@@ -204,6 +201,8 @@ public class homeWindowController {
 
     public void explorePlaylist(MouseEvent e){
         ExplorePlaylistView view = new ExplorePlaylistView();
+        view.prefWidthProperty().bind(centerScrollPane.widthProperty());
+        view.prefHeightProperty().bind(centerScrollPane.heightProperty());
         centerScrollPane.setContent(view);
     }
 

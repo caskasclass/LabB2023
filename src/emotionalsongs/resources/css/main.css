@@ -526,3 +526,7 @@
   -fx-scale-y: 1.04;
 }
 
+.explore_label{
+  -fx-font-size: 32px;
+  font-size: 32px;
+}
