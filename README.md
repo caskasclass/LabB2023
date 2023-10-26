@@ -137,7 +137,7 @@ Sulla vista che volete fare mettete il nome di fianco
   2. Vista Tabella con tutte le canzoni (barbio) 
   3. Vista playlist (*beaby*) 
   Separatore per le mie playlist e l’esplora
-  4. Vista creazione playlist (*beaby*)
+  4. Vista creazione playlist (*beaby*) [x] 
   5. Vista home (*casca*)  [x]  
 
 * Inoltre 
@@ -147,7 +147,7 @@ Sulla vista che volete fare mettete il nome di fianco
 - Aggiungere finestra per fare il login/logout(*beaby*) [x] 
   (Aggiunta controlli per i campi della registrazione)
  
--	Aggiunta finestra per aggiungere le immagini alla playlist con blocco della finestra sottostante (opzionale blurr)(*beaby*)
+-	Aggiunta finestra per aggiungere le immagini alla playlist con blocco della finestra sottostante (opzionale blurr)(*beaby*) [x] 
 
 - Creazione del server RMI per la creazione del server (*barbio*)
  

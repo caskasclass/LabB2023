@@ -69,7 +69,7 @@ public class creazionePlaylistController {
     }
 
     private void initializeElements(double width) {
-        
+        playlistTracks.prefWidthProperty().bind(container.widthProperty());
         playlistTracks.setMinHeight(300);
         playlistTracks.setVisible(false);
         tableContainer.getChildren().add(0,playlistTracks);
@@ -114,6 +114,9 @@ public class creazionePlaylistController {
         window.show();
     }
 
+    public void registraPlaylist(MouseEvent e){
+        System.out.println("creata");
+    }
 
 
 

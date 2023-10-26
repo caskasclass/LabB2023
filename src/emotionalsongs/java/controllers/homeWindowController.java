@@ -23,10 +23,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import views.HomeView;
-import views.CanzoneView;
+import views.PlaylistView;
 import views.CreatePlaylistView;
+import views.ExplorePlaylistView;
 import javafx.stage.Stage;
-import tmp.Canzone;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 
@@ -113,6 +113,7 @@ public class homeWindowController {
         // per il colore sul SCROLL
         centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
 
+
     }
 
     private void handleScrollEvent(ScrollEvent event) {
@@ -183,6 +184,8 @@ public class homeWindowController {
     public void openViewCreate(MouseEvent e) {
 
         CreatePlaylistView view = new CreatePlaylistView();
+        view.prefWidthProperty().bind(centerScrollPane.widthProperty());
+        view.prefHeightProperty().bind(centerScrollPane.heightProperty());
         centerScrollPane.setContent(view);
     }
 
@@ -191,13 +194,16 @@ public class homeWindowController {
         centerScrollPane.setContent(view);
     }
 
-    public void openTrack(MouseEvent e) {
-       Canzone vera = new Canzone("ciao","bello");
-       CanzoneView showCanzoneView = new CanzoneView(vera);
+    public void openPlaylist(MouseEvent e){
+        PlaylistView view = new PlaylistView();
+        centerScrollPane.setContent(view);
+}
 
-       centerScrollPane.setContent(showCanzoneView);
-       
-
+    public void explorePlaylist(MouseEvent e){
+        ExplorePlaylistView view = new ExplorePlaylistView();
+        view.prefWidthProperty().bind(centerScrollPane.widthProperty());
+        view.prefHeightProperty().bind(centerScrollPane.heightProperty());
+        centerScrollPane.setContent(view);
     }
 
 }

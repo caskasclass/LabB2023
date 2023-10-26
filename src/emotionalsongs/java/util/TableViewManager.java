@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import tmp.Canzone;
@@ -20,6 +21,7 @@ public class TableViewManager extends TableView<Canzone> {
 
     public TableViewManager(boolean def, boolean add) {
         super();
+
         this.getStyleClass().add("tableView");
         TableColumn<Canzone, Integer> indexColumn = new TableColumn<>("#");
         indexColumn.setMinWidth(50);
@@ -53,6 +55,11 @@ public class TableViewManager extends TableView<Canzone> {
         trackName3.setMinWidth(100);
         //trackName3.setPrefWidth(100); // in % ?, gia.. va fatto. Per ora rimane cosi tho
         //trackName3.setMaxWidth(100);
+        trackName.prefWidthProperty().bind(this.widthProperty().divide(6)); // Dividi lo spazio in due colonne
+        album.prefWidthProperty().bind(this.widthProperty().divide(6)); 
+        trackName2.prefWidthProperty().bind(this.widthProperty().divide(6)); // Dividi lo spazio in due colonne
+        album2.prefWidthProperty().bind(this.widthProperty().divide(6));
+        trackName3.prefWidthProperty().bind(this.widthProperty().divide(6));
         this.getColumns().add(trackName);
         this.getColumns().add(album);
         this.getColumns().add(trackName2);
@@ -64,6 +71,7 @@ public class TableViewManager extends TableView<Canzone> {
             TableColumn<Canzone, Button> buttonCol = new TableColumn<>("Button");
             buttonCol.setMinWidth(75);
             buttonCol.setMaxWidth(75);
+
             this.getColumns().add(buttonCol);
              // Add a button to the button column for each row
             buttonCol.setCellFactory(param -> {
@@ -97,6 +105,7 @@ public class TableViewManager extends TableView<Canzone> {
             TableColumn<Canzone, Button> buttonCol = new TableColumn<>("Button");
             buttonCol.setMinWidth(75);
             buttonCol.setMaxWidth(75);
+            
             this.getColumns().add(buttonCol);
              // Add a button to the button column for each row
             buttonCol.setCellFactory(param -> {
@@ -119,10 +128,15 @@ public class TableViewManager extends TableView<Canzone> {
 
             button.setOnAction(event -> {
 
-                contr.playlistTracks.setVisible(true);
-                
+                creazionePlaylistController.playlistTracks.setVisible(true);
+                TableView<Canzone> tmp = cell.getTableView(); 
+                VBox p = (VBox) tmp.getParent();
                 Canzone canzone = cell.getTableView().getItems().get(cell.getIndex());
-                contr.playlistTracks.getItems().add(canzone);
+                tmp.getItems().remove(canzone);
+                ((TableView<Canzone>) p.getChildren().get(0)).getItems().add(canzone);
+ 
+                //creazionePlaylistController.playlistTracks.getItems().add(canzone);
+                //creazionePlaylistController.findTracks.getItems().remove(canzone);
                 
             });
 
@@ -152,16 +166,21 @@ public class TableViewManager extends TableView<Canzone> {
                 }
             };
 
-            button.setOnAction(event -> {         
+            button.setOnAction(event -> {      
+                TableView<Canzone> tmp = cell.getTableView(); 
+                VBox p = (VBox) tmp.getParent();
                 Canzone canzone = cell.getTableView().getItems().get(cell.getIndex());
-                contr.playlistTracks.getItems().remove(canzone);
+                tmp.getItems().remove(canzone);
+                ((TableView<Canzone>) p.getChildren().get(2)).getItems().add(canzone);
+                //creazionePlaylistController.playlistTracks.getItems().remove(canzone);
+                //creazionePlaylistController.findTracks.getItems().add(canzone);
                 
             });
 
             return cell;
         });
         }
-
+        this.getColumns().forEach(column -> column.setReorderable(false));
        
 
         // per aprire view canzone: scegliere se singolo click o doppio
