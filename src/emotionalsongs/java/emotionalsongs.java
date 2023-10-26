@@ -1,9 +1,12 @@
 
 import java.io.IOException;
+import java.util.Scanner;
+import java.rmi.registry.*;
 import Session.WindowAppearance;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import util.ApplicationManager;
+import tmp.ServerInterface;
 
 /**
  * Hello world!
@@ -20,12 +23,15 @@ public class emotionalsongs extends Application {
         WindowAppearance.calculateWindowDimensions();
         ApplicationManager startPoint = new ApplicationManager();
         /*try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 8080);
+            System.out.println("\n\nHellooo\n\n\n");
+            Registry registry = LocateRegistry.getRegistry("192.168.2.70", 9999);
             ServerInterface stub = null;
             stub = (ServerInterface) registry.lookup("SERVER");
             Scanner sc = new Scanner(System.in);
-            System.out.println("Premi un tasto : ");
-            stub.SayHi("Casca");
+            System.out.println("Come ti chiami : ");
+            String name = sc.nextLine();
+            stub.ciao(name);
+            sc.close();
 
         } catch (Exception e) {
             e.printStackTrace();
