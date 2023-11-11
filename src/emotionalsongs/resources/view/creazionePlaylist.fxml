@@ -19,16 +19,16 @@
          <children>
             <FlowPane>
                <children>
-                  <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" onMouseClicked="#openImages" pickOnBounds="true" preserveRatio="true">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <image>
-                        <Image url="@../imgs/matita.png" />
-                     </image>
-                  </ImageView>
-                  <HBox>
+                  <HBox spacing="20.0">
                      <children>
+                        <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" onMouseClicked="#openImages" pickOnBounds="true" preserveRatio="true" styleClass="img">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../imgs/matita.png" />
+                           </image>
+                        </ImageView>
                         <VBox alignment="BOTTOM_LEFT" nodeOrientation="LEFT_TO_RIGHT">
                            <children>
                               <Label text="Playlist pubblica">
@@ -59,26 +59,23 @@
                                  </font>
                               </Label>
                            </children>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
                         </VBox>
-                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0">
-                           <children>
-                              <Button fx:id="createButton" mnemonicParsing="false" onMouseClicked="#registraPlaylist" styleClass="button_cp" text="Crea">
-                                 <font>
-                                    <Font name="Arial Bold" size="35.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets left="5.0" right="5.0" />
-                           </padding>
-                        </HBox>
                      </children>
+                  </HBox>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="100.0">
+                     <children>
+                        <Button fx:id="createButton" mnemonicParsing="false" onMouseClicked="#registraPlaylist" styleClass="button_cp" text="Crea">
+                           <font>
+                              <Font name="Arial Bold" size="35.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
                   </HBox>
                </children>
                <VBox.margin>

@@ -530,3 +530,11 @@
   -fx-font-size: 32px;
   font-size: 32px;
 }
+
+.img{
+  -fx-border: 2px;
+  border:2px;
+  -fx-border-color: rgb(142, 140, 140);
+  -fx-border-width: 2px;
+
+}
