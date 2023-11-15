@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import tmp.Canzone;
+import pkg.Track;
 import util.BackgroundTransition;
 import util.TableViewManager;
 import views.AlbumView;
@@ -246,19 +246,18 @@ public class homeViewController {
     }
 
     private void setTopTracks() {
-        TableViewManager topTracks = new TableViewManager(true,false);
+        TableViewManager topTracks = new TableViewManager(true, false);
         topTracks.setMinHeight(300);
-        ObservableList<Canzone> data = FXCollections.observableArrayList(
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"));
+        ObservableList<Track> data = FXCollections.observableArrayList(
+            new Track("1", "Song 1", 180, "Artist 1", "Album 1", "img0", "img1", "img2"),
+            new Track("2", "Song 2", 180, "Artist 2", "Album 2", "img3", "img4", "img5"),
+            new Track("3", "Song 3", 180, "Artist 3", "Album 3", "img6", "img7", "img8"),
+            new Track("4", "Song 4", 180, "Artist 4", "Album 4", "img9", "img10", "img11"),
+            new Track("5", "Song 5", 180, "Artist 5", "Album 5", "img12", "img13", "img14")
+        );
         topTracks.setItems(data);
         tableViewContainer.getChildren().add(topTracks);
         VBox.setVgrow(topTracks, Priority.ALWAYS);
-       //
-
     }
 
     private void fillGrid(int columns, int rows) {
