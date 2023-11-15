@@ -4,23 +4,21 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
-import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.effect.BoxBlur;
+import pkg.Track;
 import util.TableViewManager;
+import WindowsLoader.ImagesWindow;
 
 import java.net.URL;
 import java.util.ArrayList;
 
-import WindowsLoader.ImagesWindow;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import tmp.Canzone;
-import javafx.scene.effect.BoxBlur;
-
 
 public class creazionePlaylistController {
 
@@ -46,35 +44,32 @@ public class creazionePlaylistController {
     private VBox tableContainer;
 
     static URL img;
-    public static TableViewManager playlistTracks = new TableViewManager(false,false); 
-    public static TableViewManager findTracks = new TableViewManager(false,true);
+    public static TableViewManager playlistTracks = new TableViewManager(false, false);
+    public static TableViewManager findTracks = new TableViewManager(false, true);
 
     @FXML
     void initialize() {
 
-        
-        //crea una array list di test delle canzoni e inizializzalo con 5 caznoni
-        ArrayList<Canzone> canzoni = new ArrayList<Canzone>();
-        canzoni.add(new Canzone("Canzone1","Album1"));
-        canzoni.add(new Canzone("Canzone2","Album2"));
-        canzoni.add(new Canzone("Canzone3","Album3"));
-        canzoni.add(new Canzone("Canzone4","Album4"));
-        canzoni.add(new Canzone("Canzone5","Album5"));
-
+        // crea un array list di test delle canzoni e inizializzalo con 5 canzoni
+        ArrayList<Track> canzoni = new ArrayList<>();
+        canzoni.add(new Track("1", "Song 1", 180, "Artist 1", "Album 1", "img0", "img1", "img2"));
+        canzoni.add(new Track("2", "Song 2", 180, "Artist 2", "Album 2", "img3", "img4", "img5"));
+        canzoni.add(new Track("3", "Song 3", 180, "Artist 3", "Album 3", "img6", "img7", "img8"));
+        canzoni.add(new Track("4", "Song 4", 180, "Artist 4", "Album 4", "img9", "img10", "img11"));
+        canzoni.add(new Track("5", "Song 5", 180, "Artist 5", "Album 5", "img12", "img13", "img14"));
 
         Platform.runLater(() -> {
             double width = container.getWidth() - 10;
-            initializeElements(width);
+            initializeElements(width, canzoni);
         });
     }
 
-    private void initializeElements(double width) {
+    private void initializeElements(double width, ArrayList<Track> canzoni) {
         playlistTracks.prefWidthProperty().bind(container.widthProperty());
         playlistTracks.setMinHeight(300);
         playlistTracks.setVisible(false);
-        tableContainer.getChildren().add(0,playlistTracks);
+        tableContainer.getChildren().add(0, playlistTracks);
 
-        
         findTracks.setMinHeight(300);
         findTracks.setVisible(false);
         cerca.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -85,19 +80,12 @@ public class creazionePlaylistController {
             }
         });
         tableContainer.getChildren().add(findTracks);
-        ObservableList<Canzone> data = FXCollections.observableArrayList(
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"));
+
+        ObservableList<Track> data = FXCollections.observableArrayList(canzoni);
         findTracks.setItems(data);
-
-
     }
 
-
-    public void openImages(MouseEvent e){
+    public void openImages(MouseEvent e) {
         Stage parent = (Stage) createButton.getScene().getWindow();
         ImagesWindow window = new ImagesWindow(playlistImage);
         window.initOwner(parent);
@@ -110,15 +98,11 @@ public class creazionePlaylistController {
             parent.getScene().getRoot().setEffect(null);
             parent.getScene().getRoot().setDisable(false);
         });
-    
+
         window.show();
     }
 
-    public void registraPlaylist(MouseEvent e){
+    public void registraPlaylist(MouseEvent e) {
         System.out.println("creata");
     }
-
-
-
-    
 }

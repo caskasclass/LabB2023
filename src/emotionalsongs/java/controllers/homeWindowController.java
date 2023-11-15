@@ -190,13 +190,11 @@ public class homeWindowController {
     public void openViewCreate(MouseEvent e) {
 
         CreatePlaylistView view = new CreatePlaylistView();
-        view.prefWidthProperty().bind(centerScrollPane.widthProperty());
-        view.prefHeightProperty().bind(centerScrollPane.heightProperty());
         centerScrollPane.setContent(view);
     }
 
     public void openAllTrack(MouseEvent e) {
-        AllTrackView view = new AllTrackView(new ArrayList<Track>());
+        AllTrackView view = new AllTrackView();
         view.prefWidthProperty().bind(centerScrollPane.widthProperty());
         view.prefHeightProperty().bind(centerScrollPane.heightProperty());
         centerScrollPane.setContent(view);

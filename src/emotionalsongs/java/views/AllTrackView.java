@@ -1,22 +1,19 @@
 package views;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import controllers.allTrackViewController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import pkg.Track;
 import util.FXMLLoaders;
 
-public class AllTrackView extends StackPane{
+public class AllTrackView extends VBox {
     FXMLLoaders fxmlutil = new FXMLLoaders();
 
-    public AllTrackView(ArrayList<Track> trackList) {
+    public AllTrackView() {
 
         FXMLLoader loader = fxmlutil.getLoader("AllTrackView.fxml");
-        allTrackViewController controller = new allTrackViewController(trackList);
+        allTrackViewController controller = new allTrackViewController();
 
         loader.setController(controller);
         try {
