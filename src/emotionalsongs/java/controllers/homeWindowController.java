@@ -216,6 +216,8 @@ public class homeWindowController {
 
     public void explorePlaylist(MouseEvent e) {
         ExplorePlaylistView view = new ExplorePlaylistView();
+        view.prefWidthProperty().bind(centerScrollPane.widthProperty());
+        view.prefHeightProperty().bind(centerScrollPane.heightProperty());
         centerScrollPane.setContent(view);
     }
 

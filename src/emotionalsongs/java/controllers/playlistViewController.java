@@ -62,6 +62,7 @@ public class playlistViewController {
 
         mainTable.setMinHeight(400);
         addTable.setMinHeight(400);
+        addTable.setVisible(false);
         editTable.setMinHeight(400);
 
         tableContainer.getChildren().add(0, mainTable);
@@ -84,6 +85,14 @@ public class playlistViewController {
         mainTable.setItems(data);
         editTable.setItems(data);
         addTable.setItems(data2);
+
+        cerca.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                addTable.setVisible(false); // Hide TableView when the TextField is empty
+            } else {
+                addTable.setVisible(true); // Show TableView when there is text in the TextField
+            }
+        });
 
         editButton.setOnMouseClicked(event -> {
             if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {

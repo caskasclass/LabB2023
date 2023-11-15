@@ -80,8 +80,8 @@ public class TableViewManager extends TableView<Track> {
 
     private void addButtonColumn(String buttonText, ButtonClickHandler handler) {
         TableColumn<Track, Button> buttonCol = new TableColumn<>("Button");
-        buttonCol.setMinWidth(75);
-        buttonCol.setMaxWidth(75);
+        buttonCol.setMinWidth(150);
+        buttonCol.setMaxWidth(150);
         this.getColumns().add(buttonCol);
 
         buttonCol.setCellFactory(param -> {
