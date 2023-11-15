@@ -24,9 +24,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import views.HomeView;
 import views.PlaylistView;
+import views.CanzoneView;
 import views.CreatePlaylistView;
 import views.ExplorePlaylistView;
 import javafx.stage.Stage;
+import tmp.Canzone;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 
@@ -198,6 +200,10 @@ public class homeWindowController {
         PlaylistView view = new PlaylistView();
         centerScrollPane.setContent(view);
 }
+    public void openTrack(MouseEvent e){
+        CanzoneView view = new CanzoneView(new Canzone());
+        centerScrollPane.setContent(view);
+    }
 
     public void explorePlaylist(MouseEvent e){
         ExplorePlaylistView view = new ExplorePlaylistView();

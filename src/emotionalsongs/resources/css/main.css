@@ -538,3 +538,55 @@
   -fx-border-width: 2px;
 
 }
+
+.choiceBox{
+  -fx-mark-color: rgb(255, 255, 255);
+  -fx-background-color:#121212;
+  background-color:#121212;
+  -fx-prompt-text-fill:rgba(111, 108, 108, 0.651);
+  -fx-text-fill: rgb(255,255,255);
+  -fx-padding: -5 0 0 -2;
+  padding: -5 0 0 -2;
+  -fx-cursor: text;
+  cursor: text;
+  -fx-border-color:#121212#121212 rgba(111, 108, 108, 0.651)#121212;
+  border-color:#121212#121212 rgba(111, 108, 108, 0.651)#121212;
+  -fx-border-width: 2;
+  border-width: 2;
+  -fx-border-radius:3;
+  border-radius:3;
+  
+}
+
+
+
+.choiceBox .label{
+
+  -fx-alignment:CENTER;
+}
+
+
+.choiceBox:hover{
+  -fx-prompt-text-fill:rgb(255, 255, 255);
+  -fx-border-color:#121212#121212 rgb(255, 255, 255)#121212;
+  border-color:#121212#121212 rgb(255, 255, 255)#121212;
+}
+
+
+.choiceBox:active{
+  -fx-border-color:#121212#121212 rgb(255, 255, 255)#121212;
+  border-color:#121212#121212 rgb(255, 255, 255)#121212;
+}
+
+.choiceBox .context-menu{
+  -fx-background-color: #303030;
+  background-color: #303030;
+}
+.choiceBox .menu-item { 
+  -fx-pref-width: 100;
+}
+.choiceBox .menu-item:focused { -fx-background-color: rgb(91, 91, 91);
+  background-color: rgb(91, 91, 91); }
+.choiceBox .menu-item > .label { -fx-text-fill: white; }
+
+.choiceBox .menu-item:focused > .label { -fx-text-fill: white; }
