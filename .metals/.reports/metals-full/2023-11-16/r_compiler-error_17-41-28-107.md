@@ -1,3 +1,13 @@
+file:///C:/Users/hp/Desktop/LabB/LabB2023/src/emotionalsongs/java/controllers/creazionePlaylistController.java
+### java.lang.OutOfMemoryError: Java heap space
+
+occurred in the presentation compiler.
+
+action parameters:
+offset: 1778
+uri: file:///C:/Users/hp/Desktop/LabB/LabB2023/src/emotionalsongs/java/controllers/creazionePlaylistController.java
+text:
+```scala
 package controllers;
 
 import javafx.application.Platform;
@@ -11,14 +21,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.effect.BoxBlur;
-import pkg.ServerInterface;
 import pkg.Track;
 import util.TableViewManager;
 import WindowsLoader.ImagesWindow;
 
 import java.net.URL;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 import javafx.stage.Stage;
@@ -59,15 +66,15 @@ public class creazionePlaylistController {
         canzoni.add(new Track("2", "Song 2", 180, "Artist 2", "Album 2", "img3", "img4", "img5"));
         canzoni.add(new Track("3", "Song 3", 180, "Artist 3", "Album 3", "img6", "img7", "img8"));
         canzoni.add(new Track("4", "Song 4", 180, "Artist 4", "Album 4", "img9", "img10", "img11"));
-        canzoni.add(new Track("5", "Song 5", 180, "Artist 5", "Album 5", "img12", "img13", "img14"));*/
+        canzoni.add(new Track("5"@@, "Song 5", 180, "Artist 5", "Album 5", "img12", "img13", "img14"));*/
 
         Platform.runLater(() -> {
             double width = container.getWidth() - 10;
-            initializeElements(width);
+            initializeElements(width, canzoni);
         });
     }
 
-    private void initializeElements(double width) {
+    private void initializeElements(double width, ArrayList<Track> canzoni) {
         playlistTracks.prefWidthProperty().bind(container.widthProperty());
         playlistTracks.setMinHeight(300);
         playlistTracks.setVisible(false);
@@ -84,16 +91,8 @@ public class creazionePlaylistController {
         });
         tableContainer.getChildren().add(findTracks);
 
-        try {
-            Registry r = LocateRegistry.getRegistry(1099);
-        ServerInterface si = (ServerInterface) r.lookup("SERVER");
-        ArrayList<String> ar = si.getTrackId("Ricordami");
-        ArrayList<Track> res = si.getAllTrackInformation(ar, 0, ar.size());
-        ObservableList<Track> o = FXCollections.observableArrayList(res);
-        findTracks.setItems(o);
-        } catch (Exception e) {
-            System.out.println(e);        }
-
+        ObservableList<Track> data = FXCollections.observableArrayList(canzoni);
+        findTracks.setItems(data);
     }
 
     public void openImages(MouseEvent e) {
@@ -117,3 +116,16 @@ public class creazionePlaylistController {
         System.out.println("creata");
     }
 }
+
+```
+
+
+
+#### Error stacktrace:
+
+```
+
+```
+#### Short summary: 
+
+java.lang.OutOfMemoryError: Java heap space

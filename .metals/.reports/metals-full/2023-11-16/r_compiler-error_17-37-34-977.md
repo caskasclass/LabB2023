@@ -1,3 +1,13 @@
+file:///C:/Users/hp/Desktop/LabB/LabB2023/src/emotionalsongs/java/controllers/creazionePlaylistController.java
+### java.util.NoSuchElementException: next on empty iterator
+
+occurred in the presentation compiler.
+
+action parameters:
+offset: 1295
+uri: file:///C:/Users/hp/Desktop/LabB/LabB2023/src/emotionalsongs/java/controllers/creazionePlaylistController.java
+text:
+```scala
 package controllers;
 
 import javafx.application.Platform;
@@ -11,14 +21,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.effect.BoxBlur;
-import pkg.ServerInterface;
 import pkg.Track;
 import util.TableViewManager;
 import WindowsLoader.ImagesWindow;
 
 import java.net.URL;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 import javafx.stage.Stage;
@@ -54,20 +61,20 @@ public class creazionePlaylistController {
     void initialize() {
 
         // crea un array list di test delle canzoni e inizializzalo con 5 canzoni
-        /*ArrayList<Track> canzoni = new ArrayList<>();
+        A@@rrayList<Track> canzoni = new ArrayList<>();
         canzoni.add(new Track("1", "Song 1", 180, "Artist 1", "Album 1", "img0", "img1", "img2"));
         canzoni.add(new Track("2", "Song 2", 180, "Artist 2", "Album 2", "img3", "img4", "img5"));
         canzoni.add(new Track("3", "Song 3", 180, "Artist 3", "Album 3", "img6", "img7", "img8"));
         canzoni.add(new Track("4", "Song 4", 180, "Artist 4", "Album 4", "img9", "img10", "img11"));
-        canzoni.add(new Track("5", "Song 5", 180, "Artist 5", "Album 5", "img12", "img13", "img14"));*/
+        canzoni.add(new Track("5", "Song 5", 180, "Artist 5", "Album 5", "img12", "img13", "img14"));
 
         Platform.runLater(() -> {
             double width = container.getWidth() - 10;
-            initializeElements(width);
+            initializeElements(width, canzoni);
         });
     }
 
-    private void initializeElements(double width) {
+    private void initializeElements(double width, ArrayList<Track> canzoni) {
         playlistTracks.prefWidthProperty().bind(container.widthProperty());
         playlistTracks.setMinHeight(300);
         playlistTracks.setVisible(false);
@@ -84,16 +91,8 @@ public class creazionePlaylistController {
         });
         tableContainer.getChildren().add(findTracks);
 
-        try {
-            Registry r = LocateRegistry.getRegistry(1099);
-        ServerInterface si = (ServerInterface) r.lookup("SERVER");
-        ArrayList<String> ar = si.getTrackId("Ricordami");
-        ArrayList<Track> res = si.getAllTrackInformation(ar, 0, ar.size());
-        ObservableList<Track> o = FXCollections.observableArrayList(res);
-        findTracks.setItems(o);
-        } catch (Exception e) {
-            System.out.println(e);        }
-
+        ObservableList<Track> data = FXCollections.observableArrayList(canzoni);
+        findTracks.setItems(data);
     }
 
     public void openImages(MouseEvent e) {
@@ -117,3 +116,25 @@ public class creazionePlaylistController {
         System.out.println("creata");
     }
 }
+
+```
+
+
+
+#### Error stacktrace:
+
+```
+scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	scala.collection.IterableOps.head(Iterable.scala:222)
+	scala.collection.IterableOps.head$(Iterable.scala:222)
+	scala.collection.AbstractIterable.head(Iterable.scala:933)
+	dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:168)
+	scala.meta.internal.pc.MetalsDriver.run(MetalsDriver.scala:45)
+	scala.meta.internal.pc.HoverProvider$.hover(HoverProvider.scala:34)
+	scala.meta.internal.pc.ScalaPresentationCompiler.hover$$anonfun$1(ScalaPresentationCompiler.scala:329)
+```
+#### Short summary: 
+
+java.util.NoSuchElementException: next on empty iterator

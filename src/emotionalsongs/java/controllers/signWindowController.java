@@ -1,5 +1,7 @@
 package controllers;
 import java.lang.String;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pkg.ServerInterface;
+import pkg.User;
 
 public class signWindowController {
 
@@ -61,8 +65,22 @@ public class signWindowController {
             msgErr.setText("la password deve avere aleno 6 caratteri di cui un numero");
         }
         else{
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.close();
+            try {
+            Registry r = LocateRegistry.getRegistry("localhost",1099);
+            ServerInterface si = (ServerInterface) r.lookup("SERVER");
+            User u = si.access(id.getText(), password.getText());
+            if (u == null){
+                msgErr.setText("utente non trovato");
+            }
+            else{
+                System.out.println(u.getCity());
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                stage.close();
+            }
+            
+            } catch (Exception ex) {
+                System.out.println(ex);        }
+            
         }
 
         /*

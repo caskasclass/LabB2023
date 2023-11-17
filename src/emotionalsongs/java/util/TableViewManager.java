@@ -34,7 +34,7 @@ public class TableViewManager extends TableView<Track> {
         trackName.setMinWidth(100);
 
         TableColumn<Track, String> album = new TableColumn<>("Album");
-        album.setCellValueFactory(new PropertyValueFactory<>("album"));
+        album.setCellValueFactory(new PropertyValueFactory<>("album_name"));
         album.setMinWidth(100);
 
         TableColumn<Track, String> trackName2 = new TableColumn<>("Name2");
@@ -42,7 +42,7 @@ public class TableViewManager extends TableView<Track> {
         trackName2.setMinWidth(100);
 
         TableColumn<Track, String> album2 = new TableColumn<>("Album2");
-        album2.setCellValueFactory(new PropertyValueFactory<>("album"));
+        album2.setCellValueFactory(new PropertyValueFactory<>("album_name"));
         album2.setMinWidth(100);
 
         TableColumn<Track, String> trackName3 = new TableColumn<>("Name3");
