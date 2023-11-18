@@ -6,6 +6,8 @@ pom.xml
 # Configurazione specifica dell'IDE (Esempio: IntelliJ IDEA)
 .idea/
 .vscode/
+.DS_Store
+
 
 # File di log
 *.log

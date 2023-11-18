@@ -1,12 +1,12 @@
 
 import java.io.IOException;
-import java.util.Scanner;
 import java.rmi.registry.*;
 import Session.WindowAppearance;
+import jars.ServerInterface;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import util.ApplicationManager;
-import tmp.ServerInterface;
+
 
 /**
  * Hello world!
@@ -22,22 +22,19 @@ public class emotionalsongs extends Application {
     public void start(Stage primaryStage) throws IOException {
         WindowAppearance.calculateWindowDimensions();
         ApplicationManager startPoint = new ApplicationManager();
-        /*try {
+        try {
             System.out.println("\n\nHellooo\n\n\n");
-            Registry registry = LocateRegistry.getRegistry("192.168.2.70", 9999);
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", ServerInterface.PORT);
             ServerInterface stub = null;
             stub = (ServerInterface) registry.lookup("SERVER");
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Come ti chiami : ");
-            String name = sc.nextLine();
-            stub.ciao(name);
-            sc.close();
+            stub.ciao();
+
 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Errore di connessione ... ignorare per ora ...");
-        }*/
-        
+        }
+    
         startPoint.initialize();
 
     }

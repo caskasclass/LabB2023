@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import jars.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -91,6 +93,9 @@ public class signUpViewController {
         }
         else{
             msgErr.setText("tutto corretto");
+
+            User newuser = new User(username.getText(), nome.getText(), nome.getText(), cf.getText(), residenza.getText() , Integer.parseInt(cap.getText()), citta.getText(), mail.getText(), password.getText());
+            System.out.println(newuser.toString());
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
         }

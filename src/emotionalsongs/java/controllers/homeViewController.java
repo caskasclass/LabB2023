@@ -253,6 +253,14 @@ public class homeViewController {
                 new Canzone("Jane", "Smith"),
                 new Canzone("Alice", "Johnson"),
                 new Canzone("John", "Doe"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
+                new Canzone("John", "Doe"),
+                new Canzone("Jane", "Smith"),
+                new Canzone("Alice", "Johnson"),
+                new Canzone("John", "Doe"),
                 new Canzone("Jane", "Smith"));
         topTracks.setItems(data);
         tableViewContainer.getChildren().add(topTracks);
