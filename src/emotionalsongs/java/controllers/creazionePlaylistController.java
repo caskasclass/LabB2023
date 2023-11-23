@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.effect.BoxBlur;
-import jars.*;
+import pkg.*;
 import util.TableViewManager;
 import WindowsLoader.ImagesWindow;
 

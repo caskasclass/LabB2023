@@ -19,7 +19,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import pkg.Track;
-import jars.TrackDetails;
+import pkg.TrackDetails;
 import util.BackgroundTransition;
 import util.TableViewManager;
 import views.AlbumView;
@@ -255,10 +255,12 @@ public class homeViewController {
         HomeModule homeModule = new HomeModule();
         ArrayList<TrackDetails> topT = homeModule.getToptracks();
 
-        ObservableList<pkg.Track> data = FXCollections.observableArrayList();
+        ObservableList<Track> data = FXCollections.observableArrayList();
         for (TrackDetails track : topT) {
             data.add(track.track);
         }
+        topTracks.setItems(data);
+        System.out.println("Size of data in homeView : " + data.size());
         tableViewContainer.getChildren().add(topTracks);
         VBox.setVgrow(topTracks, Priority.ALWAYS);
     }

@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import jars.*;
+import pkg.*;
 
 
 public class signWindowController {
@@ -73,7 +73,7 @@ public class signWindowController {
                 msgErr.setText("utente non trovato");
             }
             else{
-                System.out.println(u.getCittà());
+                System.out.println(u.getCity());
                 Stage stage = (Stage) loginButton.getScene().getWindow();
                 stage.close();
             }

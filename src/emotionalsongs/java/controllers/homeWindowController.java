@@ -32,7 +32,7 @@ import views.CanzoneView;
 import views.CreatePlaylistView;
 import views.ExplorePlaylistView;
 import javafx.stage.Stage;
-import jars.*;
+import pkg.*;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 

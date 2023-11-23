@@ -40,7 +40,7 @@ public class TableViewManager extends TableView<Track> {
                 cellData -> new ReadOnlyObjectWrapper<>(this.getItems().indexOf(cellData.getValue()) + 1));
 
         TableColumn<Track, String> album = new TableColumn<>("Album");
-        album.setCellValueFactory(new PropertyValueFactory<>("name"));
+        album.setCellValueFactory(new PropertyValueFactory<>("album_name"));
         album.setMinWidth(75);
 
         TableColumn<Track, String> durata = new TableColumn<>("Dur");
