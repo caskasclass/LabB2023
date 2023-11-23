@@ -1,18 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<fx:root fx:id="rootCanzoneview" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="VBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootCanzoneview" prefHeight="400.0" prefWidth="600.0" spacing="4.0" styleClass="base" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="nomeCanzone" contentDisplay="CENTER" prefHeight="17.0" prefWidth="88.0" text="nome canzone" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../imgs/canzoneprova_img/DALL·E%202022-09-21%2017.05.26%20-%20egyptian%20god%20using%20a%20computer%20in%20a%20temple%20while%20Osiris%20plays%20a%20guitar%20Picasso%20style%20.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="nomeAlbum" contentDisplay="CENTER" prefHeight="17.0" prefWidth="88.0" text="album canzone" />
+      <HBox>
+         <children>
+            <ImageView fx:id="immagineCanzone" fitHeight="130.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <VBox alignment="BOTTOM_LEFT" prefHeight="130.0" prefWidth="421.0">
+               <children>
+                  <Label contentDisplay="CENTER" text="singolo">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nomeCanzone" text="NOME CANZONE">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="infoCanzoni" text="infoCanzoni" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" prefHeight="121.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" text="Valuta la canzone!!!">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Label>
+            <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="104.0" prefWidth="570.0" styleClass="text" stylesheets="@../css/main.css" text="indicare l'intensità dell'emozione percepita durante l'ascolto del brano da 1(per niente) a 5(molto)" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="2.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="30.0" right="30.0" top="30.0" />
+         </padding></VBox>
+      <FlowPane fx:id="containerEvaluation" alignment="CENTER" columnHalignment="CENTER" hgap="90.0" vgap="10.0" />
    </children>
 </fx:root>

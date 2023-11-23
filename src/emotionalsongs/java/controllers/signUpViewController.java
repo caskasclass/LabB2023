@@ -1,7 +1,10 @@
 package controllers;
 
 import java.lang.String;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -13,11 +16,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import util.FXMLLoaders;
+import util.TableViewManager;
 import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import jars.ServerInterface;
+import jars.Track;
+import jars.User;
 
 public class signUpViewController {
     
@@ -73,8 +80,7 @@ public class signUpViewController {
 
     public void registrazione(MouseEvent e) throws IOException {
 
-        String[] s = {cf.getText(), cap.getText(), citta.getText(), nome.getText() , mail.getText(),
-            password.getText(), residenza.getText(), username.getText()};
+        String[] s = { username.getText(), nome.getText(), cf.getText(),residenza.getText(),cap.getText(),citta.getText() ,mail.getText(),password.getText()};
         List<String> s2 = Arrays.asList(s);
         if(s2.contains("")){
             msgErr.setText("non hai compilato tutti i campi");
@@ -93,9 +99,13 @@ public class signUpViewController {
         }
         else{
             msgErr.setText("tutto corretto");
-
-            User newuser = new User(username.getText(), nome.getText(), nome.getText(), cf.getText(), residenza.getText() , Integer.parseInt(cap.getText()), citta.getText(), mail.getText(), password.getText());
-            System.out.println(newuser.toString());
+            User u = new User(username.getText(), nome.getText(), nome.getText(), cf.getText(),residenza.getText(),Integer.parseInt(cap.getText()),citta.getText() ,mail.getText(),password.getText());
+            try {
+            Registry r = LocateRegistry.getRegistry("localhost",1099);
+            ServerInterface si = (ServerInterface) r.lookup("SERVER");
+            si.registration(u);
+            } catch (Exception ex) {
+                System.out.println(ex);        }
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
         }

@@ -12,4 +12,5 @@ pom.xml
 # File di log
 *.log
 logs/
+.*
 

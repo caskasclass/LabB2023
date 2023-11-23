@@ -8,8 +8,8 @@ import javafx.scene.layout.VBox;
 import views.PlaylistBox;
 
 public class explorePlaylistController {
-    
-    
+
+
     @FXML
     private FlowPane MyplaylistBoxContainer;
 

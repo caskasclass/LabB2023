@@ -2,6 +2,9 @@ package controllers;
 
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+
+import Models.HomeModule;
 import Session.WindowAppearance;
 import Session.WindowStyle;
 import javafx.application.Platform;
@@ -15,7 +18,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import tmp.Canzone;
+import pkg.Track;
+import jars.TrackDetails;
 import util.BackgroundTransition;
 import util.TableViewManager;
 import views.AlbumView;
@@ -246,27 +250,17 @@ public class homeViewController {
     }
 
     private void setTopTracks() {
-        TableViewManager topTracks = new TableViewManager(true,false);
+        TableViewManager topTracks = new TableViewManager(true, false);
         topTracks.setMinHeight(300);
-        ObservableList<Canzone> data = FXCollections.observableArrayList(
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"),
-                new Canzone("Alice", "Johnson"),
-                new Canzone("John", "Doe"),
-                new Canzone("Jane", "Smith"));
-        topTracks.setItems(data);
+        HomeModule homeModule = new HomeModule();
+        ArrayList<TrackDetails> topT = homeModule.getToptracks();
+
+        ObservableList<pkg.Track> data = FXCollections.observableArrayList();
+        for (TrackDetails track : topT) {
+            data.add(track.track);
+        }
         tableViewContainer.getChildren().add(topTracks);
         VBox.setVgrow(topTracks, Priority.ALWAYS);
-       //
-
     }
 
     private void fillGrid(int columns, int rows) {

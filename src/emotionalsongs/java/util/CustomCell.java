@@ -1,19 +1,15 @@
 package util;
 
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import pkg.Track;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import tmp.Canzone;
-
-public class CustomCell extends TableCell<Canzone,Void> {
+public class CustomCell extends TableCell<Track,Void> {
         private final HBox hbox = new HBox();
-        private final ImageView imageView = new ImageView();
+        private ImageView imageView = null;
         private final Label trackNameLabel = new Label();
         private final Label authorNameLabel = new Label();
 
@@ -31,7 +27,6 @@ public class CustomCell extends TableCell<Canzone,Void> {
             hbox.getChildren().addAll(imageView,tracksdetails);
 
         }
-
         @Override
         protected void updateItem(Void item, boolean empty) {
             super.updateItem(item, empty);
@@ -39,20 +34,18 @@ public class CustomCell extends TableCell<Canzone,Void> {
             if (empty) {
                 setGraphic(null);
             } else {
-                Canzone track = getTableView().getItems().get(getIndex());
+                Track track = getTableView().getItems().get(getIndex());
                 
 
                 //Set image
-                String url = getClass().getResource("/imgs/playlist_img/img2.png").toExternalForm();
-                Image image = new Image(url);
+                imageView = track.getAlbum_img0();
                 imageView.setFitHeight(43);
                 imageView.setFitWidth(43);
                 imageView.setPreserveRatio(false);
-                imageView.setImage(image);
 
                 // Set track name and author
-                trackNameLabel.setText(track.getTrackName());
-                authorNameLabel.setText(track.getTrackAlbum());
+                trackNameLabel.setText(track.getName());
+                authorNameLabel.setText(track.getArtist_name());
                 
 
                 setGraphic(hbox);

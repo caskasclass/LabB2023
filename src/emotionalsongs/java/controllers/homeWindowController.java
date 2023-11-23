@@ -1,9 +1,12 @@
 package controllers;
 
+import java.util.ArrayList;
+
 import Session.WindowAppearance;
 import Threads.ResizeHandler;
 import WindowsLoader.SignWindow;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -24,9 +27,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import views.HomeView;
 import views.PlaylistView;
+import views.AllTrackView;
+import views.CanzoneView;
 import views.CreatePlaylistView;
 import views.ExplorePlaylistView;
 import javafx.stage.Stage;
+import jars.*;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 
@@ -113,7 +119,6 @@ public class homeWindowController {
         // per il colore sul SCROLL
         centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
 
-
     }
 
     private void handleScrollEvent(ScrollEvent event) {
@@ -129,7 +134,7 @@ public class homeWindowController {
 
             if (opacity >= 0.98)
                 opacity = 1;
-        } 
+        }
         // di base creo un nuovo bgFill (devo cambiare in base all view) lo faccio pià
         // avanti
         int red = (int) (BackgroundTransition.hbox_header.getRed() * 255);
@@ -184,6 +189,11 @@ public class homeWindowController {
     public void openViewCreate(MouseEvent e) {
 
         CreatePlaylistView view = new CreatePlaylistView();
+        centerScrollPane.setContent(view);
+    }
+
+    public void openAllTrack(MouseEvent e) {
+        AllTrackView view = new AllTrackView();
         view.prefWidthProperty().bind(centerScrollPane.widthProperty());
         view.prefHeightProperty().bind(centerScrollPane.heightProperty());
         centerScrollPane.setContent(view);
@@ -194,12 +204,16 @@ public class homeWindowController {
         centerScrollPane.setContent(view);
     }
 
-    public void openPlaylist(MouseEvent e){
+    public void openPlaylist(MouseEvent e) {
         PlaylistView view = new PlaylistView();
         centerScrollPane.setContent(view);
 }
+    public void openTrack(MouseEvent e){
+       /* CanzoneView view = new CanzoneView(new Track());
+        centerScrollPane.setContent(view);*/
+    }
 
-    public void explorePlaylist(MouseEvent e){
+    public void explorePlaylist(MouseEvent e) {
         ExplorePlaylistView view = new ExplorePlaylistView();
         view.prefWidthProperty().bind(centerScrollPane.widthProperty());
         view.prefHeightProperty().bind(centerScrollPane.heightProperty());
