@@ -1,13 +1,13 @@
 package util;
 
-import pkg.Track;
-import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import pkg.Track;
 
 public class CustomCell extends TableCell<Track, Void> {
     private final HBox hbox = new HBox();
@@ -39,20 +39,39 @@ public class CustomCell extends TableCell<Track, Void> {
         } else {
             Track track = getTableView().getItems().get(getIndex());
 
-            Platform.runLater(() -> {
+            if (track != null) {
                 String url = track.getAlbum_img2S();
-                Image image = new Image(url);
-                imageView.setImage(image);
-                imageView.setFitHeight(43);
-                imageView.setFitWidth(43);
-                imageView.setPreserveRatio(false);
+
+                // Carica l'immagine in modo asincrono per evitare il lag
+                loadImageAsync(url);
 
                 // Set track name and author
                 trackNameLabel.setText(track.getName());
                 authorNameLabel.setText(track.getArtist_name());
-            });
+            }
 
             setGraphic(hbox);
         }
+    }
+
+    private void loadImageAsync(String url) {
+        Task<Image> loadImageTask = new Task<>() {
+            @Override
+            protected Image call() throws Exception {
+                // Carica l'immagine (implementa la logica di caricamento dell'immagine qui)
+                return new Image(url);
+            }
+        };
+
+        loadImageTask.setOnSucceeded(event -> {
+            // Imposta l'immagine nella cella quando il caricamento è completato
+            Image loadedImage = loadImageTask.getValue();
+            imageView.setImage(loadedImage);
+            imageView.setFitHeight(43);
+            imageView.setFitWidth(43);
+            imageView.setPreserveRatio(false);
+        });
+
+        new Thread(loadImageTask).start();
     }
 }
