@@ -66,7 +66,7 @@
 }
 .hbox_header > .header_buttons {
   /* button di default */
-  -fx-border-width: 0 ;
+  -fx-border-width: 0;
   -fx-padding: 3px 15px 3px 3px;
   padding: 3px 15px 3px 3px;
   -fx-background-color: transparent;
@@ -179,7 +179,6 @@
   font-weight: bold;
 }
 
-
 /************************************************************************************/
 
 /**********************************************************************/
@@ -222,7 +221,6 @@
   -fx-text-fill: #ffffff;
   -fx-cursor: hand;
   cursor: hand;
- 
 }
 
 .text_field:hover {
@@ -329,20 +327,9 @@
 }
 
 .playlistBox_container .playlistBox {
-  -fx-background-color: rgba(
-    255,
-    255,
-    255,
-    0.1
-  );
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.1
-  ); /* ok per l'album */
+  -fx-background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1); /* ok per l'album */
   -fx-background-radius: 8px;
-
 }
 .playlistBox_container .playlistBox .label {
   -fx-font-size: 13px;
@@ -353,14 +340,13 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-
 /* mi sa che questa è da togliere. idk */
-.playlistBox_container .playlistBox .image_container   {
-  -fx-background-radius :8px;
-/*****************************************************/
+.playlistBox_container .playlistBox .image_container {
+  -fx-background-radius: 8px;
+  /*****************************************************/
 }
 
-.playlistBox_container .playlistBox .backgroundPlaylistImage  {
+.playlistBox_container .playlistBox .backgroundPlaylistImage {
   -fx-background-repeat: no-repeat;
   background-repeat: no-repeat;
   -fx-background-size: contain;
@@ -369,15 +355,12 @@
   background-position: center;
 }
 
-
-
 /**********************************************************************/
 
 /*******************home view  flowpane che contiene album **********/
 .albumBox_container {
   -fx-background-color: rgba(0, 0, 0, 0);
   background-color: rgba(0, 0, 0, 0);
-
 }
 
 .albumBox_container .albumBox {
@@ -393,18 +376,16 @@
   -fx-background-position: center;
   background-position: center;
 }
-.albumBox_container .albumBox:hover{
+.albumBox_container .albumBox:hover {
   -fx-background-color: #282828;
   background-color: #282828;
 }
 /**********************************************************************/
 
 /*******************home view  flowpane che contiene album **********/
-.tableView{
+.tableView {
   -fx-background-color: rgba(0, 0, 0, 0);
   background-color: rgba(0, 0, 0, 0);
-  
-
 }
 .tableView .scroll-bar * {
   -fx-min-width: 0;
@@ -422,64 +403,93 @@
 
 .tableView .column-header {
   -fx-font-size: 16px; /* Cambia la dimensione del carattere */
-  -fx-background-color: rgba(3, 0, 0, 0);
-  -fx-alignment: CENTER-LEFT;
-
+  -fx-background-color: rgba(0,0,0,0); /*per qulche motivo questo è il colore dell'header */
+  -fx-border-width: 0 0 1px 0 ;
+  -fx-border-color:rgba(255, 255, 255, 0.1);
 }
 
-
-
-.tableView .column-header .label{
+.tableView .column-header .label {
   -fx-font-size: 16px; /* Cambia la dimensione del carattere */
   -fx-font-weight: bold; /* Cambia lo stile del carattere in grassetto */
   -fx-text-fill: white; /* Cambia il colore del testo in blu */
-  -fx-background-color: rgba(136, 7, 7, 0);
+  -fx-background-color: rgba(0,0,0,0); /*anche queto colore dell'header*/
   -fx-alignment: CENTER-LEFT;
+  -fx-padding: 10 0;
 
-  -fx-padding:20 0 10 0;
-}
-.tableView  .column-header .indexColumn .label{
-  -fx-alignment: CENTER !important;
+  
 
 }
+
+/*prima era di sotto*/
+.tableView .table-cell {
+  /*change to 0 after testing */
+  -fx-border-width: 0;
+  border-width: 0;
+  -fx-alignment: CENTER-LEFT;
+  /* space testing color */
+  -fx-background-color: rgb(0,0,0,0);
+  -fx-padding: 5 0;
+}
+
+.tableView .customColumn {
+  /**/
+}
+
+.tableView .table-cell .hboxCustomColumn {
+  -fx-alignment: CENTER-LEFT;
+  -fx-padding: 0;
+}
+.tableView .table-cell .track_details {
+  -fx-alignment: CENTER-LEFT;
+  -fx-padding: 0;
+}
+.tableView .table-cell .track_details .trackName {
+  -fx-padding: 0;
+  -fx-font-size: 16px;
+  -fx-font-weight: 400;
+}
+.tableView .table-cell .track_details .authorsNames {
+  -fx-padding: 0;
+  -fx-font-size: 14px;
+  -fx-font-weight: 400;
+}
+/*ok, cambia la pos del numerino all'interno della cella*/
+.tableView .indexColumn .label {
+  -fx-alignment: CENTER;
+}
+
+.tableView .buttonColumn .label {
+  -fx-alignment: CENTER;
+}
+.tableView .indexColumn {
+  -fx-alignment: CENTER;
+}
+.tableView .buttonColumn {
+  -fx-alignment: CENTER;
+}
+
 .tableView .column-header-background {
   -fx-background-color: rgba(136, 7, 7, 0);
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
 }
 .tableView .column-header-background .filler {
   -fx-background-color: rgba(136, 7, 7, 0);
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
 }
 
-
-.tableView .table-cell{
-  -fx-border-width:0px;
-  border-width: 0px;
-  -fx-font-size: 16px; 
-  -fx-alignment: CENTER-LEFT;
-  -fx-padding:20 10 10 0;
-
-}
-.tableView .table-cell .label{
-  -fx-padding:20 10 10 0;
-
-}
-
-.tableView .table-row-cell{
+.tableView .table-row-cell {
   -fx-background-color: rgba(0, 0, 0, 0);
-  background-color: rgba(0, 0, 0, 0)
+  background-color: rgba(0, 0, 0, 0);
 }
-.tableView .table-row-cell:hover{
-  -fx-background-color: rgb(42,42,42);
-    background-color: rgb(42,42,42);
-    -fx-background-radius:4;
-
+.tableView .table-row-cell:hover {
+  -fx-background-color: rgb(42, 42, 42);
+  background-color: rgb(42, 42, 42);
+  -fx-background-radius: 4;
 }
-.tableView .table-row-cell:focused{
-  -fx-background-color : rgba(255, 255, 255, 0.3);
-  background-color : rgba(255, 255, 255, 0.3);
-  -fx-background-radius:4;
-
+.tableView .table-row-cell:focused {
+  -fx-background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
+  -fx-background-radius: 4;
 }
 .tableView .table-row-cell .text {
   -fx-fill: white;
@@ -487,7 +497,6 @@
 }
 
 .tableView_button {
-
   -fx-background-radius: 16px;
   -fx-font-size: 16px;
   font-size: 16px;
@@ -499,21 +508,19 @@
   cursor: hand;
   -fx-border-color: rgb(142, 140, 140);
   -fx-border-width: 1px;
-  -fx-border-radius: 16px;
+  -fx-border-radius: 15px;
 }
 
-.tableView_button :hover{
+.tableView_button :hover {
   -fx-scale-x: 1.04;
   -fx-scale-y: 1.04;
-
 }
 
-.tableView_button:focused{
+.tableView_button:focused {
   -fx-scale-x: 1.04;
   -fx-scale-y: 1.04;
 }
 /**********************************************************************/
-
 
 .textfield_cp {
   -fx-background-color: #121212;
@@ -552,72 +559,12 @@
   -fx-scale-y: 1.04;
 }
 
-.image_cp:hover{
+.image_cp:hover {
   -fx-scale-x: 1.04;
   -fx-scale-y: 1.04;
 }
 
-.explore_label{
+.explore_label {
   -fx-font-size: 32px;
   font-size: 32px;
 }
-
-.img{
-  -fx-border: 2px;
-  border:2px;
-  -fx-border-color: rgb(142, 140, 140);
-  -fx-border-width: 2px;
-
-}
-
-.choiceBox{
-  -fx-mark-color: rgb(255, 255, 255);
-  -fx-background-color:#121212;
-  background-color:#121212;
-  -fx-prompt-text-fill:rgba(111, 108, 108, 0.651);
-  -fx-text-fill: rgb(255,255,255);
-  -fx-padding: -5 0 0 -2;
-  padding: -5 0 0 -2;
-  -fx-cursor: text;
-  cursor: text;
-  -fx-border-color:#121212#121212 rgba(111, 108, 108, 0.651)#121212;
-  border-color:#121212#121212 rgba(111, 108, 108, 0.651)#121212;
-  -fx-border-width: 2;
-  border-width: 2;
-  -fx-border-radius:3;
-  border-radius:3;
-  
-}
-
-
-
-.choiceBox .label{
-
-  -fx-alignment:CENTER;
-}
-
-
-.choiceBox:hover{
-  -fx-prompt-text-fill:rgb(255, 255, 255);
-  -fx-border-color:#121212#121212 rgb(255, 255, 255)#121212;
-  border-color:#121212#121212 rgb(255, 255, 255)#121212;
-}
-
-
-.choiceBox:active{
-  -fx-border-color:#121212#121212 rgb(255, 255, 255)#121212;
-  border-color:#121212#121212 rgb(255, 255, 255)#121212;
-}
-
-.choiceBox .context-menu{
-  -fx-background-color: #303030;
-  background-color: #303030;
-}
-.choiceBox .menu-item { 
-  -fx-pref-width: 100;
-}
-.choiceBox .menu-item:focused { -fx-background-color: rgb(91, 91, 91);
-  background-color: rgb(91, 91, 91); }
-.choiceBox .menu-item > .label { -fx-text-fill: white; }
-
-.choiceBox .menu-item:focused > .label { -fx-text-fill: white; }

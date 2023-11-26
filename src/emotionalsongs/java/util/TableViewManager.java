@@ -3,6 +3,7 @@ package util;
 import controllers.creazionePlaylistController;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -12,10 +13,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import pkg.Track;
-
 public class TableViewManager extends TableView<Track> {
 
     creazionePlaylistController contr = new creazionePlaylistController();
+
+    private int num_columns = 1;
+    private int margin_error =5;
+    final int BUTTON_COLUMN_SIZE = 100; //misura ib pixel
+    final int INDEX_COLUMN_SIZE = 60; //misura ib pixel
+    final int CUSTOM_COLUMN_SIZE = 250; //misura ib pixel
+    final int DURATA_COLUMN_SIZE = 50;
+    final int TOTAL_FIXED_SIZE_COLUMN = BUTTON_COLUMN_SIZE+INDEX_COLUMN_SIZE+CUSTOM_COLUMN_SIZE+DURATA_COLUMN_SIZE; //misura ib pixel 
 
     // t/f tre punti, f/t add, f/f delete
     public TableViewManager(boolean def, boolean add) {
@@ -23,50 +31,64 @@ public class TableViewManager extends TableView<Track> {
 
         this.getStyleClass().add("tableView");
         TableColumn<Track, Integer> indexColumn = new TableColumn<>("#");
-        indexColumn.setMinWidth(50);
-        indexColumn.setMaxWidth(50);
+        indexColumn.getStyleClass().add("indexColumn");
+        indexColumn.setMinWidth(INDEX_COLUMN_SIZE);
+        indexColumn.setMaxWidth(INDEX_COLUMN_SIZE);
         this.getColumns().add(indexColumn);
+
         indexColumn.setCellValueFactory(
                 cellData -> new ReadOnlyObjectWrapper<>(this.getItems().indexOf(cellData.getValue()) + 1));
-        indexColumn.getStyleClass().add("indexColumn");
-        TableColumn<Track, String> trackName = new TableColumn<>("Name");
-        trackName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        trackName.setMinWidth(100);
 
         TableColumn<Track, String> album = new TableColumn<>("Album");
         album.setCellValueFactory(new PropertyValueFactory<>("album_name"));
-        album.setMinWidth(100);
+        album.setMinWidth(75);
 
-        TableColumn<Track, String> trackName2 = new TableColumn<>("Name2");
-        trackName2.setCellValueFactory(new PropertyValueFactory<>("name"));
-        trackName2.setMinWidth(100);
+        TableColumn<Track, String> durata = new TableColumn<>("Dur");
+        durata.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        durata.setMinWidth(DURATA_COLUMN_SIZE);
+        durata.setMaxWidth(DURATA_COLUMN_SIZE);
 
-        TableColumn<Track, String> album2 = new TableColumn<>("Album2");
-        album2.setCellValueFactory(new PropertyValueFactory<>("album_name"));
-        album2.setMinWidth(100);
+        // album.setPrefWidth(100); // in % ?, gia.. va fatto. Per ora rimane cosi tho
+        // album.setMaxWidth(100);
 
-        TableColumn<Track, String> trackName3 = new TableColumn<>("Name3");
-        trackName3.setCellValueFactory(new PropertyValueFactory<>("name"));
-        trackName3.setMinWidth(100);
+        TableColumn<Track, Void> customColumn = new TableColumn<>("Title");
+        customColumn.setCellFactory(column -> new CustomCell());
+        customColumn.getStyleClass().add("customColumn");
 
-        trackName.prefWidthProperty().bind(this.widthProperty().divide(6)); 
-        album.prefWidthProperty().bind(this.widthProperty().divide(6));
-        trackName2.prefWidthProperty().bind(this.widthProperty().divide(6)); 
-        album2.prefWidthProperty().bind(this.widthProperty().divide(6));
-        trackName3.prefWidthProperty().bind(this.widthProperty().divide(6));
+        customColumn.setMinWidth(CUSTOM_COLUMN_SIZE);
+        customColumn.setMaxWidth(CUSTOM_COLUMN_SIZE);
 
-        this.getColumns().addAll(trackName, album, trackName2, album2, trackName3);
+
+        album.prefWidthProperty().bind((this.widthProperty().subtract(TOTAL_FIXED_SIZE_COLUMN+margin_error)));
+        album.prefWidthProperty().addListener((obs, oldWidth, newWidth) -> {
+            double minWidth = 75;
+            if (newWidth.doubleValue()-5 <= minWidth) {
+                album.setVisible(false);
+            } else {
+                album.setVisible(true);
+            }
+        });
+        
+        this.getColumns().add(customColumn);
+        this.getColumns().add(album);
+        this.getColumns().add(durata);
+
+        TableColumn<Track, Button> buttonCol = new TableColumn<>("");
+        buttonCol.getStyleClass().add("buttonColumn");
+        buttonCol.setMinWidth(BUTTON_COLUMN_SIZE);
+        buttonCol.setMaxWidth(BUTTON_COLUMN_SIZE);
 
         if (def) {
-            addButtonColumn("•••", this::customMethod);
+          addButtonColumn(buttonCol,"•••", this::customMethod);
         } else if (add) {
-            addButtonColumn("ADD", this::addTrackToPlaylist);
+            addButtonColumn(buttonCol,"ADD", this::addTrackToPlaylist);
         } else {
-            addButtonColumn("DELETE", this::removeTrackFromPlaylist);
+            addButtonColumn(buttonCol,"DEL", this::removeTrackFromPlaylist);
         }
-
+        this.getColumns().add(buttonCol);
         this.getColumns().forEach(column -> column.setReorderable(false));
 
+          
         setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -76,17 +98,12 @@ public class TableViewManager extends TableView<Track> {
                 }
             }
         });
+
     }
 
-    private void addButtonColumn(String buttonText, ButtonClickHandler handler) {
-        TableColumn<Track, Button> buttonCol = new TableColumn<>("Button");
-        buttonCol.setMinWidth(150);
-        buttonCol.setMaxWidth(150);
-        this.getColumns().add(buttonCol);
-
-        buttonCol.setCellFactory(param -> {
+    private void addButtonColumn(TableColumn<Track,Button> column,String buttonText, ButtonClickHandler handler) {
+        column.setCellFactory(param -> {
             Button button = new Button(buttonText);
-
             button.getStyleClass().add("tableView_button");
             button.setTextFill(Color.GREEN);
             TableCell<Track, Button> cell = new TableCell<Track, Button>() {
@@ -116,11 +133,17 @@ public class TableViewManager extends TableView<Track> {
     }
 
     private void addTrackToPlaylist(Track track) {
-        creazionePlaylistController.playlistTracks.setVisible(true);
+        if(!creazionePlaylistController.playlistTracks.isVisible()){
+            creazionePlaylistController.playlistTracks.setVisible(true);
+        }
         TableView<Track> tmp = this; 
         VBox p = (VBox) tmp.getParent();
         tmp.getItems().remove(track);
-        ((TableView<Track>) p.getChildren().get(0)).getItems().add(track);
+
+        Node tmpNode = p.getChildren().get(0);
+        if(tmpNode instanceof TableView){
+            ((TableView<Track>) tmpNode).getItems().add(track);
+        }
     }
 
     private void removeTrackFromPlaylist(Track track) {

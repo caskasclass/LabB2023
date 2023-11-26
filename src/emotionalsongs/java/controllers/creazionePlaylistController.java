@@ -11,8 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.effect.BoxBlur;
-import pkg.ServerInterface;
-import pkg.Track;
+import pkg.*;
 import util.TableViewManager;
 import WindowsLoader.ImagesWindow;
 
@@ -83,17 +82,18 @@ public class creazionePlaylistController {
             }
         });
         tableContainer.getChildren().add(findTracks);
-
+        /*
         try {
-            Registry r = LocateRegistry.getRegistry(1099);
+        Registry r = LocateRegistry.getRegistry(ServerInterface.PORT);
         ServerInterface si = (ServerInterface) r.lookup("SERVER");
         ArrayList<String> ar = si.getTrackId("Ricordami");
         ArrayList<Track> res = si.getAllTrackInformation(ar, 0, ar.size());
         ObservableList<Track> o = FXCollections.observableArrayList(res);
         findTracks.setItems(o);
         } catch (Exception e) {
-            System.out.println(e);        }
-
+            System.out.println(e);
+        }
+        */
     }
 
     public void openImages(MouseEvent e) {

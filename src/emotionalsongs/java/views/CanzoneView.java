@@ -5,7 +5,7 @@ import java.io.IOException;
 import controllers.canzoneViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
-import tmp.Canzone;
+import pkg.*;
 import util.FXMLLoaders;
 
 public class CanzoneView extends VBox{
@@ -13,7 +13,7 @@ public class CanzoneView extends VBox{
     FXMLLoaders fxmlutil = new FXMLLoaders();
 
 
-    public CanzoneView(Canzone c ){
+    public CanzoneView(Track c ){
 
         FXMLLoader loader = fxmlutil.getLoader("CanzoneView.fxml");
         canzoneViewController controller= new canzoneViewController();

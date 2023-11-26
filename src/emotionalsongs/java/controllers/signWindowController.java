@@ -17,8 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pkg.ServerInterface;
-import pkg.User;
+import pkg.*;
+
 
 public class signWindowController {
 

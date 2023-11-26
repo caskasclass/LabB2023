@@ -1,5 +1,6 @@
 package controllers;
 
+import pkg.Track;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -7,13 +8,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-import tmp.Canzone;
 
 public class canzoneViewController {
 
 
 
-    Canzone c = null;
+    Track c = null;
 
     @FXML
     private VBox rootCanzoneview;
@@ -34,7 +34,7 @@ public class canzoneViewController {
 
     }
 
-    public void setCanzone(Canzone canzone){
+    public void setCanzone(Track canzone){
         c=canzone;
     }
 
