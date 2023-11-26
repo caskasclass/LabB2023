@@ -96,6 +96,37 @@
   -fx-scale-y: 1.04;
 }
 
+.hbox_header > .login_butt {
+  /* button di default */
+  -fx-border-width: 0 ;
+  -fx-background-color: transparent;
+  background-color: transparent;
+  -fx-background-radius: 16px;
+  -fx-cursor: hand;
+  -fx-font-size: 16px;
+  font-size: 16px;
+  -fx-font-weight: 700;
+  font-weight: 700;
+  -fx-text-fill: #ffffff;
+  cursor: hand;
+  -fx-border-color: rgb(0, 0, 0);
+}
+.hbox_header > .login_butt:hover {
+  /* se passi sopra */
+  -fx-background-color: rgba(0, 0, 0, 0.56);
+  background-color: rgba(0, 0, 0, 0.56);
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}
+.hbox_header > .login_butt:focused {
+  /* se schiacci */
+  -fx-background-color: rgba(0, 0, 0, 0.72);
+  background-color: rgba(0, 0, 0, 0.72);
+  -fx-scale-x: 1.04;
+  -fx-scale-y: 1.04;
+}
+
+
 .scroll_pane {
   -fx-padding: 0;
   padding: 0;
