@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 
+import Session.ClientSession;
 import Session.WindowAppearance;
 import Threads.ResizeHandler;
 import WindowsLoader.SignWindow;
@@ -69,6 +70,10 @@ public class homeWindowController {
     private Button loginButton;
 
     @FXML
+    private Button creaButton;
+
+
+    @FXML
     private void initialize() {
 
         // 1) margini al borderPane
@@ -84,6 +89,7 @@ public class homeWindowController {
         header_hbox.setStyle("-fx-background-color: rgba(40,25,83,0);");
         Platform.runLater(() -> {
             BackgroundTransition.setHeaderGraphics((Color) (header_hbox.getBackground().getFills().get(0).getFill()));
+            
         });
 
         // 3) inizializzo il center con la home
@@ -98,6 +104,9 @@ public class homeWindowController {
         // 4) istanzio il button user per la prova colore + il button in se
         Button userButton = createButton("username");
         userButton.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+        userButton.setOnAction(event -> {
+            System.out.println(ClientSession.client.getCity());
+        });
         String url = getClass().getResource("/imgs/playlist_img/img2.png").toExternalForm();
         Image image = new Image(url);
         ImageView img = new ImageView(image);
@@ -118,6 +127,8 @@ public class homeWindowController {
 
         // per il colore sul SCROLL
         centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
+
+        Platform.runLater(()->setElementsSession());
 
     }
 
@@ -169,6 +180,18 @@ public class homeWindowController {
         return clip;
     }
 
+    private void setElementsSession(){
+        if(ClientSession.client.getUserid() == null){
+            creaButton.setVisible(false);
+        }
+        else{
+                creaButton.setVisible(true);
+            loginButton.setVisible(false);
+            
+            
+        }
+
+    }
     public void openWindow(MouseEvent e) {
         Stage parent = (Stage) homeButton.getScene().getWindow();
         SignWindow window = new SignWindow();

@@ -16,7 +16,7 @@ public class HomeModule {
     public ArrayList<TrackDetails> getToptracks() {
        try {
             System.out.println("\n\nHellooo\n\n\n");
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", ServerInterface.PORT);
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
             ServerInterface stub = null;
             stub = (ServerInterface) registry.lookup("SERVER");
             ArrayList<TrackDetails> topTracks = stub.getTopTracks();

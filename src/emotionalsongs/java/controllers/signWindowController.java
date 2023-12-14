@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import Session.ClientSession;
 import javafx.fxml.FXML;
 import util.FXMLLoaders;
 import javafx.scene.layout.Pane;
@@ -73,6 +75,7 @@ public class signWindowController {
                 msgErr.setText("utente non trovato");
             }
             else{
+                ClientSession.client = u;
                 System.out.println(u.getCity());
                 Stage stage = (Stage) loginButton.getScene().getWindow();
                 stage.close();
