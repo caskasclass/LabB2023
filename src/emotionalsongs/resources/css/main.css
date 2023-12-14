@@ -66,6 +66,7 @@
 }
 .hbox_header > .header_buttons {
   /* button di default */
+  border-width: 0;
   -fx-border-width: 0;
   -fx-padding: 3px 15px 3px 3px;
   padding: 3px 15px 3px 3px;
@@ -79,6 +80,7 @@
   font-weight: 700;
   -fx-text-fill: #ffffff;
   cursor: hand;
+  border-color: rgb(0, 0, 0);
   -fx-border-color: rgb(0, 0, 0);
 }
 .hbox_header > .header_buttons:hover {
@@ -98,6 +100,7 @@
 
 .hbox_header > .login_butt {
   /* button di default */
+  border-width: 0 ;
   -fx-border-width: 0 ;
   -fx-background-color: transparent;
   background-color: transparent;
@@ -109,6 +112,7 @@
   font-weight: 700;
   -fx-text-fill: #ffffff;
   cursor: hand;
+  border-color: rgb(0, 0, 0);
   -fx-border-color: rgb(0, 0, 0);
 }
 .hbox_header > .login_butt:hover {
@@ -402,6 +406,10 @@
 }
 
 .tableView .column-header {
+  font-size: 16px; /* Cambia la dimensione del carattere */
+  background-color: rgba(0,0,0,0); /*per qulche motivo questo è il colore dell'header */
+  border-width: 0 0 1px 0 ;
+  border-color:rgba(255, 255, 255, 0.1);
   -fx-font-size: 16px; /* Cambia la dimensione del carattere */
   -fx-background-color: rgba(0,0,0,0); /*per qulche motivo questo è il colore dell'header */
   -fx-border-width: 0 0 1px 0 ;
@@ -409,6 +417,10 @@
 }
 
 .tableView .column-header .label {
+  font-size: 16px; /* Cambia la dimensione del carattere */
+  font-weight: bold; /* Cambia lo stile del carattere in grassetto */
+  background-color: rgba(0,0,0,0); /*anche queto colore dell'header*/
+  padding: 10 0;
   -fx-font-size: 16px; /* Cambia la dimensione del carattere */
   -fx-font-weight: bold; /* Cambia lo stile del carattere in grassetto */
   -fx-text-fill: white; /* Cambia il colore del testo in blu */
@@ -427,6 +439,8 @@
   border-width: 0;
   -fx-alignment: CENTER-LEFT;
   /* space testing color */
+  background-color: rgb(0,0,0,0);
+  padding: 5 0;
   -fx-background-color: rgb(0,0,0,0);
   -fx-padding: 5 0;
 }
@@ -438,20 +452,29 @@
 .tableView .table-cell .hboxCustomColumn {
   -fx-alignment: CENTER-LEFT;
   -fx-padding: 0;
+  padding: 0;
 }
 .tableView .table-cell .track_details {
   -fx-alignment: CENTER-LEFT;
   -fx-padding: 0;
+  padding: 0;
 }
 .tableView .table-cell .track_details .trackName {
   -fx-padding: 0;
+  padding: 0;
   -fx-font-size: 16px;
   -fx-font-weight: 400;
+  font-size: 16px;
+  font-weight: 400;
 }
+
 .tableView .table-cell .track_details .authorsNames {
   -fx-padding: 0;
   -fx-font-size: 14px;
   -fx-font-weight: 400;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 400;
 }
 /*ok, cambia la pos del numerino all'interno della cella*/
 .tableView .indexColumn .label {
@@ -509,6 +532,9 @@
   -fx-border-color: rgb(142, 140, 140);
   -fx-border-width: 1px;
   -fx-border-radius: 15px;
+  border-color: rgb(142, 140, 140);
+  border-width: 1px;
+  border-radius: 15px;
 }
 
 .tableView_button :hover {
@@ -568,3 +594,55 @@
   -fx-font-size: 32px;
   font-size: 32px;
 }
+
+.choiceBox{
+  -fx-mark-color: rgb(255, 255, 255);
+  -fx-background-color:#121212;
+  background-color:#121212;
+  -fx-prompt-text-fill:rgba(111, 108, 108, 0.651);
+  -fx-text-fill: rgb(255,255,255);
+  -fx-padding: -5 0 0 -2;
+  padding: -5 0 0 -2;
+  -fx-cursor: text;
+  cursor: text;
+  -fx-border-color:#121212#121212 rgba(111, 108, 108, 0.651)#121212;
+  border-color:#121212#121212 rgba(111, 108, 108, 0.651)#121212;
+  -fx-border-width: 2;
+  border-width: 2;
+  -fx-border-radius:3;
+  border-radius:3;
+
+}
+
+
+
+.choiceBox .label{
+
+  -fx-alignment:CENTER;
+}
+
+
+.choiceBox:hover{
+  -fx-prompt-text-fill:rgb(255, 255, 255);
+  -fx-border-color:#121212#121212 rgb(255, 255, 255)#121212;
+  border-color:#121212#121212 rgb(255, 255, 255)#121212;
+}
+
+
+.choiceBox:active{
+  -fx-border-color:#121212#121212 rgb(255, 255, 255)#121212;
+  border-color:#121212#121212 rgb(255, 255, 255)#121212;
+}
+
+.choiceBox .context-menu{
+  -fx-background-color: #303030;
+  background-color: #303030;
+}
+.choiceBox .menu-item { 
+  -fx-pref-width: 100;
+}
+.choiceBox .menu-item:focused { -fx-background-color: rgb(91, 91, 91);
+  background-color: rgb(91, 91, 91); }
+.choiceBox .menu-item > .label { -fx-text-fill: white; }
+
+.choiceBox .menu-item:focused > .label { -fx-text-fill: white; }

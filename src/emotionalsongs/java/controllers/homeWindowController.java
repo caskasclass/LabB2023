@@ -1,13 +1,10 @@
 package controllers;
 
-import java.util.ArrayList;
-
 import Session.ClientSession;
 import Session.WindowAppearance;
 import Threads.ResizeHandler;
 import WindowsLoader.SignWindow;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
@@ -232,8 +229,8 @@ public class homeWindowController {
         centerScrollPane.setContent(view);
 }
     public void openTrack(MouseEvent e){
-       /* CanzoneView view = new CanzoneView(new Track());
-        centerScrollPane.setContent(view);*/
+        CanzoneView view = new CanzoneView(new Track(null, null, 0, null, null, null, null, null));
+        centerScrollPane.setContent(view);
     }
 
     public void explorePlaylist(MouseEvent e) {

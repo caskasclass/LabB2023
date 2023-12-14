@@ -250,18 +250,29 @@ public class homeViewController {
     }
 
     private void setTopTracks() {
+        System.out.println("sono in setTopTracks 1");
         TableViewManager topTracks = new TableViewManager(true, false);
+        System.out.println("sono in setTopTracks 2");
         topTracks.setMinHeight(300);
+        System.out.println("sono in setTopTracks 3");
         HomeModule homeModule = new HomeModule();
+        System.out.println("sono in setTopTracks 4");
+        //ArrayList<TrackDetails> topT = null;
         ArrayList<TrackDetails> topT = homeModule.getToptracks();
-
-        ObservableList<Track> data = FXCollections.observableArrayList();
+        System.out.println("sono in setTopTracks 5");
+        ObservableList<Track> data = FXCollections.observableArrayList();        
+        System.out.println("sono in setTopTracks 6");
         for (TrackDetails track : topT) {
             data.add(track.track);
+
         }
+        System.out.println("sono in setTopTracks 7");
         topTracks.setItems(data);
+        System.out.println("sono in setTopTracks 8");
         System.out.println("Size of data in homeView : " + data.size());
+        System.out.println("sono in setTopTracks 9");
         tableViewContainer.getChildren().add(topTracks);
+        System.out.println("sono in setTopTracks 10");
         VBox.setVgrow(topTracks, Priority.ALWAYS);
     }
 
@@ -282,7 +293,7 @@ public class homeViewController {
 
     private void initializeElements(double width) {
         setPlaylist(width);
-        setTopTracks();
+        setTopTracks(); // per fare questo ci mette troppo tempo
         setAlbums(width);
     }
 

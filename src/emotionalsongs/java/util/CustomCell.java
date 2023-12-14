@@ -1,13 +1,15 @@
 package util;
 
-import javafx.concurrent.Task;
+import pkg.Track;
+
+import java.util.concurrent.CompletableFuture;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import pkg.Track;
 
 public class CustomCell extends TableCell<Track, Void> {
     private final HBox hbox = new HBox();
@@ -41,9 +43,21 @@ public class CustomCell extends TableCell<Track, Void> {
 
             if (track != null) {
                 String url = track.getAlbum_img2S();
+                ImageLoader imageLoader = new ImageLoader();
+                CompletableFuture<Image> imageFuture = imageLoader.loadImageAsync(url);
+                
+                imageFuture.thenAcceptAsync(image ->{
+                    if(image != null){
+                        imageView.setImage(image);
+                        imageView.setFitHeight(43);
+                        imageView.setFitWidth(43);
+                        imageView.setPreserveRatio(false);
+                    }else
+                        imageView.setImage(imageLoader.getPlaceHolderImage());
 
-                // Carica l'immagine in modo asincrono per evitare il lag
-                loadImageAsync(url);
+                });
+
+                //Image image = new Image(url);
 
                 // Set track name and author
                 trackNameLabel.setText(track.getName());
@@ -52,26 +66,5 @@ public class CustomCell extends TableCell<Track, Void> {
 
             setGraphic(hbox);
         }
-    }
-
-    private void loadImageAsync(String url) {
-        Task<Image> loadImageTask = new Task<>() {
-            @Override
-            protected Image call() throws Exception {
-                // Carica l'immagine (implementa la logica di caricamento dell'immagine qui)
-                return new Image(url);
-            }
-        };
-
-        loadImageTask.setOnSucceeded(event -> {
-            // Imposta l'immagine nella cella quando il caricamento è completato
-            Image loadedImage = loadImageTask.getValue();
-            imageView.setImage(loadedImage);
-            imageView.setFitHeight(43);
-            imageView.setFitWidth(43);
-            imageView.setPreserveRatio(false);
-        });
-
-        new Thread(loadImageTask).start();
     }
 }
