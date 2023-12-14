@@ -16,7 +16,7 @@ public class HomeModule {
     public ArrayList<TrackDetails> getToptracks() {
        try {
             System.out.println("\nSono nel metodo getTopTracks() 1");
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", ServerInterface.PORT);
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
             System.out.println("\nSono nel metodo getTopTracks() 2");
             ServerInterface stub = null;
             System.out.println("\nSono nel metodo getTopTracks() 3");

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background_pane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeWindowController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background_pane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.homeWindowController">
    <left>
       <VBox fx:id="rootMenu" alignment="TOP_CENTER" minWidth="-Infinity" prefWidth="285.0" styleClass="menuContainer">
          <children>
@@ -225,7 +225,7 @@
                </StackPane.margin></ScrollPane>
             <HBox fx:id="header_hbox" alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" spacing="15.0" style="-fx-background-color: red;" styleClass="hbox_header">
                <children>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onMouseClicked="#openWindow" styleClass="header_buttons" text="login">
+                  <Button fx:id="loginButton" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#openWindow" styleClass="login_butt" text="login">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>

@@ -4,14 +4,12 @@ import pkg.Track;
 
 import java.util.concurrent.CompletableFuture;
 
-import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import pkg.Track;
 
 public class CustomCell extends TableCell<Track, Void> {
     private final HBox hbox = new HBox();

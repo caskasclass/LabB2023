@@ -3,7 +3,6 @@ package controllers;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
 
 import Models.HomeModule;
 import Session.WindowAppearance;
@@ -13,8 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -24,7 +21,6 @@ import javafx.scene.paint.Color;
 import pkg.Track;
 import pkg.TrackDetails;
 import util.BackgroundTransition;
-import util.ImageLoader;
 import util.TableViewManager;
 import views.AlbumView;
 import views.PlaylistBox;
@@ -261,6 +257,7 @@ public class homeViewController {
         System.out.println("sono in setTopTracks 3");
         HomeModule homeModule = new HomeModule();
         System.out.println("sono in setTopTracks 4");
+        //ArrayList<TrackDetails> topT = null;
         ArrayList<TrackDetails> topT = homeModule.getToptracks();
         System.out.println("sono in setTopTracks 5");
         ObservableList<Track> data = FXCollections.observableArrayList();        

@@ -1,8 +1,6 @@
 package controllers;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,14 +9,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.effect.BoxBlur;
-import pkg.*;
 import util.TableViewManager;
 import WindowsLoader.ImagesWindow;
 
 import java.net.URL;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.ArrayList;
 
 import javafx.stage.Stage;
 
