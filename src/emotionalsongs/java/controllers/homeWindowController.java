@@ -209,8 +209,8 @@ public class homeWindowController {
         centerScrollPane.setContent(view);
 }
     public void openTrack(MouseEvent e){
-       /* CanzoneView view = new CanzoneView(new Track());
-        centerScrollPane.setContent(view);*/
+        CanzoneView view = new CanzoneView(new Track("null", "null", 0, "null", "null", "null", "null", "null"));
+        centerScrollPane.setContent(view);
     }
 
     public void explorePlaylist(MouseEvent e) {
