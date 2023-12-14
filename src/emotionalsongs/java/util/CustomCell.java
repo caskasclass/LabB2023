@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import pkg.Track;
 
 public class CustomCell extends TableCell<Track, Void> {
     private final HBox hbox = new HBox();
@@ -42,7 +43,7 @@ public class CustomCell extends TableCell<Track, Void> {
         } else {
             Track track = getTableView().getItems().get(getIndex());
 
-            Platform.runLater(() -> {
+            if (track != null) {
                 String url = track.getAlbum_img2S();
                 ImageLoader imageLoader = new ImageLoader();
                 CompletableFuture<Image> imageFuture = imageLoader.loadImageAsync(url);
@@ -63,7 +64,7 @@ public class CustomCell extends TableCell<Track, Void> {
                 // Set track name and author
                 trackNameLabel.setText(track.getName());
                 authorNameLabel.setText(track.getArtist_name());
-            });
+            }
 
             setGraphic(hbox);
         }
