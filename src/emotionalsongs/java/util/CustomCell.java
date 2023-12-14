@@ -1,6 +1,9 @@
 package util;
 
 import pkg.Track;
+
+import java.util.concurrent.CompletableFuture;
+
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -41,11 +44,21 @@ public class CustomCell extends TableCell<Track, Void> {
 
             Platform.runLater(() -> {
                 String url = track.getAlbum_img2S();
-                Image image = new Image(url);
-                imageView.setImage(image);
-                imageView.setFitHeight(43);
-                imageView.setFitWidth(43);
-                imageView.setPreserveRatio(false);
+                ImageLoader imageLoader = new ImageLoader();
+                CompletableFuture<Image> imageFuture = imageLoader.loadImageAsync(url);
+                
+                imageFuture.thenAcceptAsync(image ->{
+                    if(image != null){
+                        imageView.setImage(image);
+                        imageView.setFitHeight(43);
+                        imageView.setFitWidth(43);
+                        imageView.setPreserveRatio(false);
+                    }else
+                        imageView.setImage(imageLoader.getPlaceHolderImage());
+
+                });
+
+                //Image image = new Image(url);
 
                 // Set track name and author
                 trackNameLabel.setText(track.getName());
