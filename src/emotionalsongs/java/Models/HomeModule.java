@@ -4,8 +4,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
-import pkg.TrackDetails;
-import pkg.ServerInterface;
+import jars.TrackDetails;
+import jars.ServerInterface;
 
 public class HomeModule {
 
@@ -16,7 +16,7 @@ public class HomeModule {
     public ArrayList<TrackDetails> getToptracks() {
        try {
             System.out.println("\nSono nel metodo getTopTracks() 1");
-            Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
+            Registry registry = LocateRegistry.getRegistry("127.0.0.1", ServerInterface.PORT);
             System.out.println("\nSono nel metodo getTopTracks() 2");
             ServerInterface stub = null;
             System.out.println("\nSono nel metodo getTopTracks() 3");

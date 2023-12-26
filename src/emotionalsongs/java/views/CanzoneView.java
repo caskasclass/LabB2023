@@ -5,7 +5,7 @@ import java.io.IOException;
 import controllers.canzoneViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
-import pkg.*;
+import jars.*;
 import util.FXMLLoaders;
 
 public class CanzoneView extends VBox{

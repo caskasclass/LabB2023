@@ -30,7 +30,7 @@ import views.CanzoneView;
 import views.CreatePlaylistView;
 import views.ExplorePlaylistView;
 import javafx.stage.Stage;
-import pkg.*;
+import jars.*;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 
@@ -125,7 +125,8 @@ public class homeWindowController {
         // per il colore sul SCROLL
         centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
 
-        Platform.runLater(()->setElementsSession());
+        setElementsSession();
+        
 
     }
 
@@ -177,7 +178,7 @@ public class homeWindowController {
         return clip;
     }
 
-    private void setElementsSession(){
+    public void setElementsSession(){
         if(ClientSession.client.getUserid() == null){
             creaButton.setVisible(false);
         }
@@ -191,7 +192,7 @@ public class homeWindowController {
     }
     public void openWindow(MouseEvent e) {
         Stage parent = (Stage) homeButton.getScene().getWindow();
-        SignWindow window = new SignWindow();
+        SignWindow window = new SignWindow(this);
         window.initOwner(parent);
         BoxBlur blur = new BoxBlur(10, 10, 3);
         parent.getScene().getRoot().setEffect(blur);

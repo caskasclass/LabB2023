@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import pkg.Track;
+import jars.Track;
 import util.TableViewManager;
 
 public class playlistViewController {

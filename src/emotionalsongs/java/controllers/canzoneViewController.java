@@ -1,6 +1,6 @@
 package controllers;
 
-import pkg.Track;
+import jars.Track;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

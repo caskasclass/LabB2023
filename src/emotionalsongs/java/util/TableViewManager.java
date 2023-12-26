@@ -12,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import pkg.Track;
+import jars.Track;
 public class TableViewManager extends TableView<Track> {
 
     creazionePlaylistController contr = new creazionePlaylistController();
