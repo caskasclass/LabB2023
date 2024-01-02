@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +22,9 @@ import javafx.scene.layout.BackgroundFill;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javafx.scene.input.KeyCode;
 
 public class AllTrackViewController {
@@ -46,31 +50,54 @@ public class AllTrackViewController {
     @FXML
     private Background primaryShader;
 
+    private static ExecutorService executorService = Executors.newFixedThreadPool(5);
+
     @FXML
     private void initialize() {
         WindowStyle.ResetColor();
         primaryShader = new Background(new BackgroundFill(Color.BLUE, null, null));
         MainFrame.setBackground(WindowStyle.setInitialBackground());
 
-        try {
-            setTopTracks();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            searchBar.setOnKeyPressed(event -> {
-                if (event.getCode() != KeyCode.ENTER) {
-                    setResultsTitle(searchBar.getText());
-                } else {
-                    setResultsArtist(searchBar.getText());
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        setTopTracksAsync();
 
+        searchBar.setOnKeyPressed(event -> {
+            if (event.getCode() != KeyCode.ENTER) {
+                setResultsTitleAsync(searchBar.getText());
+            } else {
+                setResultsArtistAsync(searchBar.getText());
+            }
+        });
     }
 
+    private void setTopTracksAsync() {
+        executorService.submit(() -> {
+            try {
+                setTopTracks();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void setResultsTitleAsync(String s) {
+        executorService.submit(() -> {
+            try {
+                setResultsTitle(s);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void setResultsArtistAsync(String s) {
+        executorService.submit(() -> {
+            try {
+                setResultsArtist(s);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
     private void setTopTracks() throws RemoteException {
         TableViewManager topTracks = new TableViewManager(true, false);
@@ -83,10 +110,12 @@ public class AllTrackViewController {
             data.add(track.track);
         }
 
-        topTracks.setItems(data);
-        tableViewContainer.getChildren().clear();
-        tableViewContainer.getChildren().add(topTracks);
-        VBox.setVgrow(topTracks, Priority.ALWAYS);
+        Platform.runLater(() -> {
+            topTracks.setItems(data);
+            tableViewContainer.getChildren().clear();
+            tableViewContainer.getChildren().add(topTracks);
+            VBox.setVgrow(topTracks, Priority.ALWAYS);
+        });
     }
 
     private void setResultsTitle(String s) {
@@ -97,11 +126,13 @@ public class AllTrackViewController {
             ArrayList<Track> tres = at.searchTracksName(s);
             if (tres != null) {
                 ObservableList<Track> data = FXCollections.observableArrayList(tres);
-                res.setItems(data);
-                tableViewContainer.getChildren().clear();
-                tableViewContainer.getChildren().add(res);
+                Platform.runLater(() -> {
+                    res.setItems(data);
+                    tableViewContainer.getChildren().clear();
+                    tableViewContainer.getChildren().add(res);
+                });
             } else {
-                this.setTopTracks();
+                setTopTracksAsync();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -116,11 +147,13 @@ public class AllTrackViewController {
             ArrayList<Track> tres = at.searchTracksAutor(s);
             if (tres != null) {
                 ObservableList<Track> data = FXCollections.observableArrayList(tres);
-                res.setItems(data);
-                tableViewContainer.getChildren().clear();
-                tableViewContainer.getChildren().add(res);
+                Platform.runLater(() -> {
+                    res.setItems(data);
+                    tableViewContainer.getChildren().clear();
+                    tableViewContainer.getChildren().add(res);
+                });
             } else {
-                this.setTopTracks();
+                setTopTracksAsync();
             }
         } catch (Exception e) {
             e.printStackTrace();
