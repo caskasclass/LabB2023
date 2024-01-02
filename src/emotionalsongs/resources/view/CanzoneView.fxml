@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
@@ -9,48 +10,121 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="rootCanzoneview" prefHeight="400.0" prefWidth="600.0" spacing="4.0" styleClass="base" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootCanzoneview" prefWidth="1000.0" spacing="10.0" styleClass="base" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox>
+      <VBox fx:id="gradientBackground">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
          <children>
-            <ImageView fx:id="immagineCanzone" fitHeight="130.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </ImageView>
-            <VBox alignment="BOTTOM_LEFT" prefHeight="130.0" prefWidth="421.0">
+            <HBox alignment="BOTTOM_LEFT" fillHeight="false">
                <children>
-                  <Label contentDisplay="CENTER" text="singolo">
+                  <HBox spacing="30.0">
+                     <children>
+                        <ImageView fx:id="immagineCanzone" fitHeight="225.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <VBox alignment="BOTTOM_LEFT" fillWidth="false" prefHeight="130.0" prefWidth="421.0">
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <Label contentDisplay="CENTER" text="ALBUM">
+                                       <font>
+                                          <Font size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="nomeAlbum" text="NOME ALBUM ">
+                                       <font>
+                                          <Font size="29.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </VBox>
+                              <VBox>
+                                 <children>
+                                    <Label contentDisplay="CENTER" text="SINGOLO">
+                                       <font>
+                                          <Font size="9.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="nomeCanzone" text="NOME CANZONE">
+                                       <font>
+                                          <Font size="29.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <Label fx:id="infoCanzoni" text="info">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="15.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="6.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="30.0" top="75.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="TOP_CENTER" spacing="10.0">
+               <children>
+                  <Label alignment="CENTER" text="Valuta la canzone!!!">
                      <font>
-                        <Font size="9.0" />
+                        <Font size="5.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nomeCanzone" text="NOME CANZONE">
+                  <Label styleClass="text" stylesheets="@../css/main.css" text="indicare l'intensità dell'emozione percepita durante l'ascolto del brano da 1(per niente) a 5(molto)." textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
                      <font>
-                        <Font size="29.0" />
+                        <Font size="2.0" />
                      </font>
                   </Label>
-                  <Label fx:id="infoCanzoni" text="infoCanzoni" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="30.0" left="25.0" right="25.0" top="40.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
+      <FlowPane fx:id="containerEvaluation" alignment="CENTER" columnHalignment="CENTER" hgap="40.0" vgap="40.0" />
+      <HBox alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveEmotions" styleClass="button_box" text="SAVE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="esitoLabel">
+                     <font>
+                        <Font size="5.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
          </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
       </HBox>
-      <VBox alignment="TOP_CENTER" prefHeight="121.0" prefWidth="600.0">
-         <children>
-            <Label alignment="CENTER" text="Valuta la canzone!!!">
-               <font>
-                  <Font size="5.0" />
-               </font>
-            </Label>
-            <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="104.0" prefWidth="570.0" styleClass="text" stylesheets="@../css/main.css" text="indicare l'intensità dell'emozione percepita durante l'ascolto del brano da 1(per niente) a 5(molto)" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font size="2.0" />
-               </font>
-            </Label>
-         </children>
-         <padding>
-            <Insets bottom="30.0" right="30.0" top="30.0" />
-         </padding></VBox>
-      <FlowPane fx:id="containerEvaluation" alignment="CENTER" columnHalignment="CENTER" hgap="90.0" vgap="10.0" />
    </children>
+   <padding>
+      <Insets bottom="45.0" />
+   </padding>
 </fx:root>

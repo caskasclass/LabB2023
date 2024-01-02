@@ -2,27 +2,40 @@ package controllers;
 
 import javafx.util.Duration;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import Models.HomeModule;
+import Models.PlaylistModule;
+import Session.ClientSession;
+import Session.Globals;
 import Session.WindowAppearance;
 import Session.WindowStyle;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import pkg.Track;
-import pkg.TrackDetails;
+import jars.Playlist;
+import jars.AlbumPreview;
+import jars.Track;
+import jars.TrackDetails;
 import util.BackgroundTransition;
 import util.TableViewManager;
 import views.AlbumView;
+import views.AllTrackView;
+import views.ExplorePlaylistView;
 import views.PlaylistBox;
 
 public class homeViewController {
@@ -31,14 +44,15 @@ public class homeViewController {
 
     public final static double PLAYLIST_CONTAINER_SPACING = 12;
     public final static double ROOT_PADDING_LEFT_AND_RIGHT = 30;
-    private int myDisplayedPlaylist = 0;
-    private int othersDisplayedPlaylist = 0;
     private int MAX_ALBUM_DISPLAYED = 6;
     private int num_columns = 0;
     private int num_rows = 0;
 
+    private ArrayList<Playlist> plays = new ArrayList<Playlist>();
+
     private GridPane albumBoxContainer = null;
 
+    private Label myLabel = new Label("login to see your playlists");
     @FXML
     private HBox primaryShader;
 
@@ -49,22 +63,28 @@ public class homeViewController {
     private VBox gridContainer;
 
     @FXML
-    private HBox playlistBoxContainer;
+    private FlowPane playlistBoxContainer;
 
+    //css playlistBox_container
     @FXML
     private VBox tableViewContainer;
 
     @FXML
-    private HBox othersPlaylistBoxContainer;
+    private FlowPane othersPlaylistBoxContainer;
+
+    private HomeModule homeModule;
 
     public homeViewController(double initialWidth) {
         this.initialWidth = initialWidth;
+        homeModule = new HomeModule();
     }
 
     @FXML
     private void initialize() {
         WindowStyle.ResetColor();
         primaryShader.setBackground(WindowStyle.setInitialBackground());
+        myLabel.getStyleClass().add("plays_label");
+        myLabel.setPadding(new Insets(30,0,30,300));
         System.out.println("Width del center : " + (initialWidth - 16));
         initializeElements(initialWidth - 16);
 
@@ -84,68 +104,8 @@ public class homeViewController {
         transition.play();
 
     }
-
-    private void handleElements(double width) {
-        int numAvailablePlylist = 6;
-        int numOthersAvailablePlaylist = 4;
-        double availableSpace = width - (ROOT_PADDING_LEFT_AND_RIGHT);
-        double MyspacingWidth = (playlistBoxContainer.getChildren().size() - 1) * PLAYLIST_CONTAINER_SPACING;
-        double OthersSpacingWidth = (playlistBoxContainer.getChildren().size() - 1) * PLAYLIST_CONTAINER_SPACING;
-        double TotalMyNodeWidth = 0;
-        double TotalOthersNodeWidth = 0;
-        boolean MyminReached = false;
-        boolean OthersminReached = false;
-
-        // PER LA SEC MIE PLAYLIST
-        for (Node node : playlistBoxContainer.getChildren()) {
-            if (node instanceof VBox) {
-                VBox child = (VBox) node;
-                double childWidth = child.getWidth();
-                TotalMyNodeWidth += childWidth;
-                if (child.getMinWidth() + 10 >= childWidth) {
-                    MyminReached = true;
-                }
-            }
-        }
-        if ((availableSpace - (MyspacingWidth + TotalMyNodeWidth)) > 25) {
-            if (myDisplayedPlaylist < numAvailablePlylist) {
-                myDisplayedPlaylist++;
-                VBox playlistbox = new PlaylistBox(2,true);
-                HBox.setHgrow(playlistbox, Priority.ALWAYS);
-                playlistBoxContainer.getChildren().add(playlistbox);
-            }
-        } else if (MyminReached) {
-            if (!playlistBoxContainer.getChildren().isEmpty()) {
-                playlistBoxContainer.getChildren().remove(playlistBoxContainer.getChildren().size() - 1);
-                myDisplayedPlaylist--;
-            }
-
-        }
-        // PER LA SEC OTHERS PLAYLIST
-        for (Node node : othersPlaylistBoxContainer.getChildren()) {
-            if (node instanceof VBox) {
-                VBox child = (VBox) node;
-                double childWidth = child.getWidth();
-                TotalOthersNodeWidth += childWidth;
-                if (child.getMinWidth() + 10 >= childWidth) {
-                    OthersminReached = true;
-                }
-            }
-        }
-        if ((availableSpace - (OthersSpacingWidth + TotalOthersNodeWidth)) > 25) {
-            if (othersDisplayedPlaylist < numOthersAvailablePlaylist) {
-                othersDisplayedPlaylist++;
-                VBox playlistbox = new PlaylistBox(6,false);
-                HBox.setHgrow(playlistbox, Priority.ALWAYS);
-                othersPlaylistBoxContainer.getChildren().add(playlistbox);
-            }
-        } else if (OthersminReached) {
-            if (!othersPlaylistBoxContainer.getChildren().isEmpty()) {
-                othersPlaylistBoxContainer.getChildren().remove(othersPlaylistBoxContainer.getChildren().size() - 1);
-                othersDisplayedPlaylist--;
-            }
-
-        }
+    
+    private void handleElements(double width) {  
         // PER SEC ALBUM
         ObservableList<Node> boxes = albumBoxContainer.getChildren();
         double boxCurrentWidth = 0;
@@ -203,7 +163,10 @@ public class homeViewController {
 
     }
 
-    public void setPlaylist(double width) {
+    public void setPlaylist(double width) throws RemoteException, NotBoundException {
+                PlaylistModule pm = new PlaylistModule();
+                plays = pm.setPlaylists();
+                
         // from input width we can calculate the number of playlist box we can add
         // calcolo lo spazio disponibile prendendo in considerazione lo spacing nel hbox
         // e il padding
@@ -215,19 +178,39 @@ public class homeViewController {
         int numberOfPlaylistBox = (int) (availableSpace / mediumWidth);
         System.out.println("numero di box :" + numberOfPlaylistBox);
 
-        myDisplayedPlaylist = numberOfPlaylistBox;
-        for (int i = 0; i < numberOfPlaylistBox; i++) {
-            PlaylistBox playlist = new PlaylistBox(i+1,true);
-            HBox.setHgrow(playlist, Priority.ALWAYS);
-            playlistBoxContainer.getChildren().add(playlist);
+        if(ClientSession.client.getUserid() == null){
+            playlistBoxContainer.getChildren().add(myLabel);
+        //for (int i = 0; i < numberOfPlaylistBox; i++) {
+            for(Playlist p : plays){
+                PlaylistBox playlistBox = new PlaylistBox(p, false);
+                HBox.setHgrow(playlistBox, Priority.ALWAYS);
+                othersPlaylistBoxContainer.getChildren().add(playlistBox); 
+            }
         }
-        othersDisplayedPlaylist = numberOfPlaylistBox;
-        for (int i = 0; i < numberOfPlaylistBox; i++) {
-            PlaylistBox playlist = new PlaylistBox(i+1,false);
-            HBox.setHgrow(playlist, Priority.ALWAYS);
-            othersPlaylistBoxContainer.getChildren().add(playlist);
+        else{
+            for(Playlist p: plays){
+                if((p.getUser().equals(ClientSession.client.getUserid()))){
+                    PlaylistBox playlist = new PlaylistBox(p, false);
+                    HBox.setHgrow(playlist, Priority.ALWAYS);
+                    playlistBoxContainer.getChildren().add(playlist);
+                }
+            }
+            for(Playlist p : plays){
+                if(!(p.getUser().equals(ClientSession.client.getUserid()))){
+                    PlaylistBox playlistBox = new PlaylistBox(p, false);
+                    HBox.setHgrow(playlistBox, Priority.ALWAYS);
+                    othersPlaylistBoxContainer.getChildren().add(playlistBox); 
+                }
+                
+            }
+            
         }
-
+        
+        
+        
+                    
+        //}
+        
     }
 
     public void setAlbums(double width) {
@@ -255,7 +238,7 @@ public class homeViewController {
         System.out.println("sono in setTopTracks 2");
         topTracks.setMinHeight(300);
         System.out.println("sono in setTopTracks 3");
-        HomeModule homeModule = new HomeModule();
+ 
         System.out.println("sono in setTopTracks 4");
         //ArrayList<TrackDetails> topT = null;
         ArrayList<TrackDetails> topT = homeModule.getToptracks();
@@ -283,18 +266,43 @@ public class homeViewController {
             constraints.setPercentWidth(width_percenatge);
             albumBoxContainer.getColumnConstraints().add(constraints);
         }
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                AlbumView album = new AlbumView(5);
-                albumBoxContainer.add(album, j, i);
+        ArrayList<AlbumPreview> topAlbums = homeModule.getTopAlbums();
+        int index = 0;
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                if (index < topAlbums.size()) {
+                    AlbumView album = new AlbumView(topAlbums.get(index)); 
+                    albumBoxContainer.add(album, col, row);
+                    index++;
+                } else {
+                    // Se abbiamo esaurito gli elementi nella lista, esci dai cicli
+                    break;
+                }
             }
         }
     }
 
     private void initializeElements(double width) {
-        setPlaylist(width);
+        try {
+            setPlaylist(width);
+        } catch (Exception e) {
+            e.printStackTrace();}
         setTopTracks(); // per fare questo ci mette troppo tempo
         setAlbums(width);
+    }
+
+    public void explorePlaylist(MouseEvent e) {
+        ExplorePlaylistView view = new ExplorePlaylistView();
+        view.prefWidthProperty().bind(Globals.getRootFrame().widthProperty());
+        view.prefHeightProperty().bind(Globals.getRootFrame().heightProperty());
+        Globals.getRootFrame().setContent(view);
+    }
+
+    public void openAllTrack(MouseEvent e) {
+        AllTrackView view = new AllTrackView();
+        view.prefWidthProperty().bind(Globals.getRootFrame().widthProperty());
+        view.prefHeightProperty().bind(Globals.getRootFrame().heightProperty());
+        Globals.getRootFrame().setContent(view);
     }
 
 }

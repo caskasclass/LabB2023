@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="719.0" prefWidth="496.0" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.signWindowController">
+<Pane prefHeight="719.0" prefWidth="496.0" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="vbox" alignment="TOP_CENTER" prefHeight="719.0" prefWidth="496.0" spacing="60.0" styleClass="sign_box">
          <children>

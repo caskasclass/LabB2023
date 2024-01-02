@@ -1,9 +1,15 @@
 package views;
 
+
 import java.io.IOException;
 
+import Session.Globals;
+import controllers.homeWindowController;
 import controllers.playlistBoxController;
+import jars.Playlist;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import util.FXMLLoaders;
@@ -14,10 +20,14 @@ public class PlaylistBox extends VBox {
     public final static int MinWidth = 145;
     public final static int MaxWidth = 230;
 
-    public PlaylistBox(int n,boolean focus) {
+    homeWindowController homeWindowController = new homeWindowController();
+
+    public PlaylistBox(Playlist p, boolean focus) {
         FXMLLoader loader = fxmlutil.getLoader("playlistBox.fxml");
         playlistBoxController controller = new playlistBoxController();
-        controller.imgnumber = n;
+        controller.image = p.getImage();
+        controller.title = p.getTitle();
+        controller.user = p.getUser();
         controller.setFocusaEnabler(focus);
         loader.setController(controller);
         try {
@@ -31,15 +41,16 @@ public class PlaylistBox extends VBox {
         
         VBox.setVgrow(this, Priority.ALWAYS);
        
-        /*setOnMouseClicked(new EventHandler<MouseEvent>() {
+        setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 if (event.getClickCount() == 2) { // doppio clic
-                    PlaylistView view = new PlaylistView();
-                    homeWindowController.centerScrollPane.setContent(view);
+                    PlaylistView view = new PlaylistView(p);
+                    Globals.getRootFrame().setContent(view);                  
+        // Add content to the new stage
                 }
             }
-        });*/
+        });
     }
 
     

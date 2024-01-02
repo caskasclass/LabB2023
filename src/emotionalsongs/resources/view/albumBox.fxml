@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root fx:id="rootHbox" maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="270.0" styleClass="albumBox" type="HBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootHbox" maxHeight="70.0" maxWidth="1.7976931348623157E308" minHeight="70.0" minWidth="270.0" styleClass="albumBox" type="HBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fx:id="regionContainer" maxWidth="80.0" minWidth="80.0" HBox.hgrow="ALWAYS">
+      <VBox fx:id="regionContainer" maxWidth="70.0" minWidth="70.0" HBox.hgrow="ALWAYS">
          <children>
             <Region fx:id="imgregion" styleClass="imgregion" VBox.vgrow="ALWAYS" />
          </children>

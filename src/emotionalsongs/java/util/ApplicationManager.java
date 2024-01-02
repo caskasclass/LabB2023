@@ -17,7 +17,7 @@ public class ApplicationManager {
         // istanzio un task che mi carica elementi pesanti nel mentre
         Task<Void> UIInitializationTask = createUIInitializationTask();
 
-        // Sever per specificare cosa fare alla terminazione del task
+        // Serve per specificare cosa fare alla terminazione del task
         UIInitializationTask.setOnSucceeded(event -> {
             loadingWindow.close();
             homeWindow.show();
@@ -44,6 +44,7 @@ public class ApplicationManager {
                     long end = System.currentTimeMillis();
                     System.out.println("Time di creazione finestra : " + (end - start) + "ms");
                 });
+                
 
                 return null;
             }
