@@ -109,7 +109,7 @@ public class homeWindowController {
         // listener per la width
 
         // 4) istanzio il button user per la prova colore + il button in se
-        logoutButton = createButton("logout");
+        logoutButton = createButton("Logout");
         logoutButton.setOnAction(event -> {
             ClientSession.client = new User(null, null, null, null, null, 0, null, null, null);
             header_hbox.getChildren().remove(logoutButton);

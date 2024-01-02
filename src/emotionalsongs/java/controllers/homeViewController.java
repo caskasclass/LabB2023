@@ -49,10 +49,14 @@ public class homeViewController {
     private int num_rows = 0;
 
     private ArrayList<Playlist> plays = new ArrayList<Playlist>();
+    private ArrayList<Playlist> Myplays = new ArrayList<Playlist>();
+    private ArrayList<Playlist> Othersplays = new ArrayList<Playlist>();
 
     private GridPane albumBoxContainer = null;
 
-    private Label myLabel = new Label("login to see your playlists");
+    private Label myLabel = new Label("login per vedere le tue playlists");
+    private Label MyotherLab = new Label("non ci sono playlists disponibili");
+    private Label otherLab = new Label("non ci sono playlists disponibili");
     @FXML
     private HBox primaryShader;
 
@@ -84,7 +88,11 @@ public class homeViewController {
         WindowStyle.ResetColor();
         primaryShader.setBackground(WindowStyle.setInitialBackground());
         myLabel.getStyleClass().add("plays_label");
+        otherLab.getStyleClass().add("plays_label");
+        MyotherLab.getStyleClass().add("plays_label");
+        MyotherLab.setPadding(new Insets(30,0,30,300));
         myLabel.setPadding(new Insets(30,0,30,300));
+        otherLab.setPadding(new Insets(30,0,30,300));
         System.out.println("Width del center : " + (initialWidth - 16));
         initializeElements(initialWidth - 16);
 
@@ -164,8 +172,8 @@ public class homeViewController {
     }
 
     public void setPlaylist(double width) throws RemoteException, NotBoundException {
-                PlaylistModule pm = new PlaylistModule();
-                plays = pm.setPlaylists();
+        PlaylistModule pm = new PlaylistModule();
+        plays = pm.setPlaylists();
                 
         // from input width we can calculate the number of playlist box we can add
         // calcolo lo spazio disponibile prendendo in considerazione lo spacing nel hbox
@@ -178,38 +186,57 @@ public class homeViewController {
         int numberOfPlaylistBox = (int) (availableSpace / mediumWidth);
         System.out.println("numero di box :" + numberOfPlaylistBox);
 
-        if(ClientSession.client.getUserid() == null){
-            playlistBoxContainer.getChildren().add(myLabel);
-        //for (int i = 0; i < numberOfPlaylistBox; i++) {
-            for(Playlist p : plays){
-                PlaylistBox playlistBox = new PlaylistBox(p, false);
-                HBox.setHgrow(playlistBox, Priority.ALWAYS);
-                othersPlaylistBoxContainer.getChildren().add(playlistBox); 
+        if(plays.isEmpty()){
+            if(ClientSession.client.getUserid() == null){
+                playlistBoxContainer.getChildren().add(myLabel);            
             }
+            else{
+                playlistBoxContainer.getChildren().add(MyotherLab);   
+            }
+            othersPlaylistBoxContainer.getChildren().add(otherLab);
         }
         else{
-            for(Playlist p: plays){
-                if((p.getUser().equals(ClientSession.client.getUserid()))){
-                    PlaylistBox playlist = new PlaylistBox(p, false);
-                    HBox.setHgrow(playlist, Priority.ALWAYS);
-                    playlistBoxContainer.getChildren().add(playlist);
-                }
-            }
-            for(Playlist p : plays){
-                if(!(p.getUser().equals(ClientSession.client.getUserid()))){
+            if(ClientSession.client.getUserid() == null){
+                playlistBoxContainer.getChildren().add(myLabel);
+                for(Playlist p: plays){
                     PlaylistBox playlistBox = new PlaylistBox(p, false);
                     HBox.setHgrow(playlistBox, Priority.ALWAYS);
-                    othersPlaylistBoxContainer.getChildren().add(playlistBox); 
-                }
-                
+                    othersPlaylistBoxContainer.getChildren().add(playlistBox);
             }
+                }
+            else{
+                for(Playlist p: plays){
+                    if((p.getUser().equals(ClientSession.client.getUserid()))){
+                        Myplays.add(p);
+                    }
+                    else{
+                        Othersplays.add(p);
+                    }
+                }
+                if(Myplays.isEmpty()){
+                    playlistBoxContainer.getChildren().add(MyotherLab);
+                }
+                else{
+                    for(Playlist p: Myplays){
+                        PlaylistBox playlistBox = new PlaylistBox(p, false);
+                        HBox.setHgrow(playlistBox, Priority.ALWAYS);
+                        playlistBoxContainer.getChildren().add(playlistBox);
+                    }
+                }
+                if(Othersplays.isEmpty()){
+                    othersPlaylistBoxContainer.getChildren().add(otherLab);
+                }
+                else{
+                    for(Playlist p: Othersplays){
+                        PlaylistBox playlistBox = new PlaylistBox(p, false);
+                        HBox.setHgrow(playlistBox, Priority.ALWAYS);
+                        othersPlaylistBoxContainer.getChildren().add(playlistBox);
+                    }
+                }
             
-        }
-        
-        
-        
-                    
-        //}
+            }
+           
+        }      
         
     }
 

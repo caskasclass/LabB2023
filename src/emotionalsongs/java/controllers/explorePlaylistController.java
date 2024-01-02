@@ -45,8 +45,9 @@ public class explorePlaylistController {
     @FXML
     private Separator separator;
 
-    private Label myLab = new Label("login to see your playlists");
-    private Label otherLab = new Label("no playlists available");
+    private Label myLab = new Label("login per vedere le tue playlists");
+    private Label MyotherLab = new Label("non ci sono playlists disponibili");
+    private Label otherLab = new Label("non ci sono playlists disponibili");
 
     private ArrayList<Playlist> plays = new ArrayList<Playlist>();
     private ArrayList<Playlist> Myplays = new ArrayList<Playlist>();
@@ -57,6 +58,8 @@ public class explorePlaylistController {
 
         myLab.getStyleClass().add("plays_label");
         otherLab.getStyleClass().add("plays_label");
+        MyotherLab.getStyleClass().add("plays_label");
+        MyotherLab.setPadding(new Insets(30,0,30,300));
         myLab.setPadding(new Insets(30,0,30,300));
         otherLab.setPadding(new Insets(30,0,30,300));
         allButton.setDisable(true);
@@ -73,12 +76,13 @@ public class explorePlaylistController {
                 MyplaylistBoxContainer.getChildren().add(myLab);            
             }
             else{
-                MyplaylistBoxContainer.getChildren().add(otherLab);   
+                MyplaylistBoxContainer.getChildren().add(MyotherLab);       
             }
             OthersplaylistBoxContainer.getChildren().add(otherLab);
             myButton.setDisable(true);
             allButton.setDisable(true);
             othrsButton.setDisable(true);
+            
         }
         else{
             if(ClientSession.client.getUserid() == null){
@@ -88,12 +92,15 @@ public class explorePlaylistController {
                 myButton.setDisable(false);
                 othrsButton.setDisable(false);
                 for(Playlist p: plays){
-                    if(p.getUser().equals(ClientSession.client.getUserid())){
+                    if((p.getUser().equals(ClientSession.client.getUserid()))){
                         Myplays.add(p);
-                    }                    
+                    }
+                    else{
+                        Othersplays.add(p);
+                    }
                 }
                 if(Myplays.isEmpty()){
-                    MyplaylistBoxContainer.getChildren().add(otherLab);
+                    MyplaylistBoxContainer.getChildren().add(MyotherLab);
                 }
                 else{
                     for(Playlist p: Myplays){
@@ -101,21 +108,16 @@ public class explorePlaylistController {
                         MyplaylistBoxContainer.getChildren().add(playlistBox);
                     }
                 }
-                for(Playlist p: plays){
-                    if(!(p.getUser().equals(ClientSession.client.getUserid()))){
-                        Othersplays.add(p);
-                    }                    
-                }
                 if(Othersplays.isEmpty()){
                     OthersplaylistBoxContainer.getChildren().add(otherLab);
                 }
                 else{
                     for(Playlist p: Othersplays){
                         PlaylistBox playlistBox = new PlaylistBox(p, false);
-                        MyplaylistBoxContainer.getChildren().add(playlistBox);
+                        OthersplaylistBoxContainer.getChildren().add(playlistBox);
                     }
                 }
-
+            
             }
            
         }

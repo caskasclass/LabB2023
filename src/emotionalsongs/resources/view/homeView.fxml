@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root alignment="TOP_LEFT" styleClass="base" stylesheets="@../css/main.css" type="StackPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alignment="TOP_LEFT" styleClass="base" stylesheets="@../css/main.css" type="StackPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="primaryShader" maxHeight="300.0" minHeight="300.0">
          <StackPane.margin>
@@ -32,7 +32,7 @@
                   <FlowPane fx:id="playlistBoxContainer" alignment="CENTER_LEFT" hgap="12.0" maxWidth="1.7976931348623157E308" styleClass="playlistBox_container" vgap="12.0" VBox.vgrow="ALWAYS" />
                   <HBox nodeOrientation="RIGHT_TO_LEFT">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#explorePlaylist" styleClass="button_box" text="see all">
+                        <Button mnemonicParsing="false" onMouseClicked="#explorePlaylist" styleClass="button_box" text="vedi tutte">
                            <HBox.margin>
                               <Insets top="20.0" />
                            </HBox.margin></Button>
@@ -65,7 +65,7 @@
                   <VBox fx:id="tableViewContainer" VBox.vgrow="ALWAYS" />
                   <HBox nodeOrientation="RIGHT_TO_LEFT">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#openAllTrack" styleClass="button_box" text="see all">
+                        <Button mnemonicParsing="false" onMouseClicked="#openAllTrack" styleClass="button_box" text="vedi tutte">
                            <HBox.margin>
                               <Insets top="20.0" />
                            </HBox.margin></Button>
@@ -78,7 +78,7 @@
             </VBox>
             <VBox spacing="5.0">
                <children>
-                  <Label text="Espolora Playlist ">
+                  <Label text="Esplora Playlist ">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
@@ -86,7 +86,7 @@
                   <FlowPane fx:id="othersPlaylistBoxContainer" alignment="CENTER_LEFT" hgap="12.0" maxWidth="1.7976931348623157E308" styleClass="playlistBox_container" vgap="12.0" VBox.vgrow="ALWAYS" />
                   <HBox nodeOrientation="RIGHT_TO_LEFT">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#explorePlaylist" styleClass="button_box" text="see all">
+                        <Button mnemonicParsing="false" onMouseClicked="#explorePlaylist" styleClass="button_box" text="vedi tutte">
                            <HBox.margin>
                               <Insets top="20.0" />
                            </HBox.margin></Button>

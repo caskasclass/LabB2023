@@ -54,8 +54,8 @@ public class creazionePlaylistController {
     private VBox tableContainer;
 
     static URL img;
-    public static TableViewManager playlistTracks = new TableViewManager(false, false);
-    public static TableViewManager findTracks = new TableViewManager(false, true);
+    private TableViewManager playlistTracks = new TableViewManager(false, false);
+    private TableViewManager findTracks = new TableViewManager(false, true);
 
     @FXML
     void initialize() {

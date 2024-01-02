@@ -55,7 +55,7 @@
             </HBox>
             <VBox styleClass="fill_box">
                <children>
-                  <Label text="Email or username">
+                  <Label text="Email o username">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -95,8 +95,8 @@
                   <Button fx:id="loginButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#accesso" prefHeight="37.0" prefWidth="275.0" styleClass="button_box" text="Log in" />
                   <HBox alignment="CENTER" spacing="5.0" styleClass="nr_box">
                      <children>
-                        <Label styleClass="not_label" text="Not registered yet?" />
-                        <Label fx:id="signUpButton" onMouseClicked="#openSignUp" styleClass="sign_label" text="Sign up" />
+                        <Label styleClass="not_label" text="Non ancora registrato?" />
+                        <Label fx:id="signUpButton" onMouseClicked="#openSignUp" styleClass="sign_label" text="Registrati" />
                      </children>
                   </HBox>
                </children>

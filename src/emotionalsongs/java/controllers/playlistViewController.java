@@ -80,6 +80,8 @@ public class playlistViewController{
 
     @FXML
     void initialize() {
+        playlistImage.setDisable(true);
+        playlistName.setEditable(false);
         setPlaylist();
         playlistImage.setImage(new Image(image));
         editcontainter.setVisible(false);
@@ -203,23 +205,6 @@ public class playlistViewController{
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-    }
-
-    public void openImages(MouseEvent e) {
-        Stage parent = (Stage) editButton.getScene().getWindow();
-        ImagesWindow window = new ImagesWindow(playlistImage);
-        window.initOwner(parent);
-        BoxBlur blur = new BoxBlur(10, 10, 3);
-        parent.getScene().getRoot().setEffect(blur);
-        Platform.runLater(() -> {
-            parent.getScene().getRoot().setDisable(true);
-        });
-        window.setOnHidden(event -> {
-            parent.getScene().getRoot().setEffect(null);
-            parent.getScene().getRoot().setDisable(false);
-        });
-
-        window.show();
     }
 
     private void newTracks(TableViewManager editTable) throws RemoteException, NotBoundException{

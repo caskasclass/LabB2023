@@ -21,7 +21,7 @@
                <children>
                   <HBox spacing="20.0">
                      <children>
-                        <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" onMouseClicked="#openImages" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -53,7 +53,7 @@
                                     <Insets left="-2.0" />
                                  </padding>
                               </TextField>
-                              <Label fx:id="owner" text="Owner">
+                              <Label fx:id="owner" text="Utente">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
@@ -72,7 +72,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="deleteButton" layoutX="15.0" layoutY="61.0" mnemonicParsing="false" styleClass="button_cp" text="Delete">
+                        <Button fx:id="deleteButton" layoutX="15.0" layoutY="61.0" mnemonicParsing="false" styleClass="button_cp" text="Elimina">
                            <font>
                               <Font name="Arial Bold" size="35.0" />
                            </font>

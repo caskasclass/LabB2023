@@ -209,7 +209,7 @@
             </Label>
             <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button fx:id="signUpButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#registrazione" prefHeight="37.0" prefWidth="275.0" styleClass="button_box" text="Sign up" />
+                  <Button fx:id="signUpButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#registrazione" prefHeight="37.0" prefWidth="275.0" styleClass="button_box" text="Registrati" />
                </children>
                <padding>
                   <Insets top="-10.0" />
