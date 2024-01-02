@@ -1,6 +1,7 @@
 package controllers;
 
 import Session.ClientSession;
+import Session.Globals;
 import Session.WindowAppearance;
 import Threads.ResizeHandler;
 import WindowsLoader.SignWindow;
@@ -24,13 +25,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import views.HomeView;
-import views.PlaylistView;
 import views.AllTrackView;
 import views.CanzoneView;
 import views.CreatePlaylistView;
 import views.ExplorePlaylistView;
 import javafx.stage.Stage;
-import pkg.*;
+import jars.*;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 
@@ -42,14 +42,18 @@ public class homeWindowController {
     private double opacity = 0.0;
     private CornerRadii cornerRad = new CornerRadii(8, 8, 0, 0, false);
 
+
     @FXML
     private BorderPane rootPane;
+
+    @FXML
+    private VBox buttonVbox;
 
     @FXML
     private VBox rootMenu;
 
     @FXML
-    private ScrollPane centerScrollPane;
+    public ScrollPane centerScrollPane;
 
     @FXML
     private StackPane centerStackPane;
@@ -69,9 +73,15 @@ public class homeWindowController {
     @FXML
     private Button creaButton;
 
+    Button userButton= null;
+    
+    Button logoutButton= null;
+
 
     @FXML
     private void initialize() {
+
+        Globals.setRootFrame(centerScrollPane);
 
         // 1) margini al borderPane
         BorderPane.setMargin(rootMenu, new Insets(0, 7, 0, 0));
@@ -99,20 +109,30 @@ public class homeWindowController {
         // listener per la width
 
         // 4) istanzio il button user per la prova colore + il button in se
-        Button userButton = createButton("username");
+        logoutButton = createButton("logout");
+        logoutButton.setOnAction(event -> {
+            ClientSession.client = new User(null, null, null, null, null, 0, null, null, null);
+            header_hbox.getChildren().remove(logoutButton);
+            header_hbox.getChildren().remove(userButton);
+            header_hbox.getChildren().add(loginButton);
+            updateWindow();
+            centerScrollPane.setContent(new HomeView(ResizeHandler.getCenterWidth()));
+            
+
+        });
+        userButton = createButton("username");
+
         userButton.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
         userButton.setOnAction(event -> {
             System.out.println(ClientSession.client.getCity());
         });
-        String url = getClass().getResource("/imgs/playlist_img/img2.png").toExternalForm();
+        String url = getClass().getResource("/imgs/profile_pic.png").toExternalForm();
         Image image = new Image(url);
         ImageView img = new ImageView(image);
-        img.setClip(cropUserImg(img, 24, 24));
+        img.setClip(cropUserImg(img, 28, 28));
         userButton.setGraphic(img);
         userButton.setVisible(true);
 
-        // 6) Aggiungo i button al header
-        header_hbox.getChildren().add(userButton);
 
         // 7) vari listener
         Platform.runLater(() -> {
@@ -125,7 +145,11 @@ public class homeWindowController {
         // per il colore sul SCROLL
         centerScrollPane.addEventFilter(ScrollEvent.SCROLL, this::handleScrollEvent);
 
-        Platform.runLater(()->setElementsSession());
+        if(creaButton == null) System.out.println("è nullo");
+
+        Globals.setRootFrame(centerScrollPane);
+
+        updateWindow();
 
     }
 
@@ -177,21 +201,10 @@ public class homeWindowController {
         return clip;
     }
 
-    private void setElementsSession(){
-        if(ClientSession.client.getUserid() == null){
-            creaButton.setVisible(false);
-        }
-        else{
-                creaButton.setVisible(true);
-            loginButton.setVisible(false);
-            
-            
-        }
-
-    }
+   
     public void openWindow(MouseEvent e) {
         Stage parent = (Stage) homeButton.getScene().getWindow();
-        SignWindow window = new SignWindow();
+        SignWindow window = new SignWindow(this);
         window.initOwner(parent);
         BoxBlur blur = new BoxBlur(10, 10, 3);
         parent.getScene().getRoot().setEffect(blur);
@@ -224,12 +237,8 @@ public class homeWindowController {
         centerScrollPane.setContent(view);
     }
 
-    public void openPlaylist(MouseEvent e) {
-        PlaylistView view = new PlaylistView();
-        centerScrollPane.setContent(view);
-}
     public void openTrack(MouseEvent e){
-        CanzoneView view = new CanzoneView(new Track(null, null, 0, null, null, null, null, null));
+        CanzoneView view = new CanzoneView(null);
         centerScrollPane.setContent(view);
     }
 
@@ -238,6 +247,23 @@ public class homeWindowController {
         view.prefWidthProperty().bind(centerScrollPane.widthProperty());
         view.prefHeightProperty().bind(centerScrollPane.heightProperty());
         centerScrollPane.setContent(view);
+    }
+    public void updateWindow(){
+        Platform.runLater(()->{
+            
+            if(ClientSession.client.getUserid() == null){
+
+                buttonVbox.getChildren().remove(0);
+                
+            }
+            else{
+                buttonVbox.getChildren().add(0,creaButton);
+                header_hbox.getChildren().remove(0);
+                header_hbox.getChildren().add(logoutButton);
+                header_hbox.getChildren().add(userButton);
+                userButton.setText(ClientSession.client.getUserid());
+            }});
+        
     }
 
 }

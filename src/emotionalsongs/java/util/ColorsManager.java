@@ -4,15 +4,14 @@ import java.util.*;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
-import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 
 
 public class ColorsManager {
 
 
-    public static Color getDominantColor(Region region) {
-        Image image = region.getBackground().getImages().get(0).getImage();
+    public static Color getDominantColor(Image  image) {
+
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
     

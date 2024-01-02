@@ -2,7 +2,7 @@ package views;
 
 import java.io.IOException;
 
-import controllers.allTrackViewController;
+import controllers.AllTrackViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 import util.FXMLLoaders;
@@ -13,14 +13,15 @@ public class AllTrackView extends VBox {
     public AllTrackView() {
 
         FXMLLoader loader = fxmlutil.getLoader("AllTrackView.fxml");
-        allTrackViewController controller = new allTrackViewController();
+        AllTrackViewController controller = new AllTrackViewController();
 
         loader.setController(controller);
+
         try {
             loader.setRoot(this);
             loader.load();
         } catch (IOException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
 
     }

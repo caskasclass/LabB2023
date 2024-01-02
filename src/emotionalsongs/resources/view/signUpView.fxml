@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="496.0" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.signUpViewController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="496.0" styleClass="base" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.signUpViewController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="719.0" prefWidth="496.0" spacing="20.0" styleClass="sign_box">
          <children>
@@ -210,12 +210,6 @@
             <VBox alignment="CENTER" spacing="10.0">
                <children>
                   <Button fx:id="signUpButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#registrazione" prefHeight="37.0" prefWidth="275.0" styleClass="button_box" text="Sign up" />
-                  <HBox alignment="CENTER" spacing="5.0" styleClass="nr_box">
-                     <children>
-                        <Label styleClass="not_label" text="Already have an account?" />
-                        <Label fx:id="loginButton" onMouseClicked="#openLogIn" styleClass="sign_label" text="Log in" />
-                     </children>
-                  </HBox>
                </children>
                <padding>
                   <Insets top="-10.0" />

@@ -1,24 +1,22 @@
 package controllers;
 
 import java.lang.String;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import pkg.*;
+import Models.UserModule;
+import Session.Globals;
+import Threads.ResizeHandler;
+import jars.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import util.FXMLLoaders;
-import javafx.scene.layout.Pane;
+import views.HomeView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
@@ -32,9 +30,6 @@ public class signUpViewController {
 
     @FXML
     private TextField citta;
-
-    @FXML
-    private Label loginButton;
 
     @FXML
     private Label msgErr;
@@ -57,20 +52,8 @@ public class signUpViewController {
     @FXML
     private TextField username;
 
-    public void openLogIn(MouseEvent e){
-        System.out.println("\n\nCalcolo tempo\n\n");
-        long start = System.currentTimeMillis();
-        Stage stage = (Stage) signUpButton.getScene().getWindow();
-        FXMLLoaders loader = new FXMLLoaders();
-        Pane pane = (Pane) loader.loadFXML("signWindow.fxml");
-        Scene scene = new Scene(pane, Color.TRANSPARENT);
-        stage.setScene(scene);
-        long end = System.currentTimeMillis();
-        System.out.println("\n\nTempo impiegato : " + (end - start) + " ms.\n\n");    
-    }
-
     public void closeWindow(MouseEvent e){
-        Stage stage = (Stage) loginButton.getScene().getWindow();
+        Stage stage = (Stage) signUpButton.getScene().getWindow();
         stage.close();
     }
 
@@ -94,34 +77,19 @@ public class signUpViewController {
             msgErr.setText("il formato della mail non è corretto");
         }
         else{
-            msgErr.setText("tutto corretto");
             User u = new User(username.getText(), nome.getText(), nome.getText(), cf.getText(),residenza.getText(),Integer.parseInt(cap.getText()),citta.getText() ,mail.getText(),password.getText());
             try {
-            Registry r = LocateRegistry.getRegistry("localhost",1099);
-            ServerInterface si = (ServerInterface) r.lookup("SERVER");
-            si.registration(u);
+                UserModule um = new UserModule();
+                um.registration(u);
             } catch (Exception ex) {
-                System.out.println(ex);        }
-            Stage stage = (Stage) loginButton.getScene().getWindow();
+                 System.out.println(ex);
+                 msgErr.setText("username o mail già utilizzati");
+           }
+           Stage stage = (Stage) signUpButton.getScene().getWindow();
             stage.close();
+            Globals.getRootFrame().setContent(new HomeView(ResizeHandler.getCenterWidth()));
+            
         }
-        /*
-            else {
-            User newuser = new User(btn_username.getText(), btn_passwd.getText(), btn_mail.getText(), btn_nome.getText().toLowerCase(), btn_cf.getText().toUpperCase(), btn_ind.getText().toLowerCase());
-            ArrayList<User> users = UserManager.readUsers();
-            if(users.contains(newuser)){
-                msgErr.setText("utente già registrato");
-            }
-            else {
-                users.add(newuser);
-                Stage stage = (Stage) btn_registra.getScene().getWindow(); // chiusura della finestra
-                stage.close();
-            
-            }
-            UserManager.getUsers(users); 
-            
-        }  */    
-        
         
         }
 
