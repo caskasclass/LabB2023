@@ -6,6 +6,8 @@ import java.rmi.RemoteException;
 import jars.ServerInterface;
 import jars.User;
 
+import java.util.ArrayList;
+
 public class UserModule {
     private ServerInterface si;
 
@@ -13,11 +15,20 @@ public class UserModule {
         si = ServerFinder.findServer();
     }
 
-    public void registration(User u) throws RemoteException{
-            si.registration(u);
+    public void registration(User u) throws RemoteException {
+        si.registration(u);
     }
 
-    public User login(String id, String psw) throws RemoteException{
+    public boolean alreadyExist(User u) throws RemoteException {
+        try {
+            return si.findexExistingUsers().contains(u.getUserid());
+        } catch (Exception e) {
+            System.out.println(e);
+            return true;
+        }
+    }
+
+    public User login(String id, String psw) throws RemoteException {
         User u = si.access(id, psw);
         return u;
     }

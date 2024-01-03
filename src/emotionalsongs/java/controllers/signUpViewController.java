@@ -80,10 +80,13 @@ public class signUpViewController {
             User u = new User(username.getText(), nome.getText(), nome.getText(), cf.getText(),residenza.getText(),Integer.parseInt(cap.getText()),citta.getText() ,mail.getText(),password.getText());
             try {
                 UserModule um = new UserModule();
-                um.registration(u);
+                if(um.alreadyExist(u)) {
+                    msgErr.setText("username già utilizzato");
+                } else {
+                    um.registration(u);
+                }
             } catch (Exception ex) {
                  System.out.println(ex);
-                 msgErr.setText("username o mail già utilizzati");
            }
            Stage stage = (Stage) signUpButton.getScene().getWindow();
             stage.close();
