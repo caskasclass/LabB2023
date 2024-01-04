@@ -6,8 +6,6 @@ import java.rmi.RemoteException;
 import jars.ServerInterface;
 import jars.User;
 
-import java.util.ArrayList;
-
 public class UserModule {
     private ServerInterface si;
 
@@ -21,7 +19,10 @@ public class UserModule {
 
     public boolean alreadyExist(User u) throws RemoteException {
         try {
-            return si.findexExistingUsers().contains(u.getUserid());
+            if(si.findexExistingUsers().contains(u.getUserid()) || si.findexExistingUsers().contains(u.getMail()))
+                return true;
+            else 
+                return false;
         } catch (Exception e) {
             System.out.println(e);
             return true;

@@ -77,7 +77,7 @@ public class signUpViewController {
             try {
                 UserModule um = new UserModule();
                 if (um.alreadyExist(u)) {
-                    msgErr.setText("username già utilizzato");
+                    msgErr.setText("utente già registrato, cambiare username o mail");
                 } else {
                     um.registration(u);
                     Stage stage = (Stage) signUpButton.getScene().getWindow();
