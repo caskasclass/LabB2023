@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-  
-<fx:root fx:id="MainFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1080.0" styleClass="base" stylesheets="@../Documents/Università/LaboratorioB/MyLabB2023/src/emotionalsongs/resources/css/main.css" type="Pane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="MainFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="base" stylesheets="@../css/main.css" type="Pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="LeftLable" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="137.0" text="Search a track" />
-      <TextField fx:id="SearchBar" layoutX="151.0" layoutY="15.0" prefHeight="25.0" prefWidth="917.0" promptText="Insert keywords..." styleClass="base" />
+      <VBox fx:id="contentContainer" spacing="30.0">
+         <VBox.margin>
+            <Insets top="50.0" />
+         </VBox.margin>
+         <Label fx:id="leftLabel" prefHeight="30.0" prefWidth="302.0" text="Cerca una traccia" />
+         <TextField fx:id="searchBar" prefWidth="425.0" promptText="Titolo, Autore, Anno" styleClass="text_field">
+            <font>
+               <Font name="Proxima Nova" size="18.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="30.0" />
+            </VBox.margin>
+         </TextField>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+         <padding>
+            <Insets left="15.0" right="15.0" top="60.0" />
+         </padding>
+      </VBox>
+      <VBox id="tableViewContainer" fx:id="tableViewContainer">
+      </VBox>
+      <HBox id="playlistBoxContainer" fx:id="playlistBoxContainer">
+      </HBox>
    </children>
 </fx:root>

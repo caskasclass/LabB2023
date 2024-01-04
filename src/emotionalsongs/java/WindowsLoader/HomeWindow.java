@@ -2,6 +2,7 @@ package WindowsLoader;
 
 import Session.WindowAppearance;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import util.FXMLLoaders;
@@ -23,5 +24,6 @@ public class HomeWindow extends Stage {
             setMinWidth(MIN_WINDOW_WIDTH);
             setX( WindowAppearance.getWindowX());
             setY(WindowAppearance.getWindowY());
+            getIcons().add(new Image("/imgs/icon.png"));
     }
 }

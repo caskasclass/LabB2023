@@ -1,6 +1,6 @@
 package util;
 
-import controllers.creazionePlaylistController;
+import Session.Globals;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -12,12 +12,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import views.CanzoneView;
 import jars.Track;
 public class TableViewManager extends TableView<Track> {
 
-    creazionePlaylistController contr = new creazionePlaylistController();
-
-    private int num_columns = 1;
     private int margin_error =5;
     final int BUTTON_COLUMN_SIZE = 100; //misura ib pixel
     final int INDEX_COLUMN_SIZE = 60; //misura ib pixel
@@ -94,11 +92,12 @@ public class TableViewManager extends TableView<Track> {
             public void handle(MouseEvent event) {
                 if (event.getClickCount() == 2) {
                     Track selectedItem = getSelectionModel().getSelectedItem();
-                    System.out.println("Hai cliccato sulla riga: " + selectedItem);
+                    System.out.println("\n\nDouble click on: "+selectedItem.getName());
+                    CanzoneView trackView = new CanzoneView(selectedItem);
+                    Globals.getRootFrame().setContent(trackView);
                 }
             }
         });
-
     }
 
     private void addButtonColumn(TableColumn<Track,Button> column,String buttonText, ButtonClickHandler handler) {
@@ -133,15 +132,14 @@ public class TableViewManager extends TableView<Track> {
     }
 
     private void addTrackToPlaylist(Track track) {
-        if(!creazionePlaylistController.playlistTracks.isVisible()){
-            creazionePlaylistController.playlistTracks.setVisible(true);
-        }
         TableView<Track> tmp = this; 
         VBox p = (VBox) tmp.getParent();
         tmp.getItems().remove(track);
 
         Node tmpNode = p.getChildren().get(0);
         if(tmpNode instanceof TableView){
+            if(!(((TableView<Track>) tmpNode).isVisible()))
+            {((TableView<Track>) tmpNode).setVisible(true);}
             ((TableView<Track>) tmpNode).getItems().add(track);
         }
     }

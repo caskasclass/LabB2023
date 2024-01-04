@@ -7,14 +7,43 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import jars.Track;
-import util.TableViewManager;
 
-public class playlistViewController {
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import Models.AllTrackModule;
+import Models.HomeModule;
+import Models.PlaylistModule;
+import Session.ClientSession;
+import Session.Globals;
+import Threads.ResizeHandler;
+import jars.*;
+import util.TableViewManager;
+import views.HomeView;
+import views.PlaylistView;
+
+public class playlistViewController{
+
+    private Playlist p= null;
+    public String title = null;
+    public String user = null;
+    private String image= null;
+    private ArrayList<String> p_strings = new ArrayList<String>();
+    private ArrayList<String> addString = new ArrayList<String>();
+    private ArrayList<Track> p_tracks = new ArrayList<Track>();
+    private ArrayList<Track> addTracks = new ArrayList<Track>();
+
+    private TableViewManager mainTable = new TableViewManager(true, false);
+    private TableViewManager addTable = new TableViewManager(false, true);
+    private TableViewManager editTable = new TableViewManager(false, false);
+
 
     @FXML
     private TextField cerca;
@@ -48,17 +77,54 @@ public class playlistViewController {
 
     @FXML
     void initialize() {
+        playlistImage.setDisable(true);
+        playlistName.setEditable(false);
+        setPlaylist();
+        playlistImage.setImage(new Image(image));
         editcontainter.setVisible(false);
         Platform.runLater(() -> {
-            double width = container.getWidth() - 10;
-            initializeElements();
+            try {
+                initializeElements();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+             try {
+            cerca.setOnKeyPressed(event -> {
+                if (event.getCode() != KeyCode.ENTER) {
+                    setResultsTitle(cerca.getText());
+                } else {
+                    setResultsArtist(cerca.getText());
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            
         });
     }
 
-    private void initializeElements() {
-        TableViewManager mainTable = new TableViewManager(true, false);
-        TableViewManager addTable = new TableViewManager(false, true);
-        TableViewManager editTable = new TableViewManager(false, false);
+    private void initializeElements() throws RemoteException{
+
+        if(ClientSession.client.getUserid() == null || !(ClientSession.client.getUserid().equals(user))){
+            editButton.setVisible(false);
+            deleteButton.setVisible(false);
+        }
+        else{
+            editButton.setVisible(true);
+            deleteButton.setVisible(true);
+
+        }
+       
+        playlistImage.setDisable(true);
+        playlistName.setText(title);
+        owner.setText(user);
+      
+
+
+
+        mainTable.setItems(FXCollections.observableArrayList(p_tracks));
+        editTable.setItems(FXCollections.observableArrayList(p_tracks));
+        addTable.setItems(FXCollections.observableArrayList(addTracks));
 
         mainTable.setMinHeight(400);
         addTable.setMinHeight(400);
@@ -66,25 +132,8 @@ public class playlistViewController {
         editTable.setMinHeight(400);
 
         tableContainer.getChildren().add(0, mainTable);
-
-        ObservableList<Track> data = FXCollections.observableArrayList(
-                new Track("1", "Song 1", 180, "Artist 1", "Album 1", "img0", "img1", "img2"),
-                new Track("2", "Song 2", 180, "Artist 2", "Album 2", "img3", "img4", "img5"),
-                new Track("3", "Song 3", 180, "Artist 3", "Album 3", "img6", "img7", "img8"),
-                new Track("4", "Song 4", 180, "Artist 4", "Album 4", "img9", "img10", "img11"),
-                new Track("5", "Song 5", 180, "Artist 5", "Album 5", "img12", "img13", "img14")
-        );
-        ObservableList<Track> data2 = FXCollections.observableArrayList(
-                new Track("1", "Song 1", 180, "Artist 1", "Album 1", "img0", "img1", "img2"),
-                new Track("2", "Song 2", 180, "Artist 2", "Album 2", "img3", "img4", "img5"),
-                new Track("3", "Song 3", 180, "Artist 3", "Album 3", "img6", "img7", "img8"),
-                new Track("4", "Song 4", 180, "Artist 4", "Album 4", "img9", "img10", "img11"),
-                new Track("5", "Song 5", 180, "Artist 5", "Album 5", "img12", "img13", "img14")
-        );
-
-        mainTable.setItems(data);
-        editTable.setItems(data);
-        addTable.setItems(data2);
+        
+        
 
         cerca.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -100,6 +149,7 @@ public class playlistViewController {
                 editcontainter.setVisible(true);
                 tableContainer.getChildren().remove(0);
                 tableContainer.getChildren().add(0, editTable);
+                playlistImage.setDisable(false);
                 Button button = new Button("Done");
                 button.getStyleClass().add("button_cp");
                 buttonCont.getChildren().add(1, button);
@@ -111,12 +161,116 @@ public class playlistViewController {
                     tableContainer.getChildren().remove(0);
                     tableContainer.getChildren().add(0, mainTable);
                     tableContainer.getChildren().remove(addTable);
-                });
+                    playlistImage.setDisable(true);
+                    try {
+                        newTracks(editTable);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Globals.getRootFrame().setContent(new PlaylistView(p));
+                }
+
+                );
 
                 tableContainer.getChildren().add(2, addTable);
             }
         });
 
-        deleteButton.setOnMouseClicked(event -> editcontainter.setVisible(false));
+        deleteButton.setOnMouseClicked(event -> {
+            editcontainter.setVisible(false);
+            try {
+                PlaylistModule pm = new PlaylistModule();
+                pm.deletePlaylist(p);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Globals.getRootFrame().setContent(new HomeView(ResizeHandler.getCenterWidth()));
+        });
     }
+
+    private void setPlaylist(){
+        try {
+                //modificare getPlaylist
+                PlaylistModule pm = new PlaylistModule();
+                p = pm.getP(title, user);
+                image = p.getImage();
+                p_strings = p.getTrackList();
+                p_tracks = pm.getAllTrack(p_strings, 0, p_strings.size());
+                addString = pm.getAllIds();
+                addTracks = pm.getAllTrack(p_strings, 0, 20);
+                
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+    }
+
+    private void newTracks(TableViewManager editTable) throws RemoteException, NotBoundException{
+        ArrayList<Track> ar = new ArrayList<Track>(editTable.getItems());
+        ArrayList<String> track_ids = new ArrayList<String>();
+        p.setTrackList(track_ids);
+        for(Track t: ar){
+                track_ids.add(t.getTrack_id());
+            }
+        ArrayList<String> new_tracks = new ArrayList<String>();
+        for(String track: track_ids){
+            if(!(p_strings.contains(track))){
+                new_tracks.add(track);
+            }
+        }
+        PlaylistModule pm = new PlaylistModule();
+        pm.createPlaylist(new Playlist(title,new_tracks,image,user));
+        for(String track: p_strings){
+            if(!(track_ids.contains(track))){
+                pm.deleteTrack(p, track);
+            }
+        }
+        
+    }
+
+    private void setTopTracks() throws RemoteException {
+        addTable.setPrefHeight(980);
+        HomeModule homeModule = new HomeModule();
+        ArrayList<TrackDetails> topT = homeModule.getToptracks();
+
+        ObservableList<Track> data = FXCollections.observableArrayList();
+        for (TrackDetails track : topT) {
+            data.add(track.track);
+        }
+
+        addTable.setItems(data);
+    }
+
+    private void setResultsTitle(String s) {
+        try {
+            addTable.setPrefHeight(980);
+            AllTrackModule at = new AllTrackModule();
+            ArrayList<Track> tres = at.searchTracksName(s);
+            if (tres != null) {
+                ObservableList<Track> data = FXCollections.observableArrayList(tres);
+                addTable.setItems(data);
+            } else {
+                this.setTopTracks();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setResultsArtist(String s) {
+        try {
+            addTable.setPrefHeight(980);
+            AllTrackModule at = new AllTrackModule();
+            ArrayList<Track> tres = at.searchTracksAutor(s);
+            if (tres != null) {
+                ObservableList<Track> data = FXCollections.observableArrayList(tres);
+                addTable.setItems(data);
+            } else {
+                this.setTopTracks();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

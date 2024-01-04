@@ -13,13 +13,11 @@ public class CanzoneView extends VBox{
     FXMLLoaders fxmlutil = new FXMLLoaders();
 
 
-    public CanzoneView(Track c ){
+    public CanzoneView(Track c){
 
         FXMLLoader loader = fxmlutil.getLoader("CanzoneView.fxml");
         canzoneViewController controller= new canzoneViewController();
-
         controller.setCanzone(c);
-
         loader.setController(controller);
         try {
             loader.setRoot(this);

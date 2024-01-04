@@ -1,5 +1,6 @@
 package controllers;
 
+import jars.AlbumPreview;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -7,8 +8,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class albumBoxController {
-    
-    public int imgnumber = 0;
+
+
+    private AlbumPreview albumPreview; 
 
     @FXML
     private HBox rootHbox;
@@ -25,13 +27,17 @@ public class albumBoxController {
     @FXML
     private Region imgregion;
 
+
+    public albumBoxController(AlbumPreview albumPreview) {
+        this.albumPreview = albumPreview;
+    }
+    
     @FXML
     void initialize() {
-        albumName.setText("Album Name");
-        artistNames.setText("Maybe some artsits ");
-        imgregion.setStyle("-fx-background-image:url('/imgs/playlist_img/img"+imgnumber+".png');");
+        albumName.setText(albumPreview.getAlbumName()); 
+        artistNames.setText(albumPreview.getAlbumArtists());
+        imgregion.setStyle("-fx-background-image:url('"+albumPreview.getAlbumImg0()+"');");
     }
 
     
-
 }

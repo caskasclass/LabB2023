@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <fx:root styleClass="base" stylesheets="@../css/main.css" type="StackPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="container" spacing="40.0">
@@ -22,8 +21,8 @@
             <HBox spacing="30.0">
                <children>
                   <Button fx:id="myButton" mnemonicParsing="false" styleClass="button_box" text="Le mie" />
-                  <Button fx:id="othrsButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="button_box" text="Others" />
-                  <Button fx:id="allButton" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" styleClass="button_box" text="All" />
+                  <Button fx:id="othrsButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="button_box" text="Altre" />
+                  <Button fx:id="allButton" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" styleClass="button_box" text="Tutte" />
                </children>
             </HBox>
             <VBox fx:id="mine" spacing="5.0">

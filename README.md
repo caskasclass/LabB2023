@@ -160,3 +160,11 @@ Sulla vista che volete fare mettete il nome di fianco
 
 - Al reszie della finestra scroll pane mi butta in cima. v-positon = 0; 
 - Passare da full-screen a widnow mode ogni tanto bagga la playlst box. 
+- dopo signup direttamente loggato, complicata come cosa possiamo lasciare senza
+
+# Cose importanti funzionalità
+- messaggio che dica che l'utente è già stato registrato
+- ho fatto colonna immagini nel databse per salvare l'immagine scelta della playlist [x]
+- se faccio log out mentre sono in creaplaylist si deve chiudere la view e tornare alla home [x]
+- non ritorna in logIn da signUp
+- troppo delay nel visualizzare una playlist (si carica la view di default)

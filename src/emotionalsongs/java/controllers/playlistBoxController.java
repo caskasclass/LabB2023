@@ -14,7 +14,10 @@ public class playlistBoxController {
 
     private boolean focusEnabler;
 
-    public int imgnumber = 0;
+    public String image = null;
+    public String title = null;
+    public String user = null;
+
 
     @FXML
     private VBox vboxroot;
@@ -34,11 +37,11 @@ public class playlistBoxController {
     @FXML
     void initialize() {
 
-        playlistName.setText("unknown name");
-        playlistOwner.setText("unknown owner");
+        playlistName.setText(title);
+        playlistOwner.setText(user);
         double padding = vboxroot.getPadding().getLeft() * 2;
         container_for_ragion.minHeightProperty().bind(vboxroot.widthProperty().subtract((padding)));
-        playlistBox_image.setStyle("-fx-background-image:url('/imgs/playlist_img/img" + imgnumber + ".png');");
+        playlistBox_image.setStyle("-fx-background-image:url("+ image + ");");
 
     }
 
@@ -48,7 +51,7 @@ public class playlistBoxController {
 
     public void captureColor(MouseEvent e) {
         if (focusEnabler) {
-            Color captured = ColorsManager.getDominantColor(playlistBox_image);
+            Color captured = ColorsManager.getDominantColor(playlistBox_image.getBackground().getImages().get(0).getImage());
             WindowStyle.setColor(captured);
         }
     }

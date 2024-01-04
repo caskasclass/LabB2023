@@ -1,16 +1,17 @@
 package controllers;
 
 import java.lang.String;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import Models.UserModule;
 import Session.ClientSession;
+import Threads.ResizeHandler;
 import javafx.fxml.FXML;
 import util.FXMLLoaders;
+import views.HomeView;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,6 +22,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import jars.*;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 44b3b114013f7b8ae2d05290897c2c0f15a6a585
 
 public class signWindowController {
 
@@ -44,12 +49,20 @@ public class signWindowController {
 
     homeWindowController ref = null;
 
+<<<<<<< HEAD
     public signWindowController(homeWindowController ref) {
         this.ref = ref;
 
     }
 
     public void openSignUp(MouseEvent e) {
+=======
+    public signWindowController(homeWindowController ref){
+        this.ref = ref;
+    }
+
+    public void openSignUp(MouseEvent e){
+>>>>>>> 44b3b114013f7b8ae2d05290897c2c0f15a6a585
 
         System.out.println("\n\nCalcolo tempo\n\n");
         long start = System.currentTimeMillis();
@@ -73,45 +86,27 @@ public class signWindowController {
             msgErr.setText("la password deve avere aleno 6 caratteri di cui un numero");
         } else {
             try {
-                Registry r = LocateRegistry.getRegistry("localhost", ServerInterface.PORT);
-                ServerInterface si = (ServerInterface) r.lookup("SERVER");
-                User u = si.access(id.getText(), password.getText());
-                if (u == null) {
-                    msgErr.setText("utente non trovato");
-                } else {
-                    ClientSession.client = u;
-                    System.out.println(u.getCity());
-                    ref.setElementsSession();
-                    Stage stage = (Stage) loginButton.getScene().getWindow();
-                    stage.close();
-                }
-
+            UserModule um = new UserModule();
+            User u = um.login(id.getText(), password.getText());
+            if (u == null){
+                msgErr.setText("utente non trovato");
+            }
+            else{
+                ClientSession.client= u;
+                System.out.println(ClientSession.client.getCity());
+                System.out.println(ClientSession.client.getUserid());
+                ref.updateWindow();
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                stage.close();
+                ref.centerScrollPane.setContent(new HomeView(ResizeHandler.getCenterWidth()));
+            }
+            
             } catch (Exception ex) {
                 System.out.println(ex);
             }
 
         }
-
-        /*
-         * else {
-         * User newuser = new User(btn_username.getText(), btn_passwd.getText(),
-         * btn_mail.getText(), btn_nome.getText().toLowerCase(),
-         * btn_cf.getText().toUpperCase(), btn_ind.getText().toLowerCase());
-         * ArrayList<User> users = UserManager.readUsers();
-         * if(users.contains(newuser)){
-         * msgErr.setText("utente già registrato");
-         * }
-         * else {
-         * users.add(newuser);
-         * Stage stage = (Stage) btn_registra.getScene().getWindow(); // chiusura della
-         * finestra
-         * stage.close();
-         * 
-         * }
-         * UserManager.getUsers(users);
-         * 
-         * }
-         */
+        }
 
     }
 

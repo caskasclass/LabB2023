@@ -26,7 +26,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <image>
-                              <Image url="@../imgs/playlist_img/img1.png" />
+                              <Image url="@../imgs/matita.png" />
                            </image>
                         </ImageView>
                         <VBox alignment="BOTTOM_LEFT" nodeOrientation="LEFT_TO_RIGHT">
@@ -53,7 +53,7 @@
                                     <Insets left="-2.0" />
                                  </padding>
                               </TextField>
-                              <Label fx:id="owner" text="Owner">
+                              <Label fx:id="owner" text="Utente">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
@@ -72,7 +72,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="deleteButton" layoutX="15.0" layoutY="61.0" mnemonicParsing="false" styleClass="button_cp" text="Delete">
+                        <Button fx:id="deleteButton" layoutX="15.0" layoutY="61.0" mnemonicParsing="false" styleClass="button_cp" text="Elimina">
                            <font>
                               <Font name="Arial Bold" size="35.0" />
                            </font>
@@ -112,14 +112,6 @@
                                     <Insets bottom="10.0" />
                                  </StackPane.margin>
                               </TextField>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
-                                 <StackPane.margin>
-                                    <Insets bottom="10.0" right="10.0" />
-                                 </StackPane.margin>
-                                 <image>
-                                    <Image url="@../imgs/search-icon.png" />
-                                 </image>
-                              </ImageView>
                            </children>
                         </StackPane>
                      </children>

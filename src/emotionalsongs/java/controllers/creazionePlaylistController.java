@@ -1,19 +1,33 @@
 package controllers;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.effect.BoxBlur;
 import util.TableViewManager;
+import views.HomeView;
 import WindowsLoader.ImagesWindow;
-
+import jars.Playlist;
+import jars.Track;
+import jars.TrackDetails;
 import java.net.URL;
-
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import Models.AllTrackModule;
+import Models.HomeModule;
+import Models.PlaylistModule;
+import Session.ClientSession;
+import Session.Globals;
+import Threads.ResizeHandler;
 import javafx.stage.Stage;
 
 public class creazionePlaylistController {
@@ -40,27 +54,26 @@ public class creazionePlaylistController {
     private VBox tableContainer;
 
     static URL img;
-    public static TableViewManager playlistTracks = new TableViewManager(false, false);
-    public static TableViewManager findTracks = new TableViewManager(false, true);
+    private TableViewManager playlistTracks = new TableViewManager(false, false);
+    private TableViewManager findTracks = new TableViewManager(false, true);
 
     @FXML
     void initialize() {
 
-        // crea un array list di test delle canzoni e inizializzalo con 5 canzoni
-        /*ArrayList<Track> canzoni = new ArrayList<>();
-        canzoni.add(new Track("1", "Song 1", 180, "Artist 1", "Album 1", "img0", "img1", "img2"));
-        canzoni.add(new Track("2", "Song 2", 180, "Artist 2", "Album 2", "img3", "img4", "img5"));
-        canzoni.add(new Track("3", "Song 3", 180, "Artist 3", "Album 3", "img6", "img7", "img8"));
-        canzoni.add(new Track("4", "Song 4", 180, "Artist 4", "Album 4", "img9", "img10", "img11"));
-        canzoni.add(new Track("5", "Song 5", 180, "Artist 5", "Album 5", "img12", "img13", "img14"));*/
-
+        
         Platform.runLater(() -> {
             double width = container.getWidth() - 10;
             initializeElements(width);
         });
+        try {
+            setTopTracks();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initializeElements(double width) {
+        owner.setText(ClientSession.client.getUserid());
         playlistTracks.prefWidthProperty().bind(container.widthProperty());
         playlistTracks.setMinHeight(300);
         playlistTracks.setVisible(false);
@@ -68,6 +81,8 @@ public class creazionePlaylistController {
 
         findTracks.setMinHeight(300);
         findTracks.setVisible(false);
+
+
         cerca.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 findTracks.setVisible(false); // Hide TableView when the TextField is empty
@@ -75,19 +90,20 @@ public class creazionePlaylistController {
                 findTracks.setVisible(true); // Show TableView when there is text in the TextField
             }
         });
-        tableContainer.getChildren().add(findTracks);
-        /*
         try {
-        Registry r = LocateRegistry.getRegistry(ServerInterface.PORT);
-        ServerInterface si = (ServerInterface) r.lookup("SERVER");
-        ArrayList<String> ar = si.getTrackId("Ricordami");
-        ArrayList<Track> res = si.getAllTrackInformation(ar, 0, ar.size());
-        ObservableList<Track> o = FXCollections.observableArrayList(res);
-        findTracks.setItems(o);
+            cerca.setOnKeyPressed(event -> {
+                if (event.getCode() != KeyCode.ENTER) {
+                    setResultsTitle(cerca.getText());
+                } else {
+                    setResultsArtist(cerca.getText());
+                }
+            });
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
-        */
+
+        
+        tableContainer.getChildren().add(findTracks);
     }
 
     public void openImages(MouseEvent e) {
@@ -107,7 +123,65 @@ public class creazionePlaylistController {
         window.show();
     }
 
-    public void registraPlaylist(MouseEvent e) {
-        System.out.println("creata");
+    public void registraPlaylist(MouseEvent e) throws NotBoundException, RemoteException{
+        Playlist p = new Playlist(playlistName.getText(), ClientSession.client.getUserid());
+        ArrayList<Track> ar = new ArrayList<Track>(playlistTracks.getItems());
+        ArrayList<String> track_ids = new ArrayList<String>();
+        for(Track t: ar){
+            track_ids.add(t.getTrack_id());
+        }
+        String image = playlistImage.getImage().getUrl();
+        p.setTrackList(track_ids);
+        p.setImage(image);
+        PlaylistModule pm = new PlaylistModule();
+        pm.createPlaylist(p);
+        Globals.getRootFrame().setContent(new HomeView(ResizeHandler.getCenterWidth()));
+         
+    }
+
+
+    private void setTopTracks() throws RemoteException {
+        findTracks.setPrefHeight(980);
+        HomeModule homeModule = new HomeModule();
+        ArrayList<TrackDetails> topT = homeModule.getToptracks();
+
+        ObservableList<Track> data = FXCollections.observableArrayList();
+        for (TrackDetails track : topT) {
+            data.add(track.track);
+        }
+
+        findTracks.setItems(data);
+    }
+
+    private void setResultsTitle(String s) {
+        try {
+            findTracks.setPrefHeight(980);
+            AllTrackModule at = new AllTrackModule();
+            ArrayList<Track> tres = at.searchTracksName(s);
+            if (tres != null) {
+                ObservableList<Track> data = FXCollections.observableArrayList(tres);
+                findTracks.setItems(data);
+            } else {
+                this.setTopTracks();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setResultsArtist(String s) {
+        try {
+            findTracks.setPrefHeight(980);
+            AllTrackModule at = new AllTrackModule();
+            ArrayList<Track> tres = at.searchTracksAutor(s);
+            if (tres != null) {
+                ObservableList<Track> data = FXCollections.observableArrayList(tres);
+                findTracks.setItems(data);
+            } else {
+                this.setTopTracks();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
