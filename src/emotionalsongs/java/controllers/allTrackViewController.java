@@ -22,6 +22,8 @@ import javafx.scene.layout.BackgroundFill;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -51,6 +53,8 @@ public class AllTrackViewController {
     private Background primaryShader;
 
     private static ExecutorService executorService = Executors.newFixedThreadPool(5);
+    Timer timer = new Timer();
+    final int DELAY_TIME = 2000;
 
     @FXML
     private void initialize() {
@@ -62,8 +66,19 @@ public class AllTrackViewController {
 
         searchBar.setOnKeyPressed(event -> {
             if (event.getCode() != KeyCode.ENTER) {
-                setResultsTitleAsync(searchBar.getText());
+                timer.cancel(); // Annulla il timer precedente all'inizio di un nuovo evento di pressione del
+                                // tasto
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        // Codice da eseguire dopo il ritardo di inattività (2 secondi)
+                        setResultsTitleAsync(searchBar.getText());
+                    }
+
+                }, DELAY_TIME);
             } else {
+                timer.cancel(); // Annulla il timer se viene premuto il tasto "ENTER"
                 setResultsArtistAsync(searchBar.getText());
             }
         });

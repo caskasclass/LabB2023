@@ -6,12 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-<<<<<<< HEAD
-=======
 import Models.UserModule;
 import Session.Globals;
 import Threads.ResizeHandler;
->>>>>>> 44b3b114013f7b8ae2d05290897c2c0f15a6a585
 import jars.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,25 +51,8 @@ public class signUpViewController {
     @FXML
     private TextField username;
 
-<<<<<<< HEAD
-    public void openLogIn(MouseEvent e) {
-        System.out.println("\n\nCalcolo tempo\n\n");
-        long start = System.currentTimeMillis();
-        Stage stage = (Stage) signUpButton.getScene().getWindow();
-        FXMLLoaders loader = new FXMLLoaders();
-        Pane pane = (Pane) loader.loadFXML("signWindow.fxml");
-        Scene scene = new Scene(pane, Color.TRANSPARENT);
-        stage.setScene(scene);
-        long end = System.currentTimeMillis();
-        System.out.println("\n\nTempo impiegato : " + (end - start) + " ms.\n\n");
-    }
-
-    public void closeWindow(MouseEvent e) {
-        Stage stage = (Stage) loginButton.getScene().getWindow();
-=======
     public void closeWindow(MouseEvent e) {
         Stage stage = (Stage) signUpButton.getScene().getWindow();
->>>>>>> 44b3b114013f7b8ae2d05290897c2c0f15a6a585
         stage.close();
     }
 

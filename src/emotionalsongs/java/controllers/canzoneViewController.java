@@ -1,10 +1,16 @@
 package controllers;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import Models.TrackModule;
 import Session.ClientSession;
+import Session.Globals;
 import jars.ChartData;
+import jars.CommentSection;
 import jars.EmotionEvaluation;
 import jars.Track;
 import javafx.application.Platform;
@@ -18,16 +24,20 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import util.BackgroundTransition;
 import util.ColorsManager;
+import util.CommentVBox;
 import util.EmotionBox;
 
 public class canzoneViewController {
@@ -56,6 +66,9 @@ public class canzoneViewController {
     private VBox rootCanzoneview;
 
     @FXML
+    private TabPane commentSection;
+
+    @FXML
     private Label esitoLabel;
 
     @FXML
@@ -63,22 +76,27 @@ public class canzoneViewController {
     // create a map of emotions and their values
 
     HashMap<String, Integer> emotions = new HashMap<>();
+
     ArrayList<ChartData> allEmotions = new ArrayList<>();
+
+    HashMap<String, String> emotionComments = new HashMap<>();
+    ArrayList<CommentSection> comments = new ArrayList<CommentSection>();
 
     Boolean isRated = false;
     TrackModule tm = new TrackModule();
 
     @FXML
     private void initialize() {
-
+        Globals.getRootFrame().setVvalue(0.0);
+        initMap();
         if (ClientSession.client.getUserid() != null) {
             if (emotionsRated()) {
                 isRated = true;
                 saveButton.setDisable(true);
                 saveButton.setVisible(false);
-                emotions = tm.getMyEmotions(track);
-            } else {
-                initMap();
+                EmotionEvaluation ee = tm.getMyEmotions(track);
+                emotions = ee.getEmozione();
+                emotionComments = ee.getNote();
             }
             createEvalBoxes();
         } else {
@@ -86,7 +104,6 @@ public class canzoneViewController {
             containerEvaluation.getChildren().add(new Label("Effettua il login per dirci come ti senti"));
         }
         allEmotions = tm.getAllEmotions(track);
-        rootCanzoneview.getChildren().add(createChart());
         Color color = ColorsManager.getDominantColor(new Image(track.getAlbum_img1S()));
         gradientBackground.setBackground(BackgroundTransition.gettLinearGradient(color));
         Platform.runLater(() -> {
@@ -99,8 +116,43 @@ public class canzoneViewController {
             shadow.setWidth(45);
             shadow.setHeight(45);
             immagineCanzone.setEffect(shadow);
+            Color tmpColor = color.deriveColor(0, 1, 1, 0);
+            BackgroundTransition.setHeaderGraphics(tmpColor);
         });
+        unitializeCommentSection();
+        rootCanzoneview.getChildren().add(createChart());
 
+    }
+
+    private void unitializeCommentSection() {
+        comments = tm.getAllComments(track);
+        commentSection.getStyleClass().add("commentTab");
+        // for each emotion create a tab and add it to the tabpane
+        for (String string : emotions.keySet()) {
+            Tab tab = new Tab(string);
+            VBox tabContent = new VBox();
+            tabContent.getStyleClass().add("commentSection");
+            tabContent.setAlignment(Pos.TOP_LEFT);
+            tabContent.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+            tabContent.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+            for (CommentSection cs : comments) {
+                if (cs.getEmotion().equals(string)) {
+                    if (!cs.getComment().equals("Silence is golden")) {
+                        CommentVBox commentVBox = new CommentVBox(cs.getComment(), cs.getUserid());
+                        tabContent.getChildren().add(commentVBox);
+                    }
+
+                }
+
+            }
+            if (tabContent.getChildren().isEmpty()) {
+                CommentVBox commentVBox = new CommentVBox("Non ci sono i commenti per ora ", "System");
+                tabContent.getChildren().add(commentVBox);
+            }
+            tab.setContent(tabContent);
+            commentSection.getTabs().add(tab);
+
+        }
     }
 
     private void initMap() {
@@ -124,7 +176,7 @@ public class canzoneViewController {
         shadow.setWidth(25);
         shadow.setHeight(25);
         for (String string : emotions.keySet()) {
-            EmotionBox emotionBox = new EmotionBox(string, isRated, emotions.get(string));
+            EmotionBox emotionBox = new EmotionBox(string, isRated, emotions.get(string), emotionComments.get(string));
             containerEvaluation.getChildren().add(emotionBox);
             if (isRated) {
                 emotionBox.setDisable(true);
@@ -153,6 +205,9 @@ public class canzoneViewController {
                 int emotionRating = emotionBox.getVote();
                 String emotionName = emotionBox.getEmotionName(); // Supponiamo che ci sia un metodo per ottenere il
                                                                   // nome dell'emozione
+                String comment = emotionBox.getComment();
+
+                emotionComments.put(emotionName, comment);
                 emotions.put(emotionName, emotionRating);
             }
         }
@@ -168,14 +223,14 @@ public class canzoneViewController {
         System.out.println(emotions);
         saveButton.setDisable(true);
         EmotionEvaluation ee = new EmotionEvaluation(emotions, ClientSession.client.getUserid(), track.getTrack_id(),
-                "Silence is golden");
+                emotionComments);
         tm.insertEmotion(ee);
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             rootCanzoneview.getChildren().remove(3);
             allEmotions = tm.getAllEmotions(track);
             rootCanzoneview.getChildren().add(createChart());
         });
-        
+
         System.out.println("Emozioni salvate");
     }
 
@@ -195,7 +250,6 @@ public class canzoneViewController {
         // Creazione delle serie dati per il grafico a barre
         if (!allEmotions.isEmpty()) {
             XYChart.Series<String, Number> series = new XYChart.Series<>();
-
 
             // Aggiungi i dati dalla lista allEmotions alla serie
             for (ChartData data : allEmotions) {
@@ -235,7 +289,5 @@ public class canzoneViewController {
         }
         return chartBox;
     }
-
-
 
 }

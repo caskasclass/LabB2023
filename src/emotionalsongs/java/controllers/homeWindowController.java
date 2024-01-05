@@ -201,22 +201,7 @@ public class homeWindowController {
         return clip;
     }
 
-<<<<<<< HEAD
-    public void setElementsSession(){
-        if(ClientSession.client.getUserid() == null){
-            creaButton.setVisible(false);
-        }
-        else{
-                creaButton.setVisible(true);
-            loginButton.setVisible(false);
-            
-            
-        }
-
-    }
-=======
    
->>>>>>> 44b3b114013f7b8ae2d05290897c2c0f15a6a585
     public void openWindow(MouseEvent e) {
         Stage parent = (Stage) homeButton.getScene().getWindow();
         SignWindow window = new SignWindow(this);
@@ -231,7 +216,6 @@ public class homeWindowController {
             parent.getScene().getRoot().setDisable(false);
         });
         window.show();
-
     }
 
     public void openViewCreate(MouseEvent e) {
@@ -249,6 +233,7 @@ public class homeWindowController {
 
     public void backHome(MouseEvent e) {
         HomeView view = new HomeView(ResizeHandler.getCenterWidth());
+        BackgroundTransition.setHeaderGraphics(Color.rgb(40,25,83,0));
         centerScrollPane.setContent(view);
     }
 
@@ -267,9 +252,7 @@ public class homeWindowController {
         Platform.runLater(()->{
             
             if(ClientSession.client.getUserid() == null){
-
-                buttonVbox.getChildren().remove(0);
-                
+                buttonVbox.getChildren().remove(0);    
             }
             else{
                 buttonVbox.getChildren().add(0,creaButton);
@@ -278,7 +261,6 @@ public class homeWindowController {
                 header_hbox.getChildren().add(userButton);
                 userButton.setText(ClientSession.client.getUserid());
             }});
-        
     }
 
 }

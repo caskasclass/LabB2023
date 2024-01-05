@@ -7,12 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -25,16 +28,18 @@ import Session.ClientSession;
 import Session.Globals;
 import Threads.ResizeHandler;
 import jars.*;
+import util.BackgroundTransition;
+import util.ColorsManager;
 import util.TableViewManager;
 import views.HomeView;
 import views.PlaylistView;
 
-public class playlistViewController{
+public class playlistViewController {
 
-    private Playlist p= null;
+    private Playlist p = null;
     public String title = null;
     public String user = null;
-    private String image= null;
+    private String image = null;
     private ArrayList<String> p_strings = new ArrayList<String>();
     private ArrayList<String> addString = new ArrayList<String>();
     private ArrayList<Track> p_tracks = new ArrayList<Track>();
@@ -43,7 +48,6 @@ public class playlistViewController{
     private TableViewManager mainTable = new TableViewManager(true, false);
     private TableViewManager addTable = new TableViewManager(false, true);
     private TableViewManager editTable = new TableViewManager(false, false);
-
 
     @FXML
     private TextField cerca;
@@ -67,6 +71,9 @@ public class playlistViewController{
     private ImageView playlistImage;
 
     @FXML
+    private HBox gradientBackground;
+
+    @FXML
     private TextField playlistName;
 
     @FXML
@@ -77,10 +84,19 @@ public class playlistViewController{
 
     @FXML
     void initialize() {
+
         playlistImage.setDisable(true);
         playlistName.setEditable(false);
         setPlaylist();
+        Color color = ColorsManager.getDominantColor(new Image(p.getImage()));
+        gradientBackground.setBackground(BackgroundTransition.gettLinearGradient(color));
+        DropShadow shadow = new DropShadow(BlurType.GAUSSIAN, Color.rgb(30, 30, 30), 12, 0.16, 0, 0);
+        shadow.setWidth(45);
+        shadow.setHeight(45);
+        playlistImage.setEffect(shadow);
         playlistImage.setImage(new Image(image));
+        Color tmpColor  =  color.deriveColor(0, 1, 1, 0);
+        BackgroundTransition.setHeaderGraphics(tmpColor);
         editcontainter.setVisible(false);
         Platform.runLater(() -> {
             try {
@@ -88,39 +104,35 @@ public class playlistViewController{
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-             try {
-            cerca.setOnKeyPressed(event -> {
-                if (event.getCode() != KeyCode.ENTER) {
-                    setResultsTitle(cerca.getText());
-                } else {
-                    setResultsArtist(cerca.getText());
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-            
+            try {
+                cerca.setOnKeyPressed(event -> {
+                    if (event.getCode() != KeyCode.ENTER) {
+                        setResultsTitle(cerca.getText());
+                    } else {
+                        setResultsArtist(cerca.getText());
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         });
     }
 
-    private void initializeElements() throws RemoteException{
+    private void initializeElements() throws RemoteException {
 
-        if(ClientSession.client.getUserid() == null || !(ClientSession.client.getUserid().equals(user))){
+        if (ClientSession.client.getUserid() == null || !(ClientSession.client.getUserid().equals(user))) {
             editButton.setVisible(false);
             deleteButton.setVisible(false);
-        }
-        else{
+        } else {
             editButton.setVisible(true);
             deleteButton.setVisible(true);
 
         }
-       
+
         playlistImage.setDisable(true);
         playlistName.setText(title);
         owner.setText(user);
-      
-
-
 
         mainTable.setItems(FXCollections.observableArrayList(p_tracks));
         editTable.setItems(FXCollections.observableArrayList(p_tracks));
@@ -132,8 +144,6 @@ public class playlistViewController{
         editTable.setMinHeight(400);
 
         tableContainer.getChildren().add(0, mainTable);
-        
-        
 
         cerca.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -188,43 +198,43 @@ public class playlistViewController{
         });
     }
 
-    private void setPlaylist(){
+    private void setPlaylist() {
         try {
-                //modificare getPlaylist
-                PlaylistModule pm = new PlaylistModule();
-                p = pm.getP(title, user);
-                image = p.getImage();
-                p_strings = p.getTrackList();
-                p_tracks = pm.getAllTrack(p_strings, 0, p_strings.size());
-                addString = pm.getAllIds();
-                addTracks = pm.getAllTrack(p_strings, 0, 20);
-                
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            // modificare getPlaylist
+            PlaylistModule pm = new PlaylistModule();
+            p = pm.getP(title, user);
+            image = p.getImage();
+            p_strings = p.getTrackList();
+            p_tracks = pm.getAllTrack(p_strings, 0, p_strings.size());
+            addString = pm.getAllIds();
+            addTracks = pm.getAllTrack(p_strings, 0, 20);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
-    private void newTracks(TableViewManager editTable) throws RemoteException, NotBoundException{
+    private void newTracks(TableViewManager editTable) throws RemoteException, NotBoundException {
         ArrayList<Track> ar = new ArrayList<Track>(editTable.getItems());
         ArrayList<String> track_ids = new ArrayList<String>();
         p.setTrackList(track_ids);
-        for(Track t: ar){
-                track_ids.add(t.getTrack_id());
-            }
+        for (Track t : ar) {
+            track_ids.add(t.getTrack_id());
+        }
         ArrayList<String> new_tracks = new ArrayList<String>();
-        for(String track: track_ids){
-            if(!(p_strings.contains(track))){
+        for (String track : track_ids) {
+            if (!(p_strings.contains(track))) {
                 new_tracks.add(track);
             }
         }
         PlaylistModule pm = new PlaylistModule();
-        pm.createPlaylist(new Playlist(title,new_tracks,image,user));
-        for(String track: p_strings){
-            if(!(track_ids.contains(track))){
+        pm.createPlaylist(new Playlist(title, new_tracks, image, user));
+        for (String track : p_strings) {
+            if (!(track_ids.contains(track))) {
                 pm.deleteTrack(p, track);
             }
         }
-        
+
     }
 
     private void setTopTracks() throws RemoteException {
@@ -271,6 +281,5 @@ public class playlistViewController{
             e.printStackTrace();
         }
     }
-
 
 }

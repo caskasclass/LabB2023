@@ -13,83 +13,90 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root type="StackPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="StackPane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fx:id="container" styleClass="base" stylesheets="@../css/main.css">
+      <VBox fx:id="container" prefWidth="800.0" styleClass="base" stylesheets="@../css/main.css">
          <children>
-            <FlowPane>
+            <HBox fx:id="gradientBackground">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <children>
-                  <HBox spacing="20.0">
+                  <FlowPane>
                      <children>
-                        <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <image>
-                              <Image url="@../imgs/matita.png" />
-                           </image>
-                        </ImageView>
-                        <VBox alignment="BOTTOM_LEFT" nodeOrientation="LEFT_TO_RIGHT">
+                        <HBox spacing="20.0">
                            <children>
-                              <Label text="Playlist pubblica">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="playlistName" promptText="La Mia Playlist#0" styleClass="textfield_cp">
-                                 <font>
-                                    <Font name="Arial Black" size="28.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
+                              <ImageView fx:id="playlistImage" accessibleRole="BUTTON" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
-                                 <padding>
-                                    <Insets left="-2.0" />
-                                 </padding>
-                              </TextField>
-                              <Label fx:id="owner" text="Utente">
-                                 <font>
-                                    <Font name="Arial Bold" size="18.0" />
-                                 </font>
-                              </Label>
+                                 <image>
+                                    <Image url="@../imgs/matita.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox alignment="BOTTOM_LEFT" nodeOrientation="LEFT_TO_RIGHT">
+                                 <children>
+                                    <Label text="Playlist pubblica">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="playlistName" promptText="La Mia Playlist#0" styleClass="textfield_cp">
+                                       <font>
+                                          <Font name="Arial Black" size="28.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <padding>
+                                          <Insets left="-2.0" />
+                                       </padding>
+                                    </TextField>
+                                    <Label fx:id="owner" text="Utente">
+                                       <font>
+                                          <Font name="Arial Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                            </children>
-                        </VBox>
+                        </HBox>
+                        <HBox fx:id="buttonCont" alignment="BOTTOM_CENTER" prefHeight="100.0" spacing="70.0">
+                           <children>
+                              <Button fx:id="editButton" mnemonicParsing="false" styleClass="button_cp" text="Edit">
+                                 <font>
+                                    <Font name="Arial Bold" size="35.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="deleteButton" layoutX="15.0" layoutY="61.0" mnemonicParsing="false" styleClass="button_cp" text="Elimina">
+                                 <font>
+                                    <Font name="Arial Bold" size="35.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox fx:id="buttonCont" alignment="BOTTOM_CENTER" prefHeight="100.0" spacing="70.0">
-                     <children>
-                        <Button fx:id="editButton" mnemonicParsing="false" styleClass="button_cp" text="Edit">
-                           <font>
-                              <Font name="Arial Bold" size="35.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="deleteButton" layoutX="15.0" layoutY="61.0" mnemonicParsing="false" styleClass="button_cp" text="Elimina">
-                           <font>
-                              <Font name="Arial Bold" size="35.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets left="5.0" right="5.0" />
-                     </padding>
-                  </HBox>
+                  </FlowPane>
                </children>
-               <VBox.margin>
-                  <Insets bottom="30.0" />
-               </VBox.margin>
-            </FlowPane>
+               <padding>
+                  <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+               </padding>
+            </HBox>
             <VBox fx:id="tableContainer" spacing="30.0">
                <children>
                   <VBox fx:id="editcontainter" fillWidth="false" spacing="15.0">
@@ -120,11 +127,11 @@
                      </VBox.margin>
                   </VBox>
                </children>
+               <padding>
+                  <Insets bottom="60.0" left="25.0" right="25.0" top="25.0" />
+               </padding>
             </VBox>
          </children>
-         <padding>
-            <Insets bottom="65.0" left="15.0" right="15.0" top="64.0" />
-         </padding>
       </VBox>
    </children>
 </fx:root>

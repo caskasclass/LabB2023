@@ -22,10 +22,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import jars.*;
-<<<<<<< HEAD
-=======
-
->>>>>>> 44b3b114013f7b8ae2d05290897c2c0f15a6a585
 
 public class signWindowController {
 
@@ -49,20 +45,11 @@ public class signWindowController {
 
     homeWindowController ref = null;
 
-<<<<<<< HEAD
-    public signWindowController(homeWindowController ref) {
-        this.ref = ref;
-
-    }
-
-    public void openSignUp(MouseEvent e) {
-=======
     public signWindowController(homeWindowController ref){
         this.ref = ref;
     }
 
     public void openSignUp(MouseEvent e){
->>>>>>> 44b3b114013f7b8ae2d05290897c2c0f15a6a585
 
         System.out.println("\n\nCalcolo tempo\n\n");
         long start = System.currentTimeMillis();
@@ -108,7 +95,6 @@ public class signWindowController {
         }
         }
 
-    }
 
     private boolean stringMatches(String data, String regex) {
         // Compila il pattern regex

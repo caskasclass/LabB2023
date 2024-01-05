@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import Session.ClientSession;
 import jars.ChartData;
+import jars.CommentSection;
 import jars.EmotionEvaluation;
 import jars.ServerInterface;
 import jars.Track;
@@ -36,11 +37,11 @@ public class TrackModule {
         return false;
     }
 
-    public HashMap<String,Integer> getMyEmotions(Track track){
+    public EmotionEvaluation getMyEmotions(Track track){
         
         try {
             EmotionEvaluation ee = stub.getMyEmotion(track, ClientSession.client.getUserid());
-            return ee.getEmozione();
+            return ee;
         } catch (RemoteException e) {
             System.err.println("Qualcosa è andato storto durante la creazione del registry");
             e.printStackTrace();
@@ -51,6 +52,16 @@ public class TrackModule {
     public ArrayList<ChartData> getAllEmotions(Track track){
         try {
             return stub.getAllEmotion(track);
+        } catch (RemoteException e) {
+            System.err.println("Qualcosa è andato storto durante la creazione del registry");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<CommentSection> getAllComments(Track track){
+        try {
+            return stub.getAllComments(track);
         } catch (RemoteException e) {
             System.err.println("Qualcosa è andato storto durante la creazione del registry");
             e.printStackTrace();
