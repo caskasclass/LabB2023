@@ -25,7 +25,7 @@ public class AllTrackModule {
     private ExecutorService executorService;
 
     
-/**costruttore: inizializza oggetto si e viene settato l'oggetto executorService a un pooldi 5 thread*/
+/**costruttore: inizializza oggetto <code>si</code> con metodo findServer*/
     public AllTrackModule() {
             si = ServerFinder.findServer();
             executorService = Executors.newFixedThreadPool(5); 
