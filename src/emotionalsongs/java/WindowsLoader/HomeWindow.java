@@ -6,14 +6,28 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import util.FXMLLoaders;
+/**
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ * 
+ * @author Beatrice Bastianello, matricola 751864, VA
+ * @author Lorenzo Barbieri  , matricola 748695, VA
+ * @author Filippo Storti , matricola 749195, VA
+ * @author Nazar Viytyuk, matricola 748964, VA
+ * @version 1.0
 
+ *classe creata per estendere la classe Stage di JavaFX e rappresenta la finestra principale dell'applicazione
+ */
 public class HomeWindow extends Stage {
 
     private static final double MIN_WINDOW_WIDTH = 800.0;
     private static final double MIN_WINDOW_HEIGHT = 600.0;
 
     FXMLLoaders loader = new FXMLLoaders();
+
     
+/*Costruttore della classe HomeWindow
+*costruttore inizializza una finestra con un titolo, con dimensioni minime, con una posizione iniziale e un'icona
+*/
     public HomeWindow(){
             BorderPane mainContaier = (BorderPane) loader.loadFXML("HomeWindow.fxml");
             //mainContaier.getStylesheets().add(styleManager.loadStyle("main.css"));
