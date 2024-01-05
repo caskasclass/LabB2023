@@ -8,33 +8,65 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+/**
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ * 
+ * @author Beatrice Bastianello, matricola 751864, VA
+ * @author Lorenzo Barbieri  , matricola 748695, VA
+ * @author Filippo Storti , matricola 749195, VA
+ * @author Nazar Viytyuk, matricola 748964, VA
+ * @version 1.0
 
+ *classe creata per gestire lo stile della finestra, colore dell'intestazione, colore principale e il background iniziale
+ */
 public class WindowStyle {
     private  static Color headerColor;
     private static  final Color shader = Color.rgb(18, 18, 18);
     private static final Color initialMainColor  =Color.rgb(62, 32, 146, 0.6);
     private static SimpleObjectProperty<Color> mianColor = new SimpleObjectProperty<Color>(initialMainColor);
 
+
+/**Metodo setter per impostare il colore dell'intestazione*/
     public static void setHeaderColor(Color c){
         headerColor = c;
     }
+
+    
+
+/**Metodo getter per ottenere il colore dell'intestazione*/
     public static Color getHeaderColor(){
         return headerColor;
     }
+
     
     
+/**Metodo setter per impostare il colore principale*/ 
     public static void setColor(Color c) {
         mianColor.set(c);
         //System.out.println("Color setted : "+mianColor.toString());
     }
-    // in realtà non serve,lo uso solo per debug
+
+    
+
+/**Metodo getter per ottenere il colore principale
+*in realtà non serve, usato solo per debug
+*/ 
     public static SimpleObjectProperty<Color> getColor() {
         return mianColor;
     }
+
+
+
+/**Metodo per ripristinare il colore principale a quello iniziale*/     
     public static void  ResetColor(){
         mianColor.set(initialMainColor);
     }
 
+
+
+/**Metodo per impostare lo sfondo iniziale della finestra
+*@return oggetto di tipo Background contenente uno sfondo lineare basato sui colori principali e di sfondi specificati
+*/ 
     public static  Background setInitialBackground() {
         CornerRadii cornerRadii = new CornerRadii(8, 8, 0, 0, false);
         Stop[] stops = new Stop[] {
