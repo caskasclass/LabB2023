@@ -5,6 +5,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.AccessibleRole;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
@@ -17,8 +19,11 @@ public class EmotionBox extends VBox {
     private final Label[] ratingLabels = new Label[5];
     TrackModule tm = new TrackModule();
     Integer vote = 0;
+    String comment = "";
+    TextArea description = new TextArea();
 
-    public EmotionBox(String emotionName, boolean isRated, Integer index) {
+
+    public EmotionBox(String emotionName, boolean isRated, Integer index,String comment) {
         super();
         setAccessibleRole(AccessibleRole.BUTTON);
         if (isRated) {
@@ -28,27 +33,40 @@ public class EmotionBox extends VBox {
         shadow.setWidth(25);
         shadow.setHeight(25);
         this.emotionName = emotionName;
+        this.comment = comment;
         setEffect(shadow);
         getStyleClass().add("rateBox");
         setAlignment(Pos.TOP_CENTER);
-        setPadding(new Insets(10, 0, 50, 0));
+        setPadding(new Insets(10, 15, 50, 15));
+        setSpacing(10);
         setMinWidth(280);
         setMaxWidth(280);
         initUI();
         if (isRated) {
             ratingLabels[index - 1].getStyleClass().add("Selected");
             ratingLabels[index - 1].getStyleClass().remove("notSelected");
+            description.setText(comment);
         }
+
+
     }
 
     private void initUI() {
         HBox titleContainer = new HBox();
         titleContainer.setAlignment(Pos.CENTER);
         titleContainer.setPadding(new Insets(0, 10, 10, 10));
-        titleContainer.setMinHeight(80);
-        titleContainer.setMaxHeight(80);
+        titleContainer.setMinHeight(70);
+        titleContainer.setMaxHeight(70);
         Label title = new Label(emotionName);
         titleContainer.getChildren().add(title);
+
+        // aggiungo un textarea per la descrizione dell'emozione
+        description.setWrapText(true);
+        description.getStyleClass().add("commentField");
+        description.setPromptText("Dicci qualcosa in più...");
+        description.setMaxHeight(65);
+        description.setMinHeight(65);
+    
 
         HBox choiceContainer = new HBox();
         choiceContainer.setSpacing(10);
@@ -60,7 +78,7 @@ public class EmotionBox extends VBox {
             choiceContainer.getChildren().add(label);
         }
 
-        getChildren().addAll(titleContainer, choiceContainer);
+        getChildren().addAll(titleContainer,description,choiceContainer);
     }
 
     private Label createRatingLabel(String text) {
@@ -106,5 +124,11 @@ public class EmotionBox extends VBox {
 
     public Integer getVote() {
         return vote;
+    }
+    public String getComment(){
+        if(description.getText().isEmpty()){
+            return "Silence is golden";
+        }else 
+            return description.getText();
     }
 }

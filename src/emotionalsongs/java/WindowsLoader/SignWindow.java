@@ -10,12 +10,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import util.FXMLLoaders;
 import util.StyleManager;
+/**
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ * 
+ * @author Beatrice Bastianello, matricola 751864, VA
+ * @author Lorenzo Barbieri  , matricola 748695, VA
+ * @author Filippo Storti , matricola 749195, VA
+ * @author Nazar Viytyuk, matricola 748964, VA
+ * @version 1.0
 
+public class SignWindow extends Stage {
+ *classe creata per estendere la classe Stage di JavaFX e rappresenta una finestra per la registrazione o l'accesso
+ */
 public class SignWindow extends Stage{
 
     FXMLLoaders fxmlutil = new FXMLLoaders();
     StyleManager styleManager  = new StyleManager();
 
+    
+/**Costruttore della classe SignWindow che accetta un controller come riferimento*/
     public SignWindow(homeWindowController ref) {
              FXMLLoader loader =  fxmlutil.getLoader("signWindow.fxml");
              signWindowController controller = new signWindowController(ref);
@@ -39,5 +52,5 @@ public class SignWindow extends Stage{
             });
             
     }
-    
+
 }

@@ -1,4 +1,5 @@
 package controllers;
+
 import java.lang.String;
 import java.io.IOException;
 import java.util.Arrays;
@@ -21,7 +22,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import jars.*;
-
 
 public class signWindowController {
 
@@ -60,20 +60,18 @@ public class signWindowController {
         stage.setScene(scene);
         long end = System.currentTimeMillis();
         System.out.println("\n\nTempo impiegato : " + (end - start) + " ms.\n\n");
-       
-    } 
+
+    }
 
     public void accesso(MouseEvent e) throws IOException {
 
-        String[] s = {id.getText(), password.getText()};
+        String[] s = { id.getText(), password.getText() };
         List<String> s2 = Arrays.asList(s);
-        if(s2.contains("")){
+        if (s2.contains("")) {
             msgErr.setText("non hai compilato tutti i campi");
-        }
-        else if(!stringMatches(password.getText(),"^(?=.*\\d)[A-Za-z\\d]{6,}$")){
+        } else if (!stringMatches(password.getText(), "^(?=.*\\d)[A-Za-z\\d]{6,}$")) {
             msgErr.setText("la password deve avere aleno 6 caratteri di cui un numero");
-        }
-        else{
+        } else {
             try {
             UserModule um = new UserModule();
             User u = um.login(id.getText(), password.getText());
@@ -91,19 +89,21 @@ public class signWindowController {
             }
             
             } catch (Exception ex) {
-                System.out.println(ex);        }
-            
+                System.out.println(ex);
+            }
+
         }
         }
 
-        private boolean stringMatches(String data, String regex){
-            // Compila il pattern regex
-            Pattern pattern = Pattern.compile(regex);
-            // Verifica se il codice fiscale corrisponde al pattern regex
-            return pattern.matcher(data).matches();
-        }
 
-    public void closeWindow(MouseEvent e){
+    private boolean stringMatches(String data, String regex) {
+        // Compila il pattern regex
+        Pattern pattern = Pattern.compile(regex);
+        // Verifica se il codice fiscale corrisponde al pattern regex
+        return pattern.matcher(data).matches();
+    }
+
+    public void closeWindow(MouseEvent e) {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
     }

@@ -216,7 +216,6 @@ public class homeWindowController {
             parent.getScene().getRoot().setDisable(false);
         });
         window.show();
-
     }
 
     public void openViewCreate(MouseEvent e) {
@@ -234,6 +233,7 @@ public class homeWindowController {
 
     public void backHome(MouseEvent e) {
         HomeView view = new HomeView(ResizeHandler.getCenterWidth());
+        BackgroundTransition.setHeaderGraphics(Color.rgb(40,25,83,0));
         centerScrollPane.setContent(view);
     }
 
@@ -252,9 +252,7 @@ public class homeWindowController {
         Platform.runLater(()->{
             
             if(ClientSession.client.getUserid() == null){
-
-                buttonVbox.getChildren().remove(0);
-                
+                buttonVbox.getChildren().remove(0);    
             }
             else{
                 buttonVbox.getChildren().add(0,creaButton);
@@ -263,7 +261,6 @@ public class homeWindowController {
                 header_hbox.getChildren().add(userButton);
                 userButton.setText(ClientSession.client.getUserid());
             }});
-        
     }
 
 }

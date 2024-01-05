@@ -35,7 +35,6 @@ public class HomeModule {
 */
     public ArrayList<TrackDetails> getToptracks() {
        try {
-
             ArrayList<TrackDetails> topTracks = stub.getTopTracks();
 
             System.out.println("Size of array  : "+topTracks.size());

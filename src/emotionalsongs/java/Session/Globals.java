@@ -1,6 +1,7 @@
 package Session;
 
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 /**
  * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
  * 
@@ -13,6 +14,7 @@ import javafx.scene.control.ScrollPane;
  *classe creata per  fornire metodi getter e setter per interagire con la variabile statica <code>rootFrame</code> da altre parti del codice
  */
 public class Globals {
+
     private static ScrollPane rootFrame;
 
 
@@ -31,4 +33,7 @@ public class Globals {
     public static void setRootFrame(ScrollPane scrollpane){
         rootFrame = scrollpane;
     }
+
+
+
 }
