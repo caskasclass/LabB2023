@@ -18,7 +18,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+/**
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ * 
+ * @author Beatrice Bastianello, matricola 751864
+ * @author Barbieri Lorenzo , matricola 748695
+ * @author Storti Filippo , matricola 749195
+ * @author Nazar Viytyuk, matricola 748964
+ * @version 1.0
 
+ *classe  progettata per rappresentare una casella contenente informazioni sull'emozione, inclusi i voti e i commenti degli utenti
+ */
 public class EmotionBox extends VBox {
     private final String emotionName;
     private final Label[] ratingLabels = new Label[5];
@@ -28,6 +38,12 @@ public class EmotionBox extends VBox {
     TextArea description = new TextArea();
 
 
+ 
+ /** costruttore della classe: Viene inizializzata l'emozione, il voto e il commento sulla base dei parametri forniti
+ *Viene applicato uno stile di ombreggiatura alla casella
+ *Vengono impostati stili e dimensioni per la casella, inizializzati i componenti UI e in base al flag di valutazione, viene impostato il voto e il commento iniziali
+ *@param <code>emotionName</code> parametro di tipo String, <code>isRated</code> parametro di tipo boolean, <code>index</code> parametro di tipo Integer, <code>comment</code> parametro di tipo String
+ */
     public EmotionBox(String emotionName, boolean isRated, Integer index,String comment) {
         super();
         setAccessibleRole(AccessibleRole.BUTTON);
@@ -56,6 +72,13 @@ public class EmotionBox extends VBox {
 
     }
 
+
+ 
+ /**metodo privato che inizializza i componenti dell'interfaccia utente all'interno della casella
+ *Viene creato un contenitore per il titolo dell'emozione
+ *Viene creata una TextArea per inserire commenti più dettagliati sull'emozione
+ *Viene creato un contenitore per le etichette di valutazione
+ */  
     private void initUI() {
         HBox titleContainer = new HBox();
         titleContainer.setAlignment(Pos.CENTER);
@@ -86,6 +109,12 @@ public class EmotionBox extends VBox {
         getChildren().addAll(titleContainer,description,choiceContainer);
     }
 
+
+ 
+ /**metodo privato che Crea e restituisce un'etichetta di valutazione con il testo specificato
+ *Viene impostato uno stile di classe CSS all'etichetta *Viene creata una TextArea per inserire commenti più dettagliati sull'emozione
+ *Viene aggiunto un gestore di eventi al clic dell'etichetta per gestire la selezione/deselezione del voto
+ */  
     private Label createRatingLabel(String text) {
         Label label = new Label(text);
         label.getStyleClass().addAll("rateNum", "notSelected");
@@ -101,6 +130,11 @@ public class EmotionBox extends VBox {
         return label;
     }
 
+
+ 
+ /** metodo privato che gestisce il clic sulle etichette di valutazione
+ *@param <code>label</code> parametro di tipo Label
+ */
     private void handleRatingClick(Label label) {
         int selectedIndex = Integer.parseInt(label.getText()) - 1;
 
@@ -123,13 +157,23 @@ public class EmotionBox extends VBox {
         }
     }
 
+
+
+ /**metodo che restituisce il nome dell'emozione*/
     public String getEmotionName() {
         return emotionName;
     }
 
+
+ 
+ /**metodo che restituisce il voto associato all'emozione*/
     public Integer getVote() {
         return vote;
     }
+
+
+ 
+ /**metodo che restituisce il commento associato all'emozione, con una stringa predefinita se la TextArea è vuota*/
     public String getComment(){
         if(description.getText().isEmpty()){
             return "Silence is golden";
