@@ -20,6 +20,18 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import views.CanzoneView;
 import jars.Track;
+/**
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ * 
+ * @author Beatrice Bastianello, matricola 751864
+ * @author Barbieri Lorenzo , matricola 748695
+ * @author Storti Filippo , matricola 749195
+ * @author Nazar Viytyuk, matricola 748964
+ * @version 1.0
+
+ *classe che estende  la classe TableView di JavaFX e aggiunge alcune funzionalità personalizzate per la gestione di una tabella di tracce musicali
+ */
+
 public class TableViewManager extends TableView<Track> {
 
     private int margin_error =5;
@@ -29,6 +41,8 @@ public class TableViewManager extends TableView<Track> {
     final int DURATA_COLUMN_SIZE = 50;
     final int TOTAL_FIXED_SIZE_COLUMN = BUTTON_COLUMN_SIZE+INDEX_COLUMN_SIZE+CUSTOM_COLUMN_SIZE+DURATA_COLUMN_SIZE; //misura ib pixel 
 
+
+ /**costruttore: inizializza la tabella, impostando stili e colonne personalizzate*/
     // t/f tre punti, f/t add, f/f delete
     public TableViewManager(boolean def, boolean add) {
         super();
@@ -106,6 +120,11 @@ public class TableViewManager extends TableView<Track> {
         });
     }
 
+
+ 
+/**metodo che aggiunge una colonna di pulsanti alla tabella.
+*@param  <code>column</code> variabile di tipo TableColumn<Track,Button>, <code>buttonText</code> variabile di tipo String, <code>handler</code> variabile di tipo ButtonClickHandler
+*/
     private void addButtonColumn(TableColumn<Track,Button> column,String buttonText, ButtonClickHandler handler) {
         column.setCellFactory(param -> {
             Button button = new Button(buttonText);
@@ -132,11 +151,21 @@ public class TableViewManager extends TableView<Track> {
         });
     }
 
+
+ 
+/**metodo che gestisce un clic su un pulsante personalizzato
+*@param  <code>track</code> variabile di tipo Track
+*/
     private void customMethod(Track track) {
         System.out.println("Clicked on " + track.getName());
         System.out.println(track.toString());
     }
 
+
+ 
+/**metodo che gestisce l'aggiunta di una traccia a una playlist
+*@param  <code>track</code> variabile di tipo Track
+*/
     private void addTrackToPlaylist(Track track) {
         TableView<Track> tmp = this; 
         VBox p = (VBox) tmp.getParent();
@@ -150,6 +179,11 @@ public class TableViewManager extends TableView<Track> {
         }
     }
 
+
+ 
+/**metodo che gestisce la rimozione di una traccia da una playlist
+*@param  <code>track</code> variabile di tipo Track
+*/
     private void removeTrackFromPlaylist(Track track) {
         TableView<Track> tmp = this; 
         VBox p = (VBox) tmp.getParent();
@@ -157,6 +191,9 @@ public class TableViewManager extends TableView<Track> {
         ((TableView<Track>) p.getChildren().get(2)).getItems().add(track);
     }
 
+
+
+ /**interfaccia funzionale che dichiara un metodo handle per gestire i clic sui pulsanti*/
     private interface ButtonClickHandler {
         void handle(Track track);
     }

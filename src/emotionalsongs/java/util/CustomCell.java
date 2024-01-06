@@ -16,13 +16,25 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+/**
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ * 
+ * @author Beatrice Bastianello, matricola 751864
+ * @author Barbieri Lorenzo , matricola 748695
+ * @author Storti Filippo , matricola 749195
+ * @author Nazar Viytyuk, matricola 748964
+ * @version 1.0
 
+ *classe creata per gestione  di cella personalizzata per l'utilizzo in una TableView 
+ *Questa cella mostra dettagli di traccia, inclusa un'immagine, il nome della traccia e il nome dell'autore
+ */
 public class CustomCell extends TableCell<Track, Void> {
     private final HBox hbox = new HBox();
     private final ImageView imageView = new ImageView();
     private final Label trackNameLabel = new Label();
     private final Label authorNameLabel = new Label();
 
+ /**costruttore della classe*/
     public CustomCell() {
         hbox.getStyleClass().add("hboxCustomColumn");
         hbox.setMaxSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
@@ -38,6 +50,11 @@ public class CustomCell extends TableCell<Track, Void> {
 
     }
 
+
+ 
+ /**metodo chiamato ogni volta che la cella deve essere aggiornata
+*@param <code>item</code> parametro di tipo Void, <code>empty</code> parametro di tipo boolean
+*/   
     @Override
     protected void updateItem(Void item, boolean empty) {
         super.updateItem(item, empty);
