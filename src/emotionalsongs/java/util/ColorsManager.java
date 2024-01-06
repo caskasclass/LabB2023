@@ -11,9 +11,24 @@ import java.util.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
+/**
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ * 
+ * @author Beatrice Bastianello, matricola 751864
+ * @author Barbieri Lorenzo , matricola 748695
+ * @author Storti Filippo , matricola 749195
+ * @author Nazar Viytyuk, matricola 748964
+ * @version 1.0
 
+ *classe creata per la gestione degli utenti, con metodi per la registrazione, la verifica dell'esistenza di un utente e il login
+ */
 public class ColorsManager {
 
+
+ /**metodo che prende un'immagine come input e restituisce il colore dominante nell'immagine
+*@param  <code>image</code> parametro di tipo Image
+*@return <code>dominantColor</code> oggetto di tipo Color
+*/ 
     public static Color getDominantColor(Image image) {
 
         int width = (int) image.getWidth();
@@ -52,6 +67,11 @@ public class ColorsManager {
 
     }
 
+
+ 
+ /**metodo che verifica se un colore è bianco o simile al bianco utilizzando una tolleranza specifica
+*@param  <code>color</code> parametro di tipo Color
+*/ 
     private static boolean isWhiteOrSimilar(Color color) {
         double tolerance = 0.1; // Tolleranza per determinare la somiglianza al bianco
 
@@ -62,6 +82,11 @@ public class ColorsManager {
                 (Math.abs(color.getBlue() - Color.WHITE.getBlue()) < tolerance);
     }
 
+
+ 
+ /**metodo che verifica se un colore è nero o simile al nero utilizzando una tolleranza specifica
+*@param  <code>color</code> parametro di tipo Color
+*/ 
     private static boolean isBlackOrSimilar(Color color) {
         double tolerance = 0.1; // Tolleranza per determinare la somiglianza al nero
     
