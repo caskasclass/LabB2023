@@ -33,7 +33,7 @@ import javafx.stage.Stage;
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
 
-    *classe creata e utilizzata per la dinestra di registrazione
+    *controller per la finestra di registrazione
     */
 public class signUpViewController {
     /**elemento FXML */

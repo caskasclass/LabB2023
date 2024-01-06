@@ -43,7 +43,7 @@ import javafx.scene.input.KeyCode;
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
 
- *Classe creata e utilizzata per la view della repository canzoni
+ *controller per la view della repository canzoni
  */
 public class AllTrackViewController {
     /**elemento FXML */
@@ -84,7 +84,7 @@ public class AllTrackViewController {
         cercaBranoMusicale();
 
     }
-    /**Metodo per la ricerca dei brani musicali */
+    /**Metodo per la ricerca dei brani musicali*/
     private void cercaBranoMusicale(){
         searchBar.setOnKeyPressed(event -> {
             if (event.getCode() != KeyCode.ENTER) {
@@ -106,7 +106,7 @@ public class AllTrackViewController {
         });
     }
 
-    /**setta le top tracks asincrono */
+    /**Setta le top tracks con metodo asincrono */
     private void setTopTracksAsync() {
         executorService.submit(() -> {
             try {
@@ -117,8 +117,8 @@ public class AllTrackViewController {
         });
     }
 
-    /**setta risultato ricerca asincrono
-     * @param s stringa ricerca
+    /**setta risultato della ricerca con metodo asincrono
+     * @param s stringa inserita dall'utente di ricerca
     */
     private void setResultsTitleAsync(String s) {
         executorService.submit(() -> {
@@ -130,8 +130,8 @@ public class AllTrackViewController {
         });
     }
 
-    /**setta risultato ricerca asincrono 
-     * @param s stringa ricerca
+    /**setta risultato della ricerca con metodo asincrono
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsArtistAsync(String s) {
         executorService.submit(() -> {
@@ -143,7 +143,7 @@ public class AllTrackViewController {
         });
     }
 
-    /**cerca le top tracks */
+    /**cerca le top tracks per popolarità */
     private void setTopTracks() throws RemoteException {
         TableViewManager topTracks = new TableViewManager(true, false);
         topTracks.setPrefHeight(980);
@@ -164,7 +164,7 @@ public class AllTrackViewController {
     }
 
     /**ricerca per titolo 
-     * @param s stringa ricerca
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsTitle(String s) {
         try {
@@ -187,7 +187,7 @@ public class AllTrackViewController {
         }
     }
     /**cerca per artista e anno
-     * @param s stringa ricerca
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsArtist(String s) {
         try {

@@ -39,7 +39,7 @@ public class TrackModule {
 
     
 /**metodo che inserisce un'emozione nel server
-*@param  e  oggetto di tipo EmotionEvaluetion
+*@param  e  oggetto di tipo EmotionEvaluation
 */  
     public void insertEmotion(EmotionEvaluation e) {
         try {

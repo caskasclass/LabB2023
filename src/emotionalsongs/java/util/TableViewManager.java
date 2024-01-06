@@ -29,21 +29,29 @@ import jars.Track;
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
 
- *classe che estende  la classe TableView di JavaFX e aggiunge alcune funzionalità personalizzate per la gestione di una tabella di tracce musicali
+ *classe che estende la classe TableView di JavaFX e aggiunge alcune funzionalità personalizzate per la gestione di una tabella di tracce musicali
  */
 
 public class TableViewManager extends TableView<Track> {
 
+    /**elemento grafica */
     private int margin_error =5;
-    final int BUTTON_COLUMN_SIZE = 100; //misura ib pixel
-    final int INDEX_COLUMN_SIZE = 60; //misura ib pixel
-    final int CUSTOM_COLUMN_SIZE = 250; //misura ib pixel
+    /**elemento grafica */
+    final int BUTTON_COLUMN_SIZE = 100;
+    /**elemento grafica */
+    final int INDEX_COLUMN_SIZE = 60;
+    /**elemento grafica */
+    final int CUSTOM_COLUMN_SIZE = 250;
+    /**elemento grafica */
     final int DURATA_COLUMN_SIZE = 50;
+    /**elemento grafica */
     final int TOTAL_FIXED_SIZE_COLUMN = BUTTON_COLUMN_SIZE+INDEX_COLUMN_SIZE+CUSTOM_COLUMN_SIZE+DURATA_COLUMN_SIZE; //misura ib pixel 
 
 
- /**costruttore: inizializza la tabella, impostando stili e colonne personalizzate*/
-    // t/f tre punti, f/t add, f/f delete
+ /**costruttore: inizializza la tabella, impostando stili e colonne personalizzate
+  * @param def se true bottone di default
+  *@param add se true bottone per aggiungere canzoni
+ */
     public TableViewManager(boolean def, boolean add) {
         super();
 
@@ -66,8 +74,6 @@ public class TableViewManager extends TableView<Track> {
         durata.setMinWidth(DURATA_COLUMN_SIZE);
         durata.setMaxWidth(DURATA_COLUMN_SIZE);
 
-        // album.setPrefWidth(100); // in % ?, gia.. va fatto. Per ora rimane cosi tho
-        // album.setMaxWidth(100);
 
         TableColumn<Track, Void> customColumn = new TableColumn<>("Title");
         customColumn.setCellFactory(column -> new CustomCell());
@@ -123,7 +129,9 @@ public class TableViewManager extends TableView<Track> {
 
  
 /**metodo che aggiunge una colonna di pulsanti alla tabella.
-*@param  <code>column</code> variabile di tipo TableColumn<Track,Button>, <code>buttonText</code> variabile di tipo String, <code>handler</code> variabile di tipo ButtonClickHandler
+*@param column colonna di bottoni
+*@param buttonText label del bottone
+*@param handler handler azioni del bottone
 */
     private void addButtonColumn(TableColumn<Track,Button> column,String buttonText, ButtonClickHandler handler) {
         column.setCellFactory(param -> {
@@ -154,7 +162,7 @@ public class TableViewManager extends TableView<Track> {
 
  
 /**metodo che gestisce un clic su un pulsante personalizzato
-*@param  <code>track</code> variabile di tipo Track
+*@param  track variabile di tipo Track
 */
     private void customMethod(Track track) {
         System.out.println("Clicked on " + track.getName());
@@ -164,7 +172,7 @@ public class TableViewManager extends TableView<Track> {
 
  
 /**metodo che gestisce l'aggiunta di una traccia a una playlist
-*@param  <code>track</code> variabile di tipo Track
+*@param  track variabile di tipo Track
 */
     private void addTrackToPlaylist(Track track) {
         TableView<Track> tmp = this; 
@@ -182,7 +190,7 @@ public class TableViewManager extends TableView<Track> {
 
  
 /**metodo che gestisce la rimozione di una traccia da una playlist
-*@param  <code>track</code> variabile di tipo Track
+*@param  track variabile di tipo Track
 */
     private void removeTrackFromPlaylist(Track track) {
         TableView<Track> tmp = this; 

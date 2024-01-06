@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
 
- *Classe creata e utilizzata per visualizzazione riquadro album
+ *controller per la isualizzazione riquadro album
  */
 public class albumBoxController {
 
@@ -43,7 +43,7 @@ public class albumBoxController {
     @FXML
     private Region imgregion;
 
-    /**Costruttore: inizializza oggetto  albumPreview  con metodo un oggetto di classe AlbumPreview.jars
+    /**Costruttore: inizializza oggetto albumPreview con un oggetto di classe AlbumPreview.jars
      * @param albumPreview
      */
     public albumBoxController(AlbumPreview albumPreview) {

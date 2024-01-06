@@ -22,9 +22,11 @@ import java.util.concurrent.CompletableFuture;
  *classe progettata per il caricamento asincrono delle immagini, mantenendo una cache delle immagini precedentemente caricate per migliorare le prestazioni
  */
 public class ImageLoader {
+    /**cache rappresentata da mappa per le immagini */
     private final Map<String, CompletableFuture<Image>> imageCache;
-
-    private static final int MAX_CACHE_SIZE = 500; // Dimensione massima della cache
+    /**Dimensione massima della cache */
+    private static final int MAX_CACHE_SIZE = 500;
+    /**elemento FXML */
     private final Image placeholderImage;
 
  
@@ -44,9 +46,8 @@ public class ImageLoader {
 
 
  /**metodo che carica un'immagine asincronamente da un URL. Se l'immagine è già presente nella cache, restituisce la CompletableFuture corrispondente; altrimenti, avvia il processo di caricamento asincrono
-*@param  <code>imageUrl</code>  stringa in input 
-*@throws  <code>EXception</code>  Eccezione
-*@return <code>imageFuture</code> variabile di tipo CompletableFuture<Image>
+*@param  imageUrl  stringa in input 
+*@return imageFuture variabile di tipo CompletableFuture
 */
     public CompletableFuture<Image> loadImageAsync(String imageUrl) {
         if (imageCache.containsKey(imageUrl)) {
@@ -68,7 +69,9 @@ public class ImageLoader {
 
 
 
- /**metodo che restituisce l'immagine di fallback*/
+ /**metodo che restituisce l'immagine di fallback
+  * @return oggetto fxml che contiene le immagini
+ */
     public Image getPlaceHolderImage() {
         return placeholderImage;
     }

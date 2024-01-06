@@ -27,9 +27,8 @@ public class FXMLLoaders {
 
 
  /**metodo per caricare un file FXML e restituisce un nodo Parent, che può essere utilizzato come radice per la gerarchia dell'interfaccia utente
-*@param  <code>viewFile</code>  stringa in input 
-*@throws  <code>IOEXception</code>  Eccezione
-*@return <code>parent</code> variabile di tipo Parent
+*@param  viewFile  stringa in input 
+*@return parent variabile di tipo Parent
 */
     public Parent loadFXML(String viewFile) {
         Parent parent = null;
@@ -46,9 +45,9 @@ public class FXMLLoaders {
 
 
  /**metodo che restituisce un oggetto URL associato al file FXML specificato
-*@param  <code>viewFile</code>  stringa in input 
-*@throws  <code>IOEXception</code>  Eccezione
-*@return <code>file</code> variabile di tipo URL
+*@param  viewFile  stringa in input 
+*@throws  IOException  Eccezione
+*@return file variabile di tipo URL
 */
     public URL loadUrl(String viewFile) throws IOException {
         URL file = getClass().getResource("../view/"+viewFile);
@@ -58,7 +57,8 @@ public class FXMLLoaders {
 
 
   /**metodo che restituisce un nuovo oggetto FXMLLoader configurato per caricare il file FXML specificato
-*@param  <code>viewFile</code>  stringa in input 
+*@param  viewFile  stringa in input 
+*@return oggetto per il loading della view in parametro
 */
     public FXMLLoader getLoader(String viewFile){
         return (new FXMLLoader(getClass().getResource("../view/"+viewFile)));

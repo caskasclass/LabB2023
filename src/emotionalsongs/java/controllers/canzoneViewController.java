@@ -50,7 +50,7 @@ import util.EmotionBox;
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
 
- *classe creata e utilizzata per la ricerca di tracce musicali
+ *controller per la visualizzazione della canzone selezionata
  */
 public class canzoneViewController {
     /**canzone corrente visualizzata*/
@@ -86,7 +86,7 @@ public class canzoneViewController {
     @FXML
     private Button saveButton;
 
-    /**mappa di emozioni on valori */
+    /**mappa di emozioni con valutazioni */
     HashMap<String, Integer> emotions = new HashMap<>();
     /**lista dati emozioni*/
     ArrayList<ChartData> allEmotions = new ArrayList<>();
@@ -180,13 +180,13 @@ public class canzoneViewController {
         emotions.put("Tension", 0);
         emotions.put("Sadness", 0);
     }
-    /**setta canzone corrente
+    /**Setta canzone selezionata
      * @param track canzone corrente
     */
     public void setCanzone(Track track) {
         this.track = track;
     }
-    /**crea box valutazione*/
+    /**crea i box per le valutazioni*/
     public void createEvalBoxes() {
         DropShadow shadow = new DropShadow(BlurType.GAUSSIAN, Color.rgb(64, 63, 63), 12, 0.16, 0, 0);
         shadow.setWidth(25);
@@ -200,20 +200,20 @@ public class canzoneViewController {
 
         }
     }
-    /**verifica se la canzone è già stata valutata*/
+    /**verifica se la canzone è già stata valutata
+     * @return true se già valutata
+    */
     private boolean emotionsRated() {
         TrackModule tm = new TrackModule();
         if (tm.checkIfRated(track.getTrack_id(), ClientSession.client.getUserid())) {
-            System.out.println("Hai già votato questa canzone");
             return true;
 
         } else {
-            System.out.println("Non hai ancora votato questa canzone");
             return false;
         }
 
     }
-    /**salva i valori dei box*/
+    /**salva i valori dei box di valutazione*/
     private void getVotes() {
         for (Node node : containerEvaluation.getChildren()) {
             if (node instanceof EmotionBox) {
@@ -249,7 +249,9 @@ public class canzoneViewController {
 
         System.out.println("Emozioni salvate");
     }
-    /**check se qualche emozione non valutata*/
+    /**check se qualche emozione non valutata
+     * @return true se almeno una emozione non è stata valutata
+    */
     private boolean anyZero() {
         for (String string : emotions.keySet()) {
             if (emotions.get(string) == 0) {
@@ -258,7 +260,9 @@ public class canzoneViewController {
         }
         return false;
     }
-    /**crea il barchart della media emozioni*/
+    /**crea il barchart della media emozioni
+     * @return contenitore con barchart
+    */
     private VBox createChart() {
         VBox chartBox = new VBox();
         chartBox.setAlignment(Pos.CENTER);

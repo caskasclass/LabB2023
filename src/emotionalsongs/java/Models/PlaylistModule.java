@@ -30,7 +30,8 @@ public class PlaylistModule {
     private ServerInterface si;
 
 /**costruttore: inizializza oggetto  si  con metodo findServer
-*@throws  RemoteException , NotBoundException  Eccezioni
+*@throws  RemoteException Eccezione
+*@throws  NotBoundException  Eccezione
 */
     public PlaylistModule() throws RemoteException, NotBoundException {
         si = ServerFinder.findServer();

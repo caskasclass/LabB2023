@@ -47,7 +47,7 @@ import javafx.scene.effect.BoxBlur;
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
 
-    *classe creata e utilizzata per la finestra principale dell'applicazione
+    *controller per la finestra principale dell'applicazione
     */
 public class homeWindowController {
     /**elemento grafica */
@@ -168,7 +168,7 @@ public class homeWindowController {
         updateWindow();
 
     }
-    /**elemento grafica */
+    /**metodo per la grafica */
     private void handleScrollEvent(ScrollEvent event) {
         // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 100)
         double vPosition = centerScrollPane.getVvalue();

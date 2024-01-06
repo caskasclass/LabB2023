@@ -30,11 +30,17 @@ import javafx.scene.paint.Color;
  *classe  progettata per rappresentare una casella contenente informazioni sull'emozione, inclusi i voti e i commenti degli utenti
  */
 public class EmotionBox extends VBox {
+    /**elemento grafica */
     private final String emotionName;
+    /**elemento FXML */
     private final Label[] ratingLabels = new Label[5];
+    /**modulo accesso servizi server */
     TrackModule tm = new TrackModule();
+    /**voto emozione */
     Integer vote = 0;
+    /**commento dell'emozione */
     String comment = "";
+    /**elemento FXML */
     TextArea description = new TextArea();
 
 
@@ -42,7 +48,10 @@ public class EmotionBox extends VBox {
  /** costruttore della classe: Viene inizializzata l'emozione, il voto e il commento sulla base dei parametri forniti
  *Viene applicato uno stile di ombreggiatura alla casella
  *Vengono impostati stili e dimensioni per la casella, inizializzati i componenti UI e in base al flag di valutazione, viene impostato il voto e il commento iniziali
- *@param <code>emotionName</code> parametro di tipo String, <code>isRated</code> parametro di tipo boolean, <code>index</code> parametro di tipo Integer, <code>comment</code> parametro di tipo String
+ *@param emotionName parametro di tipo String
+  * @param isRated parametro di tipo boolean
+  *@param index parametro di tipo Integer
+  *@param comment parametro di tipo String
  */
     public EmotionBox(String emotionName, boolean isRated, Integer index,String comment) {
         super();
@@ -112,8 +121,10 @@ public class EmotionBox extends VBox {
 
  
  /**metodo privato che Crea e restituisce un'etichetta di valutazione con il testo specificato
- *Viene impostato uno stile di classe CSS all'etichetta *Viene creata una TextArea per inserire commenti più dettagliati sull'emozione
+ *Viene impostato uno stile di classe CSS all'etichetta 
+ *Viene creata una TextArea per inserire commenti più dettagliati sull'emozione
  *Viene aggiunto un gestore di eventi al clic dell'etichetta per gestire la selezione/deselezione del voto
+ *@return label di valutazione
  */  
     private Label createRatingLabel(String text) {
         Label label = new Label(text);
@@ -133,7 +144,7 @@ public class EmotionBox extends VBox {
 
  
  /** metodo privato che gestisce il clic sulle etichette di valutazione
- *@param <code>label</code> parametro di tipo Label
+ *@param label parametro di tipo Label FXML
  */
     private void handleRatingClick(Label label) {
         int selectedIndex = Integer.parseInt(label.getText()) - 1;
@@ -159,21 +170,27 @@ public class EmotionBox extends VBox {
 
 
 
- /**metodo che restituisce il nome dell'emozione*/
+ /**metodo che restituisce il nome dell'emozione
+  * @return nome emozione
+ */
     public String getEmotionName() {
         return emotionName;
     }
 
 
  
- /**metodo che restituisce il voto associato all'emozione*/
+ /**metodo che restituisce il voto associato all'emozione
+  *  @return voto emozione
+ */
     public Integer getVote() {
         return vote;
     }
 
 
  
- /**metodo che restituisce il commento associato all'emozione, con una stringa predefinita se la TextArea è vuota*/
+ /**metodo che restituisce il commento associato all'emozione, con una stringa predefinita se la TextArea è vuota
+  * @return commento
+ */
     public String getComment(){
         if(description.getText().isEmpty()){
             return "Silence is golden";

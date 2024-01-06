@@ -37,14 +37,20 @@ public class BackgroundTransition extends Transition {
     private final  Color targetBackground;
 
 
- /**metodo statico che imposta il colore di sfondo */
+ /**metodo statico che imposta il colore di sfondo
+  * @param header colore header
+ */
     public static void setHeaderGraphics(Color header){
         hbox_header= header;
     }
 
 
  
-/** costruttore della classe: viene fornita la HBox, la durata della transizione, il colore iniziale e il colore finale*/
+/** costruttore della classe: viene fornita
+ * @param hbox HBox
+ * @param duration della transizione
+ * @param oldColor colore iniziale
+ * @param newColor colore finale*/
     public BackgroundTransition(HBox hbox,Duration duration,Color oldColor, Color newColor){
         hbox_header = newColor;
         this.hBox = hbox;
@@ -57,7 +63,7 @@ public class BackgroundTransition extends Transition {
  
  /**metodo che viene chiamato durante l'animazione
  *Calcola il colore di sfondo interpolato in base al valore di frac e imposta il nuovo sfondo della HBox
-*@param <code>frac</code> parametro di tipo double
+*@param frac parametro di tipo double
 */   
     @Override
     protected void interpolate(double frac){
@@ -69,7 +75,8 @@ public class BackgroundTransition extends Transition {
 
  
  /**metodo statico che restituisce uno sfondo con una sfumatura lineare da color a un colore predefinito
-*@param <code>color</code> parametro di tipo Color
+*@param color parametro di tipo Color
+*@return oggetto background
 */   
     public static Background gettLinearGradient(Color color){
         CornerRadii cornerRadii = new CornerRadii(8, 8, 0, 0, false);
@@ -85,7 +92,8 @@ public class BackgroundTransition extends Transition {
 
 
  /**metodo privato che restituisce uno sfondo con una sfumatura lineare da initialBackground a targetBackground in base al valore di frac
-*@param <code>frac</code> parametro di tipo double
+*@param frac parametro di tipo double
+*@return oggetto background
 */  
     private  Background getGradientBackground(double frac) {
         CornerRadii cornerRadii = new CornerRadii(8, 8, 0, 0, false);

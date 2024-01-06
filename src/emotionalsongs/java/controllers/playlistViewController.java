@@ -52,7 +52,7 @@ import views.PlaylistView;
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
 
-    *classe creata e utilizzata per la view della playlist corrente
+    *controller per la view della playlist corrente
     */
 public class playlistViewController {
 
@@ -168,7 +168,9 @@ public class playlistViewController {
 
         });
     }
-    /**Inizializza elementi view */
+    /**Inizializza elementi view
+     * @throws RemoteException eccezione per servizi remote server
+    */
     private void initializeElements() throws RemoteException {
 
         if (ClientSession.client.getUserid() == null || !(ClientSession.client.getUserid().equals(user))) {
@@ -247,7 +249,7 @@ public class playlistViewController {
             Globals.getRootFrame().setContent(new HomeView(ResizeHandler.getCenterWidth()));
         });
     }
-    /**setta playlist corrente */
+    /**setta playlist selezionata */
     private void setPlaylist() {
         try {
             // modificare getPlaylist
@@ -265,6 +267,8 @@ public class playlistViewController {
     }
     /**metodo per salvare le nuove canzoni da aggiungere alla playlist
      * @param editTable
+     * @throws RemoteException eccezione per servizi remote server
+     * @throws NotBoundException eccezione per servizi remote server
     */
     private void newTracks(TableViewManager editTable) throws RemoteException, NotBoundException {
         ArrayList<Track> ar = new ArrayList<Track>(editTable.getItems());
@@ -289,7 +293,7 @@ public class playlistViewController {
 
     }
 
-    /**setta top canzoni asincrono*/
+    /**setta top canzoni per popolarità con metodo asincrono*/
     private void setTopTracksAsync() {
         executorService.submit(() -> {
             try {
@@ -299,8 +303,8 @@ public class playlistViewController {
             }
         });
     }
-    /**cerca per titolo asincrono
-     * @param s stringa ricerca
+    /**cerca per titolo con metodo asincrono
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsTitleAsync(String s) {
         executorService.submit(() -> {
@@ -311,8 +315,8 @@ public class playlistViewController {
             }
         });
     }
-    /**cerca per artista e anno asincrono
-     * @param s stringa ricerca
+    /**cerca per artista e anno con metodo asincrono
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsArtistAsync(String s) {
         executorService.submit(() -> {
@@ -323,7 +327,7 @@ public class playlistViewController {
             }
         });
     }
-    /**setta top canzoni */
+    /**setta top canzoni per popolarità */
     private void setTopTracks() throws RemoteException {
         addTable.setPrefHeight(980);
         HomeModule homeModule = new HomeModule();
@@ -337,7 +341,7 @@ public class playlistViewController {
         addTable.setItems(data);
     }
     /**cerca per titolo
-     * @param s stringa ricerca
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsTitle(String s) {
         try {
@@ -354,8 +358,8 @@ public class playlistViewController {
             e.printStackTrace();
         }
     }
-    /**cerca per artista e anno
-     * @param s stringa ricerca
+    /**cerca per artista e anno 
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsArtist(String s) {
         try {

@@ -29,7 +29,7 @@ import views.PlaylistBox;
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
 
-    *classe creata e utilizzata per la view di esplora playlist
+    *controller per la view di esplora playlist
     */
 public class explorePlaylistController {
 
@@ -89,7 +89,7 @@ public class explorePlaylistController {
         initializeButtons();
 
     }
-    /**inizializza view con elementi*/
+    /**inizializza view con elementi FXML in base a login*/
     public void initializeButtons(){
         if(plays.isEmpty()){
             if(ClientSession.client.getUserid() == null){

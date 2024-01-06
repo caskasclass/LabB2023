@@ -47,7 +47,7 @@ import javafx.stage.Stage;
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
 
- *classe creata e utilizzata per la view di creazione della playlist
+ *controller per la view di creazione della playlist
  */
 public class creazionePlaylistController {
     /**elemento FXML */
@@ -160,7 +160,7 @@ public class creazionePlaylistController {
 
         window.show();
     }
-    /**salva la nuova playlist
+    /**registra la nuova playlist nell'applicazione
      * @param e evento click javafx
     */
     public void registraPlaylist(MouseEvent e) throws NotBoundException, RemoteException{
@@ -178,7 +178,7 @@ public class creazionePlaylistController {
         Globals.getRootFrame().setContent(new HomeView(ResizeHandler.getCenterWidth()));
          
     }
-    /**setta top canzoni asincrono*/
+    /**setta top canzoni per popolarità con metodo asincrono*/
     private void setTopTracksAsync() {
         executorService.submit(() -> {
             try {
@@ -188,8 +188,8 @@ public class creazionePlaylistController {
             }
         });
     }
-    /**cerca per titolo asincrono
-     * @param s stringa ricerca
+    /**cerca per artista e anno con metodo asincrono
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsTitleAsync(String s) {
         executorService.submit(() -> {
@@ -200,8 +200,8 @@ public class creazionePlaylistController {
             }
         });
     }
-    /**cerca per artista e anno asincrono
-     * @param s stringa ricerca
+    /**cerca per artista e anno con metodo asincrono
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsArtistAsync(String s) {
         executorService.submit(() -> {
@@ -213,7 +213,7 @@ public class creazionePlaylistController {
         });
     }
 
-   /**setta top canzoni */
+   /**setta top canzoni per popolarità */
     private void setTopTracks() throws RemoteException {
         findTracks.setPrefHeight(980);
         HomeModule homeModule = new HomeModule();
@@ -226,8 +226,8 @@ public class creazionePlaylistController {
 
         findTracks.setItems(data);
     }
-    /**cerca per titolo
-     * @param s stringa ricerca
+    /**ricerca per titolo
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsTitle(String s) {
         try {
@@ -244,8 +244,8 @@ public class creazionePlaylistController {
             e.printStackTrace();
         }
     }
-    /**cerca per artista e anno
-     * @param s stringa ricerca
+    /**ricerca per artista e anno
+     * @param s stringa di ricerca inserita dall'utente 
     */
     private void setResultsArtist(String s) {
         try {

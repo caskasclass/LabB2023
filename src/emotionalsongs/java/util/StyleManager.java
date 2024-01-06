@@ -24,8 +24,9 @@ public class StyleManager {
 
  
 /**metodo che carica un file di stile CSS e restituisce l'URL del file sotto forma di stringa
-*@param  <code>cssFile</code>  variabile di tipo String
-*@throws  <code>IOEXception</code>  Eccezione
+*@param  cssFile  variabile di tipo String
+*@throws  IOException  Eccezione
+*@return stringa che rappresenta una classe css
 */
     public String loadStyle(String cssFile) throws IOException {
         return (getClass().getResource("../css/" + cssFile).toExternalForm());

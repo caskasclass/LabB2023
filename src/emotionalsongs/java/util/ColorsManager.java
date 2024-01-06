@@ -20,14 +20,14 @@ import javafx.scene.paint.Color;
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
 
- *classe creata per la gestione degli utenti, con metodi per la registrazione, la verifica dell'esistenza di un utente e il login
+ *classe creata per la gestione dei colori di sfondo dell'applicazione
  */
 public class ColorsManager {
 
 
  /**metodo che prende un'immagine come input e restituisce il colore dominante nell'immagine
-*@param  <code>image</code> parametro di tipo Image
-*@return <code>dominantColor</code> oggetto di tipo Color
+*@param  image parametro di tipo Image
+*@return dominantColor oggetto di tipo Color
 */ 
     public static Color getDominantColor(Image image) {
 
@@ -70,7 +70,8 @@ public class ColorsManager {
 
  
  /**metodo che verifica se un colore è bianco o simile al bianco utilizzando una tolleranza specifica
-*@param  <code>color</code> parametro di tipo Color
+*@param color parametro di tipo Color
+*@return true se è bianco o simile
 */ 
     private static boolean isWhiteOrSimilar(Color color) {
         double tolerance = 0.1; // Tolleranza per determinare la somiglianza al bianco
@@ -85,7 +86,8 @@ public class ColorsManager {
 
  
  /**metodo che verifica se un colore è nero o simile al nero utilizzando una tolleranza specifica
-*@param  <code>color</code> parametro di tipo Color
+*@param color parametro di tipo Color
+*@return true se è nero o simile
 */ 
     private static boolean isBlackOrSimilar(Color color) {
         double tolerance = 0.1; // Tolleranza per determinare la somiglianza al nero

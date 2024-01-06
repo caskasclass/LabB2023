@@ -29,9 +29,13 @@ import javafx.scene.layout.VBox;
  *Questa cella mostra dettagli di traccia, inclusa un'immagine, il nome della traccia e il nome dell'autore
  */
 public class CustomCell extends TableCell<Track, Void> {
+    /**elemento FXML */
     private final HBox hbox = new HBox();
+    /**elemento FXML */
     private final ImageView imageView = new ImageView();
+    /**elemento FXML */
     private final Label trackNameLabel = new Label();
+    /**elemento FXML */
     private final Label authorNameLabel = new Label();
 
  /**costruttore della classe*/
@@ -53,7 +57,8 @@ public class CustomCell extends TableCell<Track, Void> {
 
  
  /**metodo chiamato ogni volta che la cella deve essere aggiornata
-*@param <code>item</code> parametro di tipo Void, <code>empty</code> parametro di tipo boolean
+*@param item parametro di tipo Void
+*@param empty parametro di tipo boolean
 */   
     @Override
     protected void updateItem(Void item, boolean empty) {

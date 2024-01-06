@@ -25,9 +25,15 @@ import javafx.scene.text.Font;
 
 public class CommentVBox extends VBox{
 
+    /**elemento FXML */
     Label commentLabel;
+    /**elemento FXML */
     Label usernameLabel;
 
+    /**Costruttore del vbox contenente un commento di uno user
+     * @param comment
+     * @param username
+     */
     public CommentVBox(String comment, String username) {
         super();
        

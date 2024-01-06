@@ -51,7 +51,6 @@ public class SignWindow extends Stage{
              } catch (Exception e) {
                 e.printStackTrace();// TODO: handle exception
              }
-            //mainContaier.getStylesheets().add(styleManager.loadStyle("main.css"));
             
             setOnShown(event ->{
                 //contenuto completamente caricato

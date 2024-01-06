@@ -33,7 +33,6 @@ public class LoadingWindow extends Stage {
 */
     public LoadingWindow() {
             StackPane mainContaier = (StackPane) loader.loadFXML("loadingWindow.fxml");
-            //mainContaier.getStylesheets().add(styleManager.loadStyle("main.css"));
             initStyle(StageStyle.UNDECORATED);
             initStyle(StageStyle.TRANSPARENT);
             setResizable(false);

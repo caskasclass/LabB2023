@@ -23,7 +23,9 @@ import javafx.concurrent.Task;
  *N.B. il lavoro di inizializzazione pesante viene delegato a un task separato (UIInitializationTask) per garantire che l'interfaccia utente rimanga reattiva
  */
 public class ApplicationManager {
+    /**oggetto finestra di loading */
     private LoadingWindow loadingWindow;
+    /**oggetto main finestra dell'applicazione */
     private HomeWindow homeWindow;
 
     /**start point dell'applicazione */
@@ -38,8 +40,6 @@ public class ApplicationManager {
         UIInitializationTask.setOnSucceeded(event -> {
             loadingWindow.close();
             homeWindow.show();
-
-            // qui c'èra il proxy
         });
         // Avvio il task
         Thread processingThread = new Thread(UIInitializationTask);
@@ -49,14 +49,12 @@ public class ApplicationManager {
 
 
  /**metodo il quale restituisce un task che contiene la logica di inizializzazione dell'interfaccia utente
-*@return <code>new Task<>()</code>
-*throws <code>Excepton</code> Eccezione
+*@return task che contiene la logica di inizializzazione dell'interfaccia utente
 */
     private Task<Void> createUIInitializationTask() {
         return new Task<>() {
             @Override
             protected Void call() throws Exception {
-                // elaborazione pesante ? potrebbe essere
 
                 Platform.runLater(() -> {
                     long start = System.currentTimeMillis();

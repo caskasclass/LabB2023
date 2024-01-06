@@ -24,7 +24,7 @@ import util.ColorsManager;
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
 
-    *classe creata e utilizzata per i riquadri delle playlist
+    *controller per i riquadri delle playlist
     */
 public class playlistBoxController {
     /**elemento grafica */

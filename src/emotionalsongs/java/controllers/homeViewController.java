@@ -52,7 +52,7 @@ import views.PlaylistBox;
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
 
-    *classe creata e utilizzata per la view principale home
+    *controller per la view principale home
     */
 public class homeViewController {
     /**elemento grafica */
@@ -101,7 +101,9 @@ public class homeViewController {
     private FlowPane othersPlaylistBoxContainer;
     /**modulo per accesso servizi server*/
     private HomeModule homeModule;
-
+    /**Costruttore controller
+     * @param initialWidth per resizing window
+    */
     public homeViewController(double initialWidth) {
         this.initialWidth = initialWidth;
         homeModule = new HomeModule();
@@ -130,13 +132,13 @@ public class homeViewController {
             smoothShaderTransition(oldValue,newValue);
         });
     }
-    /**elemento grafica */
+    /**metodo per la grafica */
     private void smoothShaderTransition(Color oldColor,Color newColor) {
         BackgroundTransition transition = new BackgroundTransition(primaryShader, Duration.seconds(0.85), oldColor, newColor);
         transition.play();
 
     }
-    /**elemento grafica resizing*/
+    /**metodo per la grafica resizing*/
     private void handleElements(double width) {  
         // PER SEC ALBUM
         ObservableList<Node> boxes = albumBoxContainer.getChildren();
@@ -194,7 +196,7 @@ public class homeViewController {
         }
 
     }
-    /**setta sezione playlist*/
+    /**setta la sezione playlist*/
     public void setPlaylist(double width) throws RemoteException, NotBoundException {
         PlaylistModule pm = new PlaylistModule();
         plays = pm.setPlaylists();
@@ -263,7 +265,7 @@ public class homeViewController {
         }      
         
     }
-    /**setta sezione album */
+    /**setta la sezione album */
     public void setAlbums(double width) {
         albumBoxContainer = new GridPane();
         albumBoxContainer.getStyleClass().add("albumBox_container");
@@ -282,7 +284,7 @@ public class homeViewController {
         gridContainer.getChildren().add(1, albumBoxContainer);
 
     }
-     /**setta sezione album */
+     /**setta la sezione delle canzoni più popolari */
     private void setTopTracks() {
         System.out.println("sono in setTopTracks 1");
         TableViewManager topTracks = new TableViewManager(true, false);
@@ -309,7 +311,7 @@ public class homeViewController {
         System.out.println("sono in setTopTracks 10");
         VBox.setVgrow(topTracks, Priority.ALWAYS);
     }
-     /**elemento grafica*/
+     /**metodo per la grafica*/
     private void fillGrid(int columns, int rows) {
         int width_percenatge = (int) (100 / columns);
         for (int i = 0; i < columns; i++) {
@@ -332,7 +334,7 @@ public class homeViewController {
             }
         }
     }
-     /**inizializza view */
+     /**inizializza view con le sezioni*/
     private void initializeElements(double width) {
         try {
             setPlaylist(width);
@@ -341,7 +343,7 @@ public class homeViewController {
         setTopTracks(); // per fare questo ci mette troppo tempo
         setAlbums(width);
     }
-    /**apre finestra con playlist presenti nell'app
+    /**apre view con le playlist presenti nell'app
      * @param e evento click javafx
     */
     public void explorePlaylist(MouseEvent e) {
@@ -350,7 +352,7 @@ public class homeViewController {
         view.prefHeightProperty().bind(Globals.getRootFrame().heightProperty());
         Globals.getRootFrame().setContent(view);
     }
-    /**apre finestra con repository canzoni
+    /**apre view con repository canzoni
      * @param e evento click javafx
     */
     public void openAllTrack(MouseEvent e) {

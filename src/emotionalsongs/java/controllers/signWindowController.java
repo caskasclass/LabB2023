@@ -37,7 +37,7 @@ import jars.*;
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
 
-    *classe creata e utilizzata per la finestra di login
+    *controller per la finestra di login
     */
 public class signWindowController {
     /**elemento FXML */
@@ -122,11 +122,11 @@ public class signWindowController {
     * @param regex pattern per il match 
     */
     private boolean stringMatches(String data, String regex) {
-        // Compila il pattern regex
+
         Pattern pattern = Pattern.compile(regex);
-        // Verifica se il codice fiscale corrisponde al pattern regex
         return pattern.matcher(data).matches();
     }
+    
     /**metodo chiusura finestra
      * @param e click event javafx 
      */

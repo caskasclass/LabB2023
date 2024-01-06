@@ -19,7 +19,7 @@ import javafx.stage.Stage;
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
 
-    *classe creata e utilizzata per la finestra di image picking per la playlist
+    *controller per la finestra di image picking per la playlist
     */
 public class imagesWindowController {
     /**elemento FXML */
