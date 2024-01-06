@@ -15,15 +15,15 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+*Classe creata per gestire lo stile della finestra, colore dell'intestazione, colore principale e il background iniziale
  * 
  * @author Beatrice Bastianello, matricola 751864, VA
  * @author Lorenzo Barbieri  , matricola 748695, VA
  * @author Filippo Storti , matricola 749195, VA
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
-
- *classe creata per gestire lo stile della finestra, colore dell'intestazione, colore principale e il background iniziale
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ 
  */
 public class WindowStyle {
     /**elemento grafica*/

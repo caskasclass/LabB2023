@@ -13,15 +13,15 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import jars.*;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *Classe creata per trovare un'istanza di ServerInterface attraverso la ricerca su diverse porte e restituirla quando viene trovata
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
- *classe creata per trovare un'istanza di ServerInterface attraverso la ricerca su diverse porte e restituirla quando viene trovata
  */
 public class ServerFinder {
 

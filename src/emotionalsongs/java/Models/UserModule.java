@@ -14,15 +14,14 @@ import jars.ServerInterface;
 import jars.User;
 
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *Classe creata per la gestione degli utenti, con metodi per la registrazione, la verifica dell'esistenza di un utente e il login
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
-
- *classe creata per la gestione degli utenti, con metodi per la registrazione, la verifica dell'esistenza di un utente e il login
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
  */
 public class UserModule {
     /**oggetto interfaccia per servizi server*/

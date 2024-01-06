@@ -44,15 +44,14 @@ import util.TableViewManager;
 import views.HomeView;
 import views.PlaylistView;
 /**
-    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+    *Controller per la view della playlist corrente
     * 
     * @author Beatrice Bastianello, matricola 751864, VA
     * @author Lorenzo Barbieri  , matricola 748695, VA
     * @author Filippo Storti , matricola 749195, VA
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
-
-    *controller per la view della playlist corrente
+    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
     */
 public class playlistViewController {
 

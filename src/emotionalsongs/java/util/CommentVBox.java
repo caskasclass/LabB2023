@@ -12,15 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *Classe creata estendendo la classe VBox,  utilizzata per rappresentare un singolo commento all'interno di un'interfaccia utente
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
- *classe creata estendendo la classe VBox,  utilizzata per rappresentare un singolo commento all'interno di un'interfaccia utente
  */
 
 public class CommentVBox extends VBox{

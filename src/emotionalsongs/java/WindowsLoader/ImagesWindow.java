@@ -19,15 +19,14 @@ import javafx.scene.image.ImageView;
 import util.FXMLLoaders;
 import util.StyleManager;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
- * 
+ *Classe creata per estendere la classe Stage di JavaFX e rappresenta una finestra per visualizzare immagini
  * @author Beatrice Bastianello, matricola 751864, VA
  * @author Lorenzo Barbieri  , matricola 748695, VA
  * @author Filippo Storti , matricola 749195, VA
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
- *classe creata per estendere la classe Stage di JavaFX e rappresenta una finestra per visualizzare immagini
  */
 public class ImagesWindow extends Stage {
     /**oggetto per loading del file fxml */

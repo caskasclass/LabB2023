@@ -18,16 +18,16 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+*Classe creata estendendo la classe Transition
+ *funzionalità di gestione delle transizioni di sfondo di un oggetto di tipo HBox (un contenitore orizzontale di JavaFX) da un colore a un altro durante un intervallo di tempo specificato
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
-
- *classe creata estendendo la classe Transition
- *funzionalità di gestione delle transizioni di sfondo di un oggetto di tipo HBox (un contenitore orizzontale di JavaFX) da un colore a un altro durante un intervallo di tempo specificato
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ 
  */
 public class BackgroundTransition extends Transition {
     public static  Color hbox_header;

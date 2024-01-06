@@ -8,15 +8,15 @@ package util;
 
 import java.io.IOException;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+*Classe progettata per gestire il caricamento degli stili CSS all'interno di un'applicazione JavaFX
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
-
- *classe progettata per gestire il caricamento degli stili CSS all'interno di un'applicazione JavaFX
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ 
  */
 
 public class StyleManager {

@@ -12,16 +12,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+*Classe creata per gestire, grazie al thread ResizeHandler, il ridimensionamento della finestra di menu
+ *il thread ascolta i cambiamenti nella larghezza della finestra e, quando rileva una modifica, esegue l'animazione aggiornando la larghezza del menu in base alla nuova larghezza della finestra
  * 
  * @author Beatrice Bastianello, matricola 751864, VA
  * @author Lorenzo Barbieri  , matricola 748695, VA
  * @author Filippo Storti , matricola 749195, VA
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
-
- *classe creata per gestire, grazie al thread ResizeHandler, il ridimensionamento della finestra di menu
- *il thread ascolta i cambiamenti nella larghezza della finestra e, quando rileva una modifica, esegue l'animazione aggiornando la larghezza del menu in base alla nuova larghezza della finestra
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ 
  */
 public class ResizeHandler extends Thread {
     /**elemento grafica */

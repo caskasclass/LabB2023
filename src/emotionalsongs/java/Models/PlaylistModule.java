@@ -15,15 +15,15 @@ import jars.Playlist;
 import jars.ServerInterface;
 import jars.Track;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *Classe creata per interagire con una ServerInterface utile a gestire le playlist e le tracce musicali
+
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
-
- *classe creata per interagire con una ServerInterface utile a gestire le playlist e le tracce musicali
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
  */
 public class PlaylistModule {
     /**oggetto interfaccia per servizi server*/

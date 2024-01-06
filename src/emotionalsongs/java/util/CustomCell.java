@@ -17,16 +17,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *Classe creata per gestione  di cella personalizzata per l'utilizzo in una TableView 
+ *Questa cella mostra dettagli di traccia, inclusa un'immagine, il nome della traccia e il nome dell'autore
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
- *classe creata per gestione  di cella personalizzata per l'utilizzo in una TableView 
- *Questa cella mostra dettagli di traccia, inclusa un'immagine, il nome della traccia e il nome dell'autore
  */
 public class CustomCell extends TableCell<Track, Void> {
     /**elemento FXML */

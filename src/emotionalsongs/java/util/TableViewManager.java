@@ -21,15 +21,15 @@ import javafx.scene.paint.Color;
 import views.CanzoneView;
 import jars.Track;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+*Classe che estende la classe TableView di JavaFX e aggiunge alcune funzionalità personalizzate per la gestione di una tabella di tracce musicali
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
-
- *classe che estende la classe TableView di JavaFX e aggiunge alcune funzionalità personalizzate per la gestione di una tabella di tracce musicali
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ 
  */
 
 public class TableViewManager extends TableView<Track> {

@@ -39,15 +39,15 @@ import jars.*;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
 /**
-    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
-    * 
+
+    *Controller per la finestra principale dell'applicazione    
     * @author Beatrice Bastianello, matricola 751864, VA
     * @author Lorenzo Barbieri  , matricola 748695, VA
     * @author Filippo Storti , matricola 749195, VA
     * @author Nazar Viytyuk, matricola 748964, VA
     * @version 1.0
+    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
-    *controller per la finestra principale dell'applicazione
     */
 public class homeWindowController {
     /**elemento grafica */

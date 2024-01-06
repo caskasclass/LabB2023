@@ -6,17 +6,16 @@ import util.ApplicationManager;
 
 
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
- * 
+ *Main class dell'applicazione
  * @author Beatrice Bastianello, matricola 751864, VA
  * @author Lorenzo Barbieri  , matricola 748695, VA
  * @author Filippo Storti , matricola 749195, VA
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
- *main class dell'applicazione
  */
-public class emotionalsongs extends Application {
+public class EmotionalSongs extends Application {
     /**Main*/
     public static void main(String[] args) {
         launch(args);

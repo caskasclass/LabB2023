@@ -14,15 +14,15 @@ import jars.AlbumPreview;
 import jars.ServerInterface;
 
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *Classe creata per interagire con una ServerInterface utile ad ottenere le tracce musicali e gli album migliori da server
+
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
-
- *classe creata per interagire con una ServerInterface utile ad ottenere le tracce musicali e gli album migliori da server
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
  */
 public class HomeModule {
     /**oggetto interfaccia per servizi server*/

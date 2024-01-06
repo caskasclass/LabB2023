@@ -11,16 +11,16 @@ import WindowsLoader.LoadingWindow;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+*classe creata per gestire l'iniziallizzazione dell'applicazione, compresa la visualizzazione di una finestra di caricamento e la creazione di una finestra principale
+ *N.B. il lavoro di inizializzazione pesante viene delegato a un task separato (UIInitializationTask) per garantire che l'interfaccia utente rimanga reattiva
  * 
  * @author Beatrice Bastianello, matricola 751864, VA
  * @author Lorenzo Barbieri  , matricola 748695, VA
  * @author Filippo Storti , matricola 749195, VA
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
-
- *classe creata per gestire l'iniziallizzazione dell'applicazione, compresa la visualizzazione di una finestra di caricamento e la creazione di una finestra principale
- *N.B. il lavoro di inizializzazione pesante viene delegato a un task separato (UIInitializationTask) per garantire che l'interfaccia utente rimanga reattiva
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ 
  */
 public class ApplicationManager {
     /**oggetto finestra di loading */

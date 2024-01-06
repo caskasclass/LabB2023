@@ -12,15 +12,15 @@ import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *Classe utility per il caricamento di file FXML
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
- *classe utility per il caricamento di file FXML
  */
 
 public class FXMLLoaders {

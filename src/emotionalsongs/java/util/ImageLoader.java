@@ -11,15 +11,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+*Classe progettata per il caricamento asincrono delle immagini, mantenendo una cache delle immagini precedentemente caricate per migliorare le prestazioni
  * 
  * @author Beatrice Bastianello, matricola 751864, VA
  * @author Lorenzo Barbieri  , matricola 748695, VA
  * @author Filippo Storti , matricola 749195, VA
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
-
- *classe progettata per il caricamento asincrono delle immagini, mantenendo una cache delle immagini precedentemente caricate per migliorare le prestazioni
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ 
  */
 public class ImageLoader {
     /**cache rappresentata da mappa per le immagini */
