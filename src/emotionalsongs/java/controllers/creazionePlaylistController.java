@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi controller necessarie a
+ * gestire le views e finestre dell'applicazione.
+  * @package controllers
+ * @see package.emotionalsongs.java
+ */
 package controllers;
 
 import javafx.application.Platform;
@@ -18,10 +24,13 @@ import WindowsLoader.ImagesWindow;
 import jars.Playlist;
 import jars.Track;
 import jars.TrackDetails;
-import java.net.URL;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import Models.AllTrackModule;
 import Models.HomeModule;
 import Models.PlaylistModule;
@@ -29,49 +38,65 @@ import Session.ClientSession;
 import Session.Globals;
 import Threads.ResizeHandler;
 import javafx.stage.Stage;
+/**
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ * 
+ * @author Beatrice Bastianello, matricola 751864, VA
+ * @author Lorenzo Barbieri  , matricola 748695, VA
+ * @author Filippo Storti , matricola 749195, VA
+ * @author Nazar Viytyuk, matricola 748964, VA
+ * @version 1.0
 
+ *classe creata e utilizzata per la view di creazione della playlist
+ */
 public class creazionePlaylistController {
-
+    /**elemento FXML */
     @FXML
     private TextField cerca;
-
+    /**elemento FXML */
     @FXML
     private VBox container;
-
+    /**elemento FXML */
     @FXML
     private Button createButton;
-
+    /**elemento FXML */
     @FXML
     private Label owner;
-
+    /**elemento FXML */
     @FXML
     private ImageView playlistImage;
-
+    /**elemento FXML */
     @FXML
     private TextField playlistName;
-
+    /**elemento FXML */
     @FXML
     private VBox tableContainer;
-
-    static URL img;
+    /**tabella contenente canzoni della playlist da creare */
     private TableViewManager playlistTracks = new TableViewManager(false, false);
+    /**tabella per cercare le canzoni della playlist da creare */
     private TableViewManager findTracks = new TableViewManager(false, true);
-
+    /**elemento task asincroni */
+    private static ExecutorService executorService = Executors.newFixedThreadPool(5);
+    /**elemento delay ricerca */
+    Timer timer = new Timer();
+    /**elemento delay ricerca */
+    final int DELAY_TIME = 2000;
+    /**Inizializza file FXML */
     @FXML
     void initialize() {
 
-        
+        playlistName.setStyle("-fx-background-color: transparent");
         Platform.runLater(() -> {
             double width = container.getWidth() - 10;
             initializeElements(width);
         });
         try {
-            setTopTracks();
-        } catch (RemoteException e) {
+            setTopTracksAsync();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    /**inizializza elementi view */
     private void initializeElements(double width) {
         owner.setText(ClientSession.client.getUserid());
         playlistTracks.prefWidthProperty().bind(container.widthProperty());
@@ -93,10 +118,21 @@ public class creazionePlaylistController {
         try {
             cerca.setOnKeyPressed(event -> {
                 if (event.getCode() != KeyCode.ENTER) {
-                    setResultsTitle(cerca.getText());
-                } else {
-                    setResultsArtist(cerca.getText());
-                }
+                timer.cancel(); // Annulla il timer precedente all'inizio di un nuovo evento di pressione del
+                                // tasto
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        // Codice da eseguire dopo il ritardo di inattività (2 secondi)
+                        setResultsTitleAsync(cerca.getText());
+                    }
+
+                }, DELAY_TIME);
+            } else {
+                timer.cancel(); // Annulla il timer se viene premuto il tasto "ENTER"
+                setResultsArtistAsync(cerca.getText());
+            }
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,7 +141,9 @@ public class creazionePlaylistController {
         
         tableContainer.getChildren().add(findTracks);
     }
-
+    /**apre finestra con immagini selezionabili
+     * @param e evento click javafx
+    */
     public void openImages(MouseEvent e) {
         Stage parent = (Stage) createButton.getScene().getWindow();
         ImagesWindow window = new ImagesWindow(playlistImage);
@@ -122,7 +160,9 @@ public class creazionePlaylistController {
 
         window.show();
     }
-
+    /**salva la nuova playlist
+     * @param e evento click javafx
+    */
     public void registraPlaylist(MouseEvent e) throws NotBoundException, RemoteException{
         Playlist p = new Playlist(playlistName.getText(), ClientSession.client.getUserid());
         ArrayList<Track> ar = new ArrayList<Track>(playlistTracks.getItems());
@@ -138,8 +178,42 @@ public class creazionePlaylistController {
         Globals.getRootFrame().setContent(new HomeView(ResizeHandler.getCenterWidth()));
          
     }
+    /**setta top canzoni asincrono*/
+    private void setTopTracksAsync() {
+        executorService.submit(() -> {
+            try {
+                setTopTracks();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    /**cerca per titolo asincrono
+     * @param s stringa ricerca
+    */
+    private void setResultsTitleAsync(String s) {
+        executorService.submit(() -> {
+            try {
+                setResultsTitle(s);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    /**cerca per artista e anno asincrono
+     * @param s stringa ricerca
+    */
+    private void setResultsArtistAsync(String s) {
+        executorService.submit(() -> {
+            try {
+                setResultsArtist(s);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
-
+   /**setta top canzoni */
     private void setTopTracks() throws RemoteException {
         findTracks.setPrefHeight(980);
         HomeModule homeModule = new HomeModule();
@@ -152,7 +226,9 @@ public class creazionePlaylistController {
 
         findTracks.setItems(data);
     }
-
+    /**cerca per titolo
+     * @param s stringa ricerca
+    */
     private void setResultsTitle(String s) {
         try {
             findTracks.setPrefHeight(980);
@@ -168,7 +244,9 @@ public class creazionePlaylistController {
             e.printStackTrace();
         }
     }
-
+    /**cerca per artista e anno
+     * @param s stringa ricerca
+    */
     private void setResultsArtist(String s) {
         try {
             findTracks.setPrefHeight(980);

@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi necessarie a implementare e caricare
+ * le views dell'applicazione.
+  * @package views
+ * @see package.emotionalsongs.java
+ */
 package views;
 
 import java.io.IOException;
@@ -7,9 +13,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
 import util.FXMLLoaders;
 
+/**
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ * 
+ * @author Beatrice Bastianello, matricola 751864, VA
+ * @author Lorenzo Barbieri  , matricola 748695, VA
+ * @author Filippo Storti , matricola 749195, VA
+ * @author Nazar Viytyuk, matricola 748964, VA
+ * @version 1.0
+
+ *view esplora playlist
+ */
 public class ExplorePlaylistView extends StackPane {
+    /**oggetto loading view fxml */
     FXMLLoaders fxmlutil = new FXMLLoaders();
-    
+    /**Costruttore view */
     public ExplorePlaylistView(){
 
         FXMLLoader loader = fxmlutil.getLoader("explorePlaylistView.fxml");

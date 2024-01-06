@@ -1,3 +1,10 @@
+/**
+ * Contiene le classi necessarie a racchiudere tutti i servizi
+ * implementati dal server e accessibili grazie a ServerInterface.
+ * Ogni classe rappresenta un sottogruppo di servizi legati a utente, canzoni etc.
+  * @package Models
+ * @see package.emotionalsongs.java
+ */
 package Models;
 
 import java.util.ArrayList;
@@ -18,11 +25,11 @@ import jars.ServerInterface;
  *classe creata per interagire con una ServerInterface utile ad ottenere le tracce musicali e gli album migliori da server
  */
 public class HomeModule {
-
+    /**oggetto interfaccia per servizi server*/
     ServerInterface stub;
 
     
-/**costruttore: inizializza l'oggetto <code>stub</code> */
+/**costruttore: inizializza l'oggetto  stub  */
     public HomeModule() {
         stub = ServerFinder.findServer();
     }
@@ -30,7 +37,6 @@ public class HomeModule {
 
     
 /**metodo  utilizzato per ottenere un ArrayList delle migliori tracce
-*@throws <code>Excepion</code> Eccezione
 *@return Arraylist di tracce, null altrimenti
 */
     public ArrayList<TrackDetails> getToptracks() {
@@ -52,7 +58,6 @@ public class HomeModule {
 
     
 /**metodo  utilizzato per ottenere un ArrayList dei migliori album
-*@throws <code>Excepion</code> Eccezione
 *@return Arraylist di album, null altrimenti
 */
      public ArrayList<AlbumPreview> getTopAlbums() {

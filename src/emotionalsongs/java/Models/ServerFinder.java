@@ -1,3 +1,10 @@
+/**
+ * Contiene le classi necessarie a racchiudere tutti i servizi
+ * implementati dal server e accessibili grazie a ServerInterface.
+ * Ogni classe rappresenta un sottogruppo di servizi legati a utente, canzoni etc.
+  * @package Models
+ * @see package.emotionalsongs.java
+ */
 package Models;
 
 import java.rmi.NotBoundException;
@@ -20,9 +27,7 @@ public class ServerFinder {
 
 
 
-/**metodo utilizzato per cercare un server attraverso registri RMI su porte specifiche
-*in un ciclo while usa la variabile <strong>found</strong> per indicare se è stato trovato
-*variabile <strong>count</strong> viene utilizzata per iterare le porte del ciclo
+/**metodo utilizzato per cercare un server 
 *@return istanza di ServerInterface, null altrimenti
 */
     public static ServerInterface findServer() {
@@ -33,23 +38,7 @@ public class ServerFinder {
             e.printStackTrace();
         }
         return null;
-        /*
-         * boolean found = false;
-         * int counter = 0;
-         * while(!found) {
-         * try {
-         * Registry r = LocateRegistry.getRegistry(ServerInterface.PORT[counter] +
-         * counter);
-         * return (ServerInterface) r.lookup("SERVER" + counter);
-         * } catch (Exception e) {
-         * counter++;
-         * if(counter >= ServerInterface.PORT.length) {
-         * counter = 0;
-         * }
-         * }
-         * }
-         * return null;
-         */
+    
     }
 
 }

@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi necessarie a implementare funzioni utili 
+ * alle altri classi del programma
+  * @package util 
+ * @see package.emotionalsongs.java
+ */
 package util;
 
 import WindowsLoader.HomeWindow;
@@ -9,7 +15,7 @@ public class ApplicationManager {
     private LoadingWindow loadingWindow;
     private HomeWindow homeWindow;
 
-    // start point dell'applicazione
+    /**start point dell'applicazione */
     public void initialize() {
         // metto a grafica la finestra di caricamento.
         loadingWindow = new LoadingWindow();

@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi necessarie a
+ * gestire funzionalità generiche di una sessione in app.
+  * @package Session
+ * @see package.emotionalsongs.java
+ */
 package Session;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -20,9 +26,13 @@ import javafx.scene.paint.Stop;
  *classe creata per gestire lo stile della finestra, colore dell'intestazione, colore principale e il background iniziale
  */
 public class WindowStyle {
+    /**elemento grafica*/
     private  static Color headerColor;
+    /**elemento grafica*/
     private static  final Color shader = Color.rgb(18, 18, 18);
+    /**elemento grafica*/
     private static final Color initialMainColor  =Color.rgb(62, 32, 146, 0.6);
+    /**elemento grafica*/
     private static SimpleObjectProperty<Color> mianColor = new SimpleObjectProperty<Color>(initialMainColor);
 
 

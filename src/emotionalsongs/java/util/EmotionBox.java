@@ -1,3 +1,9 @@
+/**
+  * Contiene le classi necessarie a implementare funzioni utili 
+ * alle altri classi del programma
+  * @package util 
+ * @see package.emotionalsongs.java
+ */
 package util;
 
 import Models.TrackModule;
@@ -6,7 +12,6 @@ import javafx.geometry.Pos;
 import javafx.scene.AccessibleRole;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;

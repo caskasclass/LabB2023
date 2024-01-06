@@ -1,3 +1,8 @@
+/**
+ * Contiene le classi necessarie a implementare le finestre pop-up e non dell'applicazione
+  * @package WindowsLoader
+ * @see package.emotionalsongs.java
+ */
 package WindowsLoader;
 
 import Session.WindowAppearance;
@@ -18,10 +23,11 @@ import util.FXMLLoaders;
  *classe creata per estendere la classe Stage di JavaFX e rappresenta la finestra principale dell'applicazione
  */
 public class HomeWindow extends Stage {
-
+    /**dimesioni finestra */
     private static final double MIN_WINDOW_WIDTH = 800.0;
+    /**dimensioni finestra */
     private static final double MIN_WINDOW_HEIGHT = 600.0;
-
+    /**oggetto per loading del file fxml */
     FXMLLoaders loader = new FXMLLoaders();
 
     
@@ -30,7 +36,6 @@ public class HomeWindow extends Stage {
 */
     public HomeWindow(){
             BorderPane mainContaier = (BorderPane) loader.loadFXML("HomeWindow.fxml");
-            //mainContaier.getStylesheets().add(styleManager.loadStyle("main.css"));
             Scene scene = new Scene(mainContaier, WindowAppearance.getWindowWidth(), WindowAppearance.getWindowHeight());
             setScene(scene);
             setTitle("EmotionalSongs");

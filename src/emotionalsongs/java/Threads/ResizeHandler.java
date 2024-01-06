@@ -1,3 +1,9 @@
+/**
+ * Contiene una classe che si occupa del resizing della finestra
+ * utilizzando la classe java Thread
+ * @package Threads
+ * @see package.emotionalsongs.java
+ */
 package Threads;
 
 import Session.WindowAppearance;
@@ -18,10 +24,13 @@ import javafx.scene.layout.VBox;
  *il thread ascolta i cambiamenti nella larghezza della finestra e, quando rileva una modifica, esegue l'animazione aggiornando la larghezza del menu in base alla nuova larghezza della finestra
  */
 public class ResizeHandler extends Thread {
-
-    public static  double MaxWidth = WindowAppearance.getWindowWidth() * 0.25; // non toccare
+    /**elemento grafica */
+    public static  double MaxWidth = WindowAppearance.getWindowWidth() * 0.25;
+    /**elemento grafica */
     public static double currentCenterRegisteredWidth = (WindowAppearance.getWindowWidth() - MaxWidth);
+    /**elemento grafica */
     private BorderPane rootPane;
+    /**elemento grafica */
     private VBox rootMenu;
 
 
@@ -35,7 +44,7 @@ public class ResizeHandler extends Thread {
 
 
 /** Metodo synchronized per ottenere la larghezza corrente del centro
-*@return <code>currentCenterRegisteredWidth</code> istanza che riproduce la larghezza corrente del centro
+*@return  currentCenterRegisteredWidth  istanza che riproduce la larghezza corrente del centro
 */
     public static synchronized double getCenterWidth(){
         return currentCenterRegisteredWidth;
@@ -57,7 +66,7 @@ public class ResizeHandler extends Thread {
 
 
 /**Metodo per animare la larghezza del menu in base alla nuova larghezza della finestra
-*@param <code>newWidth</code> variabile di tipo double
+*@param  newWidth  variabile di tipo double
 */
     private void animateMenuWidth(double newWidth) {
         double menuWidth = Math.min(newWidth * 0.23, MaxWidth); // Calcolo della nuova larghezza

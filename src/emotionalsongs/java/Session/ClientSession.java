@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi necessarie a
+ * gestire funzionalità generiche di una sessione in app.
+  * @package Session
+ * @see package.emotionalsongs.java
+ */
 package Session;
 
 import jars.User;
@@ -10,7 +16,7 @@ import jars.User;
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
 
- *classe creata per inizializzare una istanza di User con valori predefiniti
+ *classe static creata per gestire lo stato di utente loggato e non loggato
  */
 public class ClientSession {
     public static User client = new User(null, null, null, null, null, 0, null, null, null);

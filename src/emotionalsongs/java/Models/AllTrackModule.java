@@ -1,3 +1,10 @@
+/**
+ * Contiene le classi necessarie a racchiudere tutti i servizi
+ * implementati dal server e accessibili grazie a ServerInterface.
+ * Ogni classe rappresenta un sottogruppo di servizi legati a utente, canzoni etc.
+  * @package Models
+ * @see package.emotionalsongs.java
+ */
 package Models;
 
 import java.util.concurrent.ExecutorService;
@@ -20,12 +27,13 @@ import java.rmi.RemoteException;
  */
 
 public class AllTrackModule {
-
+    /**oggetto interfaccia per servizi server*/
     private ServerInterface si;
+    /**elemento task asincroni */
     private ExecutorService executorService;
 
     
-/**costruttore: inizializza oggetto <code>si</code> con metodo findServer*/
+/**costruttore: inizializza oggetto  si  con metodo findServer*/
     public AllTrackModule() {
             si = ServerFinder.findServer();
             executorService = Executors.newFixedThreadPool(5); 
@@ -34,8 +42,8 @@ public class AllTrackModule {
 
     
 /**metodo per ricerca asincrona di tracce in base al nome della traccia stessa
-*@param <code>input</code> stringa in input 
-*@return oggetto che rappresenta il risultato della ricerca (di tipo Future<ArrayList<Track>>)
+*@param  input  stringa in input 
+*@return oggetto che rappresenta il risultato della ricerca 
 */
     public Future<ArrayList<Track>> searchTracksNameAsync(String input) {
         return executorService.submit(() -> searchTracksName(input));
@@ -44,8 +52,8 @@ public class AllTrackModule {
 
     
 /**metodo per ricerca asincrona di tracce in base al nome dell'autore
-*@param <code>input</code> stringa in input 
-*@return oggetto che rappresenta il risultato della ricerca (di tipo Future<ArrayList<Track>>)
+*@param  input  stringa in input 
+*@return oggetto che rappresenta il risultato della ricerca 
 */
     public Future<ArrayList<Track>> searchTracksAutorAsync(String input) {
         return executorService.submit(() -> searchTracksAutor(input));
@@ -61,8 +69,8 @@ public class AllTrackModule {
 
 
 /**metodo per ricerca di tracce in base al nome della traccia utilizzando l'oggetto <strong>si</strong>
-*@param <code>input</code> stringa in input 
-*@throws <code>RemoteException</code> Eccezione
+*@param  input  stringa in input 
+*@throws  RemoteException  Eccezione
 *@return ArrayList di tracce come risultato della ricerca
 */
     public ArrayList<Track> searchTracksName(String input) throws RemoteException {
@@ -76,8 +84,8 @@ public class AllTrackModule {
 
 
 /**metodo per ricerca di tracce in base al nome dell'autore utilizzando l'oggetto <strong>si</strong>
-*@param <code>input</code> stringa in input 
-*@throws <code>RemoteException</code> Eccezione
+*@param  input  stringa in input 
+*@throws  RemoteException  Eccezione
 *@return ArrayList di tracce come risultato della ricerca
 */
     public ArrayList<Track> searchTracksAutor(String input) throws RemoteException {
@@ -98,8 +106,7 @@ public class AllTrackModule {
 
     
 /**metodo privato per ottenere tutte le informazioni per traccia
-*@param <code>ArrayList<String> trackIds</code> ArrayLIst di identificatori di tracce 
-*@throws <code>RemoteException</code> Eccezione
+*@param trackIds  ArrayLIst di identificatori di tracce 
 *@return ArrayList di tracce ottenute dalla chiamata del metodo getAllTrackInformation
 */
     private ArrayList<Track> getAllTrackInformation(ArrayList<String> trackIds) {
@@ -118,7 +125,7 @@ public class AllTrackModule {
 
     
 /**metodo privato per ottenere l'indice della prima stringa numerica nell'array
-*@param <code>String[] array</code> Array di stringhe
+*@param  array  Array di stringhe
 *@return indice dell'array altrimenti -1 
 */
     private static int findNumericIndex(String[] array) {
@@ -133,7 +140,7 @@ public class AllTrackModule {
 
 
 /**metodo privato utilizzato per accertarsi se la stringa è numerica
-*@param <code>String str</code> stringa
+*@param  str str  stringa
 *@return true se stringa è numerica, false altrimenti 
 */
     private static boolean isNumeric(String str) {

@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi necessarie a implementare funzioni utili 
+ * alle altri classi del programma
+  * @package util 
+ * @see package.emotionalsongs.java
+ */
 package util;
 
 import Session.Globals;

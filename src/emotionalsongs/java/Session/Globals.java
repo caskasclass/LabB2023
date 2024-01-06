@@ -1,7 +1,12 @@
+/**
+ * Contiene le classi necessarie a
+ * gestire funzionalità generiche di una sessione in app.
+  * @package Session
+ * @see package.emotionalsongs.java
+ */
 package Session;
 
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.HBox;
 /**
  * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
  * 
@@ -11,15 +16,15 @@ import javafx.scene.layout.HBox;
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
 
- *classe creata per  fornire metodi getter e setter per interagire con la variabile statica <code>rootFrame</code> da altre parti del codice
+ *classe di variabili globali creata per accedere al  rootFrame>  dell'applicazione
  */
 public class Globals {
-
+    /**rootPane FXML*/
     private static ScrollPane rootFrame;
 
 
 /** Metodo pubblico che restituisce il valore corrente di rootFrame
-*@return <code>rootFrame</code> 
+*@return  rootFrame  
 */
     public static ScrollPane getRootFrame(){
         return rootFrame;
@@ -28,7 +33,7 @@ public class Globals {
 
 
 /**Metodo pubblico che imposta il valore di rootFrame con il valore fornito come argomento
-*@param <code>scrollpane</code> variabile di tipo ScrollPane
+*@param  scrollpane  variabile di tipo ScrollPane
 */
     public static void setRootFrame(ScrollPane scrollpane){
         rootFrame = scrollpane;

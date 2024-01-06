@@ -1,3 +1,8 @@
+/**
+ * Contiene le classi necessarie a implementare le finestre pop-up e non dell'applicazione
+  * @package WindowsLoader
+ * @see package.emotionalsongs.java
+ */
 package WindowsLoader;
 
 import javafx.stage.Stage;
@@ -18,12 +23,13 @@ import util.StyleManager;
  *classe creata per estendere la classe Stage di JavaFX e rappresenta una finestra di caricamento
  */
 public class LoadingWindow extends Stage {
-
+    /**oggetto per loading del file fxml */
     FXMLLoaders loader = new FXMLLoaders();
+    /**oggetto per stile del file fxml */
     StyleManager styleManager  = new StyleManager();
 
     
-/**costruttore: inizializza lo stile della finestra e crea una scena con il layaut caricato
+/**Costruttore: inizializza lo stile della finestra e crea una scena con il layaut caricato
 */
     public LoadingWindow() {
             StackPane mainContaier = (StackPane) loader.loadFXML("loadingWindow.fxml");

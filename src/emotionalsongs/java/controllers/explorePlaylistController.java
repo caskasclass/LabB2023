@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi controller necessarie a
+ * gestire le views e finestre dell'applicazione.
+  * @package controllers
+ * @see package.emotionalsongs.java
+ */
 package controllers;
 
 import java.rmi.NotBoundException;
@@ -14,45 +20,59 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import views.PlaylistBox;
+/**
+    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+    * 
+    * @author Beatrice Bastianello, matricola 751864, VA
+    * @author Lorenzo Barbieri  , matricola 748695, VA
+    * @author Filippo Storti , matricola 749195, VA
+    * @author Nazar Viytyuk, matricola 748964, VA
+    * @version 1.0
 
+    *classe creata e utilizzata per la view di esplora playlist
+    */
 public class explorePlaylistController {
 
-
+    /**elemento FXML */
     @FXML
     private FlowPane MyplaylistBoxContainer;
-
+    /**elemento FXML */
     @FXML
     private FlowPane OthersplaylistBoxContainer;
-
+    /**elemento FXML */
     @FXML
     private Button allButton;
-
+    /**elemento FXML */
     @FXML
     private VBox container;
-
+    /**elemento FXML */
     @FXML
     private VBox mine;
-
+    /**elemento FXML */
     @FXML
     private Button myButton;
-
+    /**elemento FXML */
     @FXML
     private VBox others;
-
+    /**elemento FXML */
     @FXML
     private Button othrsButton;
-
+    /**elemento FXML */
     @FXML
     private Separator separator;
-
+    /**elemento FXML */
     private Label myLab = new Label("login per vedere le tue playlists");
+    /**elemento FXML */
     private Label MyotherLab = new Label("non ci sono playlists disponibili");
+    /**elemento FXML */
     private Label otherLab = new Label("non ci sono playlists disponibili");
-
+    /**array playlist presenti nell'applicazione */
     private ArrayList<Playlist> plays = new ArrayList<Playlist>();
+    /**array playlist dell'utente loggato presenti nell'applicazione */
     private ArrayList<Playlist> Myplays = new ArrayList<Playlist>();
+    /**array playlist degli altri utenti presenti nell'applicazione */
     private ArrayList<Playlist> Othersplays = new ArrayList<Playlist>();
-
+   /**Inizializza file FXML */ 
     @FXML
     void initialize() throws RemoteException, NotBoundException{
 
@@ -69,7 +89,7 @@ public class explorePlaylistController {
         initializeButtons();
 
     }
-
+    /**inizializza view con elementi*/
     public void initializeButtons(){
         if(plays.isEmpty()){
             if(ClientSession.client.getUserid() == null){
@@ -162,7 +182,7 @@ public class explorePlaylistController {
 
         
         }
-
+    /**se utente non loggato*/
     public void update(){
         myButton.setDisable(true);
         allButton.setDisable(true);

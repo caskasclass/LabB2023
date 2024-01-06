@@ -1,3 +1,8 @@
+/**
+ * Contiene le classi necessarie a implementare le finestre pop-up e non dell'applicazione
+  * @package WindowsLoader
+ * @see package.emotionalsongs.java
+ */
 package WindowsLoader;
 
 import javafx.stage.Stage;
@@ -23,12 +28,15 @@ public class SignWindow extends Stage {
  *classe creata per estendere la classe Stage di JavaFX e rappresenta una finestra per la registrazione o l'accesso
  */
 public class SignWindow extends Stage{
-
+    /**oggetto per loading del file fxml */
     FXMLLoaders fxmlutil = new FXMLLoaders();
+    /**oggetto per stile  del file fxml */
     StyleManager styleManager  = new StyleManager();
 
     
-/**Costruttore della classe SignWindow che accetta un controller come riferimento*/
+/**Costruttore della classe SignWindow che accetta un controller come riferimento
+ * @param ref
+*/
     public SignWindow(homeWindowController ref) {
              FXMLLoader loader =  fxmlutil.getLoader("signWindow.fxml");
              signWindowController controller = new signWindowController(ref);

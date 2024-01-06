@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="rootCanzoneview" prefWidth="1000.0" spacing="10.0" styleClass="base" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootCanzoneview" prefWidth="1000.0" spacing="10.0" styleClass="base" stylesheets="@../css/main.css" type="VBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="gradientBackground">
          <VBox.margin>
@@ -102,7 +102,7 @@
          <children>
             <VBox alignment="CENTER" spacing="5.0">
                <children>
-                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveEmotions" styleClass="button_box" text="Salva">
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#inserisciEmozioniBrano" styleClass="button_box" text="Salva">
                      <font>
                         <Font size="25.0" />
                      </font>

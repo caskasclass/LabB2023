@@ -1,3 +1,10 @@
+/**
+ * Contiene le classi necessarie a racchiudere tutti i servizi
+ * implementati dal server e accessibili grazie a ServerInterface.
+ * Ogni classe rappresenta un sottogruppo di servizi legati a utente, canzoni etc.
+  * @package Models
+ * @see package.emotionalsongs.java
+ */
 package Models;
 
 import java.rmi.NotBoundException;
@@ -19,11 +26,11 @@ import jars.Track;
  *classe creata per interagire con una ServerInterface utile a gestire le playlist e le tracce musicali
  */
 public class PlaylistModule {
-
+    /**oggetto interfaccia per servizi server*/
     private ServerInterface si;
 
-/**costruttore: inizializza oggetto <code>si</code> con metodo findServer
-*@throws <code>RemoteException</code>,<code>NotBoundException</code> Eccezioni
+/**costruttore: inizializza oggetto  si  con metodo findServer
+*@throws  RemoteException , NotBoundException  Eccezioni
 */
     public PlaylistModule() throws RemoteException, NotBoundException {
         si = ServerFinder.findServer();
@@ -32,8 +39,8 @@ public class PlaylistModule {
 
     
 /**metodo che crea una Playlist
-*@param <code>p</code> parametro di tipo Playlist
-*@throws <code>RemoteException</code> Eccezione
+*@param  p  parametro di tipo Playlist
+*@throws  RemoteException  Eccezione
 */    
     public void createPlaylist(Playlist p) throws RemoteException{
             si.createPlaylist(p);
@@ -42,8 +49,8 @@ public class PlaylistModule {
 
     
 /**metodo che crea un ArrayLsit con tutte le Playlist esistenti
-*@throws <code>RemoteException</code> Eccezione
-*@return <code>plays</code> ArrayList di tutte le Playlist 
+*@throws  RemoteException  Eccezione
+*@return  plays  ArrayList di tutte le Playlist 
 */ 
     public ArrayList<Playlist> setPlaylists() throws RemoteException{
         ArrayList<Playlist> plays = si.getAllPlaylist();   
@@ -53,8 +60,8 @@ public class PlaylistModule {
 
 
 /**metodo che cancella una Playlist specifica
-*@param <code>p</code> parametro di tipo Playlist
-*@throws <code>RemoteException</code> Eccezione
+*@param  p  parametro di tipo Playlist
+*@throws  RemoteException  Eccezione
 */ 
     public void deletePlaylist(Playlist p) throws RemoteException{
             si.deletePlayList(p);
@@ -63,8 +70,8 @@ public class PlaylistModule {
 
 
 /**metodo che cancella una traccia specifica
-*@param <code>p</code> parametro di tipo Playlist, <code>track</code> parametro di tipo String
-*@throws <code>RemoteException</code> Eccezione
+*@param  p  parametro di tipo Playlist,  track  parametro di tipo String
+*@throws  RemoteException  Eccezione
 */ 
     public void deleteTrack(Playlist p, String track) throws RemoteException{
             si.deleteTrack(p, track);;
@@ -73,9 +80,9 @@ public class PlaylistModule {
 
     
 /**metodo che restituisce una determinata Playlist usandone il titolo e il nome dell'utente
-*@param <code>title</code> parametro di tipo string, <code>user</code> parametro di tipo String
-*@throws <code>RemoteException</code> Eccezione
-*@return <code>p</code> oggetto di tipo Playlist 
+*@param  title  parametro di tipo string,  user  parametro di tipo String
+*@throws  RemoteException  Eccezione
+*@return  p  oggetto di tipo Playlist 
 */ 
     public Playlist getP(String title, String user) throws RemoteException{
         Playlist p = si.getPlaylist(title, user); 
@@ -85,9 +92,9 @@ public class PlaylistModule {
 
     
 /**metodo che restituisce informazioni su tutte le tracce nell'intervallo specificato 
-*@param <code>strings</code> parametro di tipo ArrayList<String> ,<code>begin</code> parametro di tipo int, <code>end</code> parametro di tipo int
-*@throws <code>RemoteException</code> Eccezione
-*@return <code>t</code> oggetto di tipo ArrayList<Track> 
+*@param  strings  parametro list di String , begin  parametro di tipo int,  end  parametro di tipo int
+*@throws  RemoteException  Eccezione
+*@return  t  
 */ 
     public ArrayList<Track> getAllTrack(ArrayList<String> strings, int begin, int end) throws RemoteException{
         ArrayList<Track> t =  si.getAllTrackInformation(strings, begin , end);
@@ -97,8 +104,8 @@ public class PlaylistModule {
 
     
 /**metodo che restituisce  tutti gli identificatori delle tracce
-*@throws <code>RemoteException</code> Eccezione
-*@return <code>t</code> oggetto di tipo ArrayList<String> 
+*@throws  RemoteException  Eccezione
+*@return  t  
 */ 
     public ArrayList<String> getAllIds() throws RemoteException{
         ArrayList<String> t =  si.getAllTrackId();

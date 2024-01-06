@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi controller necessarie a
+ * gestire le views e finestre dell'applicazione.
+  * @package controllers
+ * @see package.emotionalsongs.java
+ */
 package controllers;
 
 import javafx.util.Duration;
@@ -37,52 +43,70 @@ import views.AlbumView;
 import views.AllTrackView;
 import views.ExplorePlaylistView;
 import views.PlaylistBox;
+/**
+    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+    * 
+    * @author Beatrice Bastianello, matricola 751864, VA
+    * @author Lorenzo Barbieri  , matricola 748695, VA
+    * @author Filippo Storti , matricola 749195, VA
+    * @author Nazar Viytyuk, matricola 748964, VA
+    * @version 1.0
 
+    *classe creata e utilizzata per la view principale home
+    */
 public class homeViewController {
-
+    /**elemento grafica */
     private double initialWidth;
-
+    /**elemento grafica */
     public final static double PLAYLIST_CONTAINER_SPACING = 12;
+    /**elemento grafica */
     public final static double ROOT_PADDING_LEFT_AND_RIGHT = 30;
+    /**elemento grafica */
     private int MAX_ALBUM_DISPLAYED = 6;
+    /**elemento grafica */
     private int num_columns = 0;
+    /**elemento grafica */
     private int num_rows = 0;
-
+    /**array playlist presenti nell'applicazione */
     private ArrayList<Playlist> plays = new ArrayList<Playlist>();
+    /**array playlist dell'utente loggato presenti nell'applicazione */
     private ArrayList<Playlist> Myplays = new ArrayList<Playlist>();
+    /**array playlist degli altri utenti presenti nell'applicazione */
     private ArrayList<Playlist> Othersplays = new ArrayList<Playlist>();
-
+    /**elemento FXML */
     private GridPane albumBoxContainer = null;
-
+    /**elemento FXML */
     private Label myLabel = new Label("login per vedere le tue playlists");
+    /**elemento FXML */
     private Label MyotherLab = new Label("non ci sono playlists disponibili");
+    /**elemento FXML */
     private Label otherLab = new Label("non ci sono playlists disponibili");
+    /**elemento FXML */
     @FXML
     private HBox primaryShader;
-
+    /**elemento FXML */
     @FXML
     private VBox contentContainer;
-
+    /**elemento FXML */
     @FXML
     private VBox gridContainer;
-
+    /**elemento FXML */
     @FXML
     private FlowPane playlistBoxContainer;
-
-    //css playlistBox_container
+    /**elemento FXML */
     @FXML
     private VBox tableViewContainer;
-
+    /**elemento FXML */
     @FXML
     private FlowPane othersPlaylistBoxContainer;
-
+    /**modulo per accesso servizi server*/
     private HomeModule homeModule;
 
     public homeViewController(double initialWidth) {
         this.initialWidth = initialWidth;
         homeModule = new HomeModule();
     }
-
+    /**Inizializza file FXML */
     @FXML
     private void initialize() {
         WindowStyle.ResetColor();
@@ -106,13 +130,13 @@ public class homeViewController {
             smoothShaderTransition(oldValue,newValue);
         });
     }
-
+    /**elemento grafica */
     private void smoothShaderTransition(Color oldColor,Color newColor) {
         BackgroundTransition transition = new BackgroundTransition(primaryShader, Duration.seconds(0.85), oldColor, newColor);
         transition.play();
 
     }
-    
+    /**elemento grafica resizing*/
     private void handleElements(double width) {  
         // PER SEC ALBUM
         ObservableList<Node> boxes = albumBoxContainer.getChildren();
@@ -170,7 +194,7 @@ public class homeViewController {
         }
 
     }
-
+    /**setta sezione playlist*/
     public void setPlaylist(double width) throws RemoteException, NotBoundException {
         PlaylistModule pm = new PlaylistModule();
         plays = pm.setPlaylists();
@@ -239,7 +263,7 @@ public class homeViewController {
         }      
         
     }
-
+    /**setta sezione album */
     public void setAlbums(double width) {
         albumBoxContainer = new GridPane();
         albumBoxContainer.getStyleClass().add("albumBox_container");
@@ -258,7 +282,7 @@ public class homeViewController {
         gridContainer.getChildren().add(1, albumBoxContainer);
 
     }
-
+     /**setta sezione album */
     private void setTopTracks() {
         System.out.println("sono in setTopTracks 1");
         TableViewManager topTracks = new TableViewManager(true, false);
@@ -285,7 +309,7 @@ public class homeViewController {
         System.out.println("sono in setTopTracks 10");
         VBox.setVgrow(topTracks, Priority.ALWAYS);
     }
-
+     /**elemento grafica*/
     private void fillGrid(int columns, int rows) {
         int width_percenatge = (int) (100 / columns);
         for (int i = 0; i < columns; i++) {
@@ -308,7 +332,7 @@ public class homeViewController {
             }
         }
     }
-
+     /**inizializza view */
     private void initializeElements(double width) {
         try {
             setPlaylist(width);
@@ -317,14 +341,18 @@ public class homeViewController {
         setTopTracks(); // per fare questo ci mette troppo tempo
         setAlbums(width);
     }
-
+    /**apre finestra con playlist presenti nell'app
+     * @param e evento click javafx
+    */
     public void explorePlaylist(MouseEvent e) {
         ExplorePlaylistView view = new ExplorePlaylistView();
         view.prefWidthProperty().bind(Globals.getRootFrame().widthProperty());
         view.prefHeightProperty().bind(Globals.getRootFrame().heightProperty());
         Globals.getRootFrame().setContent(view);
     }
-
+    /**apre finestra con repository canzoni
+     * @param e evento click javafx
+    */
     public void openAllTrack(MouseEvent e) {
         AllTrackView view = new AllTrackView();
         view.prefWidthProperty().bind(Globals.getRootFrame().widthProperty());

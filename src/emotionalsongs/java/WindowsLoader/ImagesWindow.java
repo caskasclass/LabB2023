@@ -1,3 +1,8 @@
+/**
+ * Contiene le classi necessarie a implementare le finestre pop-up e non dell'applicazione
+  * @package WindowsLoader
+ * @see package.emotionalsongs.java
+ */
 package WindowsLoader;
 
 import javafx.stage.Stage;
@@ -25,12 +30,15 @@ import util.StyleManager;
  *classe creata per estendere la classe Stage di JavaFX e rappresenta una finestra per visualizzare immagini
  */
 public class ImagesWindow extends Stage {
+    /**oggetto per loading del file fxml */
     FXMLLoaders fxmlutil = new FXMLLoaders();
+    /**oggetto per stile del file fxml */
     StyleManager styleManager = new StyleManager();
 
     
-/**costruttore: accetta un'immagine da visualizzare, crea un controller per la gestione della finestra
+/**Costruttore: accetta un'immagine da visualizzare, crea un controller per la gestione della finestra
 *inizializza lo stile della finestra e la rende non ridimensionabile
+@param img
 */
     public ImagesWindow(ImageView img) {
         FXMLLoader loader = fxmlutil.getLoader("imagesWindow.fxml");
