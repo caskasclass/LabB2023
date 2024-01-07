@@ -1,3 +1,8 @@
+/**
+ * Contiene le classi necessarie a implementare le finestre pop-up e non dell'applicazione
+  * @package WindowsLoader
+ * @see package.emotionalsongs.java
+ */
 package WindowsLoader;
 
 import javafx.stage.Stage;
@@ -11,24 +16,25 @@ import javafx.scene.Scene;
 import util.FXMLLoaders;
 import util.StyleManager;
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
- * 
+ *Classe creata per estendere la classe Stage di JavaFX e rappresenta una finestra per la registrazione o l'accesso 
  * @author Beatrice Bastianello, matricola 751864, VA
  * @author Lorenzo Barbieri  , matricola 748695, VA
  * @author Filippo Storti , matricola 749195, VA
  * @author Nazar Viytyuk, matricola 748964, VA
  * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
-public class SignWindow extends Stage {
- *classe creata per estendere la classe Stage di JavaFX e rappresenta una finestra per la registrazione o l'accesso
  */
 public class SignWindow extends Stage{
-
+    /**oggetto per loading del file fxml */
     FXMLLoaders fxmlutil = new FXMLLoaders();
+    /**oggetto per stile  del file fxml */
     StyleManager styleManager  = new StyleManager();
 
     
-/**Costruttore della classe SignWindow che accetta un controller come riferimento*/
+/**Costruttore della classe SignWindow che accetta un controller come riferimento
+ * @param ref
+*/
     public SignWindow(homeWindowController ref) {
              FXMLLoader loader =  fxmlutil.getLoader("signWindow.fxml");
              signWindowController controller = new signWindowController(ref);
@@ -43,7 +49,6 @@ public class SignWindow extends Stage{
              } catch (Exception e) {
                 e.printStackTrace();// TODO: handle exception
              }
-            //mainContaier.getStylesheets().add(styleManager.loadStyle("main.css"));
             
             setOnShown(event ->{
                 //contenuto completamente caricato

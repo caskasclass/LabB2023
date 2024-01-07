@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi controller necessarie a
+ * gestire le views e finestre dell'applicazione.
+  * @package controllers
+ * @see package.emotionalsongs.java
+ */
 package controllers;
 
 import java.lang.String;
@@ -22,33 +28,46 @@ import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import jars.*;
-
+/**
+    *Controller per la finestra di login
+    * 
+    * @author Beatrice Bastianello, matricola 751864, VA
+    * @author Lorenzo Barbieri  , matricola 748695, VA
+    * @author Filippo Storti , matricola 749195, VA
+    * @author Nazar Viytyuk, matricola 748964, VA
+    * @version 1.0
+    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+    */
 public class signWindowController {
-
+    /**elemento FXML */
     @FXML
     private TextField id;
-
+    /**elemento FXML */
     @FXML
     private Button loginButton;
-
+    /**elemento FXML */
     @FXML
     private Button closeButton;
-
+    /**elemento FXML */
     @FXML
     private PasswordField password;
-
+    /**elemento FXML */
     @FXML
     private Label signUpButton;
-
+    /**elemento FXML */
     @FXML
     private Label msgErr;
-
+    /**oggetto controller*/
     homeWindowController ref = null;
-
+    /**Costruttore
+     * @param ref 
+     */
     public signWindowController(homeWindowController ref){
         this.ref = ref;
     }
-
+    /**metodo apertura finestra registrazione
+     * @param e click event javafx 
+     */
     public void openSignUp(MouseEvent e){
 
         System.out.println("\n\nCalcolo tempo\n\n");
@@ -62,7 +81,9 @@ public class signWindowController {
         System.out.println("\n\nTempo impiegato : " + (end - start) + " ms.\n\n");
 
     }
-
+    /**metodo login utente
+     * @param e click event javafx 
+     */
     public void accesso(MouseEvent e) throws IOException {
 
         String[] s = { id.getText(), password.getText() };
@@ -95,14 +116,19 @@ public class signWindowController {
         }
         }
 
-
+    /**metodo check delle stringhe inserite dall'utente
+    * @param data stringa
+    * @param regex pattern per il match 
+    */
     private boolean stringMatches(String data, String regex) {
-        // Compila il pattern regex
+
         Pattern pattern = Pattern.compile(regex);
-        // Verifica se il codice fiscale corrisponde al pattern regex
         return pattern.matcher(data).matches();
     }
-
+    
+    /**metodo chiusura finestra
+     * @param e click event javafx 
+     */
     public void closeWindow(MouseEvent e) {
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();

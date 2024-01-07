@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi controller necessarie a
+ * gestire le views e finestre dell'applicazione.
+  * @package controllers
+ * @see package.emotionalsongs.java
+ */
 package controllers;
 
 import javafx.application.Platform;
@@ -20,6 +26,10 @@ import javafx.scene.paint.Color;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import Models.AllTrackModule;
 import Models.HomeModule;
@@ -33,54 +43,80 @@ import util.ColorsManager;
 import util.TableViewManager;
 import views.HomeView;
 import views.PlaylistView;
-
+/**
+    *Controller per la view della playlist corrente
+    * 
+    * @author Beatrice Bastianello, matricola 751864, VA
+    * @author Lorenzo Barbieri  , matricola 748695, VA
+    * @author Filippo Storti , matricola 749195, VA
+    * @author Nazar Viytyuk, matricola 748964, VA
+    * @version 1.0
+    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+    */
 public class playlistViewController {
 
-    private Playlist p = null;
-    public String title = null;
-    public String user = null;
-    private String image = null;
-    private ArrayList<String> p_strings = new ArrayList<String>();
-    private ArrayList<String> addString = new ArrayList<String>();
-    private ArrayList<Track> p_tracks = new ArrayList<Track>();
-    private ArrayList<Track> addTracks = new ArrayList<Track>();
-
-    private TableViewManager mainTable = new TableViewManager(true, false);
-    private TableViewManager addTable = new TableViewManager(false, true);
-    private TableViewManager editTable = new TableViewManager(false, false);
-
+    
+    /**elemento FXML */
     @FXML
     private TextField cerca;
-
+    /**elemento FXML */
     @FXML
     private HBox buttonCont;
-
+    /**elemento FXML */
     @FXML
     private VBox container;
-
+    /**elemento FXML */
     @FXML
     private Button deleteButton;
-
+    /**elemento FXML */
     @FXML
     private Button editButton;
-
+    /**elemento FXML */
     @FXML
     private Label owner;
-
+    /**elemento FXML */
     @FXML
     private ImageView playlistImage;
-
+    /**elemento FXML */
     @FXML
     private HBox gradientBackground;
-
+    /**elemento FXML */
     @FXML
     private TextField playlistName;
-
+    /**elemento FXML */
     @FXML
     private VBox editcontainter;
-
+    /**elemento FXML */
     @FXML
     private VBox tableContainer;
+    /**oggetto playlist */
+    private Playlist p = null;
+    /**elemento playlist */
+    public String title = null;
+    /**elemento playlist */
+    public String user = null;
+    /**elemento playlist */
+    private String image = null;
+    /**lista per gestione tabelle */
+    private ArrayList<String> p_strings = new ArrayList<String>();
+    /**lista per gestione tabelle */
+    private ArrayList<String> addString = new ArrayList<String>();
+    /**lista per gestione tabelle */
+    private ArrayList<Track> p_tracks = new ArrayList<Track>();
+    /**lista per gestione tabelle */
+    private ArrayList<Track> addTracks = new ArrayList<Track>();
+    /**tabella playlist corrente */
+    private TableViewManager mainTable = new TableViewManager(true, false);
+    /**tabella cerca nuove canzoni */
+    private TableViewManager addTable = new TableViewManager(false, true);
+    /**tabella editing playlist */
+    private TableViewManager editTable = new TableViewManager(false, false);
+    /**elemento task asincroni */
+    private static ExecutorService executorService = Executors.newFixedThreadPool(5);
+    /**elemento delay ricerca */
+    Timer timer = new Timer();
+    /**elemento delay ricerca */
+    final int DELAY_TIME = 2000;
 
     PlaylistModule pm;
     AllTrackModule at = new AllTrackModule();
@@ -97,6 +133,7 @@ public class playlistViewController {
 
         playlistImage.setDisable(true);
         playlistName.setEditable(false);
+        playlistName.setStyle("-fx-background-color: transparent");
         setPlaylist();
         Color color = ColorsManager.getDominantColor(new Image(p.getImage()));
         gradientBackground.setBackground(BackgroundTransition.gettLinearGradient(color));
@@ -117,10 +154,21 @@ public class playlistViewController {
             try {
                 cerca.setOnKeyPressed(event -> {
                     if (event.getCode() != KeyCode.ENTER) {
-                        setResultsTitle(cerca.getText());
-                    } else {
-                        setResultsArtist(cerca.getText());
+                timer.cancel(); // Annulla il timer precedente all'inizio di un nuovo evento di pressione del
+                                // tasto
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        // Codice da eseguire dopo il ritardo di inattività (2 secondi)
+                        setResultsTitleAsync(cerca.getText());
                     }
+
+                }, DELAY_TIME);
+            } else {
+                timer.cancel(); // Annulla il timer se viene premuto il tasto "ENTER"
+                setResultsArtistAsync(cerca.getText());
+            }
                 });
             } catch (Exception e) {
                 e.printStackTrace();
@@ -128,7 +176,9 @@ public class playlistViewController {
 
         });
     }
-
+    /**Inizializza elementi view
+     * @throws RemoteException eccezione per servizi remote server
+    */
     private void initializeElements() throws RemoteException {
 
         if (ClientSession.client.getUserid() == null || !(ClientSession.client.getUserid().equals(user))) {
@@ -207,7 +257,7 @@ public class playlistViewController {
             Globals.getRootFrame().setContent(new HomeView(ResizeHandler.getCenterWidth()));
         });
     }
-
+    /**setta playlist selezionata */
     private void setPlaylist() {
         try {
             // modificare getPlaylist
@@ -222,7 +272,11 @@ public class playlistViewController {
             ex.printStackTrace();
         }
     }
-
+    /**metodo per salvare le nuove canzoni da aggiungere alla playlist
+     * @param editTable
+     * @throws RemoteException eccezione per servizi remote server
+     * @throws NotBoundException eccezione per servizi remote server
+    */
     private void newTracks(TableViewManager editTable) throws RemoteException, NotBoundException {
         ArrayList<Track> ar = new ArrayList<Track>(editTable.getItems());
         ArrayList<String> track_ids = new ArrayList<String>();
@@ -245,6 +299,41 @@ public class playlistViewController {
 
     }
 
+    /**setta top canzoni per popolarità con metodo asincrono*/
+    private void setTopTracksAsync() {
+        executorService.submit(() -> {
+            try {
+                setTopTracks();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    /**cerca per titolo con metodo asincrono
+     * @param s stringa di ricerca inserita dall'utente 
+    */
+    private void setResultsTitleAsync(String s) {
+        executorService.submit(() -> {
+            try {
+                setResultsTitle(s);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    /**cerca per artista e anno con metodo asincrono
+     * @param s stringa di ricerca inserita dall'utente 
+    */
+    private void setResultsArtistAsync(String s) {
+        executorService.submit(() -> {
+            try {
+                setResultsArtist(s);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+    /**setta top canzoni per popolarità */
     private void setTopTracks() throws RemoteException {
         addTable.setPrefHeight(980);
         HomeModule homeModule = new HomeModule();
@@ -257,7 +346,9 @@ public class playlistViewController {
 
         addTable.setItems(data);
     }
-
+    /**cerca per titolo
+     * @param s stringa di ricerca inserita dall'utente 
+    */
     private void setResultsTitle(String s) {
         try {
             addTable.setPrefHeight(980);
@@ -266,13 +357,15 @@ public class playlistViewController {
                 ObservableList<Track> data = FXCollections.observableArrayList(tres);
                 addTable.setItems(data);
             } else {
-                this.setTopTracks();
+                this.setTopTracksAsync();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    /**cerca per artista e anno 
+     * @param s stringa di ricerca inserita dall'utente 
+    */
     private void setResultsArtist(String s) {
         try {
             addTable.setPrefHeight(980);
@@ -281,7 +374,7 @@ public class playlistViewController {
                 ObservableList<Track> data = FXCollections.observableArrayList(tres);
                 addTable.setItems(data);
             } else {
-                this.setTopTracks();
+                this.setTopTracksAsync();
             }
         } catch (Exception e) {
             e.printStackTrace();

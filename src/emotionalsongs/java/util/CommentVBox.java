@@ -1,3 +1,9 @@
+/**
+  * Contiene le classi necessarie a implementare funzioni utili 
+ * alle altri classi del programma
+  * @package util 
+ * @see package.emotionalsongs.java
+ */
 package util;
 
 import javafx.geometry.Insets;
@@ -5,12 +11,29 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+/**
+ *Classe creata estendendo la classe VBox,  utilizzata per rappresentare un singolo commento all'interno di un'interfaccia utente
+ * 
+ * @author Beatrice Bastianello, matricola 751864
+ * @author Barbieri Lorenzo , matricola 748695
+ * @author Storti Filippo , matricola 749195
+ * @author Nazar Viytyuk, matricola 748964
+ * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+
+ */
 
 public class CommentVBox extends VBox{
 
+    /**elemento FXML */
     Label commentLabel;
+    /**elemento FXML */
     Label usernameLabel;
 
+    /**Costruttore del vbox contenente un commento di uno user
+     * @param comment
+     * @param username
+     */
     public CommentVBox(String comment, String username) {
         super();
        

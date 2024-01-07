@@ -1,11 +1,13 @@
+/**
+ * Contiene le classi controller necessarie a
+ * gestire le views e finestre dell'applicazione.
+  * @package controllers
+ * @see package.emotionalsongs.java
+ */
 package controllers;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import Models.TrackModule;
 import Session.ClientSession;
 import Session.Globals;
@@ -39,52 +41,64 @@ import util.BackgroundTransition;
 import util.ColorsManager;
 import util.CommentVBox;
 import util.EmotionBox;
-
+/**
+ * Controller per la visualizzazione della canzone selezionata
+ * 
+ * @author Beatrice Bastianello, matricola 751864, VA
+ * @author Lorenzo Barbieri  , matricola 748695, VA
+ * @author Filippo Storti , matricola 749195, VA
+ * @author Nazar Viytyuk, matricola 748964, VA
+ * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *
+ */
 public class canzoneViewController {
-
+    /**canzone corrente visualizzata*/
     Track track = null;
-
+    /**elemento FXML */
     @FXML
     private FlowPane containerEvaluation;
-
+    /**elemento FXML */
     @FXML
     private VBox gradientBackground;
-
+    /**elemento FXML */
     @FXML
     private ImageView immagineCanzone;
-
+    /**elemento FXML */
     @FXML
     private Label infoCanzoni;
-
+    /**elemento FXML */
     @FXML
     private Label nomeAlbum;
-
+    /**elemento FXML */
     @FXML
     private Label nomeCanzone;
-
+    /**elemento FXML */
     @FXML
     private VBox rootCanzoneview;
-
+    /**elemento FXML */
     @FXML
     private TabPane commentSection;
-
+    /**elemento FXML */
     @FXML
     private Label esitoLabel;
-
+    /**elemento FXML */
     @FXML
     private Button saveButton;
-    // create a map of emotions and their values
 
+    /**mappa di emozioni con valutazioni */
     HashMap<String, Integer> emotions = new HashMap<>();
-
+    /**lista dati emozioni*/
     ArrayList<ChartData> allEmotions = new ArrayList<>();
-
+    /**mappa di commenti */
     HashMap<String, String> emotionComments = new HashMap<>();
+    /**lista di commenti */
     ArrayList<CommentSection> comments = new ArrayList<CommentSection>();
-
+    /**true se la canzone ha già una valutazione*/
     Boolean isRated = false;
+    /**modulo per accesso servizi server*/
     TrackModule tm = new TrackModule();
-
+    /**Inizializza file FXML */
     @FXML
     private void initialize() {
         Globals.getRootFrame().setVvalue(0.0);
@@ -123,7 +137,7 @@ public class canzoneViewController {
         rootCanzoneview.getChildren().add(createChart());
 
     }
-
+    /**gestione grafica commenti*/
     private void unitializeCommentSection() {
         comments = tm.getAllComments(track);
         commentSection.getStyleClass().add("commentTab");
@@ -154,7 +168,7 @@ public class canzoneViewController {
 
         }
     }
-
+    /**inizializza mappa emozioni*/
     private void initMap() {
         emotions.put("Amazement", 0);
         emotions.put("Solemnity", 0);
@@ -166,11 +180,13 @@ public class canzoneViewController {
         emotions.put("Tension", 0);
         emotions.put("Sadness", 0);
     }
-
+    /**Setta canzone selezionata
+     * @param track canzone corrente
+    */
     public void setCanzone(Track track) {
         this.track = track;
     }
-
+    /**crea i box per le valutazioni*/
     public void createEvalBoxes() {
         DropShadow shadow = new DropShadow(BlurType.GAUSSIAN, Color.rgb(64, 63, 63), 12, 0.16, 0, 0);
         shadow.setWidth(25);
@@ -184,19 +200,19 @@ public class canzoneViewController {
 
         }
     }
-
+    /**verifica se la canzone è già stata valutata
+     * @return true se già valutata
+    */
     private boolean emotionsRated() {
         if (tm.checkIfRated(track.getTrack_id(), ClientSession.client.getUserid())) {
-            System.out.println("Hai già votato questa canzone");
             return true;
 
         } else {
-            System.out.println("Non hai ancora votato questa canzone");
             return false;
         }
 
     }
-
+    /**salva i valori dei box di valutazione*/
     private void getVotes() {
         for (Node node : containerEvaluation.getChildren()) {
             if (node instanceof EmotionBox) {
@@ -211,8 +227,8 @@ public class canzoneViewController {
             }
         }
     }
-
-    public void saveEmotions(ActionEvent event) {
+    /**salva emozioni ed eventuali comenti della canzone*/
+    public void inserisciEmozioniBrano(ActionEvent event) {
         getVotes();
         if (anyZero()) {
             esitoLabel.setTextFill(Color.RED);
@@ -232,7 +248,9 @@ public class canzoneViewController {
 
         System.out.println("Emozioni salvate");
     }
-
+    /**check se qualche emozione non valutata
+     * @return true se almeno una emozione non è stata valutata
+    */
     private boolean anyZero() {
         for (String string : emotions.keySet()) {
             if (emotions.get(string) == 0) {
@@ -241,7 +259,9 @@ public class canzoneViewController {
         }
         return false;
     }
-
+    /**crea il barchart della media emozioni
+     * @return contenitore con barchart
+    */
     private VBox createChart() {
         VBox chartBox = new VBox();
         chartBox.setAlignment(Pos.CENTER);
@@ -250,11 +270,12 @@ public class canzoneViewController {
         if (!allEmotions.isEmpty()) {
             XYChart.Series<String, Number> series = new XYChart.Series<>();
 
+            
             // Aggiungi i dati dalla lista allEmotions alla serie
             for (ChartData data : allEmotions) {
                 series.getData().add(new XYChart.Data<>(data.getEmotionName(), data.getAverageRating()));
             }
-
+            
             // Creazione del grafico a barre
             NumberAxis yAxis = new NumberAxis();
             yAxis.setTickUnit(0.2);
@@ -269,6 +290,7 @@ public class canzoneViewController {
 
             // Aggiungi la serie al grafico a barre
             barChart.getData().add(series);
+            
             barChart.setLegendVisible(false);
 
             Label label = new Label("Totale voti: " + allEmotions.get(0).getTotalRatings());

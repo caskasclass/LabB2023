@@ -1,3 +1,9 @@
+/**
+  * Contiene le classi necessarie a implementare funzioni utili 
+ * alle altri classi del programma
+  * @package util 
+ * @see package.emotionalsongs.java
+ */
 package util;
 
 import jars.Track;
@@ -10,13 +16,29 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+/**
+ *Classe creata per gestione  di cella personalizzata per l'utilizzo in una TableView 
+ *Questa cella mostra dettagli di traccia, inclusa un'immagine, il nome della traccia e il nome dell'autore
+ * 
+ * @author Beatrice Bastianello, matricola 751864
+ * @author Barbieri Lorenzo , matricola 748695
+ * @author Storti Filippo , matricola 749195
+ * @author Nazar Viytyuk, matricola 748964
+ * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
+ */
 public class CustomCell extends TableCell<Track, Void> {
+    /**elemento FXML */
     private final HBox hbox = new HBox();
+    /**elemento FXML */
     private final ImageView imageView = new ImageView();
+    /**elemento FXML */
     private final Label trackNameLabel = new Label();
+    /**elemento FXML */
     private final Label authorNameLabel = new Label();
 
+ /**costruttore della classe*/
     public CustomCell() {
         hbox.getStyleClass().add("hboxCustomColumn");
         hbox.setMaxSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
@@ -32,6 +54,12 @@ public class CustomCell extends TableCell<Track, Void> {
 
     }
 
+
+ 
+ /**metodo chiamato ogni volta che la cella deve essere aggiornata
+*@param item parametro di tipo Void
+*@param empty parametro di tipo boolean
+*/   
     @Override
     protected void updateItem(Void item, boolean empty) {
         super.updateItem(item, empty);

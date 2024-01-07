@@ -1,3 +1,9 @@
+/**
+  * Contiene le classi necessarie a implementare funzioni utili 
+ * alle altri classi del programma
+  * @package util 
+ * @see package.emotionalsongs.java
+ */
 package util;
 
 import Models.TrackModule;
@@ -6,23 +12,47 @@ import javafx.geometry.Pos;
 import javafx.scene.AccessibleRole;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-
+/**
+*Classe  progettata per rappresentare una casella contenente informazioni sull'emozione, inclusi i voti e i commenti degli utenti
+ * 
+ * @author Beatrice Bastianello, matricola 751864
+ * @author Barbieri Lorenzo , matricola 748695
+ * @author Storti Filippo , matricola 749195
+ * @author Nazar Viytyuk, matricola 748964
+ * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ 
+ */
 public class EmotionBox extends VBox {
+    /**elemento grafica */
     private final String emotionName;
+    /**elemento FXML */
     private final Label[] ratingLabels = new Label[5];
+    /**modulo accesso servizi server */
     TrackModule tm = new TrackModule();
+    /**voto emozione */
     Integer vote = 0;
+    /**commento dell'emozione */
     String comment = "";
+    /**elemento FXML */
     TextArea description = new TextArea();
 
 
+ 
+ /** costruttore della classe: Viene inizializzata l'emozione, il voto e il commento sulla base dei parametri forniti
+ *Viene applicato uno stile di ombreggiatura alla casella
+ *Vengono impostati stili e dimensioni per la casella, inizializzati i componenti UI e in base al flag di valutazione, viene impostato il voto e il commento iniziali
+ *@param emotionName parametro di tipo String
+  * @param isRated parametro di tipo boolean
+  *@param index parametro di tipo Integer
+  *@param comment parametro di tipo String
+ */
     public EmotionBox(String emotionName, boolean isRated, Integer index,String comment) {
         super();
         setAccessibleRole(AccessibleRole.BUTTON);
@@ -51,6 +81,13 @@ public class EmotionBox extends VBox {
 
     }
 
+
+ 
+ /**metodo privato che inizializza i componenti dell'interfaccia utente all'interno della casella
+ *Viene creato un contenitore per il titolo dell'emozione
+ *Viene creata una TextArea per inserire commenti più dettagliati sull'emozione
+ *Viene creato un contenitore per le etichette di valutazione
+ */  
     private void initUI() {
         HBox titleContainer = new HBox();
         titleContainer.setAlignment(Pos.CENTER);
@@ -81,6 +118,14 @@ public class EmotionBox extends VBox {
         getChildren().addAll(titleContainer,description,choiceContainer);
     }
 
+
+ 
+ /**metodo privato che Crea e restituisce un'etichetta di valutazione con il testo specificato
+ *Viene impostato uno stile di classe CSS all'etichetta 
+ *Viene creata una TextArea per inserire commenti più dettagliati sull'emozione
+ *Viene aggiunto un gestore di eventi al clic dell'etichetta per gestire la selezione/deselezione del voto
+ *@return label di valutazione
+ */  
     private Label createRatingLabel(String text) {
         Label label = new Label(text);
         label.getStyleClass().addAll("rateNum", "notSelected");
@@ -96,6 +141,11 @@ public class EmotionBox extends VBox {
         return label;
     }
 
+
+ 
+ /** metodo privato che gestisce il clic sulle etichette di valutazione
+ *@param label parametro di tipo Label FXML
+ */
     private void handleRatingClick(Label label) {
         int selectedIndex = Integer.parseInt(label.getText()) - 1;
 
@@ -118,13 +168,29 @@ public class EmotionBox extends VBox {
         }
     }
 
+
+
+ /**metodo che restituisce il nome dell'emozione
+  * @return nome emozione
+ */
     public String getEmotionName() {
         return emotionName;
     }
 
+
+ 
+ /**metodo che restituisce il voto associato all'emozione
+  *  @return voto emozione
+ */
     public Integer getVote() {
         return vote;
     }
+
+
+ 
+ /**metodo che restituisce il commento associato all'emozione, con una stringa predefinita se la TextArea è vuota
+  * @return commento
+ */
     public String getComment(){
         if(description.getText().isEmpty()){
             return "Silence is golden";

@@ -1,3 +1,10 @@
+/**
+ * Contiene le classi necessarie a racchiudere tutti i servizi
+ * implementati dal server e accessibili grazie a ServerInterface.
+ * Ogni classe rappresenta un sottogruppo di servizi legati a utente, canzoni etc.
+  * @package Models
+ * @see package.emotionalsongs.java
+ */
 package Models;
 
 import java.util.ArrayList;
@@ -7,22 +14,22 @@ import jars.AlbumPreview;
 import jars.ServerInterface;
 
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *Classe creata per interagire con una ServerInterface utile ad ottenere le tracce musicali e gli album migliori da server
+
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
-
- *classe creata per interagire con una ServerInterface utile ad ottenere le tracce musicali e gli album migliori da server
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
  */
 public class HomeModule {
-
+    /**oggetto interfaccia per servizi server*/
     ServerInterface stub;
 
     
-/**costruttore: inizializza l'oggetto <code>stub</code> */
+/**costruttore: inizializza l'oggetto  stub  */
     public HomeModule() {
         stub = ServerFinder.findServer();
     }
@@ -30,7 +37,6 @@ public class HomeModule {
 
     
 /**metodo  utilizzato per ottenere un ArrayList delle migliori tracce
-*@throws <code>Excepion</code> Eccezione
 *@return Arraylist di tracce, null altrimenti
 */
     public ArrayList<TrackDetails> getToptracks() {
@@ -52,7 +58,6 @@ public class HomeModule {
 
     
 /**metodo  utilizzato per ottenere un ArrayList dei migliori album
-*@throws <code>Excepion</code> Eccezione
 *@return Arraylist di album, null altrimenti
 */
      public ArrayList<AlbumPreview> getTopAlbums() {

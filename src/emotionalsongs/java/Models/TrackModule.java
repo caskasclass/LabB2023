@@ -1,8 +1,14 @@
+/**
+ * Contiene le classi necessarie a racchiudere tutti i servizi
+ * implementati dal server e accessibili grazie a ServerInterface.
+ * Ogni classe rappresenta un sottogruppo di servizi legati a utente, canzoni etc.
+  * @package Models
+ * @see package.emotionalsongs.java
+ */
 package Models;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import Session.ClientSession;
 import jars.ChartData;
 import jars.CommentSection;
@@ -11,21 +17,21 @@ import jars.ServerInterface;
 import jars.Track;
 
 /**
- * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *Classe creata per la gestione delle emozioni associate a tracce musicali
  * 
  * @author Beatrice Bastianello, matricola 751864
  * @author Barbieri Lorenzo , matricola 748695
  * @author Storti Filippo , matricola 749195
  * @author Nazar Viytyuk, matricola 748964
  * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
- *classe creata per la gestione delle emozioni associate a tracce musicali
  */
 public class TrackModule {
-
+    /**oggetto interfaccia per servizi server*/
     ServerInterface stub;
 
-/**costruttore: inizializza oggetto <code>si</code> con metodo findServer*/
+/**costruttore: inizializza oggetto  si  con metodo findServer*/
     public TrackModule() {
             stub = ServerFinder.findServer();
     }
@@ -33,8 +39,7 @@ public class TrackModule {
 
     
 /**metodo che inserisce un'emozione nel server
-*@param <code>e</code> oggetto di tipo EmotionEvaluetion
-*@throws <code>RemoteException</code> Eccezione
+*@param  e  oggetto di tipo EmotionEvaluation
 */  
     public void insertEmotion(EmotionEvaluation e) {
         try {
@@ -48,8 +53,7 @@ public class TrackModule {
 
     
 /**metodo che verifica se la traccia selezionata è stata valutata dall'utente
-*@param <code>track_id</code> oggetto di tipo String, <code>user_id</code> oggetto di tipo String
-*@throws <code>RemoteException</code> Eccezione
+*@param  track_id  oggetto di tipo String,  user_id  oggetto di tipo String
 *@return true se è stata valutata, false altrimenti
 */  
     public boolean checkIfRated(String track_id,String user_id){
@@ -65,9 +69,8 @@ public class TrackModule {
 
     
 /**metodo creato per ottenere le emozioni associate a una traccia per l'utente corrente
-*@param <code>track</code> oggetto di tipo Track
-*@throws <code>RemoteException</code> Eccezione
-*@return <code>ee</code> oggetto di tipo EmotionEvaluation, null altrimenti
+*@param  track  oggetto di tipo Track
+*@return  ee  oggetto di tipo EmotionEvaluation, null altrimenti
 */  
     public EmotionEvaluation getMyEmotions(Track track){
         
@@ -84,9 +87,8 @@ public class TrackModule {
 
     
 /**metodo creato per ottenere tutte le emozioni associate a una traccia 
-*@param <code>track</code> oggetto di tipo Track
-*@throws <code>RemoteException</code> Eccezione
-*@return ArrayList<ChartData> contenente le informazioni riguardardo le emozioni
+*@param  track  oggetto di tipo Track
+*@return   contenente le informazioni riguardardo le emozioni
 */ 
     public ArrayList<ChartData> getAllEmotions(Track track){
         try {

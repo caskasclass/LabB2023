@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi controller necessarie a
+ * gestire le views e finestre dell'applicazione.
+  * @package controllers
+ * @see package.emotionalsongs.java
+ */
 package controllers;
 
 import javafx.application.Platform;
@@ -28,37 +34,50 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import javafx.scene.input.KeyCode;
-
+/**
+ * Controller per la view della repository canzoni
+ * 
+ * @author Beatrice Bastianello, matricola 751864, VA
+ * @author Lorenzo Barbieri  , matricola 748695, VA
+ * @author Filippo Storti , matricola 749195, VA
+ * @author Nazar Viytyuk, matricola 748964, VA
+ * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+ *
+ */
 public class AllTrackViewController {
-
+    /**elemento FXML */
     @FXML
     private VBox contentContainer;
-
+    /**elemento FXML */
     @FXML
     private VBox tableViewContainer;
-
+    /**elemento FXML */
     @FXML
     private Label leftLabel;
-
+    /**elemento FXML */
     @FXML
     private TextField searchBar;
-
+    /**elemento FXML */
     @FXML
     private Pane MainFrame;
-
+    /**elemento FXML */
     @FXML
     private HBox playlistBoxContainer;
-
+    /**elemento FXML */
     @FXML
     private Background primaryShader;
 
     AllTrackModule at = new AllTrackModule();
 
 
+    /**elemento task asincroni */
     private static ExecutorService executorService = Executors.newFixedThreadPool(5);
+    /**elemento delay ricerca */
     Timer timer = new Timer();
+    /**elemento delay ricerca */
     final int DELAY_TIME = 2000;
-
+    /**Inizializza file FXML */
     @FXML
     private void initialize() {
         WindowStyle.ResetColor();
@@ -66,7 +85,11 @@ public class AllTrackViewController {
         MainFrame.setBackground(WindowStyle.setInitialBackground());
 
         setTopTracksAsync();
+        cercaBranoMusicale();
 
+    }
+    /**Metodo per la ricerca dei brani musicali*/
+    private void cercaBranoMusicale(){
         searchBar.setOnKeyPressed(event -> {
             if (event.getCode() != KeyCode.ENTER) {
                 timer.cancel(); // Annulla il timer precedente all'inizio di un nuovo evento di pressione del
@@ -87,6 +110,7 @@ public class AllTrackViewController {
         });
     }
 
+    /**Setta le top tracks con metodo asincrono */
     private void setTopTracksAsync() {
         executorService.submit(() -> {
             try {
@@ -97,6 +121,9 @@ public class AllTrackViewController {
         });
     }
 
+    /**setta risultato della ricerca con metodo asincrono
+     * @param s stringa inserita dall'utente di ricerca
+    */
     private void setResultsTitleAsync(String s) {
         executorService.submit(() -> {
             try {
@@ -107,6 +134,9 @@ public class AllTrackViewController {
         });
     }
 
+    /**setta risultato della ricerca con metodo asincrono
+     * @param s stringa di ricerca inserita dall'utente 
+    */
     private void setResultsArtistAsync(String s) {
         executorService.submit(() -> {
             try {
@@ -117,6 +147,7 @@ public class AllTrackViewController {
         });
     }
 
+    /**cerca le top tracks per popolarità */
     private void setTopTracks() throws RemoteException {
         TableViewManager topTracks = new TableViewManager(true, false);
         topTracks.setPrefHeight(980);
@@ -136,6 +167,9 @@ public class AllTrackViewController {
         });
     }
 
+    /**ricerca per titolo 
+     * @param s stringa di ricerca inserita dall'utente 
+    */
     private void setResultsTitle(String s) {
         try {
             TableViewManager res = new TableViewManager(true, false);
@@ -155,7 +189,9 @@ public class AllTrackViewController {
             e.printStackTrace();
         }
     }
-
+    /**cerca per artista e anno
+     * @param s stringa di ricerca inserita dall'utente 
+    */
     private void setResultsArtist(String s) {
         try {
             TableViewManager res = new TableViewManager(true, false);

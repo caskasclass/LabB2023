@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi controller necessarie a
+ * gestire le views e finestre dell'applicazione.
+  * @package controllers
+ * @see package.emotionalsongs.java
+ */
 package controllers;
 
 import java.lang.String;
@@ -18,44 +24,51 @@ import javafx.scene.control.TextField;
 import views.HomeView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
+/**
+    *Controller per la finestra di registrazione
+    * 
+    * @author Beatrice Bastianello, matricola 751864, VA
+    * @author Lorenzo Barbieri  , matricola 748695, VA
+    * @author Filippo Storti , matricola 749195, VA
+    * @author Nazar Viytyuk, matricola 748964, VA
+    * @version 1.0
+    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+    */
 public class signUpViewController {
-
+    /**elemento FXML */
     @FXML
     private TextField cap;
-
+    /**elemento FXML */
     @FXML
     private TextField cf;
-
+    /**elemento FXML */
     @FXML
     private TextField citta;
-
+    /**elemento FXML */
     @FXML
     private Label msgErr;
-
+    /**elemento FXML */
     @FXML
     private TextField mail;
-
+    /**elemento FXML */
     @FXML
     private TextField nome;
-
+    /**elemento FXML */
     @FXML
     private PasswordField password;
-
+    /**elemento FXML */
     @FXML
     private TextField residenza;
-
+    /**elemento FXML */
     @FXML
     private Button signUpButton;
-
+    /**elemento FXML */
     @FXML
     private TextField username;
-
-    public void closeWindow(MouseEvent e) {
-        Stage stage = (Stage) signUpButton.getScene().getWindow();
-        stage.close();
-    }
-
+    
+    /**metodo per registrazione utente
+     * @param e click event javafx 
+     */
     public void registrazione(MouseEvent e) throws IOException {
 
         String[] s = { username.getText(), nome.getText(), cf.getText(), residenza.getText(), cap.getText(),
@@ -90,12 +103,22 @@ public class signUpViewController {
         }
 
     }
-
+    /**metodo check delle stringhe inserite dall'utente
+     * @param data stringa
+     * @param regex pattern per il match 
+     */
     private boolean stringMatches(String data, String regex) {
         // Compila il pattern regex
         Pattern pattern = Pattern.compile(regex);
         // Verifica se il codice fiscale corrisponde al pattern regex
         return pattern.matcher(data).matches();
+    }
+    /**metodo chiusura finestra
+     * @param e click event javafx 
+     */
+    public void closeWindow(MouseEvent e) {
+        Stage stage = (Stage) signUpButton.getScene().getWindow();
+        stage.close();
     }
 
 }

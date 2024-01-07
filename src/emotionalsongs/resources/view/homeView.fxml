@@ -24,7 +24,7 @@
          <children>
             <VBox spacing="5.0">
                <children>
-                  <Label text="Le tue Playlist ">
+                  <Label styleClass="section_label" text="Le tue Playlist ">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
@@ -45,7 +45,7 @@
             </VBox>
             <VBox fx:id="gridContainer">
                <children>
-                  <Label text="Album del momento">
+                  <Label styleClass="section_label" text="Album del momento">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin></Label>
@@ -57,7 +57,7 @@
             </VBox>
             <VBox>
                <children>
-                  <Label text="Titoli del momento ">
+                  <Label styleClass="section_label" text="Titoli del momento ">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>
@@ -78,7 +78,7 @@
             </VBox>
             <VBox spacing="5.0">
                <children>
-                  <Label text="Esplora Playlist ">
+                  <Label styleClass="section_label" text="Esplora Playlist ">
                      <VBox.margin>
                         <Insets bottom="16.0" />
                      </VBox.margin>

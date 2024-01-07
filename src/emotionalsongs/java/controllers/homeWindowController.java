@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi controller necessarie a
+ * gestire le views e finestre dell'applicazione.
+  * @package controllers
+ * @see package.emotionalsongs.java
+ */
 package controllers;
 
 import Session.ClientSession;
@@ -26,58 +32,68 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import views.HomeView;
 import views.AllTrackView;
-import views.CanzoneView;
 import views.CreatePlaylistView;
 import views.ExplorePlaylistView;
 import javafx.stage.Stage;
 import jars.*;
 import util.BackgroundTransition;
 import javafx.scene.effect.BoxBlur;
+/**
 
+    *Controller per la finestra principale dell'applicazione    
+    * @author Beatrice Bastianello, matricola 751864, VA
+    * @author Lorenzo Barbieri  , matricola 748695, VA
+    * @author Filippo Storti , matricola 749195, VA
+    * @author Nazar Viytyuk, matricola 748964, VA
+    * @version 1.0
+    * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
+
+    */
 public class homeWindowController {
-
-    private double MinWidth = WindowAppearance.getWindowWidth() * 0.22; // non toccare
-    private double MaxWidth = WindowAppearance.getWindowWidth() * 0.25; // non toccare
-
+    /**elemento grafica */
+    private double MinWidth = WindowAppearance.getWindowWidth() * 0.22; 
+    /**elemento grafica */
+    private double MaxWidth = WindowAppearance.getWindowWidth() * 0.25;
+    /**elemento grafica */
     private double opacity = 0.0;
+    /**elemento grafica */
     private CornerRadii cornerRad = new CornerRadii(8, 8, 0, 0, false);
-
-
+    /**elemento FXML */
     @FXML
     private BorderPane rootPane;
-
+    /**elemento FXML */
     @FXML
     private VBox buttonVbox;
-
+    /**elemento FXML */
     @FXML
     private VBox rootMenu;
-
+    /**elemento FXML */
     @FXML
     public ScrollPane centerScrollPane;
-
+    /**elemento FXML */
     @FXML
     private StackPane centerStackPane;
-
+    /**elemento FXML */
     @FXML
     private HBox header_hbox;
-
+    /**elemento FXML */
     @FXML
     private Button homeButton;
-
+    /**elemento FXML */
     @FXML
     private Button searchButton;
-
+    /**elemento FXML */
     @FXML
     private Button loginButton;
-
+    /**elemento FXML */
     @FXML
     private Button creaButton;
-
+    /**elemento FXML */
     Button userButton= null;
-    
+    /**elemento FXML */
     Button logoutButton= null;
 
-
+    /**Inizializza file FXML */
     @FXML
     private void initialize() {
 
@@ -152,7 +168,7 @@ public class homeWindowController {
         updateWindow();
 
     }
-
+    /**metodo per la grafica */
     private void handleScrollEvent(ScrollEvent event) {
         // pos in base a V max e min del scroll pane(nel mio caso tra 0 e 100)
         double vPosition = centerScrollPane.getVvalue();
@@ -184,13 +200,13 @@ public class homeWindowController {
         // assegno il nuovo bg
         Platform.runLater(() -> header_hbox.setBackground(newBackground));
     }
-
+    /**elemento grafica */
     private Button createButton(String text) {
         Button btn = new Button(text);
         btn.getStyleClass().add("header_buttons");
         return btn;
     }
-
+    /**elemento grafica */
     private Circle cropUserImg(ImageView img, double width, double height) {
         img.setFitHeight(height);
         img.setFitWidth(width);
@@ -200,8 +216,9 @@ public class homeWindowController {
         clip.setCenterY(img.getFitHeight() / 2);
         return clip;
     }
-
-   
+    /**apre finestra login
+     * @param e evento click javafx
+    */
     public void openWindow(MouseEvent e) {
         Stage parent = (Stage) homeButton.getScene().getWindow();
         SignWindow window = new SignWindow(this);
@@ -217,37 +234,42 @@ public class homeWindowController {
         });
         window.show();
     }
-
+    /**apre view con creazione playlist
+     * @param e evento click javafx
+    */
     public void openViewCreate(MouseEvent e) {
 
         CreatePlaylistView view = new CreatePlaylistView();
         centerScrollPane.setContent(view);
     }
-
+    /**apre view con repository canzoni
+     * @param e evento click javafx
+    */
     public void openAllTrack(MouseEvent e) {
         AllTrackView view = new AllTrackView();
         view.prefWidthProperty().bind(centerScrollPane.widthProperty());
         view.prefHeightProperty().bind(centerScrollPane.heightProperty());
         centerScrollPane.setContent(view);
     }
-
+    /**apre view home
+     * @param e evento click javafx
+    */
     public void backHome(MouseEvent e) {
         HomeView view = new HomeView(ResizeHandler.getCenterWidth());
         BackgroundTransition.setHeaderGraphics(Color.rgb(40,25,83,0));
         centerScrollPane.setContent(view);
     }
-
-    public void openTrack(MouseEvent e){
-        CanzoneView view = new CanzoneView(null);
-        centerScrollPane.setContent(view);
-    }
-
+    /**apre view con playlist presenti
+     * @param e evento click javafx
+    */
     public void explorePlaylist(MouseEvent e) {
         ExplorePlaylistView view = new ExplorePlaylistView();
         view.prefWidthProperty().bind(centerScrollPane.widthProperty());
         view.prefHeightProperty().bind(centerScrollPane.heightProperty());
         centerScrollPane.setContent(view);
     }
+
+    /**gestione grafica dopo login */
     public void updateWindow(){
         Platform.runLater(()->{
             

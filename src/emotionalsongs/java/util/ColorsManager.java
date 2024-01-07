@@ -1,3 +1,9 @@
+/**
+ * Contiene le classi necessarie a implementare funzioni utili 
+ * alle altri classi del programma
+  * @package util 
+ * @see package.emotionalsongs.java
+ */
 package util;
 
 import java.util.*;
@@ -5,9 +11,24 @@ import java.util.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
+/**
+ *Classe creata per la gestione dei colori di sfondo dell'applicazione
+ * 
+ * @author Beatrice Bastianello, matricola 751864
+ * @author Barbieri Lorenzo , matricola 748695
+ * @author Storti Filippo , matricola 749195
+ * @author Nazar Viytyuk, matricola 748964
+ * @version 1.0
+ * Progetto laboratorio B: "Emotional Songs", anno 2022-2023
 
+ */
 public class ColorsManager {
 
+
+ /**metodo che prende un'immagine come input e restituisce il colore dominante nell'immagine
+*@param  image parametro di tipo Image
+*@return dominantColor oggetto di tipo Color
+*/ 
     public static Color getDominantColor(Image image) {
 
         int width = (int) image.getWidth();
@@ -46,6 +67,12 @@ public class ColorsManager {
 
     }
 
+
+ 
+ /**metodo che verifica se un colore è bianco o simile al bianco utilizzando una tolleranza specifica
+*@param color parametro di tipo Color
+*@return true se è bianco o simile
+*/ 
     private static boolean isWhiteOrSimilar(Color color) {
         double tolerance = 0.1; // Tolleranza per determinare la somiglianza al bianco
 
@@ -56,6 +83,12 @@ public class ColorsManager {
                 (Math.abs(color.getBlue() - Color.WHITE.getBlue()) < tolerance);
     }
 
+
+ 
+ /**metodo che verifica se un colore è nero o simile al nero utilizzando una tolleranza specifica
+*@param color parametro di tipo Color
+*@return true se è nero o simile
+*/ 
     private static boolean isBlackOrSimilar(Color color) {
         double tolerance = 0.1; // Tolleranza per determinare la somiglianza al nero
     
