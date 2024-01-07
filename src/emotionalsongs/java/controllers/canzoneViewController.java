@@ -186,7 +186,6 @@ public class canzoneViewController {
     }
 
     private boolean emotionsRated() {
-        TrackModule tm = new TrackModule();
         if (tm.checkIfRated(track.getTrack_id(), ClientSession.client.getUserid())) {
             System.out.println("Hai già votato questa canzone");
             return true;

@@ -82,8 +82,18 @@ public class playlistViewController {
     @FXML
     private VBox tableContainer;
 
+    PlaylistModule pm;
+    AllTrackModule at = new AllTrackModule();
+
+
+
     @FXML
     void initialize() {
+        try {
+            pm = new PlaylistModule();
+        } catch (RemoteException | NotBoundException e) {
+            e.printStackTrace();
+        } 
 
         playlistImage.setDisable(true);
         playlistName.setEditable(false);
@@ -188,8 +198,8 @@ public class playlistViewController {
 
         deleteButton.setOnMouseClicked(event -> {
             editcontainter.setVisible(false);
+            
             try {
-                PlaylistModule pm = new PlaylistModule();
                 pm.deletePlaylist(p);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -201,7 +211,6 @@ public class playlistViewController {
     private void setPlaylist() {
         try {
             // modificare getPlaylist
-            PlaylistModule pm = new PlaylistModule();
             p = pm.getP(title, user);
             image = p.getImage();
             p_strings = p.getTrackList();
@@ -227,7 +236,6 @@ public class playlistViewController {
                 new_tracks.add(track);
             }
         }
-        PlaylistModule pm = new PlaylistModule();
         pm.createPlaylist(new Playlist(title, new_tracks, image, user));
         for (String track : p_strings) {
             if (!(track_ids.contains(track))) {
@@ -253,7 +261,6 @@ public class playlistViewController {
     private void setResultsTitle(String s) {
         try {
             addTable.setPrefHeight(980);
-            AllTrackModule at = new AllTrackModule();
             ArrayList<Track> tres = at.searchTracksName(s);
             if (tres != null) {
                 ObservableList<Track> data = FXCollections.observableArrayList(tres);
@@ -269,7 +276,6 @@ public class playlistViewController {
     private void setResultsArtist(String s) {
         try {
             addTable.setPrefHeight(980);
-            AllTrackModule at = new AllTrackModule();
             ArrayList<Track> tres = at.searchTracksAutor(s);
             if (tres != null) {
                 ObservableList<Track> data = FXCollections.observableArrayList(tres);
