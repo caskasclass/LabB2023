@@ -67,6 +67,10 @@ public class AllTrackViewController {
     /**elemento FXML */
     @FXML
     private Background primaryShader;
+
+    AllTrackModule at = new AllTrackModule();
+
+
     /**elemento task asincroni */
     private static ExecutorService executorService = Executors.newFixedThreadPool(5);
     /**elemento delay ricerca */
@@ -170,7 +174,6 @@ public class AllTrackViewController {
         try {
             TableViewManager res = new TableViewManager(true, false);
             res.setPrefHeight(980);
-            AllTrackModule at = new AllTrackModule();
             ArrayList<Track> tres = at.searchTracksName(s);
             if (tres != null) {
                 ObservableList<Track> data = FXCollections.observableArrayList(tres);
@@ -193,7 +196,6 @@ public class AllTrackViewController {
         try {
             TableViewManager res = new TableViewManager(true, false);
             res.setPrefHeight(980);
-            AllTrackModule at = new AllTrackModule();
             ArrayList<Track> tres = at.searchTracksAutor(s);
             if (tres != null) {
                 ObservableList<Track> data = FXCollections.observableArrayList(tres);

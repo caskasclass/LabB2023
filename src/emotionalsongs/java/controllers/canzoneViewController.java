@@ -204,7 +204,6 @@ public class canzoneViewController {
      * @return true se già valutata
     */
     private boolean emotionsRated() {
-        TrackModule tm = new TrackModule();
         if (tm.checkIfRated(track.getTrack_id(), ClientSession.client.getUserid())) {
             return true;
 
