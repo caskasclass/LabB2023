@@ -41,6 +41,7 @@ import util.BackgroundTransition;
 import util.ColorsManager;
 import util.CommentVBox;
 import util.EmotionBox;
+import views.CanzoneView;
 /**
  * Controller per la visualizzazione della canzone selezionata
  * 
@@ -240,11 +241,7 @@ public class canzoneViewController {
         EmotionEvaluation ee = new EmotionEvaluation(emotions, ClientSession.client.getUserid(), track.getTrack_id(),
                 emotionComments);
         tm.insertEmotion(ee);
-        Platform.runLater(() -> {
-            rootCanzoneview.getChildren().remove(3);
-            allEmotions = tm.getAllEmotions(track);
-            rootCanzoneview.getChildren().add(createChart());
-        });
+            Globals.getRootFrame().setContent(new CanzoneView(track));
 
         System.out.println("Emozioni salvate");
     }
